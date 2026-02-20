@@ -103,6 +103,8 @@ def can_finish(num_courses, prerequisites):
 
 #### 4.3.1 模板题目
 - 0207 - Course Schedule ｜ [LeetCode 链接](https://leetcode.cn/problems/course-schedule/) ｜ [题解笔记](../solutions/0201-0300/0207-course-schedule.md)
+- 0310 - 最小高度树 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-height-trees/) ｜ [题解笔记](../solutions/0301-0400/0310-minimum-height-trees.md)
+- 2392 - 给定条件下构造矩阵 ｜ [LeetCode 链接](https://leetcode.cn/problems/build-a-matrix-with-conditions/) ｜ [题解笔记](../solutions/2301-2400/2392-build-a-matrix-with-conditions.md)
 ### 4.4 最小生成树（Kruskal/Prim）
 方法说明：
 用于“以最小代价连通全部节点”。`1584` 与 `1631` 都可从 MST 或最短路视角切入。

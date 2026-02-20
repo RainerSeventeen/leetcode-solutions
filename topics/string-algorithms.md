@@ -87,9 +87,10 @@ def longest_valid_parentheses(s):
 ```
 
 #### 4.3.1 模板题目
+- 0022 - 括号生成 ｜ [LeetCode 链接](https://leetcode.cn/problems/generate-parentheses/) ｜ [题解笔记](../solutions/0001-0100/0022-generate-parentheses.md)
 - 0032 - 最长有效括号 ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-valid-parentheses/) ｜ [题解笔记](../solutions/0001-0100/0032-longest-valid-parentheses.md)
 - 0301 - 删除无效的括号 ｜ [LeetCode 链接](https://leetcode.cn/problems/remove-invalid-parentheses/) ｜ [题解笔记](../solutions/0301-0400/0301-remove-invalid-parentheses.md)
-- 0022 - 括号生成 ｜ [LeetCode 链接](https://leetcode.cn/problems/generate-parentheses/) ｜ [题解笔记](../solutions/0001-0100/0022-generate-parentheses.md)
+- 0761 - 特殊的二进制字符串 ｜ [LeetCode 链接](https://leetcode.cn/problems/special-binary-string/) ｜ [题解笔记](../solutions/0701-0800/0761-special-binary-string.md)
 ### 4.4 字符串栈与解码
 方法说明：
 分层结构可用双栈或递归下降解析，遇到 `]` 回收一层。
