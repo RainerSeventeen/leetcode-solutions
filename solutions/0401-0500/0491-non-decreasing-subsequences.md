@@ -45,7 +45,9 @@ https://leetcode.cn/problems/non-decreasing-subsequences/
 难点是同一层去重：每层递归内部用一个局部 `unordered_set<int> used`，避免当前层重复选择同值元素产生等价分支。注意这个 `used` 必须是“层内变量”，不能复用全局状态。
 
 - 时间复杂度: $O(n \cdot 2^n)$
-- 空间复杂度: $O(n)$（不含答案存储）
+- 空间复杂度: $O(n)$
+
+不计答案存储。
 
 ## 代码
 ```cpp

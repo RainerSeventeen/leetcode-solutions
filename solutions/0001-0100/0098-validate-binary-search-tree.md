@@ -50,7 +50,9 @@ https://leetcode.cn/problems/validate-binary-search-tree/
 二叉搜索树的中序遍历结果必须严格递增。递归做中序遍历时，维护一个“上一个访问到的值” `maxVal`。如果当前节点值 `<= maxVal`，就可以直接判定不是合法 BST。
 
 - 时间复杂度: $O(n)$
-- 空间复杂度: $O(h)$，`h` 为树高
+- 空间复杂度: $O(h)$
+
+其中 `h` 为树高。
 
 ## 代码
 ```cpp

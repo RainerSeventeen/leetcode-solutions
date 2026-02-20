@@ -48,8 +48,8 @@ https://leetcode.cn/problems/unique-binary-search-trees/
 
 边界 `dp[0] = 1`（空树算一种）。
 
-- 时间复杂度: `O(n^2)`
-- 空间复杂度: `O(n)`
+- 时间复杂度: $O(n^2)$
+- 空间复杂度: $O(n)$
 
 ## 代码
 ```python

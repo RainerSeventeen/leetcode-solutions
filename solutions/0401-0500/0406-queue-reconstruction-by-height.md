@@ -57,8 +57,10 @@ https://leetcode.cn/problems/queue-reconstruction-by-height/
 
 排序后按顺序插入，最终得到满足条件的重建队列。
 
-- 时间复杂度: $O(n^2)$，顺序插入 `vector` 产生位移。
-- 空间复杂度: $O(n)$，用于结果数组。
+- 时间复杂度: $O(n^2)$
+- 空间复杂度: $O(n)$
+
+顺序插入会产生元素位移，因此整体为平方级时间。
 
 ## 代码
 ```cpp

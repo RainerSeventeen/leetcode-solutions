@@ -49,8 +49,8 @@ https://leetcode.cn/problems/longest-palindromic-subsequence/
 
 单字符区间初始化为 1。由于依赖 `i+1`，`i` 需要从后往前枚举。
 
-- 时间复杂度: `O(n^2)`
-- 空间复杂度: `O(n^2)`
+- 时间复杂度: $O(n^2)$
+- 空间复杂度: $O(n^2)$
 
 ## 代码
 ```python

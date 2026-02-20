@@ -56,7 +56,9 @@ https://leetcode.cn/problems/combination-sum-ii/
 当当前候选值已经大于 `remain` 时，可以直接 `break`，因为后面的数只会更大，这是排序后最有效的剪枝。`remain == 0` 时收集当前路径，`remain < 0` 或枚举结束时回溯。
 
 - 时间复杂度: $O(n \log n + n \cdot 2^n)$
-- 空间复杂度: $O(n)$（不含答案存储）
+- 空间复杂度: $O(n)$
+
+不计答案存储。
 
 ## 代码
 ```cpp

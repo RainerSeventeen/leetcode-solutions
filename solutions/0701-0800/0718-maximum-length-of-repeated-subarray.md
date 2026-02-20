@@ -47,8 +47,8 @@ https://leetcode.cn/problems/maximum-length-of-repeated-subarray/
 若 `nums1[i-1] == nums2[j-1]`，则 `dp[i][j] = dp[i-1][j-1] + 1`，否则为 `0`。
 遍历过程中维护最大值。
 
-- 时间复杂度: `O(n * m)`
-- 空间复杂度: `O(n * m)`
+- 时间复杂度: $O(nm)$
+- 空间复杂度: $O(nm)$
 
 ## 代码
 ```python

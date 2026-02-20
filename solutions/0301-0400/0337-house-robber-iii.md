@@ -46,37 +46,43 @@ https://leetcode.cn/problems/house-robber-iii/
 	<li><code>0 &lt;= Node.val &lt;= 10<sup>4</sup></code></li>
 </ul>
 
-
 ## 解题思路
+树形 DP：每个节点只有“偷/不偷”两种选择，但选择会影响子节点是否可偷，因此对每个节点返回两种状态的最优值。
 
-树形 DP。对每个节点返回两个状态：
+定义 `dfs(node)` 返回一个二元组：
 
-- `not_rob`：不偷当前节点时，子树最大收益。
-- `rob`：偷当前节点时，子树最大收益。
+- `not_rob`：在以 `node` 为根的子树中，**不偷** `node` 能获得的最大金额。
+- `rob`：在以 `node` 为根的子树中，**偷** `node` 能获得的最大金额。
 
-设左子树返回 `(ln, lr)`，右子树返回 `(rn, rr)`，则：
+后序遍历（先算左右子树）后可得到转移：
 
-- `rob = node.val + ln + rn`（偷当前节点则孩子都不能偷）
-- `not_rob = max(ln, lr) + max(rn, rr)`（不偷当前节点则孩子可偷可不偷）
+- 如果偷当前节点：孩子节点都不能偷  
+  `rob = node.val + left.not_rob + right.not_rob`
+- 如果不偷当前节点：孩子节点可偷可不偷，取最大  
+  `not_rob = max(left.not_rob, left.rob) + max(right.not_rob, right.rob)`
 
-后序遍历一次即可。
+整棵树答案是 `max(dfs(root))`。
 
-- 时间复杂度: `O(n)`
-- 空间复杂度: `O(h)`（递归栈，`h` 为树高）
+边界：空节点返回 `(0, 0)`。
+
+- 时间复杂度: $O(n)$
+- 空间复杂度: $O(h)$
 
 ## 代码
 ```python
 class Solution:
-    def rob(self, root: Optional["TreeNode"]) -> int:
-        not_rob, rob = self._dfs(root)
-        return max(not_rob, rob)
+    def rob(self, root: Optional[TreeNode]) -> int:
+        def dfs(node):
+            if not node:
+                return (0, 0)  # (不偷, 偷)
 
-    def _dfs(self, node: Optional["TreeNode"]) -> Tuple[int, int]:
-        if node is None:
-            return 0, 0
-        ln, lr = self._dfs(node.left)
-        rn, rr = self._dfs(node.right)
-        rob = node.val + ln + rn
-        not_rob = max(ln, lr) + max(rn, rr)
-        return not_rob, rob
+            l0, l1 = dfs(node.left)
+            r0, r1 = dfs(node.right)
+
+            not_rob = max(l0, l1) + max(r0, r1) # 孩子可以偷也可以不偷
+            rob = l0 + r0 + node.val    # 一定不能偷
+
+            return (not_rob, rob)
+
+        return max(dfs(root))
 ```

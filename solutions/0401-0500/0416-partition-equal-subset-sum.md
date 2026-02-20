@@ -43,28 +43,32 @@ https://leetcode.cn/problems/partition-equal-subset-sum/
 
 - 若总和 `sum(nums)` 为奇数，无法平分，直接返回 `False`。
 - 目标容量 `target = sum(nums) // 2`。
-- `dp[j]` 表示容量为 `j` 时能装到的最大和。
+- `dp[j]` 表示：是否存在一个子集，其元素和**恰好为** `j`（布尔 DP）。
 
 遍历每个数 `x`，容量从大到小更新：
 
-`dp[j] = max(dp[j], dp[j - x] + x)`
+`dp[j] |= dp[j - x]`
 
-最终检查 `dp[target] == target`。
+最终检查 `dp[target]` 是否为 `True`。
 
-- 时间复杂度: `O(n * target)`
-- 空间复杂度: `O(target)`
+- 时间复杂度: $O(n * target)$
+- 空间复杂度: $O(target)$
 
 ## 代码
 ```python
 class Solution:
     def canPartition(self, nums: List[int]) -> bool:
         total = sum(nums)
-        if total % 2 == 1:
+        if total % 2 != 0:
             return False
         target = total // 2
-        dp = [0] * (target + 1)
-        for x in nums:
-            for j in range(target, x - 1, -1):
-                dp[j] = max(dp[j], dp[j - x] + x)
-        return dp[target] == target
+        dp = [False] * (target + 1) # 是否存在一个子集，其元素和恰好为 j
+        dp[0] = True    # 什么都不选就是 0，必定存在
+        for num in nums:
+            for j in range(target, num - 1, -1):
+                dp[j] |= dp[j - num]
+            if dp[target]:
+                return True
+
+        return dp[target]
 ```

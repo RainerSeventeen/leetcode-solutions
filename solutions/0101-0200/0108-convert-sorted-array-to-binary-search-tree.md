@@ -45,7 +45,9 @@ https://leetcode.cn/problems/convert-sorted-array-to-binary-search-tree/
 有序数组构造平衡 BST 的核心是“每次取中点做根”。递归处理区间 `[left, right)`：区间为空时返回 `nullptr`，否则取中点建根节点，再由左半区间和右半区间分别构造左、右子树。
 
 - 时间复杂度: $O(n)$
-- 空间复杂度: $O(\log n)$（递归深度）
+- 空间复杂度: $O(\log n)$
+
+递归深度为 $O(\log n)$。
 
 ## 代码
 ```cpp

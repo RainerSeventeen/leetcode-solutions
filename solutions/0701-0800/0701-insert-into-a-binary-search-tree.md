@@ -54,8 +54,10 @@ https://leetcode.cn/problems/insert-into-a-binary-search-tree/
 
 利用 BST 性质递归插入：`val < root->val` 去左子树，`val > root->val` 去右子树。当递归到空节点时创建新节点并返回，递归回溯时把更新后的子树重新挂回父节点，最终返回根节点。
 
-- 时间复杂度: $O(h)$，`h` 为树高
-- 空间复杂度: $O(h)$（递归栈）
+- 时间复杂度: $O(h)$
+- 空间复杂度: $O(h)$
+
+其中 `h` 为树高（递归栈深度）。
 
 ## 代码
 ```cpp

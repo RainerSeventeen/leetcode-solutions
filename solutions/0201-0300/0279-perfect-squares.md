@@ -37,30 +37,37 @@ https://leetcode.cn/problems/perfect-squares/
 	<li><code>1 &lt;= n &lt;= 10<sup>4</sup></code></li>
 </ul>
 
-
 ## 解题思路
+完全背包式的动态规划（最少个数）。
 
-这是完全背包的最小值版本。令 `dp[j]` 表示凑出和为 `j` 的最少完全平方数个数。
+设 `dp[i]` 表示“凑出和为 `i` 的最少完全平方数个数”。初始化：
 
-- 初始：`dp[0] = 0`，其余设为正无穷。
-- 物品：所有平方数 `1, 4, 9, ... <= n`。
-- 转移：`dp[j] = min(dp[j], dp[j - sq] + 1)`（正序遍历容量表示可重复选取）。
+- `dp[0] = 0`
+- 其他 `dp[i]` 初始化为正无穷（表示不可达/尚未更新）
 
-- 时间复杂度: `O(n * sqrt(n))`
-- 空间复杂度: `O(n)`
+转移：
+
+对每个 `i = 1..n`，枚举最后一个平方数为 `j*j`（满足 `j*j <= i`）：
+
+- `dp[i] = min(dp[i], dp[i - j*j] + 1)`
+
+含义是：如果能用最少 `dp[i - j*j]` 个平方数凑出 `i - j*j`，再加上一个 `j*j` 就能得到 `i`。
+
+边界：
+
+- `n = 0` 时答案为 0（题目一般 `n >= 1`，但状态定义支持该边界）。
+
+- 时间复杂度: $O(n\sqrt{n})$
+- 空间复杂度: $O(n)$
 
 ## 代码
 ```python
 class Solution:
     def numSquares(self, n: int) -> int:
-        inf = 10**9
-        dp = [inf] * (n + 1)
+        dp = [float('inf')] * (n + 1) # 1 ~ n
         dp[0] = 0
-        i = 1
-        while i * i <= n:
-            sq = i * i
-            for j in range(sq, n + 1):
-                dp[j] = min(dp[j], dp[j - sq] + 1)
-            i += 1
+        for i in range(1, n + 1):
+            for sq in range(int(sqrt(i)) + 1):
+                dp[i] = min(dp[i], dp[i - sq * sq] + 1)
         return dp[n]
 ```

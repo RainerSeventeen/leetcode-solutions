@@ -42,28 +42,35 @@ https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/
 	<li><code>0 <= prices[i] <= 10<sup>4</sup></code></li>
 </ul>
 
-
 ## 解题思路
+一次遍历维护“历史最低价”和“当前能获得的最大利润”。
 
-遍历价格数组时维护两个状态：
+遍历价格 `price`：
 
-- `hold`：当前持有股票时的最大现金。
-- `cash`：当前不持有股票时的最大现金。
+- 维护 `min_price` 为到当前天为止出现过的最低价格（买入成本）
+- 以今天卖出时的利润为 `price - min_price`，用它更新答案 `ans`
+- 然后更新 `min_price = min(min_price, price)`（注意更新顺序不影响正确性，只要同一天不能先卖后买即可）
 
-本题只允许一次交易，所以 `hold` 只能来自“今天买入”：`hold = max(hold, -price)`；
-`cash = max(cash, hold + price)` 表示今天卖出或不操作。
+不变量：
 
-- 时间复杂度: `O(n)`
-- 空间复杂度: `O(1)`
+- `min_price` 始终来自当前索引之前（含当前）的最小值，因此 `price - min_price` 表示“在今天卖出且买在今天之前或今天”的最大可能利润。
+
+边界：
+
+- 价格单调下降时利润为 0（不交易）。
+
+- 时间复杂度: $O(n)$
+- 空间复杂度: $O(1)$
 
 ## 代码
 ```python
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        hold = -prices[0]
-        cash = 0
-        for p in prices[1:]:
-            cash = max(cash, hold + p)
-            hold = max(hold, -p)
-        return cash
+        min_p = float('inf')
+        ret = 0
+        for p in prices:
+            ret = max(p - min_p, ret)
+            min_p = min(p, min_p)
+
+        return ret
 ```

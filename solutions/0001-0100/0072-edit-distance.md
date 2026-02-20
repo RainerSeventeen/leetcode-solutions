@@ -66,8 +66,8 @@ exection -&gt; execution (插入 'u')
 
 边界：`dp[i][0] = i`，`dp[0][j] = j`。
 
-- 时间复杂度: `O(m * n)`
-- 空间复杂度: `O(m * n)`
+- 时间复杂度: $O(mn)$
+- 空间复杂度: $O(mn)$
 
 ## 代码
 ```python

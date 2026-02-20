@@ -52,31 +52,41 @@ https://leetcode.cn/problems/longest-increasing-subsequence/
 	<li>你能将算法的时间复杂度降低到&nbsp;<code>O(n log(n))</code> 吗?</li>
 </ul>
 
-
 ## 解题思路
+经典解法有两种：`O(n^2)` 的 DP 与 `O(n log n)` 的“贪心 + 二分”。下面对应代码使用的是后者。
 
-设 `dp[i]` 为“以 `nums[i]` 结尾”的最长递增子序列长度。
+维护一个数组 `tails`，含义是：
 
-枚举 `j < i`，若 `nums[j] < nums[i]`，则可以把 `nums[i]` 接在 `j` 结尾的序列后面：
+- `tails[i]` 表示“长度为 `i + 1` 的严格递增子序列，其末尾元素可能的最小值”。
+- `tails` 始终保持递增。
 
-`dp[i] = max(dp[i], dp[j] + 1)`
+遍历每个数 `x`：
 
-所有 `dp[i]` 的最大值即答案。
+- 在 `tails` 中二分查找第一个 `>= x` 的位置 `idx`（用 `bisect_left`）。
+  - 如果 `idx == len(tails)`，说明 `x` 比所有末尾都大，可以把最长长度延长 1：`tails.append(x)`。
+  - 否则用更小的末尾去“替换台阶”：`tails[idx] = x`。这不会改变已有最长长度，但会让对应长度的末尾更小，从而给后续元素留出更大增长空间（贪心点）。
 
-- 时间复杂度: `O(n^2)`
-- 空间复杂度: `O(n)`
+因为题目是**严格递增**，对相等元素必须放在同一长度上做替换，所以使用 `bisect_left` 而不是 `bisect_right`。
+
+边界情况：
+
+- 全部相等：`tails` 只会被反复替换，最终长度为 1。
+- 存在负数/乱序不影响，算法只依赖比较大小。
+
+- 时间复杂度: $O(n \log n)$
+- 空间复杂度: $O(n)$
 
 ## 代码
 ```python
+from bisect import bisect_left
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
-        n = len(nums)
-        dp = [1] * n
-        ans = 1
-        for i in range(1, n):
-            for j in range(i):
-                if nums[j] < nums[i]:
-                    dp[i] = max(dp[i], dp[j] + 1)
-            ans = max(ans, dp[i])
-        return ans
+        tails = [] # 这是一个有序数组
+        for n in nums:
+            idx = bisect_left(tails, n) # 找到 <= x 的下标位置
+            if idx == len(tails): # 是结尾，直接加入
+                tails.append(n)
+            else:
+                tails[idx] = n
+        return len(tails)
 ```

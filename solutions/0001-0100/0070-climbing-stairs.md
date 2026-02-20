@@ -51,8 +51,8 @@ https://leetcode.cn/problems/climbing-stairs/
 
 初始值是 `dp[1] = 1, dp[2] = 2`。由于状态只依赖前两项，可用两个变量滚动维护。
 
-- 时间复杂度: `O(n)`
-- 空间复杂度: `O(1)`
+- 时间复杂度: $O(n)$
+- 空间复杂度: $O(1)$
 
 ## 代码
 ```python

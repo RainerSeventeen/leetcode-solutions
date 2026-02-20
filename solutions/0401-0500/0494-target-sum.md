@@ -65,23 +65,22 @@ https://leetcode.cn/problems/target-sum/
 
 `dp[j] += dp[j - x]`
 
-- 时间复杂度: `O(n * P)`
-- 空间复杂度: `O(P)`
+- 时间复杂度: $O(n * P)$
+- 空间复杂度: $O(P)$
 
 ## 代码
 ```python
 class Solution:
     def findTargetSumWays(self, nums: List[int], target: int) -> int:
-        total = sum(nums)
-        if abs(target) > total:
-            return 0
-        if (total + target) % 2 != 0:
-            return 0
-        pos = (total + target) // 2
-        dp = [0] * (pos + 1)
-        dp[0] = 1
-        for x in nums:
-            for j in range(pos, x - 1, -1):
-                dp[j] += dp[j - x]
-        return dp[pos]
+        s = sum(nums)
+        n = len(nums)
+        if abs(target) > s or (s + target) % 2 != 0:
+            return 0    # 无解的情况
+        tar = (s + target) // 2 
+        dp = [0] * (tar + 1) # 凑出和为 j 的可能的个数（零一背包）
+        dp[0] = 1    # 初始化： 0 个数凑出 0 的个数都是 1（等价于第0轮的遍历结果）
+        for num in nums:
+            for j in range(tar, num - 1, -1): # 零一背包内层需要倒序
+                    dp[j] += dp[j - num]
+        return dp[tar]
 ```

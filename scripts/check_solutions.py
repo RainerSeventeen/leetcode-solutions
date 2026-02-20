@@ -17,6 +17,7 @@ REQUIRED_SECTIONS = (
     "## 代码",
 )
 ALLOWED_DIFFICULTY = {"Easy", "Medium", "Hard"}
+COMPLEXITY_VALUE_RE = re.compile(r"^\$O\([^$\n]+\)\$$")
 
 
 def parse_front_matter(text: str) -> dict[str, str]:
@@ -42,6 +43,16 @@ def parse_h1_problem_id(text: str) -> str | None:
             if not match:
                 return None
             return str(int(match.group(1)))
+    return None
+
+
+def check_complexity_line(content: str, label: str) -> str | None:
+    match = re.search(rf"(?m)^- {re.escape(label)}[：:]\s*(.*)$", content)
+    if not match:
+        return f"missing `{label}` line, expected `- {label}: $O(xxx)$`"
+    value = match.group(1).strip()
+    if not COMPLEXITY_VALUE_RE.fullmatch(value):
+        return f"invalid `{label}` format `{value}`, expected `$O(xxx)$`"
     return None
 
 
@@ -91,6 +102,15 @@ def check_file(path: Path) -> list[str]:
 
     if "O()" in content:
         errors.append(f"{rel}: placeholder `O()` still exists")
+
+    time_complexity_error = check_complexity_line(content, "时间复杂度")
+    if time_complexity_error:
+        errors.append(f"{rel}: {time_complexity_error}")
+
+    space_complexity_error = check_complexity_line(content, "空间复杂度")
+    if space_complexity_error:
+        errors.append(f"{rel}: {space_complexity_error}")
+
     return errors
 
 

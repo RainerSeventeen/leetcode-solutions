@@ -83,3 +83,23 @@ public:
     }
 };
 ```
+
+```python
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        stk = []
+        ret = 0
+        n = len(height)
+        for i in range(n):
+            while stk and height[stk[-1]] <= height[i]:
+                # 单调栈：非空且栈顶 <= 当前值，需要弹出
+                mid_idx = stk.pop()
+                if stk: # 表示 mid_idx 左边有比他大的, 可以接水
+                    left_idx = stk[-1]
+                    l = i - left_idx -1
+                    h = min(height[left_idx], height[i]) - height[mid_idx]
+                    ret += l * h
+                    # print(f"{l} * {h}, {ret}, ({left_idx}, {mid_idx}, {i})")
+            stk.append(i)
+        return ret
+```
