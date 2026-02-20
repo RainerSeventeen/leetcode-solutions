@@ -1,0 +1,4 @@
+interface:
+  display_name: "solution-review-and-topic-link"
+  short_description: "校验题解并自动挂到最合适的 topic"
+  default_prompt: "我会提供一个 solutions 下的文件。请检查格式、最小补充必要内容，并在 topics 中找到最合适模块插入合规链接；若无合适位置，请先给出新文件/新小节提案并等待确认。"
