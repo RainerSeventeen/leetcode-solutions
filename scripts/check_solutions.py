@@ -32,6 +32,19 @@ def parse_front_matter(text: str) -> dict[str, str]:
     return front_matter
 
 
+def parse_h1_problem_id(text: str) -> str | None:
+    for line in text.splitlines():
+        stripped = line.strip()
+        if not stripped:
+            continue
+        if stripped.startswith("# "):
+            match = re.match(r"^#\s+(\d+)\b", stripped)
+            if not match:
+                return None
+            return str(int(match.group(1)))
+    return None
+
+
 def check_file(path: Path) -> list[str]:
     errors: list[str] = []
     rel = path.relative_to(ROOT).as_posix()
@@ -52,6 +65,12 @@ def check_file(path: Path) -> list[str]:
         errors.append(
             f"{rel}: front matter id `{front_matter['id']}` does not match file id `{file_id}`"
         )
+
+    h1_id = parse_h1_problem_id(content)
+    if h1_id is None:
+        errors.append(f"{rel}: invalid or missing H1 problem number, expected `# <id> ...`")
+    elif h1_id != file_id:
+        errors.append(f"{rel}: H1 id `{h1_id}` does not match file id `{file_id}`")
 
     if "difficulty" in front_matter and front_matter["difficulty"] not in ALLOWED_DIFFICULTY:
         errors.append(
