@@ -1,4 +1,0 @@
-interface:
-  display_name: "topic-to-solutions"
-  short_description: "将专题笔记里的具体题目迁移到 solutions"
-  default_prompt: "阅读我指定的专题文件，保留抽象总结，抽离包含具体题号的内容到 solutions 对应题解，并在原文件用链接回指。"
