@@ -1,0 +1,4 @@
+interface:
+  display_name: "solution-topic-auto-link"
+  short_description: "按题目性质自动归档到 topic 分区"
+  default_prompt: "我会提供一个或多个 solutions 下的题解文件。请根据题目性质把它们添加到 topics 下最合适的小节；若没有合适小节请自动创建，再按仓库规则完成校验与标题规范化。"
