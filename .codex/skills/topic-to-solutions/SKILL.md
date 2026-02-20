@@ -31,9 +31,11 @@ Refactor the user-provided topic note file (usually under `topics/`) into two la
 - After generation, migration and completion must be done by subagent, not main agent.
 - Subagent migrates problem-specific code/content from topic file to solution file and completes missing template parts.
 - Required completion in each solution file:
-  - `## 解题思路` concise and clear.
+  - `## 解题思路` concise and clear, written as normal prose paragraphs (not `-` bullet lists).
   - `时间复杂度` and `空间复杂度` with concrete Big-O.
-  - Runnable code in `## 代码` fenced block (follow repo convention, usually `python`).
+  - Complexity lines should remain list-style bullets (for example `- 时间复杂度: ...`, `- 空间复杂度: ...`).
+  - Runnable code in `## 代码` fenced block.
+  - Code language rule: do not force Python. If the original topic uses C++ for that problem, keep a `cpp` fenced block in the solution file; preserve original language unless the user explicitly asks to rewrite.
 
 5. After subagent completion, clean the same topic file:
 - Remove detailed problem-specific explanation/code for extracted ids.
