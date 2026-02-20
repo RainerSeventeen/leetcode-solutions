@@ -17,7 +17,7 @@ REQUIRED_SECTIONS = (
     "## 代码",
 )
 ALLOWED_DIFFICULTY = {"Easy", "Medium", "Hard"}
-COMPLEXITY_VALUE_RE = re.compile(r"^\$O\([^$\n]+\)\$$")
+COMPLEXITY_VALUE_RE = re.compile(r"^\$O\([^$\n]+\)\$")
 
 
 def parse_front_matter(text: str) -> dict[str, str]:
@@ -51,7 +51,7 @@ def check_complexity_line(content: str, label: str) -> str | None:
     if not match:
         return f"missing `{label}` line, expected `- {label}: $O(xxx)$`"
     value = match.group(1).strip()
-    if not COMPLEXITY_VALUE_RE.fullmatch(value):
+    if not COMPLEXITY_VALUE_RE.match(value):
         return f"invalid `{label}` format `{value}`, expected `$O(xxx)$`"
     return None
 
