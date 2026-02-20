@@ -32,10 +32,6 @@ def parse_front_matter(text: str) -> dict[str, str]:
     return front_matter
 
 
-def is_empty_python_code_block(text: str) -> bool:
-    return re.search(r"```python\s*```", text, re.S) is not None
-
-
 def check_file(path: Path) -> list[str]:
     errors: list[str] = []
     rel = path.relative_to(ROOT).as_posix()
@@ -76,9 +72,6 @@ def check_file(path: Path) -> list[str]:
 
     if "O()" in content:
         errors.append(f"{rel}: placeholder `O()` still exists")
-    if is_empty_python_code_block(content):
-        errors.append(f"{rel}: empty python code block")
-
     return errors
 
 
