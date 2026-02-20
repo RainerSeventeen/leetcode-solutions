@@ -9,7 +9,7 @@ Execute this workflow when processing solution files for topic mapping:
 1. Read target solution file(s) under `solutions/`.
 2. Infer problem nature from title, tags, and solution approach.
 3. Insert a compliant item into the best matching topic section.
-4. Create a new section when none fits.
+4. Create a new subsection when none fits.
 5. Run required validation/normalization commands.
 
 ## Hard Rules
@@ -30,14 +30,15 @@ Follow `.ai_docs/rules.md` strictly:
 - Confirm note path for topic bullet.
 
 2. Determine best topic placement:
-- Search `topics/*.md` for matching method keywords (e.g., 双指针, 二分, 动态规划, 图论, 回溯, 贪心, 前缀和, 单调栈/队列, 滑动窗口, 并查集, 最短路, 拓扑排序, 树形 DP).
-- Prefer existing `xxx相关题目` sections.
+- Search existing topic files first (current structure uses fixed topic files such as `binary-search.md`, `dynamic-programming.md`, `graph-algorithms.md`, `sliding-window-and-two-pointers.md`).
+- Inside a topic file, prefer placement under `## 模板与子方法` and then the most suitable `### 子方法 ...` block.
+- Match by method keywords (e.g., 双指针, 二分, 动态规划, 图论, 回溯, 贪心, 前缀和, 单调栈/队列, 滑动窗口, 并查集, 最短路, 拓扑排序, 树形 DP).
 - Default to single ownership (one best section) unless user asks for multi-topic mapping.
 
-3. Create section when needed:
-- If no suitable section exists, create a concise new section in the most relevant existing topic file.
-- Section naming style: plain title without numbering/prefix, prefer `xxx相关题目`.
-- Place near semantically related sections.
+3. Create subsection when needed:
+- If no suitable `### 子方法` block exists, create one concise new `### 子方法 ...` block under the target topic file's `## 模板与子方法`.
+- Do not create new `topics/*.md` files unless the user explicitly asks.
+- Follow `.ai_docs/rules.md`: topic titles should be normalized by script, so do not manually enforce numbering style; always run normalization command after edits.
 
 4. Insert item with strict format:
 - Use zero-padded 4-digit id.
