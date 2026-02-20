@@ -1,0 +1,14 @@
+# --- OS / editor junk ---
+.DS_Store
+.DS_Store?
+Thumbs.db
+*.tmp
+
+# --- IDE ---
+.vscode/
+.idea/
+.obsidian/
+
+# --- Python ---
+**/__pycache__
+.venv
