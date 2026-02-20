@@ -232,6 +232,8 @@ void join(int a, int b) {
 #### 4.3.6 模板题目
 
 - 0684 - 冗余连接 ｜ [LeetCode 链接](https://leetcode.cn/problems/redundant-connection/) ｜ [题解笔记](../solutions/0601-0700/0684-redundant-connection.md)
+- 0339 - 除法求值 ｜ [LeetCode 链接](https://leetcode.cn/problems/evaluate-division/) ｜ [题解笔记](../solutions/0301-0400/0339-evaluate-division.md)
+- 0128 - 最长连续序列 ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-consecutive-sequence/) ｜ [题解笔记](../solutions/0101-0200/0128-longest-consecutive-sequence.md)
 
 ### 4.4 最小生成树（MST）
 
@@ -250,7 +252,11 @@ Prim 算法类似于 Dijkstra 算法，适用于稠密图（也就是节点之�
 
 Prim 需要维护一个数组，存放的是每一个节点距离生成树的距离，最开始都是无穷。
 
-#### 4.4.3 Kruskal 算法
+### 4.5 拓扑排序相关题目
+
+- 0207 - Course Schedule ｜ [LeetCode 链接](https://leetcode.cn/problems/course-schedule/) ｜ [题解笔记](../solutions/0201-0300/0207-course-schedule.md)
+
+#### 4.5.1 Kruskal 算法
 
 Prim 是从节点出发，逐渐扩展树，Kruskal 算法是从边出发的扩展，对边进行排序（Kruskal 更适合稀疏图）。
 
@@ -261,14 +267,14 @@ Prim 是从节点出发，逐渐扩展树，Kruskal 算法是从边出发的扩�
 
 同一个集合（并查集）：如果都不是已经生成的树里面，就无法扩展；如果都在树里面，就一定会产生环。
 
-#### 4.4.4 模板题目
+#### 4.5.2 模板题目
 
 - 1584 - 连接所有点的最小费用 ｜ [LeetCode 链接](https://leetcode.cn/problems/min-cost-to-connect-all-points/) ｜ [题解笔记](../solutions/xxxx-xxxx/xxxx-slug.md)
 - 1631 - 最小体力消耗路径 ｜ [LeetCode 链接](https://leetcode.cn/problems/path-with-minimum-effort/) ｜ [题解笔记](../solutions/xxxx-xxxx/xxxx-slug.md)
 
-### 4.5 拓扑排序
+### 4.6 拓扑排序
 
-#### 4.5.1 方法说明
+#### 4.6.1 方法说明
 
 拓扑排序对一个有向图找到一个合适的遍历顺序。拓扑排序就两个步骤，实际应用中可以包含 BFS 和 DFS 两种写法，一般 BFS 就够用了（也就是 Kahn 算法）。
 
@@ -276,14 +282,14 @@ Prim 是从节点出发，逐渐扩展树，Kruskal 算法是从边出发的扩�
 1. 找到入度为 0 的节点（没有就表示有环了）
 2. 把他和相关的边全删除
 
-#### 4.5.2 代码优化注意点
+#### 4.6.2 代码优化注意点
 
 1. 看情况适用邻接表还是邻接矩阵（一般都是邻接表好用）
 2. 使用入度数组（统计节点的入度数量）而不是遍历表进行删除节点
 3. 使用队列而不是每一次扫一遍入度数组
 4. 根据邻接表直接删入度数量，入度清零就入队
 
-#### 4.5.3 模板题目
+#### 4.6.3 模板题目
 
 （待补充题目）
 

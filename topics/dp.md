@@ -53,8 +53,11 @@ for (int i = 1; i <= n; i++) {
 
 **模板题目**：
 
+- 0053 - Maximum Subarray ｜ [LeetCode 链接](https://leetcode.cn/problems/maximum-subarray/) ｜ [题解笔记](../solutions/0001-0100/0053-maximum-subarray.md)
 - 0070 - 爬楼梯 ｜ [LeetCode 链接](https://leetcode.cn/problems/climbing-stairs/) ｜ [题解笔记](../solutions/0001-0100/0070-climbing-stairs.md)
 - 0096 - 不同的二叉搜索树 ｜ [LeetCode 链接](https://leetcode.cn/problems/unique-binary-search-trees/) ｜ [题解笔记](../solutions/0001-0100/0096-unique-binary-search-trees.md)
+- 0152 - 乘积最大子数组 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximum-product-subarray/) ｜ [题解笔记](../solutions/0101-0200/0152-maximum-product-subarray.md)
+- 0198 - 打家劫舍 ｜ [LeetCode 链接](https://leetcode.cn/problems/house-robber/) ｜ [题解笔记](../solutions/0101-0200/0198-house-robber.md)
 - 0337 - 打家劫舍 III ｜ [LeetCode 链接](https://leetcode.cn/problems/house-robber-iii/) ｜ [题解笔记](../solutions/0301-0400/0337-house-robber-iii.md)
 
 ### 4.2 背包问题
@@ -163,6 +166,7 @@ for(int j = 0; j <= bagWeight; j++) {
 **模板题目**：
 
 - 0279 - 完全平方数 ｜ [LeetCode 链接](https://leetcode.cn/problems/perfect-squares/) ｜ [题解笔记](../solutions/0201-0300/0279-perfect-squares.md)
+- 0322 - 零钱兑换 ｜ [LeetCode 链接](https://leetcode.cn/problems/coin-change/) ｜ [题解笔记](../solutions/0301-0400/0322-coin-change.md)
 
 #### 4.2.4 子方法 D：完全背包的排列组合问题
 
@@ -198,8 +202,13 @@ for(int j = 0; j <= bagWeight; j++) {
 **模板题目**：
 
 - 0121 - 买卖股票的最佳时机 ｜ [LeetCode 链接](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/) ｜ [题解笔记](../solutions/0101-0200/0121-best-time-to-buy-and-sell-stock.md)
+- 0309 - 买卖股票的最佳时机含冷冻期 ｜ [LeetCode 链接](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-with-cooldown/) ｜ [题解笔记](../solutions/0301-0400/0309-best-time-to-buy-and-sell-stock-with-cooldown.md)
 
-### 4.4 子序列问题
+### 4.4 网格 DP 相关题目
+
+- 0221 - Maximal Square ｜ [LeetCode 链接](https://leetcode.cn/problems/maximal-square/) ｜ [题解笔记](../solutions/0201-0300/0221-maximal-square.md)
+
+### 4.5 子序列问题
 
 **前置知识**：连续子序列问题可参考 KMP 算法。
 
@@ -208,7 +217,7 @@ for(int j = 0; j <= bagWeight; j++) {
 - 推荐定义 `dp[i]` 为以 `nums[i-1]` 为结尾的相关状态，可省去初始化特判
 - For 循环从 1 遍历到 `nums.size() + 1`
 
-#### 4.4.1 子方法 A：LCS 最长公共子序列
+#### 4.5.1 子方法 A：LCS 最长公共子序列
 
 **方法说明**：最长子序列问题的核心操作是"删除"。删除表示不在某一个字符串中考虑这个字符，对应 dp 数组向上回退一个数字。
 
@@ -224,7 +233,7 @@ for(int j = 0; j <= bagWeight; j++) {
 - 0300 - 最长递增子序列 ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-increasing-subsequence/) ｜ [题解笔记](../solutions/0201-0300/0300-longest-increasing-subsequence.md)
 - 0718 - 最长重复子数组 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximum-length-of-repeated-subarray/) ｜ [题解笔记](../solutions/0701-0800/0718-maximum-length-of-repeated-subarray.md)
 
-#### 4.4.2 子方法 B：编辑距离
+#### 4.5.2 子方法 B：编辑距离
 
 **方法说明**：编辑距离计算两个序列转换所需的最少操作次数。删除操作导致操作数 + 1，替换字符也消耗一个操作。
 
@@ -244,7 +253,7 @@ for(int j = 0; j <= bagWeight; j++) {
 
 - 0072 - 编辑距离 ｜ [LeetCode 链接](https://leetcode.cn/problems/edit-distance/) ｜ [题解笔记](../solutions/0001-0100/0072-edit-distance.md)
 
-#### 4.4.3 子方法 C：回文子序列
+#### 4.5.3 子方法 C：回文子序列
 
 **方法说明**：回文串问题的状态转移不是取决于某一个值的加入，而是两端字符的加入。
 
@@ -259,7 +268,24 @@ for(int j = 0; j <= bagWeight; j++) {
 
 - 0516 - 最长回文子序列 ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-palindromic-subsequence/) ｜ [题解笔记](../solutions/0501-0600/0516-longest-palindromic-subsequence.md)
 
-### 4.5 单词拆分问题
+### 4.6 区间 DP
+
+**方法说明**：当某个区间的最优解能由更小子区间组合得到时，定义 `dp[l][r]` 并按区间长度递推。常见技巧是转化为“最后一步决策”，从而固定边界并拆分子问题。
+
+**模板题目**：
+
+- 0312 - 戳气球 ｜ [LeetCode 链接](https://leetcode.cn/problems/burst-balloons/) ｜ [题解笔记](../solutions/0301-0400/0312-burst-balloons.md)
+- 0647 - 回文子串 ｜ [LeetCode 链接](https://leetcode.cn/problems/palindromic-substrings/) ｜ [题解笔记](../solutions/0601-0700/0647-palindromic-substrings.md)
+
+### 4.7 位运算递推
+
+**方法说明**：利用位运算关系将大状态转移到小状态，例如通过 `i >> 1` 和最低位 `i & 1` 构造线性递推，避免逐位重复统计。
+
+**模板题目**：
+
+- 0338 - 比特位计数 ｜ [LeetCode 链接](https://leetcode.cn/problems/counting-bits/) ｜ [题解笔记](../solutions/0301-0400/0338-counting-bits.md)
+
+### 4.8 单词拆分问题
 
 **方法说明**：这类题可以抽象为”字符串容量 + 字典词物品”的可达性 DP。
 
@@ -272,6 +298,19 @@ for(int j = 0; j <= bagWeight; j++) {
 - `s.compare(pos, len, target) == 0`：检查从位置 pos 开始长度为 len 的子串是否等于 target
 - 或使用 `s.substr(pos, len) == target` 进行子串比较
 
+- 0139 - 单词拆分 ｜ [LeetCode 链接](https://leetcode.cn/problems/word-break/) ｜ [题解笔记](../solutions/0101-0200/0139-word-break.md)
+
+### 4.9 字符串匹配相关题目
+
+
+- 0005 - Longest Palindromic Substring ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-palindromic-substring/) ｜ [题解笔记](../solutions/0001-0100/0005-longest-palindromic-substring.md)
+- 0010 - Regular Expression Matching ｜ [LeetCode 链接](https://leetcode.cn/problems/regular-expression-matching/) ｜ [题解笔记](../solutions/0001-0100/0010-regular-expression-matching.md)
+- 0032 - 最长有效括号 ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-valid-parentheses/) ｜ [题解笔记](../solutions/0001-0100/0032-longest-valid-parentheses.md)
+### 4.10 网格 DP 相关题目
+
+- 0062 - Unique Paths ｜ [LeetCode 链接](https://leetcode.cn/problems/unique-paths/) ｜ [题解笔记](../solutions/0001-0100/0062-unique-paths.md)
+- 0064 - Minimum Path Sum ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-path-sum/) ｜ [题解笔记](../solutions/0001-0100/0064-minimum-path-sum.md)
+- 0085 - Maximal Rectangle ｜ [LeetCode 链接](https://leetcode.cn/problems/maximal-rectangle/) ｜ [题解笔记](../solutions/0001-0100/0085-maximal-rectangle.md)
 ## 5 易错点
 
 1. **dp 数组定义不清晰**：在开始编码前，必须明确定义每个 dp 值代表的具体含义

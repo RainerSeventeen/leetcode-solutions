@@ -45,6 +45,7 @@ def greedy_sequence(nums):
 **模板题目**
 
 - 0376 - 摆动序列 ｜ [LeetCode 链接](https://leetcode.cn/problems/wiggle-subsequence/) ｜ [题解笔记](../solutions/0301-0400/0376-wiggle-subsequence.md)
+- 0581 - 最短无序连续子数组 ｜ [LeetCode 链接](https://leetcode.cn/problems/shortest-unsorted-continuous-subarray/) ｜ [题解笔记](../solutions/0501-0600/0581-shortest-unsorted-continuous-subarray.md)
 
 ### 4.2 子方法 B：可达范围相关
 
@@ -66,6 +67,7 @@ def greedy_reach(nums):
 **模板题目**
 
 - 0045 - 跳跃游戏 II ｜ [LeetCode 链接](https://leetcode.cn/problems/jump-game-ii/) ｜ [题解笔记](../solutions/0001-0100/0045-jump-game-ii.md)
+- 0055 - Jump Game ｜ [LeetCode 链接](https://leetcode.cn/problems/jump-game/) ｜ [题解笔记](../solutions/0001-0100/0055-jump-game.md)
 
 ### 4.3 子方法 C：邻接约束相关
 
@@ -151,6 +153,26 @@ def greedy_tree(root):
 **模板题目**
 
 - 0968 - 监控二叉树 ｜ [LeetCode 链接](https://leetcode.cn/problems/binary-tree-cameras/) ｜ [题解笔记](../solutions/0901-1000/0968-binary-tree-cameras.md)
+
+### 4.7 子方法 G：区间调度相关
+
+**方法说明**
+
+按开始时间排序，并用最小堆维护当前正在占用的会议室结束时间；当最早结束时间不晚于新会议开始时复用会议室。遍历过程中的堆大小峰值即最少会议室数量。
+
+**模板题目**
+
+- 0253 - 会议室 II ｜ [LeetCode 链接](https://leetcode.cn/problems/meeting-rooms-ii/) ｜ [题解笔记](../solutions/0201-0300/0253-meeting-rooms-ii.md)
+
+### 4.8 子方法 H：频次约束调度相关
+
+**方法说明**
+
+统计任务频次，抓住最高频任务对总时长的下界约束，再与任务总数取最大值，得到最短执行时间。
+
+**模板题目**
+
+- 0621 - Task Scheduler ｜ [LeetCode 链接](https://leetcode.cn/problems/task-scheduler/) ｜ [题解笔记](../solutions/0601-0700/0621-task-scheduler.md)
 
 ## 5 易错点
 
