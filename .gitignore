@@ -13,6 +13,9 @@ Thumbs.db
 **/__pycache__
 .venv/
 
+# --- Secrets ---
+.env
+
 # ---LeetCode MCP workflow---
 .mcp.json
 USER_ID.txt
