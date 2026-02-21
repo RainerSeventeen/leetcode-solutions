@@ -1,4 +1,17 @@
 #!/usr/bin/env python3
+"""
+从力扣中文站拉取指定题目，并在 solutions/ 下生成 Markdown 模板文件。
+
+用法:
+  python scripts/fetch_problem.py <problem_id>
+  python scripts/fetch_problem.py <problem_id> --overwrite
+
+参数:
+  problem_id    力扣前端题目 ID（如 1584）
+  --overwrite   文件已存在时强制覆盖（默认报错退出）
+
+输出: solutions/<范围目录>/<problem_id>-<slug>.md
+"""
 from __future__ import annotations
 
 import argparse
