@@ -1,4 +1,4 @@
 interface:
   display_name: "daily-ac-summary"
   short_description: "每日拉取 AC 并自动建立 topic 链接"
-  default_prompt: "执行每日题解归档：先拉取最近一天 AC 提交并导入 solutions，再调用 subagent 对本次新增题解执行 solution-topic-auto-link，最后汇总结果。"
+  default_prompt: "执行每日题解归档：先拉取最近一天 AC 提交并导入 solutions；然后基于代码补全本次新增题解的解题思路与时间/空间复杂度；再调用 subagent 对这些题解执行 solution-topic-auto-link，最后汇总结果。"
