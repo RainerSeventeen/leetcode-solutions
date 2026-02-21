@@ -1,24 +1,17 @@
 #!/usr/bin/env python3
 """
-Fetch LeetCode CN AC submission history in two steps.
+从力扣中文站拉取个人 AC 提交代码。
 
-Setup:
-  export LC_SESSION="<value of LEETCODE_SESSION cookie>"
-  export LC_CSRF="<value of csrftoken cookie>"
-  (Get from: browser DevTools > Application > Cookies > leetcode.cn)
+用法:
+  python scripts/fetch_ac_submissions.py
+  python scripts/fetch_ac_submissions.py --delay 0.8
+  python scripts/fetch_ac_submissions.py --days 365
 
-Step 1 — fetch submission metadata & deduplicate:
-  python scripts/fetch_ac_submissions.py fetch-list
-  python scripts/fetch_ac_submissions.py fetch-list --days 365
-  Output: artifacts/ac_latest.json  (one entry per problem, latest AC only)
+去重规则: 同一道题只拉最新的一次 AC（提交列表从新到旧，首次见到该题立即拉，后续跳过）。
+断点续传: 已写入且 code 非 null 的题目下次直接跳过；code 为 null 的自动清除并重拉。
+限流退避: 遇到「超出访问限制」按 30→60→120→180→300 秒退避重试。
 
-Step 2 — fetch code for each problem:
-  python scripts/fetch_ac_submissions.py fetch-code
-  python scripts/fetch_ac_submissions.py fetch-code --delay 0.8
-  Output: artifacts/ac_with_code.json
-
-Quick test (small batch, saves artifacts/ac_sample.json):
-  python scripts/fetch_ac_submissions.py test
+输出: artifacts/ac_with_code.jsonl（JSONL 格式，每行一条记录）
 """
 from __future__ import annotations
 
@@ -30,7 +23,7 @@ import sys
 import time
 import datetime as dt
 
-import env  # loads .env from project root into os.environ
+import env  # noqa: F401 — side-effect import: loads .env into os.environ
 
 try:
     import requests
@@ -39,73 +32,9 @@ except ModuleNotFoundError:
     sys.exit(1)
 
 GRAPHQL_URL = "https://leetcode.cn/graphql/"
-USERNAME = "RainerSeventeen"
 
 ARTIFACTS = pathlib.Path("artifacts")
-LIST_OUTPUT = ARTIFACTS / "ac_latest.json"
-CODE_OUTPUT = ARTIFACTS / "ac_with_code.jsonl"   # JSONL: one record per line
-SAMPLE_OUTPUT = ARTIFACTS / "ac_sample.json"
-
-
-# ---------------------------------------------------------------------------
-# Auth helpers
-# ---------------------------------------------------------------------------
-
-def build_headers() -> dict[str, str]:
-    headers = {
-        "User-Agent": "Mozilla/5.0 (compatible; leetcode-fetcher/1.0)",
-        "Referer": "https://leetcode.cn/",
-        "Content-Type": "application/json",
-    }
-    session = os.environ.get("LC_SESSION")
-    csrf = os.environ.get("LC_CSRF")
-    if session and csrf:
-        headers["Cookie"] = f"LEETCODE_SESSION={session}; csrftoken={csrf}"
-        headers["x-csrftoken"] = csrf
-    return headers
-
-
-def require_auth() -> None:
-    if not (os.environ.get("LC_SESSION") and os.environ.get("LC_CSRF")):
-        print("Error: LC_SESSION and LC_CSRF env vars required.", file=sys.stderr)
-        print("  export LC_SESSION='...'", file=sys.stderr)
-        print("  export LC_CSRF='...'", file=sys.stderr)
-        sys.exit(1)
-
-
-def graphql(headers: dict, query: str, variables: dict) -> dict:
-    resp = requests.post(
-        GRAPHQL_URL, headers=headers, json={"query": query, "variables": variables}, timeout=15
-    )
-    resp.raise_for_status()
-    data = resp.json()
-    if data.get("errors"):
-        raise RuntimeError(f"GraphQL errors: {data['errors']}")
-    return data["data"]
-
-
-# ---------------------------------------------------------------------------
-# Step 0: public stats
-# ---------------------------------------------------------------------------
-
-AC_STATS_QUERY = """
-query userSolvedCount($userSlug: String!) {
-  userProfileUserQuestionProgress(userSlug: $userSlug) {
-    numAcceptedQuestions { difficulty count }
-  }
-}
-"""
-
-
-def fetch_ac_stats(headers: dict) -> dict[str, int]:
-    data = graphql(headers, AC_STATS_QUERY, {"userSlug": USERNAME})
-    rows = data["userProfileUserQuestionProgress"]["numAcceptedQuestions"]
-    return {r["difficulty"]: r["count"] for r in rows}
-
-
-# ---------------------------------------------------------------------------
-# Step 1: fetch all AC submission metadata, deduplicate
-# ---------------------------------------------------------------------------
+CODE_OUTPUT = ARTIFACTS / "ac_with_code.jsonl"
 
 SUBMISSION_LIST_QUERY = """
 query submissionList($offset: Int!, $limit: Int!, $lastKey: String, $status: SubmissionStatusEnum) {
@@ -127,112 +56,11 @@ query submissionList($offset: Int!, $limit: Int!, $lastKey: String, $status: Sub
 }
 """
 
-
-def extract_slug(url: str) -> str:
-    """Extract titleSlug from url like /problems/<slug>/submissions/<id>/"""
-    parts = url.strip("/").split("/")
-    try:
-        return parts[parts.index("problems") + 1]
-    except (ValueError, IndexError):
-        return ""
-
-
-def fetch_all_ac_meta(headers: dict, days: int, page_size: int = 20, delay: float = 0.5) -> list[dict]:
-    """Paginate submissionList (AC only), stop at cutoff date. Returns raw list."""
-    cutoff_ts = int((dt.datetime.now() - dt.timedelta(days=days)).timestamp())
-    results: list[dict] = []
-    offset = 0
-    last_key = None
-    page = 1
-
-    while True:
-        data = graphql(headers, SUBMISSION_LIST_QUERY, {
-            "offset": offset,
-            "limit": page_size,
-            "lastKey": last_key,
-            "status": "AC",
-        })
-        sl = data["submissionList"]
-        subs = sl["submissions"]
-        has_next = sl["hasNext"]
-        last_key = sl["lastKey"]
-
-        in_range = []
-        reached_cutoff = False
-        for sub in subs:
-            if int(sub["timestamp"]) >= cutoff_ts:
-                in_range.append(sub)
-            else:
-                reached_cutoff = True
-                break
-
-        results.extend(in_range)
-        oldest_ts = int(subs[-1]["timestamp"]) if subs else 0
-        oldest_str = dt.datetime.fromtimestamp(oldest_ts).strftime("%Y-%m-%d") if oldest_ts else "?"
-        status = "→ cutoff reached, stopping" if reached_cutoff else ""
-        print(f"  Page {page}: +{len(in_range)} in range (oldest: {oldest_str}), total: {len(results)} {status}")
-
-        if reached_cutoff or not has_next:
-            break
-
-        offset += page_size
-        page += 1
-        time.sleep(delay)
-
-    return results
-
-
-def deduplicate(subs: list[dict]) -> list[dict]:
-    """Keep only the latest AC submission per problem (by frontendId)."""
-    # submissionList is newest-first, so first occurrence = latest
-    seen: set[str] = set()
-    latest: list[dict] = []
-    for sub in subs:
-        key = sub.get("frontendId") or sub.get("id")
-        if key not in seen:
-            seen.add(key)
-            sub["titleSlug"] = extract_slug(sub.get("url", ""))
-            latest.append(sub)
-    return latest
-
-
-def cmd_fetch_list(args: argparse.Namespace) -> int:
-    require_auth()
-    headers = build_headers()
-
-    stats = fetch_ac_stats(headers)
-    total = sum(stats.values())
-    print(f"Public stats — Easy: {stats.get('EASY',0)}  Medium: {stats.get('MEDIUM',0)}  Hard: {stats.get('HARD',0)}  Total: {total}")
-    print(f"\nFetching AC submission metadata (past {args.days} days) ...")
-
-    raw = fetch_all_ac_meta(headers, days=args.days, delay=args.delay)
-    print(f"\nRaw AC submissions: {len(raw)}")
-
-    latest = deduplicate(raw)
-    print(f"After dedup (one per problem): {len(latest)}")
-
-    ARTIFACTS.mkdir(exist_ok=True)
-    LIST_OUTPUT.write_text(json.dumps(latest, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"Saved → {LIST_OUTPUT}")
-    return 0
-
-
-# ---------------------------------------------------------------------------
-# Step 2: fetch code for each submission
-# ---------------------------------------------------------------------------
-
 SUBMISSION_DETAIL_QUERY = """
 query submissionDetail($submissionId: ID!) {
   submissionDetail(submissionId: $submissionId) {
-    id
     code
-    lang
-    langVerboseName
-    runtime
-    memory
-    timestamp
     question {
-      questionFrontendId
       titleSlug
       translatedTitle
     }
@@ -241,155 +69,220 @@ query submissionDetail($submissionId: ID!) {
 """
 
 
-def fetch_code(headers: dict, submission_id: str) -> dict | None:
-    try:
-        data = graphql(headers, SUBMISSION_DETAIL_QUERY, {"submissionId": submission_id})
-        return data.get("submissionDetail")
-    except Exception as exc:
-        print(f"    Warning: failed to fetch code for id={submission_id}: {exc}")
-        return None
-
-
-def cmd_fetch_code(args: argparse.Namespace) -> int:
-    require_auth()
-    headers = build_headers()
-
-    input_path = pathlib.Path(args.input)
-    if not input_path.exists():
-        print(f"Error: {input_path} not found. Run 'fetch-list' first.", file=sys.stderr)
-        return 1
-
-    latest: list[dict] = json.loads(input_path.read_text(encoding="utf-8"))
-
-    # Resume: load already-written submission ids from JSONL output
-    ARTIFACTS.mkdir(exist_ok=True)
-    done_ids: set[str] = set()
-    if CODE_OUTPUT.exists():
-        for line in CODE_OUTPUT.read_text(encoding="utf-8").splitlines():
-            line = line.strip()
-            if line:
-                try:
-                    done_ids.add(json.loads(line)["id"])
-                except Exception:
-                    pass
-
-    remaining = [s for s in latest if s["id"] not in done_ids]
-    if done_ids:
-        print(f"Resuming: {len(done_ids)} already done, {len(remaining)} remaining.")
-    print(f"Fetching code for {len(remaining)}/{len(latest)} submissions (delay={args.delay}s) ...\n")
-
-    ok = len(done_ids)
-    with CODE_OUTPUT.open("a", encoding="utf-8") as f:
-        for i, sub in enumerate(remaining, 1):
-            sid = sub["id"]
-            title = sub.get("title", "?")
-            fid = sub.get("frontendId", "?")
-            print(f"  [{i}/{len(remaining)}] #{fid} {title} (id={sid})", end=" ", flush=True)
-
-            detail = fetch_code(headers, sid)
-            entry = {**sub}
-            if detail:
-                entry["code"] = detail.get("code", "")
-                q = detail.get("question") or {}
-                if not entry.get("titleSlug"):
-                    entry["titleSlug"] = q.get("titleSlug", "")
-                if not entry.get("title"):
-                    entry["title"] = q.get("translatedTitle", "")
-                ok += 1
-                lang = sub.get("langVerboseName") or sub.get("lang", "?")
-                print(f"✓  ({lang}, {len(entry['code'])} chars)")
-            else:
-                entry["code"] = None
-                print("✗ (no code)")
-
-            f.write(json.dumps(entry, ensure_ascii=False) + "\n")
-            f.flush()
-
-            if i < len(remaining):
-                time.sleep(args.delay)
-
-    total = len(latest)
-    print(f"\nDone. {ok}/{total} with code.")
-    print(f"Saved → {CODE_OUTPUT}  (JSONL format, one record per line)")
-    return 0
-
-
 # ---------------------------------------------------------------------------
-# Test: small batch
+# Auth
 # ---------------------------------------------------------------------------
 
-def cmd_test(args: argparse.Namespace) -> int:
-    headers = build_headers()
+def build_headers() -> dict[str, str]:
+    headers = {
+        "User-Agent": "Mozilla/5.0 (compatible; leetcode-fetcher/1.0)",
+        "Referer": "https://leetcode.cn/",
+        "Content-Type": "application/json",
+    }
+    session = os.environ.get("LC_SESSION")
+    csrf = os.environ.get("LC_CSRF")
+    if session and csrf:
+        headers["Cookie"] = f"LEETCODE_SESSION={session}; csrftoken={csrf}"
+        headers["x-csrftoken"] = csrf
+    return headers
 
-    print(f"[test] Public AC stats for: {USERNAME}")
-    stats = fetch_ac_stats(headers)
-    total = sum(stats.values())
-    print(f"  Easy: {stats.get('EASY',0)}  Medium: {stats.get('MEDIUM',0)}  Hard: {stats.get('HARD',0)}  Total: {total}")
 
+def require_auth() -> None:
     if not (os.environ.get("LC_SESSION") and os.environ.get("LC_CSRF")):
-        print("\nTip: set LC_SESSION and LC_CSRF to test authenticated fetch.")
-        return 0
-
-    print(f"\n[test] Fetching 5 AC submissions ...")
-    data = graphql(headers, SUBMISSION_LIST_QUERY, {
-        "offset": 0, "limit": 5, "lastKey": None, "status": "AC",
-    })
-    subs = data["submissionList"]["submissions"]
-    for sub in subs:
-        sub["titleSlug"] = extract_slug(sub.get("url", ""))
-
-    print(f"  Got {len(subs)} submissions")
-
-    if subs:
-        sid = subs[0]["id"]
-        title = subs[0].get("title", "?")
-        print(f"\n[test] Fetching code for first submission: #{subs[0].get('frontendId')} {title} (id={sid}) ...")
-        detail = fetch_code(headers, sid)
-        if detail:
-            code = detail.get("code", "")
-            subs[0]["code"] = code
-            print(f"  Code snippet ({len(code)} chars):\n  {code[:200].replace(chr(10), chr(10)+'  ')}")
-        else:
-            print("  Could not fetch code.")
-
-    ARTIFACTS.mkdir(exist_ok=True)
-    SAMPLE_OUTPUT.write_text(json.dumps(subs, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"\nSample saved → {SAMPLE_OUTPUT}")
-    return 0
+        print("Error: 需要设置 LC_SESSION 和 LC_CSRF 环境变量。", file=sys.stderr)
+        print("  从浏览器 DevTools → Application → Cookies → leetcode.cn 获取，写入 .env 文件。", file=sys.stderr)
+        sys.exit(1)
 
 
 # ---------------------------------------------------------------------------
-# CLI
+# GraphQL
 # ---------------------------------------------------------------------------
 
-def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(
-        description="Fetch LeetCode CN AC submissions in two steps.",
-        formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog=__doc__,
+class RateLimitError(Exception):
+    """服务器返回限流响应时抛出。"""
+
+
+def graphql(headers: dict, query: str, variables: dict) -> dict:
+    resp = requests.post(
+        GRAPHQL_URL, headers=headers,
+        json={"query": query, "variables": variables}, timeout=15,
     )
-    sub = parser.add_subparsers(dest="cmd", required=True)
+    resp.raise_for_status()
+    data = resp.json()
+    if data.get("errors"):
+        msg = str(data["errors"])
+        if "超出访问限制" in msg or "rate" in msg.lower():
+            raise RateLimitError(msg)
+        raise RuntimeError(f"GraphQL errors: {data['errors']}")
+    return data["data"]
 
-    # test
-    sub.add_parser("test", help="Quick test: public stats + 5 submissions + 1 code sample")
 
-    # fetch-list
-    p1 = sub.add_parser("fetch-list", help="Step 1: fetch all AC metadata, deduplicate, save ac_latest.json")
-    p1.add_argument("--days", type=int, default=365, help="Days to look back (default: 365)")
-    p1.add_argument("--delay", type=float, default=0.5, help="Seconds between page requests (default: 0.5)")
+def fetch_detail(headers: dict, sid: str, delay: float) -> dict | None:
+    """拉取单条提交详情，遇限流自动退避重试。"""
+    BACKOFF = [30, 60, 120, 180, 300]
+    for attempt, wait in enumerate([0] + BACKOFF):
+        if wait:
+            print(f"\n  [限流] 等待 {wait}s 后第 {attempt} 次重试 ...", flush=True)
+            time.sleep(wait)
+        try:
+            data = graphql(headers, SUBMISSION_DETAIL_QUERY, {"submissionId": sid})
+            return data.get("submissionDetail")
+        except RateLimitError:
+            if attempt == len(BACKOFF):
+                print(f"\n  [限流] 重试 {len(BACKOFF)} 次后放弃，跳过。")
+                return None
+        except Exception as exc:
+            print(f"  Warning: id={sid} 拉取失败: {exc}")
+            return None
+    return None
 
-    # fetch-code
-    p2 = sub.add_parser("fetch-code", help="Step 2: fetch code for each entry in ac_latest.json")
-    p2.add_argument("--input", default=str(LIST_OUTPUT), help=f"Input JSON (default: {LIST_OUTPUT})")
-    p2.add_argument("--delay", type=float, default=0.6, help="Seconds between requests (default: 0.6)")
 
-    return parser.parse_args()
+# ---------------------------------------------------------------------------
+# Resume helpers
+# ---------------------------------------------------------------------------
 
+def load_done_fids() -> set[str]:
+    """
+    读取已有 JSONL，返回已成功拉取代码的 frontendId 集合。
+    code 为 null 的条目视为失败，从文件中清除（下次重拉）。
+    """
+    if not CODE_OUTPUT.exists():
+        return set()
+
+    done: set[str] = set()
+    good_lines: list[str] = []
+    null_count = 0
+
+    for line in CODE_OUTPUT.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            entry = json.loads(line)
+            if entry.get("code") is not None:
+                done.add(str(entry["frontendId"]))
+                good_lines.append(line)
+            else:
+                null_count += 1  # 丢弃，等待重拉
+        except Exception:
+            good_lines.append(line)
+
+    if null_count:
+        CODE_OUTPUT.write_text(
+            "\n".join(good_lines) + ("\n" if good_lines else ""),
+            encoding="utf-8",
+        )
+        print(f"  清除 {null_count} 条 code=null 记录，将重新拉取。")
+
+    return done
+
+
+def extract_slug(url: str) -> str:
+    parts = url.strip("/").split("/")
+    try:
+        return parts[parts.index("problems") + 1]
+    except (ValueError, IndexError):
+        return ""
+
+
+# ---------------------------------------------------------------------------
+# Main
+# ---------------------------------------------------------------------------
 
 def main() -> int:
-    args = parse_args()
-    dispatch = {"test": cmd_test, "fetch-list": cmd_fetch_list, "fetch-code": cmd_fetch_code}
-    return dispatch[args.cmd](args)
+    parser = argparse.ArgumentParser(
+        description=__doc__,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    parser.add_argument("--days", type=int, default=3650,
+                        help="拉取最近 N 天内的提交（默认 3650，约 10 年）")
+    parser.add_argument("--delay", type=float, default=0.6,
+                        help="每次请求间隔秒数（默认 0.6）")
+    parser.add_argument("--page-size", type=int, default=20,
+                        help="翻页每页条数（默认 20）")
+    args = parser.parse_args()
+
+    require_auth()
+    headers = build_headers()
+    ARTIFACTS.mkdir(exist_ok=True)
+
+    done_fids = load_done_fids()
+    if done_fids:
+        print(f"断点续传：已有 {len(done_fids)} 道题，跳过。")
+
+    cutoff_ts = int((dt.datetime.now() - dt.timedelta(days=args.days)).timestamp())
+    offset = 0
+    last_key = None
+    page = 1
+    fetched = 0
+    skipped = 0
+
+    with CODE_OUTPUT.open("a", encoding="utf-8") as f:
+        while True:
+            sl = graphql(headers, SUBMISSION_LIST_QUERY, {
+                "offset": offset,
+                "limit": args.page_size,
+                "lastKey": last_key,
+                "status": "AC",
+            })["submissionList"]
+
+            subs = sl["submissions"]
+            has_next = sl["hasNext"]
+            last_key = sl["lastKey"]
+
+            reached_cutoff = False
+            for sub in subs:
+                if int(sub["timestamp"]) < cutoff_ts:
+                    reached_cutoff = True
+                    break
+
+                fid = str(sub.get("frontendId", ""))
+                if fid in done_fids:
+                    skipped += 1
+                    continue
+
+                # 立即标记：同题的更旧提交在后续页中直接跳过，无需请求
+                done_fids.add(fid)
+
+                sid = sub["id"]
+                title = sub.get("title", "?")
+                print(f"  #{fid} {title} (id={sid})", end=" ", flush=True)
+
+                detail = fetch_detail(headers, sid, args.delay)
+                entry = {**sub, "titleSlug": extract_slug(sub.get("url", ""))}
+
+                if detail:
+                    entry["code"] = detail.get("code", "")
+                    q = detail.get("question") or {}
+                    if not entry["titleSlug"]:
+                        entry["titleSlug"] = q.get("titleSlug", "")
+                    if not entry.get("title"):
+                        entry["title"] = q.get("translatedTitle", "")
+                    fetched += 1
+                    lang = sub.get("langVerboseName") or sub.get("lang", "?")
+                    print(f"✓  ({lang}, {len(entry['code'])} chars)")
+                else:
+                    entry["code"] = None
+                    print("✗ (no code)")
+
+                f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+                f.flush()
+                time.sleep(args.delay)
+
+            oldest_ts = int(subs[-1]["timestamp"]) if subs else 0
+            oldest_str = dt.datetime.fromtimestamp(oldest_ts).strftime("%Y-%m-%d") if oldest_ts else "?"
+            print(f"  [page {page}] oldest={oldest_str}  本次拉取={fetched}  跳过={skipped}", flush=True)
+
+            if reached_cutoff or not has_next:
+                break
+
+            offset += args.page_size
+            page += 1
+            time.sleep(args.delay)
+
+    print(f"\n完成。本次拉取 {fetched} 道，跳过 {skipped} 道。")
+    print(f"输出 → {CODE_OUTPUT}")
+    return 0
 
 
 if __name__ == "__main__":
