@@ -97,7 +97,7 @@ def largest_rectangle_area(heights):
 `0085` 的单调栈本体是 `0084` 的复用：逐行累积高度，把每一行当作一幅柱状图求最大矩形。方法边界在于“先做状态建模（矩阵 -> 高度数组）”，再调用柱状图子方法，适合单独成节。
 
 #### 4.4.1 模板题目
-- 0085 - Maximal Rectangle ｜ [LeetCode 链接](https://leetcode.cn/problems/maximal-rectangle/) ｜ [题解笔记](../solutions/0001-0100/0085-maximal-rectangle.md)
+- 0085 - 最大矩形 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximal-rectangle/) ｜ [题解笔记](../solutions/0001-0100/0085-maximal-rectangle.md)
 ### 4.5 凹槽积水
 方法说明：
 出栈元素作为“凹槽底”，当前元素与新栈顶形成左右边界计算积水；该题也可用双指针，双指针做法可交叉到双指针专题。

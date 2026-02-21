@@ -38,7 +38,7 @@ def max_subarray(nums):
 ```
 
 #### 4.1.1 模板题目
-- 0053 - Maximum Subarray ｜ [LeetCode 链接](https://leetcode.cn/problems/maximum-subarray/) ｜ [题解笔记](../solutions/0001-0100/0053-maximum-subarray.md)
+- 0053 - 最大子数组和 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximum-subarray/) ｜ [题解笔记](../solutions/0001-0100/0053-maximum-subarray.md)
 - 0198 - 打家劫舍 ｜ [LeetCode 链接](https://leetcode.cn/problems/house-robber/) ｜ [题解笔记](../solutions/0101-0200/0198-house-robber.md)
 - 0152 - 乘积最大子数组 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximum-product-subarray/) ｜ [题解笔记](../solutions/0101-0200/0152-maximum-product-subarray.md)
 - 0300 - 最长递增子序列 ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-increasing-subsequence/) ｜ [题解笔记](../solutions/0201-0300/0300-longest-increasing-subsequence.md)
@@ -239,10 +239,10 @@ def min_path_sum(grid):
 ```
 
 #### 4.8.1 模板题目
-- 0062 - Unique Paths ｜ [LeetCode 链接](https://leetcode.cn/problems/unique-paths/) ｜ [题解笔记](../solutions/0001-0100/0062-unique-paths.md)
-- 0064 - Minimum Path Sum ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-path-sum/) ｜ [题解笔记](../solutions/0001-0100/0064-minimum-path-sum.md)
-- 0221 - Maximal Square ｜ [LeetCode 链接](https://leetcode.cn/problems/maximal-square/) ｜ [题解笔记](../solutions/0201-0300/0221-maximal-square.md)
-- 0085 - Maximal Rectangle ｜ [LeetCode 链接](https://leetcode.cn/problems/maximal-rectangle/) ｜ [题解笔记](../solutions/0001-0100/0085-maximal-rectangle.md)
+- 0062 - 不同路径 ｜ [LeetCode 链接](https://leetcode.cn/problems/unique-paths/) ｜ [题解笔记](../solutions/0001-0100/0062-unique-paths.md)
+- 0064 - 最小路径和 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-path-sum/) ｜ [题解笔记](../solutions/0001-0100/0064-minimum-path-sum.md)
+- 0221 - 最大正方形 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximal-square/) ｜ [题解笔记](../solutions/0201-0300/0221-maximal-square.md)
+- 0085 - 最大矩形 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximal-rectangle/) ｜ [题解笔记](../solutions/0001-0100/0085-maximal-rectangle.md)
 ### 4.9 交叉字符串 DP 模板
 方法说明：
 以下题目主归属通常在字符串专题，此处作为 DP 视角交叉索引，模板是二维匹配转移。
@@ -271,8 +271,8 @@ def lcs(a, b):
 - 0072 - 编辑距离 ｜ [LeetCode 链接](https://leetcode.cn/problems/edit-distance/) ｜ [题解笔记](../solutions/0001-0100/0072-edit-distance.md)
 - 0647 - 回文子串 ｜ [LeetCode 链接](https://leetcode.cn/problems/palindromic-substrings/) ｜ [题解笔记](../solutions/0601-0700/0647-palindromic-substrings.md)
 - 0139 - 单词拆分 ｜ [LeetCode 链接](https://leetcode.cn/problems/word-break/) ｜ [题解笔记](../solutions/0101-0200/0139-word-break.md)
-- 0005 - Longest Palindromic Substring ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-palindromic-substring/) ｜ [题解笔记](../solutions/0001-0100/0005-longest-palindromic-substring.md)
-- 0010 - Regular Expression Matching ｜ [LeetCode 链接](https://leetcode.cn/problems/regular-expression-matching/) ｜ [题解笔记](../solutions/0001-0100/0010-regular-expression-matching.md)
+- 0005 - 最长回文子串 ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-palindromic-substring/) ｜ [题解笔记](../solutions/0001-0100/0005-longest-palindromic-substring.md)
+- 0010 - 正则表达式匹配 ｜ [LeetCode 链接](https://leetcode.cn/problems/regular-expression-matching/) ｜ [题解笔记](../solutions/0001-0100/0010-regular-expression-matching.md)
 - 0032 - 最长有效括号 ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-valid-parentheses/) ｜ [题解笔记](../solutions/0001-0100/0032-longest-valid-parentheses.md)
 - 0115 - 不同的子序列 ｜ [LeetCode 链接](https://leetcode.cn/problems/distinct-subsequences/) ｜ [题解笔记](../solutions/0101-0200/0115-distinct-subsequences.md)
 - 0392 - 判断子序列 ｜ [LeetCode 链接](https://leetcode.cn/problems/is-subsequence/) ｜ [题解笔记](../solutions/0301-0400/0392-is-subsequence.md)
@@ -283,6 +283,13 @@ def lcs(a, b):
 ### 4.10 网格 DP 路径转移
 #### 4.10.1 模板题目
 - 0063 - 不同路径 II ｜ [LeetCode 链接](https://leetcode.cn/problems/unique-paths-ii/) ｜ [题解笔记](../solutions/0001-0100/0063-unique-paths-ii.md)
+
+### 4.11 分层扩散 DP
+方法说明：
+按层推进状态并把“超额”向下一层相邻位置分发，常用于金字塔/三角结构中的流量或概率传递问题。
+
+#### 4.11.1 模板题目
+- 0815 - 香槟塔 ｜ [LeetCode 链接](https://leetcode.cn/problems/champagne-tower/) ｜ [题解笔记](../solutions/0801-0900/0815-champagne-tower.md)
 ## 5 易错点
 - 状态定义含糊，导致初始化和转移全错。
 - 背包遍历顺序错误。

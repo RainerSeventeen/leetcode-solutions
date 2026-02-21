@@ -31,12 +31,12 @@ def reverse_list(head):
 ```
 
 #### 4.1.1 模板题目
-- 0002 - Add Two Numbers ｜ [LeetCode 链接](https://leetcode.cn/problems/add-two-numbers/) ｜ [题解笔记](../solutions/0001-0100/0002-add-two-numbers.md)
+- 0002 - 两数相加 ｜ [LeetCode 链接](https://leetcode.cn/problems/add-two-numbers/) ｜ [题解笔记](../solutions/0001-0100/0002-add-two-numbers.md)
 - 0019 - 删除链表的倒数第 N 个结点 ｜ [LeetCode 链接](https://leetcode.cn/problems/remove-nth-node-from-end-of-list/) ｜ [题解笔记](../solutions/0001-0100/0019-remove-nth-node-from-end-of-list.md)
 - 0021 - 合并两个有序链表 ｜ [LeetCode 链接](https://leetcode.cn/problems/merge-two-sorted-lists/) ｜ [题解笔记](../solutions/0001-0100/0021-merge-two-sorted-lists.md)
 - 0148 - 排序链表 ｜ [LeetCode 链接](https://leetcode.cn/problems/sort-list/) ｜ [题解笔记](../solutions/0101-0200/0148-sort-list.md)
-- 0206 - Reverse Linked List ｜ [LeetCode 链接](https://leetcode.cn/problems/reverse-linked-list/) ｜ [题解笔记](../solutions/0201-0300/0206-reverse-linked-list.md)
-- 0234 - Palindrome Linked List ｜ [LeetCode 链接](https://leetcode.cn/problems/palindrome-linked-list/) ｜ [题解笔记](../solutions/0201-0300/0234-palindrome-linked-list.md)
+- 0206 - 反转链表 ｜ [LeetCode 链接](https://leetcode.cn/problems/reverse-linked-list/) ｜ [题解笔记](../solutions/0201-0300/0206-reverse-linked-list.md)
+- 0234 - 回文链表 ｜ [LeetCode 链接](https://leetcode.cn/problems/palindrome-linked-list/) ｜ [题解笔记](../solutions/0201-0300/0234-palindrome-linked-list.md)
 - 0023 - 合并 K 个升序链表 ｜ [LeetCode 链接](https://leetcode.cn/problems/merge-k-sorted-lists/) ｜ [题解笔记](../solutions/0001-0100/0023-merge-k-sorted-lists.md)
 - 0024 - 两两交换链表中的节点 ｜ [LeetCode 链接](https://leetcode.cn/problems/swap-nodes-in-pairs/) ｜ [题解笔记](../solutions/0001-0100/0024-swap-nodes-in-pairs.md)
 - 0203 - 移除链表元素 ｜ [LeetCode 链接](https://leetcode.cn/problems/remove-linked-list-elements/) ｜ [题解笔记](../solutions/0201-0300/0203-remove-linked-list-elements.md)
@@ -93,8 +93,8 @@ def max_depth(root):
 
 #### 4.3.1 模板题目
 - 0101 - 对称二叉树 ｜ [LeetCode 链接](https://leetcode.cn/problems/symmetric-tree/) ｜ [题解笔记](../solutions/0101-0200/0101-symmetric-tree.md)
-- 0226 - Invert Binary Tree ｜ [LeetCode 链接](https://leetcode.cn/problems/invert-binary-tree/) ｜ [题解笔记](../solutions/0201-0300/0226-invert-binary-tree.md)
-- 0617 - Merge Two Binary Trees ｜ [LeetCode 链接](https://leetcode.cn/problems/merge-two-binary-trees/) ｜ [题解笔记](../solutions/0601-0700/0617-merge-two-binary-trees.md)
+- 0226 - 翻转二叉树 ｜ [LeetCode 链接](https://leetcode.cn/problems/invert-binary-tree/) ｜ [题解笔记](../solutions/0201-0300/0226-invert-binary-tree.md)
+- 0617 - 合并二叉树 ｜ [LeetCode 链接](https://leetcode.cn/problems/merge-two-binary-trees/) ｜ [题解笔记](../solutions/0601-0700/0617-merge-two-binary-trees.md)
 - 0222 - 完全二叉树的节点个数 ｜ [LeetCode 链接](https://leetcode.cn/problems/count-complete-tree-nodes/) ｜ [题解笔记](../solutions/0201-0300/0222-count-complete-tree-nodes.md)
 - 0654 - 最大二叉树 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximum-binary-tree/) ｜ [题解笔记](../solutions/0601-0700/0654-maximum-binary-tree.md)
 ### 4.4 BST 定位与中序性质
@@ -237,7 +237,7 @@ def combination_backtrack(cands, target):
 
 #### 4.7.1 模板题目
 - 0039 - 组合总和 ｜ [LeetCode 链接](https://leetcode.cn/problems/combination-sum/) ｜ [题解笔记](../solutions/0001-0100/0039-combination-sum.md)
-- 0078 - Subsets ｜ [LeetCode 链接](https://leetcode.cn/problems/subsets/) ｜ [题解笔记](../solutions/0001-0100/0078-subsets.md)
+- 0078 - 子集 ｜ [LeetCode 链接](https://leetcode.cn/problems/subsets/) ｜ [题解笔记](../solutions/0001-0100/0078-subsets.md)
 - 0077 - 组合 ｜ [LeetCode 链接](https://leetcode.cn/problems/combinations/) ｜ [题解笔记](../solutions/0001-0100/0077-combinations.md)
 - 0216 - 组合总和 III ｜ [LeetCode 链接](https://leetcode.cn/problems/combination-sum-iii/) ｜ [题解笔记](../solutions/0201-0300/0216-combination-sum-iii.md)
 ### 4.8 组合去重与子序列去重
@@ -348,7 +348,7 @@ def partition_palindrome(s):
 - 0017 - 电话号码的字母组合 ｜ [LeetCode 链接](https://leetcode.cn/problems/letter-combinations-of-a-phone-number/) ｜ [题解笔记](../solutions/0001-0100/0017-letter-combinations-of-a-phone-number.md)
 - 0022 - 括号生成 ｜ [LeetCode 链接](https://leetcode.cn/problems/generate-parentheses/) ｜ [题解笔记](../solutions/0001-0100/0022-generate-parentheses.md)
 - 0301 - 删除无效的括号 ｜ [LeetCode 链接](https://leetcode.cn/problems/remove-invalid-parentheses/) ｜ [题解笔记](../solutions/0301-0400/0301-remove-invalid-parentheses.md)
-- 0079 - Word Search ｜ [LeetCode 链接](https://leetcode.cn/problems/word-search/) ｜ [题解笔记](../solutions/0001-0100/0079-word-search.md)
+- 0079 - 单词搜索 ｜ [LeetCode 链接](https://leetcode.cn/problems/word-search/) ｜ [题解笔记](../solutions/0001-0100/0079-word-search.md)
 - 0037 - 解数独 ｜ [LeetCode 链接](https://leetcode.cn/problems/sudoku-solver/) ｜ [题解笔记](../solutions/0001-0100/0037-sudoku-solver.md)
 - 0051 - N 皇后 ｜ [LeetCode 链接](https://leetcode.cn/problems/n-queens/) ｜ [题解笔记](../solutions/0001-0100/0051-n-queens.md)
 - 0093 - 复原 IP 地址 ｜ [LeetCode 链接](https://leetcode.cn/problems/restore-ip-addresses/) ｜ [题解笔记](../solutions/0001-0100/0093-restore-ip-addresses.md)

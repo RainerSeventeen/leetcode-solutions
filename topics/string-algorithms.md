@@ -40,7 +40,7 @@ def edit_distance(a, b):
 
 #### 4.1.1 模板题目
 - 0072 - 编辑距离 ｜ [LeetCode 链接](https://leetcode.cn/problems/edit-distance/) ｜ [题解笔记](../solutions/0001-0100/0072-edit-distance.md)
-- 0010 - Regular Expression Matching ｜ [LeetCode 链接](https://leetcode.cn/problems/regular-expression-matching/) ｜ [题解笔记](../solutions/0001-0100/0010-regular-expression-matching.md)
+- 0010 - 正则表达式匹配 ｜ [LeetCode 链接](https://leetcode.cn/problems/regular-expression-matching/) ｜ [题解笔记](../solutions/0001-0100/0010-regular-expression-matching.md)
 - 0139 - 单词拆分 ｜ [LeetCode 链接](https://leetcode.cn/problems/word-break/) ｜ [题解笔记](../solutions/0101-0200/0139-word-break.md)
 ### 4.2 回文字符串
 方法说明：
@@ -62,7 +62,7 @@ def count_substrings(s):
 ```
 
 #### 4.2.1 模板题目
-- 0005 - Longest Palindromic Substring ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-palindromic-substring/) ｜ [题解笔记](../solutions/0001-0100/0005-longest-palindromic-substring.md)
+- 0005 - 最长回文子串 ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-palindromic-substring/) ｜ [题解笔记](../solutions/0001-0100/0005-longest-palindromic-substring.md)
 - 0647 - 回文子串 ｜ [LeetCode 链接](https://leetcode.cn/problems/palindromic-substrings/) ｜ [题解笔记](../solutions/0601-0700/0647-palindromic-substrings.md)
 - 0131 - 分割回文串 ｜ [LeetCode 链接](https://leetcode.cn/problems/palindrome-partitioning/) ｜ [题解笔记](../solutions/0101-0200/0131-palindrome-partitioning.md)
 ### 4.3 括号与栈/DP
@@ -146,8 +146,8 @@ def find_anagrams(s, p):
 ```
 
 #### 4.5.1 模板题目
-- 0003 - Longest Substring Without Repeating Characters ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-substring-without-repeating-characters/) ｜ [题解笔记](../solutions/0001-0100/0003-longest-substring-without-repeating-characters.md)
-- 0076 - Minimum Window Substring ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-window-substring/) ｜ [题解笔记](../solutions/0001-0100/0076-minimum-window-substring.md)
+- 0003 - 无重复字符的最长子串 ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-substring-without-repeating-characters/) ｜ [题解笔记](../solutions/0001-0100/0003-longest-substring-without-repeating-characters.md)
+- 0076 - 最小覆盖子串 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-window-substring/) ｜ [题解笔记](../solutions/0001-0100/0076-minimum-window-substring.md)
 - 0438 - 找到字符串中所有字母异位词 ｜ [LeetCode 链接](https://leetcode.cn/problems/find-all-anagrams-in-a-string/) ｜ [题解笔记](../solutions/0401-0500/0438-find-all-anagrams-in-a-string.md)
 - 4137 - 前缀连接组的数目 ｜ [LeetCode 链接](https://leetcode.cn/problems/number-of-prefix-connected-groups/) ｜ [题解笔记](../solutions/4101-4200/4137-number-of-prefix-connected-groups.md)
 - 4216 - 带权单词映射 ｜ [LeetCode 链接](https://leetcode.cn/problems/weighted-word-mapping/) ｜ [题解笔记](../solutions/4201-4300/4216-weighted-word-mapping.md)

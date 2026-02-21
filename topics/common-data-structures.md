@@ -32,7 +32,7 @@ def two_sum(nums, target):
 ```
 
 #### 4.1.1 模板题目
-- 0001 - Two Sum ｜ [LeetCode 链接](https://leetcode.cn/problems/two-sum/) ｜ [题解笔记](../solutions/0001-0100/0001-two-sum.md)
+- 0001 - 两数之和 ｜ [LeetCode 链接](https://leetcode.cn/problems/two-sum/) ｜ [题解笔记](../solutions/0001-0100/0001-two-sum.md)
 - 0049 - 字母异位词分组 ｜ [LeetCode 链接](https://leetcode.cn/problems/group-anagrams/) ｜ [题解笔记](../solutions/0001-0100/0049-group-anagrams.md)
 - 0128 - 最长连续序列 ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-consecutive-sequence/) ｜ [题解笔记](../solutions/0101-0200/0128-longest-consecutive-sequence.md)
 - 0448 - 找到所有数组中消失的数字 ｜ [LeetCode 链接](https://leetcode.cn/problems/find-all-numbers-disappeared-in-an-array/) ｜ [题解笔记](../solutions/0401-0500/0448-find-all-numbers-disappeared-in-an-array.md)
@@ -87,7 +87,7 @@ def top_k(nums, k):
 ```
 
 #### 4.3.1 模板题目
-- 0215 - Kth Largest Element in an Array ｜ [LeetCode 链接](https://leetcode.cn/problems/kth-largest-element-in-an-array/) ｜ [题解笔记](../solutions/0201-0300/0215-kth-largest-element-in-an-array.md)
+- 0215 - 数组中的第K个最大元素 ｜ [LeetCode 链接](https://leetcode.cn/problems/kth-largest-element-in-an-array/) ｜ [题解笔记](../solutions/0201-0300/0215-kth-largest-element-in-an-array.md)
 - 0347 - 前 K 个高频元素 ｜ [LeetCode 链接](https://leetcode.cn/problems/top-k-frequent-elements/) ｜ [题解笔记](../solutions/0301-0400/0347-top-k-frequent-elements.md)
 - 0023 - 合并 K 个升序链表 ｜ [LeetCode 链接](https://leetcode.cn/problems/merge-k-sorted-lists/) ｜ [题解笔记](../solutions/0001-0100/0023-merge-k-sorted-lists.md)
 - 0253 - 会议室 II ｜ [LeetCode 链接](https://leetcode.cn/problems/meeting-rooms-ii/) ｜ [题解笔记](../solutions/0201-0300/0253-meeting-rooms-ii.md)
@@ -104,7 +104,7 @@ class TrieNode:
 ```
 
 #### 4.4.1 模板题目
-- 0208 - Implement Trie (Prefix Tree) ｜ [LeetCode 链接](https://leetcode.cn/problems/implement-trie-prefix-tree/) ｜ [题解笔记](../solutions/0201-0300/0208-implement-trie-prefix-tree.md)
+- 0208 - 实现 Trie (前缀树) ｜ [LeetCode 链接](https://leetcode.cn/problems/implement-trie-prefix-tree/) ｜ [题解笔记](../solutions/0201-0300/0208-implement-trie-prefix-tree.md)
 ### 4.5 前缀和与哈希计数
 方法说明：
 将区间和问题转成前缀差，配合哈希统计历史前缀出现次数。树路径前缀和可交叉到树专题。
@@ -127,7 +127,7 @@ def subarray_sum(nums, k):
 
 #### 4.5.1 模板题目
 - 0560 - 和为 K 的子数组 ｜ [LeetCode 链接](https://leetcode.cn/problems/subarray-sum-equals-k/) ｜ [题解笔记](../solutions/0501-0600/0560-subarray-sum-equals-k.md)
-- 0238 - Product of Array Except Self ｜ [LeetCode 链接](https://leetcode.cn/problems/product-of-array-except-self/) ｜ [题解笔记](../solutions/0201-0300/0238-product-of-array-except-self.md)
+- 0238 - 除自身以外数组的乘积 ｜ [LeetCode 链接](https://leetcode.cn/problems/product-of-array-except-self/) ｜ [题解笔记](../solutions/0201-0300/0238-product-of-array-except-self.md)
 - 0437 - 路径总和 III ｜ [LeetCode 链接](https://leetcode.cn/problems/path-sum-iii/) ｜ [题解笔记](../solutions/0401-0500/0437-path-sum-iii.md)
 ### 4.6 结构设计（哈希 + 双链表）
 方法说明：

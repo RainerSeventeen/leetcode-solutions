@@ -96,7 +96,7 @@ def find_median_sorted_arrays(a, b):
 ```
 
 #### 4.3.1 模板题目
-- 0004 - Median of Two Sorted Arrays ｜ [LeetCode 链接](https://leetcode.cn/problems/median-of-two-sorted-arrays/) ｜ [题解笔记](../solutions/0001-0100/0004-median-of-two-sorted-arrays.md)
+- 0004 - 寻找两个正序数组的中位数 ｜ [LeetCode 链接](https://leetcode.cn/problems/median-of-two-sorted-arrays/) ｜ [题解笔记](../solutions/0001-0100/0004-median-of-two-sorted-arrays.md)
 ### 4.4 答案二分（可行性判定）
 方法说明：
 把“求最小/最大满足值”转成判定函数。`0287` 在本专题是交叉做法，主模板也可用快慢指针。

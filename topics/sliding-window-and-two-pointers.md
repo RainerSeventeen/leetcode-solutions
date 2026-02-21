@@ -44,8 +44,8 @@ def min_window(s: str, t: str) -> str:
 ```
 
 #### 4.1.1 模板题目
-- 0003 - Longest Substring Without Repeating Characters ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-substring-without-repeating-characters/) ｜ [题解笔记](../solutions/0001-0100/0003-longest-substring-without-repeating-characters.md)
-- 0076 - Minimum Window Substring ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-window-substring/) ｜ [题解笔记](../solutions/0001-0100/0076-minimum-window-substring.md)
+- 0003 - 无重复字符的最长子串 ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-substring-without-repeating-characters/) ｜ [题解笔记](../solutions/0001-0100/0003-longest-substring-without-repeating-characters.md)
+- 0076 - 最小覆盖子串 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-window-substring/) ｜ [题解笔记](../solutions/0001-0100/0076-minimum-window-substring.md)
 - 0438 - 找到字符串中所有字母异位词 ｜ [LeetCode 链接](https://leetcode.cn/problems/find-all-anagrams-in-a-string/) ｜ [题解笔记](../solutions/0401-0500/0438-find-all-anagrams-in-a-string.md)
 - 0940 - 水果成篮 ｜ [LeetCode 链接](https://leetcode.cn/problems/fruit-into-baskets/) ｜ [题解笔记](../solutions/0901-1000/0940-fruit-into-baskets.md)
 ### 4.2 双指针对撞（有序数组）
@@ -69,10 +69,10 @@ def two_pointer(nums):
 ```
 
 #### 4.2.1 模板题目
-- 0011 - Container With Most Water ｜ [LeetCode 链接](https://leetcode.cn/problems/container-with-most-water/) ｜ [题解笔记](../solutions/0001-0100/0011-container-with-most-water.md)
-- 0015 - 3Sum ｜ [LeetCode 链接](https://leetcode.cn/problems/3sum/) ｜ [题解笔记](../solutions/0001-0100/0015-3sum.md)
+- 0011 - 盛最多水的容器 ｜ [LeetCode 链接](https://leetcode.cn/problems/container-with-most-water/) ｜ [题解笔记](../solutions/0001-0100/0011-container-with-most-water.md)
+- 0015 - 三数之和 ｜ [LeetCode 链接](https://leetcode.cn/problems/3sum/) ｜ [题解笔记](../solutions/0001-0100/0015-3sum.md)
 - 0283 - 移动零 ｜ [LeetCode 链接](https://leetcode.cn/problems/move-zeroes/) ｜ [题解笔记](../solutions/0201-0300/0283-move-zeroes.md)
-- 0075 - Sort Colors ｜ [LeetCode 链接](https://leetcode.cn/problems/sort-colors/) ｜ [题解笔记](../solutions/0001-0100/0075-sort-colors.md)
+- 0075 - 颜色分类 ｜ [LeetCode 链接](https://leetcode.cn/problems/sort-colors/) ｜ [题解笔记](../solutions/0001-0100/0075-sort-colors.md)
 - 0018 - 四数之和 ｜ [LeetCode 链接](https://leetcode.cn/problems/4sum/) ｜ [题解笔记](../solutions/0001-0100/0018-4sum.md)
 - 0026 - 删除有序数组中的重复项 ｜ [LeetCode 链接](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/) ｜ [题解笔记](../solutions/0001-0100/0026-remove-duplicates-from-sorted-array.md)
 - 0027 - 移除元素 ｜ [LeetCode 链接](https://leetcode.cn/problems/remove-element/) ｜ [题解笔记](../solutions/0001-0100/0027-remove-element.md)

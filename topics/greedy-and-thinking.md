@@ -36,7 +36,7 @@ def jump(nums):
 
 #### 4.1.1 模板题目
 - 0045 - 跳跃游戏 II ｜ [LeetCode 链接](https://leetcode.cn/problems/jump-game-ii/) ｜ [题解笔记](../solutions/0001-0100/0045-jump-game-ii.md)
-- 0055 - Jump Game ｜ [LeetCode 链接](https://leetcode.cn/problems/jump-game/) ｜ [题解笔记](../solutions/0001-0100/0055-jump-game.md)
+- 0055 - 跳跃游戏 ｜ [LeetCode 链接](https://leetcode.cn/problems/jump-game/) ｜ [题解笔记](../solutions/0001-0100/0055-jump-game.md)
 ### 4.2 序列与邻接约束贪心
 方法说明：
 通过双向扫描或状态压缩处理相邻约束；摆动序列可用符号变化贪心。
@@ -107,7 +107,7 @@ def merge(intervals):
 ```
 
 #### 4.4.1 模板题目
-- 0056 - Merge Intervals ｜ [LeetCode 链接](https://leetcode.cn/problems/merge-intervals/) ｜ [题解笔记](../solutions/0001-0100/0056-merge-intervals.md)
+- 0056 - 合并区间 ｜ [LeetCode 链接](https://leetcode.cn/problems/merge-intervals/) ｜ [题解笔记](../solutions/0001-0100/0056-merge-intervals.md)
 - 0253 - 会议室 II ｜ [LeetCode 链接](https://leetcode.cn/problems/meeting-rooms-ii/) ｜ [题解笔记](../solutions/0201-0300/0253-meeting-rooms-ii.md)
 - 0452 - 用最少数量的箭引爆气球 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/) ｜ [题解笔记](../solutions/0401-0500/0452-minimum-number-of-arrows-to-burst-balloons.md)
 
@@ -127,7 +127,7 @@ def majority_element(nums):
 ```
 
 #### 4.5.1 模板题目
-- 0621 - Task Scheduler ｜ [LeetCode 链接](https://leetcode.cn/problems/task-scheduler/) ｜ [题解笔记](../solutions/0601-0700/0621-task-scheduler.md)
+- 0621 - 任务调度器 ｜ [LeetCode 链接](https://leetcode.cn/problems/task-scheduler/) ｜ [题解笔记](../solutions/0601-0700/0621-task-scheduler.md)
 - 0169 - 多数元素 ｜ [LeetCode 链接](https://leetcode.cn/problems/majority-element/) ｜ [题解笔记](../solutions/0101-0200/0169-majority-element.md)
 
 ### 4.6 数位与排列构造贪心

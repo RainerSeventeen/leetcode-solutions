@@ -19,6 +19,7 @@ Follow `.ai_docs/rules.md` strictly:
 - Keep complexity format as `$O(x)$` if edited.
 - Topic bullet format must be exactly:
   - `- 0000 - 题目名 ｜ [LeetCode 链接](https://leetcode.cn/problems/xxx/) ｜ [题解笔记](../solutions/xxxx-xxxx/xxxx-slug.md)`
+- In `#### 模板题目` entries, `题目名` must use Chinese.
 - After topic edits, run:
   - `python3 scripts/check_solutions.py`
   - `python3 scripts/normalize_topics_title.py`

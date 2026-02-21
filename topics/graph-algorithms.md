@@ -209,7 +209,7 @@ def can_finish(num_courses, prerequisites):
 ```
 
 #### 4.5.1 模板题目
-- 0207 - Course Schedule ｜ [LeetCode 链接](https://leetcode.cn/problems/course-schedule/) ｜ [题解笔记](../solutions/0201-0300/0207-course-schedule.md)
+- 0207 - 课程表 ｜ [LeetCode 链接](https://leetcode.cn/problems/course-schedule/) ｜ [题解笔记](../solutions/0201-0300/0207-course-schedule.md)
 - 0310 - 最小高度树 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-height-trees/) ｜ [题解笔记](../solutions/0301-0400/0310-minimum-height-trees.md)
 - 2392 - 给定条件下构造矩阵 ｜ [LeetCode 链接](https://leetcode.cn/problems/build-a-matrix-with-conditions/) ｜ [题解笔记](../solutions/2301-2400/2392-build-a-matrix-with-conditions.md)
 - 0210 - 课程表 II ｜ [LeetCode 链接](https://leetcode.cn/problems/course-schedule-ii/) ｜ [题解笔记](../solutions/0201-0300/0210-course-schedule-ii.md)

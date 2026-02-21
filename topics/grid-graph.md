@@ -96,10 +96,10 @@ def unique_paths(m, n):
 ```
 
 #### 4.4.1 模板题目
-- 0062 - Unique Paths ｜ [LeetCode 链接](https://leetcode.cn/problems/unique-paths/) ｜ [题解笔记](../solutions/0001-0100/0062-unique-paths.md)
-- 0064 - Minimum Path Sum ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-path-sum/) ｜ [题解笔记](../solutions/0001-0100/0064-minimum-path-sum.md)
-- 0221 - Maximal Square ｜ [LeetCode 链接](https://leetcode.cn/problems/maximal-square/) ｜ [题解笔记](../solutions/0201-0300/0221-maximal-square.md)
-- 0085 - Maximal Rectangle ｜ [LeetCode 链接](https://leetcode.cn/problems/maximal-rectangle/) ｜ [题解笔记](../solutions/0001-0100/0085-maximal-rectangle.md)
+- 0062 - 不同路径 ｜ [LeetCode 链接](https://leetcode.cn/problems/unique-paths/) ｜ [题解笔记](../solutions/0001-0100/0062-unique-paths.md)
+- 0064 - 最小路径和 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-path-sum/) ｜ [题解笔记](../solutions/0001-0100/0064-minimum-path-sum.md)
+- 0221 - 最大正方形 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximal-square/) ｜ [题解笔记](../solutions/0201-0300/0221-maximal-square.md)
+- 0085 - 最大矩形 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximal-rectangle/) ｜ [题解笔记](../solutions/0001-0100/0085-maximal-rectangle.md)
 ### 4.5 网格回溯搜索
 方法说明：
 用于路径匹配与约束搜索，状态需要“访问标记 + 回撤”；可交叉到回溯专题。
@@ -122,7 +122,7 @@ def exist(board, word):
 ```
 
 #### 4.5.1 模板题目
-- 0079 - Word Search ｜ [LeetCode 链接](https://leetcode.cn/problems/word-search/) ｜ [题解笔记](../solutions/0001-0100/0079-word-search.md)
+- 0079 - 单词搜索 ｜ [LeetCode 链接](https://leetcode.cn/problems/word-search/) ｜ [题解笔记](../solutions/0001-0100/0079-word-search.md)
 - 0048 - 旋转图像 ｜ [LeetCode 链接](https://leetcode.cn/problems/rotate-image/) ｜ [题解笔记](../solutions/0001-0100/0048-rotate-image.md)
 ## 5 易错点
 - 访问标记时机错误导致重复入队/重复递归。
