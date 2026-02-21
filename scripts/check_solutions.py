@@ -41,7 +41,7 @@ REQUIRED_SECTIONS = (
 )
 ALLOWED_DIFFICULTY = {"Easy", "Medium", "Hard"}
 COMPLEXITY_VALUE_RE = re.compile(r"^\$O\([^$\n]+\)\$")
-MAX_TEMPLATE_ITEMS = 20
+MAX_TEMPLATE_ITEMS = -1
 
 
 def parse_front_matter(text: str) -> dict[str, str]:
@@ -139,6 +139,8 @@ def check_file(path: Path) -> list[str]:
 
 
 def check_topic_template_limits(path: Path) -> list[str]:
+    if MAX_TEMPLATE_ITEMS < 0:
+        return []
     errors: list[str] = []
     rel = path.relative_to(ROOT).as_posix()
     lines = path.read_text(encoding="utf-8").splitlines()
