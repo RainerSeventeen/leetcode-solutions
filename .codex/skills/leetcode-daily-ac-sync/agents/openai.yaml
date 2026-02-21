@@ -1,4 +1,0 @@
-interface:
-  display_name: "leetcode-daily-ac-sync"
-  short_description: "按北京时间同步今日 AC 到题解与专题"
-  default_prompt: "从 USER_ID.txt 读取用户名，抓取该用户北京时间今天的 AC 题目与代码，调用 fetch_problem 生成题解文件，补全解题思路与复杂度，并把题目链接到 topics 的合适分区后执行校验。"
