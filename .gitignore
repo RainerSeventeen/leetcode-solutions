@@ -16,7 +16,6 @@ Thumbs.db
 # --- Secrets ---
 .env
 
-# ---LeetCode MCP workflow---
-.mcp.json
-USER_ID.txt
+# --- Auto workflow---
 artifacts/
+scripts/auto/log
