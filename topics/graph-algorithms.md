@@ -3,6 +3,17 @@
 ## 1 概览
 图算法处理节点与边关系，核心任务包括连通性、环检测、拓扑排序、最小生成树与路径可达。
 
+图模型常见分类：
+- 有向图 / 无向图
+- 无权图 / 带权图
+- 稠密图 / 稀疏图
+
+基础概念：
+- 度：无向图中表示与该点相连的边数；有向图中细分为入度和出度。
+- 连通图：无向图中任意两点可达。
+- 强连通图：有向图中任意两点互相可达。
+- 连通分量 / 强连通分量：图中彼此可达的极大子图。
+
 ## 2 核心思想
 - 遍历：BFS/DFS 解决可达性与分层。
 - 并查集：维护动态连通性与判环。
@@ -12,13 +23,73 @@
 ## 3 解题流程
 1. 明确图模型：有向/无向，带权/无权，稀疏/稠密。
 2. 选择算法：遍历、并查集、拓扑、MST。
-3. 设计数据结构：邻接表、入度数组、并查集父节点。
-4. 验证终止条件：是否全访问、是否存在环、是否连通。
+3. 设计数据结构：邻接矩阵、邻接表、入度数组、并查集父节点。
+4. 明确存储取舍：
+   - 邻接矩阵：查询两点是否相连简单，适合稠密图，但空间为 $O(n^2)$。
+   - 邻接表：空间随边数增长，适合稀疏图，遍历邻边更自然。
+   - 边集：适合 Kruskal 这类“按边处理”的算法。
+5. 验证终止条件：是否全访问、是否存在环、是否连通。
 
 ## 4 模板与子方法
-### 4.1 邻接表遍历（BFS/DFS）
+### 4.1 图建模与存储选择
 方法说明：
-适用于可达性与路径关系问题。网格题可抽象成图并交叉到网格专题。
+做图题前先定“点是什么、边是什么、边是否带方向与权重”。模型一旦确定，再选存储方式；存储结构会直接决定后续遍历和更新代价。
+
+常见存储方式：
+- 边集：实现简单，适合只关心边本身的场景（如 Kruskal）。
+- 邻接矩阵：`graph[u][v]` 查询直接，代价是空间固定且高。
+- 邻接表：工程与刷题最常用；能自然遍历 `u` 的所有邻边。
+
+### 4.2 深度优先搜索 DFS
+方法说明：
+DFS 的核心是“沿一条路走到底，再回溯换路”。当问题是“枚举路径”“判断是否可达”“做连通块涂色”时常用。
+
+DFS 三部曲：
+1. 确定函数签名和参数（当前节点、访问状态、路径/答案容器）。
+2. 明确终止条件（到终点、越界、重复访问等）；终止条件是正确性核心。
+3. 写递归与回溯逻辑（进入、递归、撤销）。
+
+实战要点：
+- 有环图必须配合 `visited`，否则会无限递归。
+- “先标记再递归”通常更稳妥，避免同层重复进入。
+- 在路径枚举题中，`path.append` 与 `path.pop` 必须严格成对。
+
+模板代码：
+```python
+from collections import defaultdict
+
+
+def dfs(start, edges):
+    g = defaultdict(list)
+    for u, v in edges:
+        g[u].append(v)
+
+    vis = set()
+
+    def walk(u):
+        vis.add(u)
+        for v in g[u]:
+            if v not in vis:
+                walk(v)
+
+    walk(start)
+    return vis
+```
+
+#### 4.2.1 模板题目
+- 0200 - 岛屿数量 ｜ [LeetCode 链接](https://leetcode.cn/problems/number-of-islands/) ｜ [题解笔记](../solutions/0101-0200/0200-number-of-islands.md)
+
+### 4.3 广度优先搜索 BFS
+方法说明：
+BFS 按“层”扩散，天然适合最短步数（无权图）与分层遍历。实现上通常使用队列。
+
+层数处理：
+- 每轮固定处理当前 `len(queue)` 个节点，即一整层。
+- 处理完一层后，层数 `+1`，可直接对应“第几步可达”。
+
+实战要点：
+- 入队时就标记 `visited`，避免同一节点被重复入队。
+- 网格题可把四方向或八方向移动视作图上的邻接边。
 
 模板代码：
 ```python
@@ -29,23 +100,36 @@ def bfs(start, edges):
     g = defaultdict(list)
     for u, v in edges:
         g[u].append(v)
+
     q = deque([start])
     vis = {start}
+    level = 0
     while q:
-        u = q.popleft()
-        for v in g[u]:
-            if v not in vis:
-                vis.add(v)
-                q.append(v)
-    return vis
+        for _ in range(len(q)):
+            u = q.popleft()
+            for v in g[u]:
+                if v not in vis:
+                    vis.add(v)
+                    q.append(v)
+        level += 1
+    return vis, level
 ```
 
-#### 4.1.1 模板题目
+#### 4.3.1 模板题目
 - 0339 - 除法求值 ｜ [LeetCode 链接](https://leetcode.cn/problems/evaluate-division/) ｜ [题解笔记](../solutions/0301-0400/0339-evaluate-division.md)
-- 0200 - 岛屿数量 ｜ [LeetCode 链接](https://leetcode.cn/problems/number-of-islands/) ｜ [题解笔记](../solutions/0201-0300/0200-number-of-islands.md)
-### 4.2 并查集
+
+### 4.4 并查集
 方法说明：
-适用于连通分量合并与判环。可与哈希集合类方法交叉，但并查集更偏图连通维护。
+适用于“动态合并集合 + 连通性查询 + 判环”。结构上维护每个节点的父节点，`find` 找根，`union` 合并根。
+
+优化要点：
+- 路径压缩：把查询路径上的节点直接挂到根，降低后续查询深度。
+- 按秩/按大小合并：让小树挂大树，控制树高增长。
+- `union` 前先判同根并提前返回，否则会错误累计大小/秩。
+
+为什么优化有效：
+- 仅路径压缩可显著减少重复查询链路。
+- 与按秩合并叠加后，树高长期保持很低，均摊复杂度接近常数。
 
 模板代码：
 ```python
@@ -71,10 +155,11 @@ class DSU:
         return True
 ```
 
-#### 4.2.1 模板题目
+#### 4.4.1 模板题目
 - 0684 - 冗余连接 ｜ [LeetCode 链接](https://leetcode.cn/problems/redundant-connection/) ｜ [题解笔记](../solutions/0601-0700/0684-redundant-connection.md)
 - 0128 - 最长连续序列 ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-consecutive-sequence/) ｜ [题解笔记](../solutions/0101-0200/0128-longest-consecutive-sequence.md)
-### 4.3 拓扑排序
+
+### 4.5 拓扑排序
 方法说明：
 适用于先修依赖、任务顺序。Kahn 算法通过入度为 0 的节点逐层剥离。
 
@@ -101,13 +186,20 @@ def can_finish(num_courses, prerequisites):
     return cnt == num_courses
 ```
 
-#### 4.3.1 模板题目
+#### 4.5.1 模板题目
 - 0207 - Course Schedule ｜ [LeetCode 链接](https://leetcode.cn/problems/course-schedule/) ｜ [题解笔记](../solutions/0201-0300/0207-course-schedule.md)
 - 0310 - 最小高度树 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-height-trees/) ｜ [题解笔记](../solutions/0301-0400/0310-minimum-height-trees.md)
 - 2392 - 给定条件下构造矩阵 ｜ [LeetCode 链接](https://leetcode.cn/problems/build-a-matrix-with-conditions/) ｜ [题解笔记](../solutions/2301-2400/2392-build-a-matrix-with-conditions.md)
-### 4.4 最小生成树（Kruskal/Prim）
+
+### 4.6 最小生成树 MST（Kruskal/Prim）
 方法说明：
-用于“以最小代价连通全部节点”。`1584` 与 `1631` 都可从 MST 或最短路视角切入。
+用于“以最小代价连通全部节点”。
+
+关键理解：
+- 目标结构必须是树：包含全部节点、边数为 `n - 1`、且不能有环。
+- 这与“判环/去环”问题互补：MST 过程本质是选边且持续避免形成环。
+- Prim：从“点集”向外扩展，通常适合稠密图。
+- Kruskal：从“边”出发按权排序，通常适合稀疏图。需要并查集判环。
 
 模板代码：
 ```python
@@ -124,14 +216,16 @@ def kruskal(n, edges):
     return cost if used == n - 1 else -1
 ```
 
-#### 4.4.1 模板题目
-- 1584 - 连接所有点的最小费用 ｜ [LeetCode 链接](https://leetcode.cn/problems/min-cost-to-connect-all-points/) ｜ [题解笔记](../solutions/xxxx-xxxx/xxxx-slug.md)
-- 1631 - 最小体力消耗路径 ｜ [LeetCode 链接](https://leetcode.cn/problems/path-with-minimum-effort/) ｜ [题解笔记](../solutions/xxxx-xxxx/xxxx-slug.md)
+#### 4.6.1 模板题目
+
 ## 5 易错点
 - 遍历未去重导致重复扩展或死循环。
-- 并查集合并前未 `find` 根节点。
+- DFS 递归没有清晰终止条件，导致漏解或爆栈。
+- BFS 在出队时才标记访问，导致重复入队。
+- 并查集合并前未 `find` 根节点，或同根时没有提前返回。
+- 并查集只做路径压缩、不做按秩合并，在极端数据上性能退化。
 - 拓扑排序未检查处理节点总数。
 - MST 未判断是否真正连通全部点。
 
 ## 6 总结
-图题先定图模型，再在遍历、并查集、拓扑、MST 中选工具；正确性依赖于不变量和终止校验。
+图题先定模型与存储，再在遍历、并查集、拓扑、MST 中选工具；正确性依赖于不变量、边界条件和终止校验。

@@ -2,6 +2,7 @@
 
 ## 1 概览
 动态规划通过状态定义与转移关系复用子问题结果，适合最值、计数、可行性问题。
+核心不是“套公式”，而是先找到一个稳定不变的状态语义，让递推关系在每一层都成立。
 
 ## 2 核心思想
 - 明确状态：`dp[i]`、`dp[i][j]` 或状态机维度。
@@ -9,11 +10,17 @@
 - 确定遍历顺序：保证依赖项先被计算。
 - 做空间优化：滚动数组或一维压缩。
 
+补充判断：
+- 先看状态图是否可做无环递推。若存在环依赖，通常不适合直接做 DP。
+- 数据规模过大且状态数爆炸时，DP 可能不可行，需要先做状态压缩或换思路。
+
 ## 3 解题流程
-1. 写清状态语义与答案位置。
-2. 给出初始化与非法状态处理。
-3. 按依赖顺序转移并更新答案。
-4. 用小样例手推验证转移正确性。
+
+1. DP 数组中每一个值，或者索引的意义
+2. 递推公式
+3. DP 数组的如何初始化
+4. 遍历顺序
+5. 打印 DP 数组（主要用于分析错误）
 
 ## 4 模板与子方法
 ### 4.1 线性序列 DP
@@ -32,14 +39,22 @@ def max_subarray(nums):
 
 #### 4.1.1 模板题目
 - 0053 - Maximum Subarray ｜ [LeetCode 链接](https://leetcode.cn/problems/maximum-subarray/) ｜ [题解笔记](../solutions/0001-0100/0053-maximum-subarray.md)
-- 0070 - 爬楼梯 ｜ [LeetCode 链接](https://leetcode.cn/problems/climbing-stairs/) ｜ [题解笔记](../solutions/0001-0100/0070-climbing-stairs.md)
 - 0198 - 打家劫舍 ｜ [LeetCode 链接](https://leetcode.cn/problems/house-robber/) ｜ [题解笔记](../solutions/0101-0200/0198-house-robber.md)
 - 0152 - 乘积最大子数组 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximum-product-subarray/) ｜ [题解笔记](../solutions/0101-0200/0152-maximum-product-subarray.md)
 - 0300 - 最长递增子序列 ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-increasing-subsequence/) ｜ [题解笔记](../solutions/0201-0300/0300-longest-increasing-subsequence.md)
 - 0718 - 最长重复子数组 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximum-length-of-repeated-subarray/) ｜ [题解笔记](../solutions/0701-0800/0718-maximum-length-of-repeated-subarray.md)
-### 4.2 背包 DP（0-1/完全）
+- 0338 - 比特位计数 ｜ [LeetCode 链接](https://leetcode.cn/problems/counting-bits/) ｜ [题解笔记](../solutions/0301-0400/0338-counting-bits.md)
+### 4.2 0-1 背包 DP
 方法说明：
-容量维度转移是核心。0-1 背包倒序，完全背包正序。也可表示计数型目标。
+定义 `dp[j]` 为容量为 `j` 时的最优值/可行性。每个物品只能使用一次，因此容量必须倒序遍历，避免同一轮次重复使用当前物品。
+
+讲解要点：
+- 二维定义常写为：`dp[i][j]` 表示下标 `[0..i]` 物品里任选，容量 `j` 下的最优结果。
+- 二维转移是：
+  - 不选第 `i` 件：`dp[i - 1][j]`
+  - 选第 `i` 件：`dp[i - 1][j - w[i]] + v[i]`（需 `j >= w[i]`）
+- 压缩到一维后，`dp[j]` 仍然隐含“第 i 轮物品”的语义。倒序遍历是为了保证 `dp[j - w[i]]` 读取到的是上一轮状态，而不是本轮刚更新出的状态。
+- 初始化要围绕转移前置条件来想：`dp[0]` 通常是天然边界；其余位置按题目语义设为 0、`-inf` 或 `False`。
 
 模板代码：
 ```python
@@ -55,11 +70,73 @@ def knapsack_01(nums, target):
 #### 4.2.1 模板题目
 - 0416 - 分割等和子集 ｜ [LeetCode 链接](https://leetcode.cn/problems/partition-equal-subset-sum/) ｜ [题解笔记](../solutions/0401-0500/0416-partition-equal-subset-sum.md)
 - 0494 - 目标和 ｜ [LeetCode 链接](https://leetcode.cn/problems/target-sum/) ｜ [题解笔记](../solutions/0401-0500/0494-target-sum.md)
+
+### 4.3 完全背包 DP（最值/可行性）
+方法说明：
+定义 `dp[j]` 为容量为 `j` 的最优值/可行性。每个物品可重复使用，因此容量需要正序遍历，使 `dp[j - x]` 可以来自当前物品已更新过的状态。纯完全背包最值模型下，“先物品后容量”与“先容量后物品”都可成立。
+
+讲解要点：
+- 二维写法中，选当前物品的分支来自当前行：`dp[i][j - w[i]] + v[i]`，这正是“可重复选取”的来源。
+- 一维压缩时改为容量正序，含义是：当前轮次中 `dp[j - x]` 允许已经包含当前物品，从而可以继续叠加当前物品。
+- 如果题目是“纯最值/可行性”且不关心序列顺序，则物品和容量的双层循环有时可交换；但在计数题中不能随意交换。
+
+模板代码：
+```python
+def complete_knapsack_min(coins, amount):
+    INF = 10**9
+    dp = [0] + [INF] * amount
+    for x in coins:
+        for j in range(x, amount + 1):
+            dp[j] = min(dp[j], dp[j - x] + 1)
+    return -1 if dp[amount] == INF else dp[amount]
+```
+
+#### 4.3.1 模板题目
 - 0279 - 完全平方数 ｜ [LeetCode 链接](https://leetcode.cn/problems/perfect-squares/) ｜ [题解笔记](../solutions/0201-0300/0279-perfect-squares.md)
 - 0322 - 零钱兑换 ｜ [LeetCode 链接](https://leetcode.cn/problems/coin-change/) ｜ [题解笔记](../solutions/0301-0400/0322-coin-change.md)
-### 4.3 状态机 DP
+
+### 4.4 完全背包计数（组合/排列）
+方法说明：
+计数型完全背包的核心差异在循环顺序：
+- 先物品、后容量：统计组合数（顺序不敏感）。
+- 先容量、后物品：统计排列数（顺序敏感）。
+
+讲解要点：
+- 通用计数转移常写作：`dp[j] += dp[j - x]`，关键不在公式本身，而在 `dp[j - x]` 当时“代表了哪些方案”。
+- 先物品后容量：每轮先固定可用物品集合，天然避免同一组元素因顺序不同被重复计数，因此是组合。
+- 先容量后物品：同一容量位会反复吸收不同“最后一个物品”，顺序不同会形成不同路径，因此是排列。
+- 用 `nums = [1, 2]`、`target = 3` 手推可快速校验语义：
+  - 组合语义只统计 `{1, 2}` 一次。
+  - 排列语义会把 `[1, 2]` 与 `[2, 1]` 视作两种路径。
+- 一旦题目问“方案数”，先明确题意是“顺序是否区分”，再反推循环顺序；不要先写循环再赌语义。
+
+模板代码：
+```python
+def count_complete_knapsack(nums, target, order_matters):
+    dp = [0] * (target + 1)
+    dp[0] = 1
+    if order_matters:
+        for j in range(1, target + 1):
+            for x in nums:
+                if j >= x:
+                    dp[j] += dp[j - x]
+    else:
+        for x in nums:
+            for j in range(x, target + 1):
+                dp[j] += dp[j - x]
+    return dp[target]
+```
+
+#### 4.4.1 模板题目
+- 0070 - 爬楼梯 ｜ [LeetCode 链接](https://leetcode.cn/problems/climbing-stairs/) ｜ [题解笔记](../solutions/0001-0100/0070-climbing-stairs.md)
+### 4.5 状态机 DP
 方法说明：
 把“持有/不持有/冷冻”等阶段建模为有限状态并转移。
+
+讲解要点：
+- 股票类题最关键的是状态定义：通常把 `dp[i][0/1/2...]` 定义为“第 i 天处于某种持仓状态的最优收益”，而不是简单统计“买/卖次数”。
+- 一旦状态语义清晰，手续费、冷冻期、最多交易次数都只是新增状态或修改转移边。
+- 以“只允许一次交易”的 121 为例，`dp[i][1]` 表示第 `i` 天持有股票的最大现金，其转移是 `max(dp[i-1][1], -prices[i])`，而不是 `dp[i-1][0] - prices[i]`；后者会引入“多次买卖”的语义。
 
 模板代码：
 ```python
@@ -73,12 +150,17 @@ def max_profit_cooldown(prices):
     return max(sold, rest)
 ```
 
-#### 4.3.1 模板题目
+#### 4.5.1 模板题目
 - 0121 - 买卖股票的最佳时机 ｜ [LeetCode 链接](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/) ｜ [题解笔记](../solutions/0101-0200/0121-best-time-to-buy-and-sell-stock.md)
 - 0309 - 买卖股票的最佳时机含冷冻期 ｜ [LeetCode 链接](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-with-cooldown/) ｜ [题解笔记](../solutions/0301-0400/0309-best-time-to-buy-and-sell-stock-with-cooldown.md)
-### 4.4 区间与结构化 DP
+### 4.6 区间 DP
 方法说明：
-以区间长度递增或结构节点递归推进。字符串区间类题可交叉到字符串专题。
+以区间长度递增推进，常见于“戳气球、回文子序列、合并代价”这类依赖子区间的问题。
+
+讲解要点：
+- 典型状态是 `dp[l][r]`，表示闭区间或半开区间上的最优值，必须先统一边界语义再写转移。
+- 常见依赖是把大区间拆成两个小区间，或从两端向内收缩，因此遍历顺序通常是“按区间长度从小到大”。
+- 若顺序写反，会在计算 `dp[l][r]` 时访问到尚未计算的 `dp[l][k]` / `dp[k+1][r]`。
 
 模板代码：
 ```python
@@ -91,12 +173,38 @@ def interval_dp(n):
     return dp
 ```
 
-#### 4.4.1 模板题目
+#### 4.6.1 模板题目
 - 0516 - 最长回文子序列 ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-palindromic-subsequence/) ｜ [题解笔记](../solutions/0501-0600/0516-longest-palindromic-subsequence.md)
 - 0312 - 戳气球 ｜ [LeetCode 链接](https://leetcode.cn/problems/burst-balloons/) ｜ [题解笔记](../solutions/0301-0400/0312-burst-balloons.md)
+
+### 4.7 树形与结构化 DP
+方法说明：
+把节点当作状态单元，通过后序遍历（子树先于父节点）聚合子问题，常见于树上选点、树上路径、Catalan 结构计数。
+
+讲解要点：
+- 树形 DP 的核心不是“树”本身，而是每个节点要定义稳定状态语义，如“偷/不偷”或“作为根时的结构数”。
+- 以打家劫舍 III 为例，节点返回二维状态：`dp[0]` 不偷当前节点、`dp[1]` 偷当前节点；父节点只组合左右子树返回值，不重复遍历。
+- 以不同二叉搜索树为例，`dp[n]` 是由所有根划分累加得到：`dp[n] += dp[left] * dp[right]`，本质是结构化划分计数。
+
+模板代码：
+```python
+def rob_tree(root):
+    def dfs(node):
+        if not node:
+            return 0, 0
+        l0, l1 = dfs(node.left)
+        r0, r1 = dfs(node.right)
+        not_take = max(l0, l1) + max(r0, r1)
+        take = l0 + r0 + node.val
+        return not_take, take
+    return max(dfs(root))
+```
+
+#### 4.7.1 模板题目
 - 0096 - 不同的二叉搜索树 ｜ [LeetCode 链接](https://leetcode.cn/problems/unique-binary-search-trees/) ｜ [题解笔记](../solutions/0001-0100/0096-unique-binary-search-trees.md)
 - 0337 - 打家劫舍 III ｜ [LeetCode 链接](https://leetcode.cn/problems/house-robber-iii/) ｜ [题解笔记](../solutions/0301-0400/0337-house-robber-iii.md)
-### 4.5 网格 DP
+
+### 4.8 网格 DP
 方法说明：
 固定方向网格最值与计数，关注首行首列初始化。与网格专题交叉。
 
@@ -116,14 +224,20 @@ def min_path_sum(grid):
     return dp[-1][-1]
 ```
 
-#### 4.5.1 模板题目
+#### 4.8.1 模板题目
 - 0062 - Unique Paths ｜ [LeetCode 链接](https://leetcode.cn/problems/unique-paths/) ｜ [题解笔记](../solutions/0001-0100/0062-unique-paths.md)
 - 0064 - Minimum Path Sum ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-path-sum/) ｜ [题解笔记](../solutions/0001-0100/0064-minimum-path-sum.md)
 - 0221 - Maximal Square ｜ [LeetCode 链接](https://leetcode.cn/problems/maximal-square/) ｜ [题解笔记](../solutions/0201-0300/0221-maximal-square.md)
 - 0085 - Maximal Rectangle ｜ [LeetCode 链接](https://leetcode.cn/problems/maximal-rectangle/) ｜ [题解笔记](../solutions/0001-0100/0085-maximal-rectangle.md)
-### 4.6 交叉字符串 DP 模板
+### 4.9 交叉字符串 DP 模板
 方法说明：
 以下题目主归属通常在字符串专题，此处作为 DP 视角交叉索引，模板是二维匹配转移。
+
+讲解要点：
+- 双串比较类问题通常可用二维状态网格覆盖全部对齐关系。
+- 子序列问题常用定义：`dp[i][j]` 对应前缀 `[0..i)` 与 `[0..j)`，这样初始化和边界处理更统一。
+- 回文类区间 DP 的典型依赖是“向内收缩”：`dp[i][j]` 依赖 `dp[i + 1][j - 1]`，因此遍历顺序必须保证内层区间先算完。
+- 编辑距离做一维优化时，`dp[0]` 每轮都要更新为当前 `i`，并额外保存左上角旧值（常记作 `pre`），否则会把“上一行”状态覆盖掉导致转移失真。
 
 模板代码：
 ```python
@@ -139,14 +253,13 @@ def lcs(a, b):
     return dp[m][n]
 ```
 
-#### 4.6.1 模板题目
+#### 4.9.1 模板题目
 - 0072 - 编辑距离 ｜ [LeetCode 链接](https://leetcode.cn/problems/edit-distance/) ｜ [题解笔记](../solutions/0001-0100/0072-edit-distance.md)
 - 0647 - 回文子串 ｜ [LeetCode 链接](https://leetcode.cn/problems/palindromic-substrings/) ｜ [题解笔记](../solutions/0601-0700/0647-palindromic-substrings.md)
 - 0139 - 单词拆分 ｜ [LeetCode 链接](https://leetcode.cn/problems/word-break/) ｜ [题解笔记](../solutions/0101-0200/0139-word-break.md)
 - 0005 - Longest Palindromic Substring ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-palindromic-substring/) ｜ [题解笔记](../solutions/0001-0100/0005-longest-palindromic-substring.md)
 - 0010 - Regular Expression Matching ｜ [LeetCode 链接](https://leetcode.cn/problems/regular-expression-matching/) ｜ [题解笔记](../solutions/0001-0100/0010-regular-expression-matching.md)
 - 0032 - 最长有效括号 ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-valid-parentheses/) ｜ [题解笔记](../solutions/0001-0100/0032-longest-valid-parentheses.md)
-- 0338 - 比特位计数 ｜ [LeetCode 链接](https://leetcode.cn/problems/counting-bits/) ｜ [题解笔记](../solutions/0301-0400/0338-counting-bits.md)
 ## 5 易错点
 - 状态定义含糊，导致初始化和转移全错。
 - 背包遍历顺序错误。
