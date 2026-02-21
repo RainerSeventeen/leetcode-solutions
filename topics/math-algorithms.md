@@ -32,6 +32,8 @@ def rotate_matrix_90(a):
 
 #### 4.1.1 模板题目
 - 0048 - 旋转图像 ｜ [LeetCode 链接](https://leetcode.cn/problems/rotate-image/) ｜ [题解笔记](../solutions/0001-0100/0048-rotate-image.md)
+- 0054 - 螺旋矩阵 ｜ [LeetCode 链接](https://leetcode.cn/problems/spiral-matrix/) ｜ [题解笔记](../solutions/0001-0100/0054-spiral-matrix.md)
+- 0059 - 螺旋矩阵 II ｜ [LeetCode 链接](https://leetcode.cn/problems/spiral-matrix-ii/) ｜ [题解笔记](../solutions/0001-0100/0059-spiral-matrix-ii.md)
 ### 4.2 数位贪心构造
 方法说明：
 按位扫描并在冲突处回退高位，再把低位置 9。该题也可归入贪心专题。
@@ -52,6 +54,8 @@ def monotone_increasing_digits(n):
 
 #### 4.2.1 模板题目
 - 0738 - 单调递增的数字 ｜ [LeetCode 链接](https://leetcode.cn/problems/monotone-increasing-digits/) ｜ [题解笔记](../solutions/0701-0800/0738-monotone-increasing-digits.md)
+- 2037 - 统计平方和三元组的数目 ｜ [LeetCode 链接](https://leetcode.cn/problems/count-square-sum-triples/) ｜ [题解笔记](../solutions/2001-2100/2037-count-square-sum-triples.md)
+- 3846 - 使数组和能被 K 整除的最少操作次数 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-operations-to-make-array-sum-divisible-by-k/) ｜ [题解笔记](../solutions/3801-3900/3846-minimum-operations-to-make-array-sum-divisible-by-k.md)
 ## 5 易错点
 - 原地旋转顺序写反会得到错误结果。
 - 数位回退后未统一填 9 导致非最优。

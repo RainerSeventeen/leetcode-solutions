@@ -38,6 +38,9 @@ def reverse_list(head):
 - 0206 - Reverse Linked List ｜ [LeetCode 链接](https://leetcode.cn/problems/reverse-linked-list/) ｜ [题解笔记](../solutions/0201-0300/0206-reverse-linked-list.md)
 - 0234 - Palindrome Linked List ｜ [LeetCode 链接](https://leetcode.cn/problems/palindrome-linked-list/) ｜ [题解笔记](../solutions/0201-0300/0234-palindrome-linked-list.md)
 - 0023 - 合并 K 个升序链表 ｜ [LeetCode 链接](https://leetcode.cn/problems/merge-k-sorted-lists/) ｜ [题解笔记](../solutions/0001-0100/0023-merge-k-sorted-lists.md)
+- 0024 - 两两交换链表中的节点 ｜ [LeetCode 链接](https://leetcode.cn/problems/swap-nodes-in-pairs/) ｜ [题解笔记](../solutions/0001-0100/0024-swap-nodes-in-pairs.md)
+- 0203 - 移除链表元素 ｜ [LeetCode 链接](https://leetcode.cn/problems/remove-linked-list-elements/) ｜ [题解笔记](../solutions/0201-0300/0203-remove-linked-list-elements.md)
+- 0838 - 设计链表 ｜ [LeetCode 链接](https://leetcode.cn/problems/design-linked-list/) ｜ [题解笔记](../solutions/0801-0900/0838-design-linked-list.md)
 ### 4.2 链表快慢指针
 方法说明：
 用于判环、找环入口、找相交点。该模板与双指针专题交叉。
@@ -92,6 +95,8 @@ def max_depth(root):
 - 0101 - 对称二叉树 ｜ [LeetCode 链接](https://leetcode.cn/problems/symmetric-tree/) ｜ [题解笔记](../solutions/0101-0200/0101-symmetric-tree.md)
 - 0226 - Invert Binary Tree ｜ [LeetCode 链接](https://leetcode.cn/problems/invert-binary-tree/) ｜ [题解笔记](../solutions/0201-0300/0226-invert-binary-tree.md)
 - 0617 - Merge Two Binary Trees ｜ [LeetCode 链接](https://leetcode.cn/problems/merge-two-binary-trees/) ｜ [题解笔记](../solutions/0601-0700/0617-merge-two-binary-trees.md)
+- 0222 - 完全二叉树的节点个数 ｜ [LeetCode 链接](https://leetcode.cn/problems/count-complete-tree-nodes/) ｜ [题解笔记](../solutions/0201-0300/0222-count-complete-tree-nodes.md)
+- 0654 - 最大二叉树 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximum-binary-tree/) ｜ [题解笔记](../solutions/0601-0700/0654-maximum-binary-tree.md)
 ### 4.4 BST 定位与中序性质
 方法说明：
 利用 BST 左小右大的结构性质做验证、插入、删除、修剪与有序累加。
@@ -126,6 +131,8 @@ def is_valid_bst(root):
 - 0669 - 修剪二叉搜索树 ｜ [LeetCode 链接](https://leetcode.cn/problems/trim-a-binary-search-tree/) ｜ [题解笔记](../solutions/0601-0700/0669-trim-a-binary-search-tree.md)
 - 0701 - 二叉搜索树中的插入操作 ｜ [LeetCode 链接](https://leetcode.cn/problems/insert-into-a-binary-search-tree/) ｜ [题解笔记](../solutions/0701-0800/0701-insert-into-a-binary-search-tree.md)
 - 0108 - 将有序数组转换为二叉搜索树 ｜ [LeetCode 链接](https://leetcode.cn/problems/convert-sorted-array-to-binary-search-tree/) ｜ [题解笔记](../solutions/0101-0200/0108-convert-sorted-array-to-binary-search-tree.md)
+- 0696 - 计数二进制子串 ｜ [LeetCode 链接](https://leetcode.cn/problems/count-binary-substrings/) ｜ [题解笔记](../solutions/0601-0700/0696-count-binary-substrings.md)
+- 0783 - 二叉搜索树中的搜索 ｜ [LeetCode 链接](https://leetcode.cn/problems/search-in-a-binary-search-tree/) ｜ [题解笔记](../solutions/0701-0800/0783-search-in-a-binary-search-tree.md)
 ### 4.5 树的构造与序列化
 方法说明：
 通过遍历序列划分子树，或用 BFS/DFS 完成编码解码。核心是边界一致性。
@@ -231,6 +238,8 @@ def combination_backtrack(cands, target):
 #### 4.7.1 模板题目
 - 0039 - 组合总和 ｜ [LeetCode 链接](https://leetcode.cn/problems/combination-sum/) ｜ [题解笔记](../solutions/0001-0100/0039-combination-sum.md)
 - 0078 - Subsets ｜ [LeetCode 链接](https://leetcode.cn/problems/subsets/) ｜ [题解笔记](../solutions/0001-0100/0078-subsets.md)
+- 0077 - 组合 ｜ [LeetCode 链接](https://leetcode.cn/problems/combinations/) ｜ [题解笔记](../solutions/0001-0100/0077-combinations.md)
+- 0216 - 组合总和 III ｜ [LeetCode 链接](https://leetcode.cn/problems/combination-sum-iii/) ｜ [题解笔记](../solutions/0201-0300/0216-combination-sum-iii.md)
 ### 4.8 组合去重与子序列去重
 方法说明：
 这类问题的核心是区分“树层去重”和“树枝选择”：
@@ -299,6 +308,7 @@ def permute(nums):
 #### 4.9.1 模板题目
 - 0046 - 全排列 ｜ [LeetCode 链接](https://leetcode.cn/problems/permutations/) ｜ [题解笔记](../solutions/0001-0100/0046-permutations.md)
 - 0047 - 全排列 II ｜ [LeetCode 链接](https://leetcode.cn/problems/permutations-ii/) ｜ [题解笔记](../solutions/0001-0100/0047-permutations-ii.md)
+- 0401 - 二进制手表 ｜ [LeetCode 链接](https://leetcode.cn/problems/binary-watch/) ｜ [题解笔记](../solutions/0401-0500/0401-binary-watch.md)
 ### 4.10 切分与约束构造回溯
 方法说明：
 用于“路径含义明确且每步有合法性约束”的搜索，例如回文切分、括号构造、无效括号删减、网格路径搜索。
@@ -339,6 +349,9 @@ def partition_palindrome(s):
 - 0022 - 括号生成 ｜ [LeetCode 链接](https://leetcode.cn/problems/generate-parentheses/) ｜ [题解笔记](../solutions/0001-0100/0022-generate-parentheses.md)
 - 0301 - 删除无效的括号 ｜ [LeetCode 链接](https://leetcode.cn/problems/remove-invalid-parentheses/) ｜ [题解笔记](../solutions/0301-0400/0301-remove-invalid-parentheses.md)
 - 0079 - Word Search ｜ [LeetCode 链接](https://leetcode.cn/problems/word-search/) ｜ [题解笔记](../solutions/0001-0100/0079-word-search.md)
+- 0037 - 解数独 ｜ [LeetCode 链接](https://leetcode.cn/problems/sudoku-solver/) ｜ [题解笔记](../solutions/0001-0100/0037-sudoku-solver.md)
+- 0051 - N 皇后 ｜ [LeetCode 链接](https://leetcode.cn/problems/n-queens/) ｜ [题解笔记](../solutions/0001-0100/0051-n-queens.md)
+- 0093 - 复原 IP 地址 ｜ [LeetCode 链接](https://leetcode.cn/problems/restore-ip-addresses/) ｜ [题解笔记](../solutions/0001-0100/0093-restore-ip-addresses.md)
 ## 5 易错点
 - 链表丢失后继指针或头结点。
 - 树递归返回语义不统一。

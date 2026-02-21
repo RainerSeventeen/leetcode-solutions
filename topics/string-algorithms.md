@@ -149,6 +149,8 @@ def find_anagrams(s, p):
 - 0003 - Longest Substring Without Repeating Characters ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-substring-without-repeating-characters/) ｜ [题解笔记](../solutions/0001-0100/0003-longest-substring-without-repeating-characters.md)
 - 0076 - Minimum Window Substring ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-window-substring/) ｜ [题解笔记](../solutions/0001-0100/0076-minimum-window-substring.md)
 - 0438 - 找到字符串中所有字母异位词 ｜ [LeetCode 链接](https://leetcode.cn/problems/find-all-anagrams-in-a-string/) ｜ [题解笔记](../solutions/0401-0500/0438-find-all-anagrams-in-a-string.md)
+- 4137 - 前缀连接组的数目 ｜ [LeetCode 链接](https://leetcode.cn/problems/number-of-prefix-connected-groups/) ｜ [题解笔记](../solutions/4101-4200/4137-number-of-prefix-connected-groups.md)
+- 4216 - 带权单词映射 ｜ [LeetCode 链接](https://leetcode.cn/problems/weighted-word-mapping/) ｜ [题解笔记](../solutions/4201-4300/4216-weighted-word-mapping.md)
 ### 4.6 回溯生成字符串组合
 方法说明：
 字符串枚举类题常用 DFS 构造路径，适合组合生成与约束搜索。

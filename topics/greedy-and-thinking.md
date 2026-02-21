@@ -65,6 +65,11 @@ def candy(ratings):
 - 0376 - 摆动序列 ｜ [LeetCode 链接](https://leetcode.cn/problems/wiggle-subsequence/) ｜ [题解笔记](../solutions/0301-0400/0376-wiggle-subsequence.md)
 - 0135 - 分发糖果 ｜ [LeetCode 链接](https://leetcode.cn/problems/candy/) ｜ [题解笔记](../solutions/0101-0200/0135-candy.md)
 - 0581 - 最短无序连续子数组 ｜ [LeetCode 链接](https://leetcode.cn/problems/shortest-unsorted-continuous-subarray/) ｜ [题解笔记](../solutions/0501-0600/0581-shortest-unsorted-continuous-subarray.md)
+- 0134 - 加油站 ｜ [LeetCode 链接](https://leetcode.cn/problems/gas-station/) ｜ [题解笔记](../solutions/0101-0200/0134-gas-station.md)
+- 0455 - 分发饼干 ｜ [LeetCode 链接](https://leetcode.cn/problems/assign-cookies/) ｜ [题解笔记](../solutions/0401-0500/0455-assign-cookies.md)
+- 0768 - 划分字母区间 ｜ [LeetCode 链接](https://leetcode.cn/problems/partition-labels/) ｜ [题解笔记](../solutions/0701-0800/0768-partition-labels.md)
+- 0890 - 柠檬水找零 ｜ [LeetCode 链接](https://leetcode.cn/problems/lemonade-change/) ｜ [题解笔记](../solutions/0801-0900/0890-lemonade-change.md)
+- 1047 - K 次取反后最大化的数组和 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximize-sum-of-array-after-k-negations/) ｜ [题解笔记](../solutions/1001-1100/1047-maximize-sum-of-array-after-k-negations.md)
 ### 4.3 多维排序与重建
 方法说明：
 涉及多个约束维度时，先找“可一次性固定”的主维度，再处理次维度。
@@ -104,6 +109,7 @@ def merge(intervals):
 #### 4.4.1 模板题目
 - 0056 - Merge Intervals ｜ [LeetCode 链接](https://leetcode.cn/problems/merge-intervals/) ｜ [题解笔记](../solutions/0001-0100/0056-merge-intervals.md)
 - 0253 - 会议室 II ｜ [LeetCode 链接](https://leetcode.cn/problems/meeting-rooms-ii/) ｜ [题解笔记](../solutions/0201-0300/0253-meeting-rooms-ii.md)
+- 0452 - 用最少数量的箭引爆气球 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/) ｜ [题解笔记](../solutions/0401-0500/0452-minimum-number-of-arrows-to-burst-balloons.md)
 
 ### 4.5 频次下界与构造思维
 方法说明：

@@ -36,6 +36,10 @@ def two_sum(nums, target):
 - 0049 - 字母异位词分组 ｜ [LeetCode 链接](https://leetcode.cn/problems/group-anagrams/) ｜ [题解笔记](../solutions/0001-0100/0049-group-anagrams.md)
 - 0128 - 最长连续序列 ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-consecutive-sequence/) ｜ [题解笔记](../solutions/0101-0200/0128-longest-consecutive-sequence.md)
 - 0448 - 找到所有数组中消失的数字 ｜ [LeetCode 链接](https://leetcode.cn/problems/find-all-numbers-disappeared-in-an-array/) ｜ [题解笔记](../solutions/0401-0500/0448-find-all-numbers-disappeared-in-an-array.md)
+- 0012 - 整数转罗马数字 ｜ [LeetCode 链接](https://leetcode.cn/problems/integer-to-roman/) ｜ [题解笔记](../solutions/0001-0100/0012-integer-to-roman.md)
+- 0242 - 有效的字母异位词 ｜ [LeetCode 链接](https://leetcode.cn/problems/valid-anagram/) ｜ [题解笔记](../solutions/0201-0300/0242-valid-anagram.md)
+- 0383 - 赎金信 ｜ [LeetCode 链接](https://leetcode.cn/problems/ransom-note/) ｜ [题解笔记](../solutions/0301-0400/0383-ransom-note.md)
+- 0674 - 最长连续递增序列 ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-continuous-increasing-subsequence/) ｜ [题解笔记](../solutions/0601-0700/0674-longest-continuous-increasing-subsequence.md)
 ### 4.2 栈结构
 方法说明：
 适用于括号匹配、最小值维护等“后进先出”约束。
@@ -59,6 +63,10 @@ class MinStack:
 #### 4.2.1 模板题目
 - 0020 - 有效的括号 ｜ [LeetCode 链接](https://leetcode.cn/problems/valid-parentheses/) ｜ [题解笔记](../solutions/0001-0100/0020-valid-parentheses.md)
 - 0155 - 最小栈 ｜ [LeetCode 链接](https://leetcode.cn/problems/min-stack/) ｜ [题解笔记](../solutions/0101-0200/0155-min-stack.md)
+- 0150 - 逆波兰表达式求值 ｜ [LeetCode 链接](https://leetcode.cn/problems/evaluate-reverse-polish-notation/) ｜ [题解笔记](../solutions/0101-0200/0150-evaluate-reverse-polish-notation.md)
+- 0225 - 用队列实现栈 ｜ [LeetCode 链接](https://leetcode.cn/problems/implement-stack-using-queues/) ｜ [题解笔记](../solutions/0201-0300/0225-implement-stack-using-queues.md)
+- 0232 - 用栈实现队列 ｜ [LeetCode 链接](https://leetcode.cn/problems/implement-queue-using-stacks/) ｜ [题解笔记](../solutions/0201-0300/0232-implement-queue-using-stacks.md)
+- 1128 - 删除字符串中的所有相邻重复项 ｜ [LeetCode 链接](https://leetcode.cn/problems/remove-all-adjacent-duplicates-in-string/) ｜ [题解笔记](../solutions/1101-1200/1128-remove-all-adjacent-duplicates-in-string.md)
 ### 4.3 堆与 Top-K
 方法说明：
 适用于动态维护前 K 大、小根堆调度与多路归并。链表多路合并可交叉到链表专题。

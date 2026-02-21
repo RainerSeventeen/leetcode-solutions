@@ -47,6 +47,7 @@ def min_window(s: str, t: str) -> str:
 - 0003 - Longest Substring Without Repeating Characters ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-substring-without-repeating-characters/) ｜ [题解笔记](../solutions/0001-0100/0003-longest-substring-without-repeating-characters.md)
 - 0076 - Minimum Window Substring ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-window-substring/) ｜ [题解笔记](../solutions/0001-0100/0076-minimum-window-substring.md)
 - 0438 - 找到字符串中所有字母异位词 ｜ [LeetCode 链接](https://leetcode.cn/problems/find-all-anagrams-in-a-string/) ｜ [题解笔记](../solutions/0401-0500/0438-find-all-anagrams-in-a-string.md)
+- 0940 - 水果成篮 ｜ [LeetCode 链接](https://leetcode.cn/problems/fruit-into-baskets/) ｜ [题解笔记](../solutions/0901-1000/0940-fruit-into-baskets.md)
 ### 4.2 双指针对撞（有序数组）
 方法说明：
 适用于两端收缩与去重扫描。通常先排序再对撞，三数之和等题可在外层枚举后套对撞模板。
@@ -72,6 +73,17 @@ def two_pointer(nums):
 - 0015 - 3Sum ｜ [LeetCode 链接](https://leetcode.cn/problems/3sum/) ｜ [题解笔记](../solutions/0001-0100/0015-3sum.md)
 - 0283 - 移动零 ｜ [LeetCode 链接](https://leetcode.cn/problems/move-zeroes/) ｜ [题解笔记](../solutions/0201-0300/0283-move-zeroes.md)
 - 0075 - Sort Colors ｜ [LeetCode 链接](https://leetcode.cn/problems/sort-colors/) ｜ [题解笔记](../solutions/0001-0100/0075-sort-colors.md)
+- 0018 - 四数之和 ｜ [LeetCode 链接](https://leetcode.cn/problems/4sum/) ｜ [题解笔记](../solutions/0001-0100/0018-4sum.md)
+- 0026 - 删除有序数组中的重复项 ｜ [LeetCode 链接](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/) ｜ [题解笔记](../solutions/0001-0100/0026-remove-duplicates-from-sorted-array.md)
+- 0027 - 移除元素 ｜ [LeetCode 链接](https://leetcode.cn/problems/remove-element/) ｜ [题解笔记](../solutions/0001-0100/0027-remove-element.md)
+- 0028 - 找出字符串中第一个匹配项的下标 ｜ [LeetCode 链接](https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/) ｜ [题解笔记](../solutions/0001-0100/0028-find-the-index-of-the-first-occurrence-in-a-string.md)
+- 0151 - 反转字符串中的单词 ｜ [LeetCode 链接](https://leetcode.cn/problems/reverse-words-in-a-string/) ｜ [题解笔记](../solutions/0101-0200/0151-reverse-words-in-a-string.md)
+- 0202 - 快乐数 ｜ [LeetCode 链接](https://leetcode.cn/problems/happy-number/) ｜ [题解笔记](../solutions/0201-0300/0202-happy-number.md)
+- 0344 - 反转字符串 ｜ [LeetCode 链接](https://leetcode.cn/problems/reverse-string/) ｜ [题解笔记](../solutions/0301-0400/0344-reverse-string.md)
+- 0454 - 四数相加 II ｜ [LeetCode 链接](https://leetcode.cn/problems/4sum-ii/) ｜ [题解笔记](../solutions/0401-0500/0454-4sum-ii.md)
+- 0541 - 反转字符串 II ｜ [LeetCode 链接](https://leetcode.cn/problems/reverse-string-ii/) ｜ [题解笔记](../solutions/0501-0600/0541-reverse-string-ii.md)
+- 0874 - 比较含退格的字符串 ｜ [LeetCode 链接](https://leetcode.cn/problems/backspace-string-compare/) ｜ [题解笔记](../solutions/0801-0900/0874-backspace-string-compare.md)
+- 1019 - 有序数组的平方 ｜ [LeetCode 链接](https://leetcode.cn/problems/squares-of-a-sorted-array/) ｜ [题解笔记](../solutions/1001-1100/1019-squares-of-a-sorted-array.md)
 ### 4.3 单调队列窗口最值
 方法说明：
 适用于滑动窗口内最大值/最小值维护。与单调栈相似但作用在动态窗口，核心是队头始终有效、队列单调。

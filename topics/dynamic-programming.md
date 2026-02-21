@@ -44,6 +44,12 @@ def max_subarray(nums):
 - 0300 - 最长递增子序列 ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-increasing-subsequence/) ｜ [题解笔记](../solutions/0201-0300/0300-longest-increasing-subsequence.md)
 - 0718 - 最长重复子数组 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximum-length-of-repeated-subarray/) ｜ [题解笔记](../solutions/0701-0800/0718-maximum-length-of-repeated-subarray.md)
 - 0338 - 比特位计数 ｜ [LeetCode 链接](https://leetcode.cn/problems/counting-bits/) ｜ [题解笔记](../solutions/0301-0400/0338-counting-bits.md)
+- 0213 - 打家劫舍 II ｜ [LeetCode 链接](https://leetcode.cn/problems/house-robber-ii/) ｜ [题解笔记](../solutions/0201-0300/0213-house-robber-ii.md)
+- 0343 - 整数拆分 ｜ [LeetCode 链接](https://leetcode.cn/problems/integer-break/) ｜ [题解笔记](../solutions/0301-0400/0343-integer-break.md)
+- 0435 - 无重叠区间 ｜ [LeetCode 链接](https://leetcode.cn/problems/non-overlapping-intervals/) ｜ [题解笔记](../solutions/0401-0500/0435-non-overlapping-intervals.md)
+- 0747 - 使用最小花费爬楼梯 ｜ [LeetCode 链接](https://leetcode.cn/problems/min-cost-climbing-stairs/) ｜ [题解笔记](../solutions/0701-0800/0747-min-cost-climbing-stairs.md)
+- 1013 - 斐波那契数 ｜ [LeetCode 链接](https://leetcode.cn/problems/fibonacci-number/) ｜ [题解笔记](../solutions/1001-1100/1013-fibonacci-number.md)
+- 4062 - 打家劫舍 V ｜ [LeetCode 链接](https://leetcode.cn/problems/house-robber-v/) ｜ [题解笔记](../solutions/4001-4100/4062-house-robber-v.md)
 ### 4.2 0-1 背包 DP
 方法说明：
 定义 `dp[j]` 为容量为 `j` 时的最优值/可行性。每个物品只能使用一次，因此容量必须倒序遍历，避免同一轮次重复使用当前物品。
@@ -70,6 +76,8 @@ def knapsack_01(nums, target):
 #### 4.2.1 模板题目
 - 0416 - 分割等和子集 ｜ [LeetCode 链接](https://leetcode.cn/problems/partition-equal-subset-sum/) ｜ [题解笔记](../solutions/0401-0500/0416-partition-equal-subset-sum.md)
 - 0494 - 目标和 ｜ [LeetCode 链接](https://leetcode.cn/problems/target-sum/) ｜ [题解笔记](../solutions/0401-0500/0494-target-sum.md)
+- 0474 - 一和零 ｜ [LeetCode 链接](https://leetcode.cn/problems/ones-and-zeroes/) ｜ [题解笔记](../solutions/0401-0500/0474-ones-and-zeroes.md)
+- 1130 - 最后一块石头的重量 II ｜ [LeetCode 链接](https://leetcode.cn/problems/last-stone-weight-ii/) ｜ [题解笔记](../solutions/1101-1200/1130-last-stone-weight-ii.md)
 
 ### 4.3 完全背包 DP（最值/可行性）
 方法说明：
@@ -129,6 +137,8 @@ def count_complete_knapsack(nums, target, order_matters):
 
 #### 4.4.1 模板题目
 - 0070 - 爬楼梯 ｜ [LeetCode 链接](https://leetcode.cn/problems/climbing-stairs/) ｜ [题解笔记](../solutions/0001-0100/0070-climbing-stairs.md)
+- 0377 - 组合总和 Ⅳ ｜ [LeetCode 链接](https://leetcode.cn/problems/combination-sum-iv/) ｜ [题解笔记](../solutions/0301-0400/0377-combination-sum-iv.md)
+- 0518 - 零钱兑换 II ｜ [LeetCode 链接](https://leetcode.cn/problems/coin-change-ii/) ｜ [题解笔记](../solutions/0501-0600/0518-coin-change-ii.md)
 ### 4.5 状态机 DP
 方法说明：
 把“持有/不持有/冷冻”等阶段建模为有限状态并转移。
@@ -153,6 +163,10 @@ def max_profit_cooldown(prices):
 #### 4.5.1 模板题目
 - 0121 - 买卖股票的最佳时机 ｜ [LeetCode 链接](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/) ｜ [题解笔记](../solutions/0101-0200/0121-best-time-to-buy-and-sell-stock.md)
 - 0309 - 买卖股票的最佳时机含冷冻期 ｜ [LeetCode 链接](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-with-cooldown/) ｜ [题解笔记](../solutions/0301-0400/0309-best-time-to-buy-and-sell-stock-with-cooldown.md)
+- 0122 - 买卖股票的最佳时机 II ｜ [LeetCode 链接](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/) ｜ [题解笔记](../solutions/0101-0200/0122-best-time-to-buy-and-sell-stock-ii.md)
+- 0123 - 买卖股票的最佳时机 III ｜ [LeetCode 链接](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iii/) ｜ [题解笔记](../solutions/0101-0200/0123-best-time-to-buy-and-sell-stock-iii.md)
+- 0188 - 买卖股票的最佳时机 IV ｜ [LeetCode 链接](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iv/) ｜ [题解笔记](../solutions/0101-0200/0188-best-time-to-buy-and-sell-stock-iv.md)
+- 0714 - 买卖股票的最佳时机含手续费 ｜ [LeetCode 链接](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/) ｜ [题解笔记](../solutions/0701-0800/0714-best-time-to-buy-and-sell-stock-with-transaction-fee.md)
 ### 4.6 区间 DP
 方法说明：
 以区间长度递增推进，常见于“戳气球、回文子序列、合并代价”这类依赖子区间的问题。
@@ -260,6 +274,15 @@ def lcs(a, b):
 - 0005 - Longest Palindromic Substring ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-palindromic-substring/) ｜ [题解笔记](../solutions/0001-0100/0005-longest-palindromic-substring.md)
 - 0010 - Regular Expression Matching ｜ [LeetCode 链接](https://leetcode.cn/problems/regular-expression-matching/) ｜ [题解笔记](../solutions/0001-0100/0010-regular-expression-matching.md)
 - 0032 - 最长有效括号 ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-valid-parentheses/) ｜ [题解笔记](../solutions/0001-0100/0032-longest-valid-parentheses.md)
+- 0115 - 不同的子序列 ｜ [LeetCode 链接](https://leetcode.cn/problems/distinct-subsequences/) ｜ [题解笔记](../solutions/0101-0200/0115-distinct-subsequences.md)
+- 0392 - 判断子序列 ｜ [LeetCode 链接](https://leetcode.cn/problems/is-subsequence/) ｜ [题解笔记](../solutions/0301-0400/0392-is-subsequence.md)
+- 0583 - 两个字符串的删除操作 ｜ [LeetCode 链接](https://leetcode.cn/problems/delete-operation-for-two-strings/) ｜ [题解笔记](../solutions/0501-0600/0583-delete-operation-for-two-strings.md)
+- 1105 - 不相交的线 ｜ [LeetCode 链接](https://leetcode.cn/problems/uncrossed-lines/) ｜ [题解笔记](../solutions/1101-1200/1105-uncrossed-lines.md)
+- 1250 - 最长公共子序列 ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-common-subsequence/) ｜ [题解笔记](../solutions/1201-1300/1250-longest-common-subsequence.md)
+
+### 4.10 网格 DP 路径转移
+#### 4.10.1 模板题目
+- 0063 - 不同路径 II ｜ [LeetCode 链接](https://leetcode.cn/problems/unique-paths-ii/) ｜ [题解笔记](../solutions/0001-0100/0063-unique-paths-ii.md)
 ## 5 易错点
 - 状态定义含糊，导致初始化和转移全错。
 - 背包遍历顺序错误。

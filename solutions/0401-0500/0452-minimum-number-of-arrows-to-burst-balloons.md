@@ -1,0 +1,100 @@
+---
+id: 452
+title: Minimum Number of Arrows to Burst Balloons
+difficulty: Medium
+tags: [greedy, array, sorting]
+created: 2026-02-21
+---
+
+# 452. 用最少数量的箭引爆气球
+
+## 题目链接
+https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/
+
+## 题目描述
+<p>有一些球形气球贴在一堵用 XY 平面表示的墙面上。墙面上的气球记录在整数数组&nbsp;<code>points</code>&nbsp;，其中<code>points[i] = [x<sub>start</sub>, x<sub>end</sub>]</code>&nbsp;表示水平直径在&nbsp;<code>x<sub>start</sub></code>&nbsp;和&nbsp;<code>x<sub>end</sub></code>之间的气球。你不知道气球的确切 y 坐标。</p>
+
+<p>一支弓箭可以沿着 x 轴从不同点 <strong>完全垂直</strong> 地射出。在坐标 <code>x</code> 处射出一支箭，若有一个气球的直径的开始和结束坐标为 <code>x<sub>start</sub></code><sub>，</sub><code>x<sub>end</sub></code><sub>，</sub> 且满足 &nbsp;<code>x<sub>start</sub>&nbsp;≤ x ≤ x<sub>end</sub></code><sub>，</sub>则该气球会被 <strong>引爆</strong>&nbsp;<sub>。</sub>可以射出的弓箭的数量 <strong>没有限制</strong> 。 弓箭一旦被射出之后，可以无限地前进。</p>
+
+<p>给你一个数组 <code>points</code> ，<em>返回引爆所有气球所必须射出的 <strong>最小</strong> 弓箭数&nbsp;</em>。</p>
+&nbsp;
+
+<p><strong>示例 1：</strong></p>
+
+<pre>
+<strong>输入：</strong>points = [[10,16],[2,8],[1,6],[7,12]]
+<strong>输出：</strong>2
+<strong>解释：</strong>气球可以用2支箭来爆破:
+-在x = 6处射出箭，击破气球[2,8]和[1,6]。
+-在x = 11处发射箭，击破气球[10,16]和[7,12]。</pre>
+
+<p><strong>示例 2：</strong></p>
+
+<pre>
+<strong>输入：</strong>points = [[1,2],[3,4],[5,6],[7,8]]
+<strong>输出：</strong>4
+<strong>解释：</strong>每个气球需要射出一支箭，总共需要4支箭。</pre>
+
+<p><strong>示例 3：</strong></p>
+
+<pre>
+<strong>输入：</strong>points = [[1,2],[2,3],[3,4],[4,5]]
+<strong>输出：</strong>2
+解释：气球可以用2支箭来爆破:
+- 在x = 2处发射箭，击破气球[1,2]和[2,3]。
+- 在x = 4处射出箭，击破气球[3,4]和[4,5]。</pre>
+
+<p><meta charset="UTF-8" /></p>
+
+<p><strong>提示:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= points.length &lt;= 10<sup>5</sup></code></li>
+	<li><code>points[i].length == 2</code></li>
+	<li><code>-2<sup>31</sup>&nbsp;&lt;= x<sub>start</sub>&nbsp;&lt; x<sub>end</sub>&nbsp;&lt;= 2<sup>31</sup>&nbsp;- 1</code></li>
+</ul>
+
+
+## 解题思路
+
+- 按气球左端点排序后，维护当前重叠区间的右边界。
+- 新气球若与当前区间不重叠就新增一支箭，否则收缩右边界为更小值继续合并。
+
+- 时间复杂度: $O(n \log n)$
+
+- 空间复杂度: $O(\log n)$
+
+## 代码
+```cpp
+#include <algorithm>
+#include <vector>
+#include <utility>
+
+class Solution {
+public:
+    static bool cmp(vector<int> a, vector<int> b){
+        // 对第一个值进行排序
+        return a[0] < b[0];
+    }
+
+    int findMinArrowShots(vector<vector<int>>& points) {
+        // 对气球进行排序
+        sort(points.begin(), points.end(), cmp);
+        // 计算最右边的数值
+        int left = points[0][0];
+        int right = points[0][1];
+        int count = 1;
+        // l 永远更新 r 取最小的 lr 区间为空就多一个
+        for (auto p : points) {
+            left = p[0];
+            if (left > right) {
+                count++;
+                right = p[1];
+            } else {
+                right = min(p[1], right);
+            }
+        }
+        return count;
+    }
+};
+```
