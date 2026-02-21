@@ -5,30 +5,29 @@ description: "Use when user asks to run daily LeetCode summary/archive workflow:
 
 # Daily AC Summary
 
-Execute this workflow for daily synchronization:
-1. Run `.venv/bin/python scripts/fetch_ac_submissions.py --days 1` to fetch latest one-day submissions.
-2. Run `.venv/bin/python scripts/import_ac_to_solutions.py` to import code/problem metadata into `solutions/`.
-3. Fill `## 解题思路` and complexity fields in imported solutions based on the `## 代码` section.
-4. Start a subagent and apply `solution-topic-auto-link` to all solutions imported in this run.
-
 ## Environment
 
 - Execute all Python scripts with the project virtual environment interpreter: `.venv/bin/python`.
 - If `.venv/bin/python` does not exist, stop and report that virtual environment is required.
 
+## Source of truth
+
+- This-run solution list comes from `artifacts/imported_paths.txt`.
+- If `artifacts/imported_paths.txt` is missing/empty, treat as "no new solutions imported", skip topic-linking and commit.
+- Only if user explicitly requests it, use `artifacts/ac_with_code.jsonl` as fallback when `imported_paths.txt` is unavailable.
+
 ## Workflow
 
 1. Fetch daily submissions:
    - Run: `.venv/bin/python scripts/fetch_ac_submissions.py --days 1`
+   - Always keep scope to one day (`--days 1`).
    - If fetch fails, stop and report stderr.
 
 2. Import into solutions:
    - Run: `.venv/bin/python scripts/import_ac_to_solutions.py`
-   - Primary source of this-run files: `artifacts/imported_paths.txt`.
-   - If `artifacts/imported_paths.txt` is empty or missing, treat as "no new solutions imported" and skip the topic-linking step.
+   - Use `artifacts/imported_paths.txt` as this-run file list.
 
 3. Fill idea + complexity for imported solutions:
-   - Read solution paths from `artifacts/imported_paths.txt`.
    - For each imported file, parse the code in `## 代码` and fill:
      - `## 解题思路` with a concise, code-consistent explanation,
      - `时间复杂度：$O(xxx)$` and `空间复杂度：$O(xxx)$` with concrete expressions (no placeholders).
@@ -38,7 +37,6 @@ Execute this workflow for daily synchronization:
    - If hard blocker remains, stop and report failing files + exact errors.
 
 4. Start subagent for topic linking:
-   - Read solution paths from `artifacts/imported_paths.txt`.
    - Spawn one subagent for topic-linking execution.
    - In the subagent prompt, explicitly require using skill `solution-topic-auto-link`.
    - Pass all imported `solutions/...md` paths and ask it to:
@@ -49,13 +47,27 @@ Execute this workflow for daily synchronization:
    - Wait for subagent completion.
    - If subagent fails, surface failure reason and partial progress.
 
+5. Commit this run's changes (after link + checks):
+   - Build problem id list from this-run paths (extract 4-digit id from each `solutions/.../<id>-*.md`).
+   - Keep ids zero-padded to 4 digits, de-duplicate, and join with comma (no spaces), e.g. `1234,0023`.
+   - Build commit date in `YYYY-MM-DD` format (local date of commit).
+   - Construct commit message with this exact format:
+     - `docs: addd note for LeetCode (<ids>), <date>`
+     - Example: `docs: addd note for LeetCode (1234,0023), 2026-02-21`
+   - Validate the message with regex before commit:
+     - `^docs: addd note for LeetCode \(([0-9]{4})(,[0-9]{4})*\), [0-9]{4}-[0-9]{2}-[0-9]{2}$`
+   - If regex validation fails, stop and report the generated message; do not commit.
+   - If validation passes:
+     - stage this run's changed files,
+     - run `git commit -m "<validated-message>"`.
+   - If there are no changes to commit, report and skip commit.
+
 ## Guardrails
 
 - Do not create solution files manually; only use repository scripts.
-- Keep import scope to last day by always using `--days 1` in fetch step.
-- Prefer `artifacts/imported_paths.txt` over parsing `artifacts/ac_with_code.jsonl` for this-run solution list.
-- If user explicitly asks to use `artifacts/ac_with_code.jsonl`, use it as fallback only when `imported_paths.txt` is unavailable.
 - Never leave placeholders such as `O()` in imported solution files.
+- Never run `git commit` unless commit message regex validation passes.
+- If git working tree already has unrelated changes, stage and commit only this-run files (and files explicitly requested by user in this run).
 
 ## Final Report
 
@@ -65,3 +77,4 @@ Include:
 - Idea/complexity fill result (files updated, complexity expressions added).
 - Topic files/sections touched by subagent.
 - Validation command results.
+- Commit result (message, staged file scope, and commit hash if created).
