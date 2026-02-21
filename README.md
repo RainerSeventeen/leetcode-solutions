@@ -1,6 +1,10 @@
 # LeetCode Solutions
 
-个人 LeetCode 算法知识库，以 Markdown 文件管理题解，配套 Python 脚本实现从力扣平台批量拉取、导入、校验的自动化流程，配合 AI Agent 完成解题思路归纳与专题知识整理。
+个人 LeetCode 算法知识库
+
+以 Markdown 文件管理题解，使用 Python 脚本实现从力扣平台批量拉取、导入、校验的自动化流程
+
+使用配合 Agent  Skills 完成解题思路归纳, 知识链接
 
 ## 特性
 
@@ -8,6 +12,34 @@
 - **自动导入**：将 AC 记录转换为标准 Markdown 题解模板，自动填充题目描述、标签、难度
 - **格式校验**：CI 自动校验所有题解文件的格式规范，确保知识库质量
 - **专题归纳**：`topics/` 目录存放算法专题笔记，通过跨题链接构建知识体系
+
+## 算法分类
+
+> 分类方案主要参考灵神的[《如何科学刷题？》](https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3yd/), 也加入了一些 《代码随想录》的内容
+
+1. [滑动窗口与双指针（定长/不定长/单序列/双序列/三指针/分组循环）](topics/sliding-window-and-two-pointers.md)
+
+2. [二分算法（二分答案/最小化最大值/最大化最小值/第K小）](topics/binary-search.md)
+
+3. [单调栈（基础/矩形面积/贡献法/最小字典序）](topics/monotonic-stack.md)
+
+4. [网格图（DFS/BFS/综合应用）](topics/grid-graph.md)
+
+5. [位运算（基础/性质/拆位/试填/恒等式/思维）](topics/bit-operations.md)
+
+6. [图论算法（DFS/BFS/拓扑排序/基环树/最短路/最小生成树/网络流）](topics/graph-algorithms.md)
+
+7. [动态规划（入门/背包/划分/状态机/区间/状压/数位/数据结构优化/树形/博弈/概率期望）](topics/dynamic-programming.md)
+
+8. [常用数据结构（枚举技巧/前缀和/差分/栈/队列/堆/字典树/并查集/树状数组/线段树）](topics/common-data-structures.md)
+
+9. [数学算法（数论/组合/概率期望/博弈/计算几何/随机算法）](topics/math-algorithms.md)
+
+10. [贪心与思维（基本贪心策略/反悔/区间/字典序/数学/思维/脑筋急转弯/构造）](topics/greedy-and-thinking.md)
+
+11. [链表、树与回溯（前后指针/快慢指针/DFS/BFS/直径/LCA）](topics/linked-list-tree-backtracking.md)
+
+12. [字符串（KMP/Z函数/Manacher/字符串哈希/AC自动机/后缀数组/子序列自动机）](topics/string-algorithms.md)
 
 ## 目录结构
 
@@ -47,9 +79,19 @@
 pip install requests
 ```
 
-### 配置鉴权（批量拉取 AC 记录时需要）
+### 配置鉴权 (用于获取具体的提交代码)
 
-从浏览器 DevTools → Application → Cookies → `leetcode.cn` 获取 Cookie：
+> [!WARNING]
+> 不要泄露你的 cookies（`LEETCODE_SESSION` / `csrftoken`），也不要把它们提交到 Git 仓库、截图或发到聊天记录中。
+
+
+从浏览器打开 LeetCode F12 进入开发者模式
+
+DevTools → Application → Cookies → `leetcode.cn` 
+
+获取两个 Cookies: `LEETCODE_SESSION`, `csrftoken`
+
+![](./asset/cookies.png)
 
 ```bash
 cp .env.example .env
@@ -70,6 +112,8 @@ python scripts/fetch_problem.py 1
 
 # 2. 手写解题思路 + 检查
 python scripts/check_solutions.py
+
+# 3. (可选) 使用 skill 执行 link 以及扩充工作
 ```
 
 ### 从 AC 记录批量导入
@@ -81,8 +125,7 @@ python scripts/fetch_ac_submissions.py
 # 2. 导入到题解库
 python scripts/import_ac_to_solutions.py
 
-# 3. (可选) 使用 skill 执行 link 以及扩充  工作
-# .codex/skills/solution-topic-auto-link
+# 3. (可选) 使用 skill 执行 link 以及扩充工作
 ```
 
 ### 脚本说明
@@ -94,3 +137,21 @@ python scripts/import_ac_to_solutions.py
 | `filter_ac_with_code.py` | 从 JSONL 中删除已归档到 `solutions/` 的题目 |
 | `import_ac_to_solutions.py` | 将 JSONL 中未归档的题目批量导入 `solutions/` |
 | `check_solutions.py` |（同 CI） |
+
+### skill 说明
+
+仓库内置的自动化 skill 位于 `.codex/skills/`，当前有以下两个：
+
+#### 1) `daily-ac-summary`: 适用于全流程自动化
+  - 拉取最近 1 天 AC 提交, 并自动导入到 `solutions/` 模板中,
+  - 自动补齐本次新导入题解的 `## 解题思路`、时间复杂度、空间复杂度
+  - 拉起子 agent 执行 `solution-topic-auto-link`，把新题挂到 `topics/`
+#### 2) `solution-topic-auto-link`: 单题链接工作
+  - 读取指定 `solutions/...md` 文件，按题目方法归类到合适的 `topics/*.md`
+  - 若现有小节不匹配，在对应专题下新建 `### 子方法 ...` 
+  - 插入规范化条目，并执行校验与标题规范化
+
+#### 推荐使用顺序
+
+1. 日常归档：优先用 `daily-ac-summary`（包含 topic 自动链接）。
+2. 单独补某个题目：用 `solution-topic-auto-link`（输入一个或多个 `solutions/...md` 路径）。
