@@ -39,7 +39,7 @@ def lower_bound(nums, target):
 - 0209 - 长度最小的子数组 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-size-subarray-sum/) ｜ [题解笔记](../solutions/0201-0300/0209-minimum-size-subarray-sum.md)
 - 0349 - 两个数组的交集 ｜ [LeetCode 链接](https://leetcode.cn/problems/intersection-of-two-arrays/) ｜ [题解笔记](../solutions/0301-0400/0349-intersection-of-two-arrays.md)
 - 0367 - 有效的完全平方数 ｜ [LeetCode 链接](https://leetcode.cn/problems/valid-perfect-square/) ｜ [题解笔记](../solutions/0301-0400/0367-valid-perfect-square.md)
-- 0792 - 二分查找 ｜ [LeetCode 链接](https://leetcode.cn/problems/binary-search/) ｜ [题解笔记](../solutions/0701-0800/0792-binary-search.md)
+- 0792 - 二分查找 ｜ [LeetCode 链接](https://leetcode.cn/problems/binary-search/) ｜ [题解笔记](../solutions/0701-0800/0704-binary-search.md)
 ### 4.2 旋转数组二分
 方法说明：
 适用于局部有序的旋转数组，先判断哪半边有序，再判目标是否落在有序半边。

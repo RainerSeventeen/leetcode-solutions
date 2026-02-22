@@ -39,7 +39,7 @@ def reverse_list(head):
 - 0234 - 回文链表 ｜ [LeetCode 链接](https://leetcode.cn/problems/palindrome-linked-list/) ｜ [题解笔记](../solutions/0201-0300/0234-palindrome-linked-list.md)
 - 0024 - 两两交换链表中的节点 ｜ [LeetCode 链接](https://leetcode.cn/problems/swap-nodes-in-pairs/) ｜ [题解笔记](../solutions/0001-0100/0024-swap-nodes-in-pairs.md)
 - 0203 - 移除链表元素 ｜ [LeetCode 链接](https://leetcode.cn/problems/remove-linked-list-elements/) ｜ [题解笔记](../solutions/0201-0300/0203-remove-linked-list-elements.md)
-- 0838 - 设计链表 ｜ [LeetCode 链接](https://leetcode.cn/problems/design-linked-list/) ｜ [题解笔记](../solutions/0801-0900/0838-design-linked-list.md)
+- 0838 - 设计链表 ｜ [LeetCode 链接](https://leetcode.cn/problems/design-linked-list/) ｜ [题解笔记](../solutions/0701-0800/0707-design-linked-list.md)
 ### 4.2 链表快慢指针
 方法说明：
 用于判环、找环入口、找相交点。该模板与双指针专题交叉。
@@ -131,7 +131,7 @@ def is_valid_bst(root):
 - 0701 - 二叉搜索树中的插入操作 ｜ [LeetCode 链接](https://leetcode.cn/problems/insert-into-a-binary-search-tree/) ｜ [题解笔记](../solutions/0701-0800/0701-insert-into-a-binary-search-tree.md)
 - 0108 - 将有序数组转换为二叉搜索树 ｜ [LeetCode 链接](https://leetcode.cn/problems/convert-sorted-array-to-binary-search-tree/) ｜ [题解笔记](../solutions/0101-0200/0108-convert-sorted-array-to-binary-search-tree.md)
 - 0696 - 计数二进制子串 ｜ [LeetCode 链接](https://leetcode.cn/problems/count-binary-substrings/) ｜ [题解笔记](../solutions/0601-0700/0696-count-binary-substrings.md)
-- 0783 - 二叉搜索树中的搜索 ｜ [LeetCode 链接](https://leetcode.cn/problems/search-in-a-binary-search-tree/) ｜ [题解笔记](../solutions/0701-0800/0783-search-in-a-binary-search-tree.md)
+- 0783 - 二叉搜索树中的搜索 ｜ [LeetCode 链接](https://leetcode.cn/problems/search-in-a-binary-search-tree/) ｜ [题解笔记](../solutions/0601-0700/0700-search-in-a-binary-search-tree.md)
 ### 4.5 树的构造与序列化
 方法说明：
 通过遍历序列划分子树，或用 BFS/DFS 完成编码解码。核心是边界一致性。

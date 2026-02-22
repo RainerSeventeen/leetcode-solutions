@@ -67,9 +67,9 @@ def candy(ratings):
 - 0581 - 最短无序连续子数组 ｜ [LeetCode 链接](https://leetcode.cn/problems/shortest-unsorted-continuous-subarray/) ｜ [题解笔记](../solutions/0501-0600/0581-shortest-unsorted-continuous-subarray.md)
 - 0134 - 加油站 ｜ [LeetCode 链接](https://leetcode.cn/problems/gas-station/) ｜ [题解笔记](../solutions/0101-0200/0134-gas-station.md)
 - 0455 - 分发饼干 ｜ [LeetCode 链接](https://leetcode.cn/problems/assign-cookies/) ｜ [题解笔记](../solutions/0401-0500/0455-assign-cookies.md)
-- 0768 - 划分字母区间 ｜ [LeetCode 链接](https://leetcode.cn/problems/partition-labels/) ｜ [题解笔记](../solutions/0701-0800/0768-partition-labels.md)
-- 0890 - 柠檬水找零 ｜ [LeetCode 链接](https://leetcode.cn/problems/lemonade-change/) ｜ [题解笔记](../solutions/0801-0900/0890-lemonade-change.md)
-- 1047 - K 次取反后最大化的数组和 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximize-sum-of-array-after-k-negations/) ｜ [题解笔记](../solutions/1001-1100/1047-maximize-sum-of-array-after-k-negations.md)
+- 0768 - 划分字母区间 ｜ [LeetCode 链接](https://leetcode.cn/problems/partition-labels/) ｜ [题解笔记](../solutions/0701-0800/0763-partition-labels.md)
+- 0890 - 柠檬水找零 ｜ [LeetCode 链接](https://leetcode.cn/problems/lemonade-change/) ｜ [题解笔记](../solutions/0801-0900/0860-lemonade-change.md)
+- 1005 - K 次取反后最大化的数组和 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximize-sum-of-array-after-k-negations/) ｜ [题解笔记](../solutions/1001-1100/1005-maximize-sum-of-array-after-k-negations.md)
 ### 4.3 多维排序与重建
 方法说明：
 涉及多个约束维度时，先找“可一次性固定”的主维度，再处理次维度。

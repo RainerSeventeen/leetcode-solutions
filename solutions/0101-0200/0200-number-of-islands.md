@@ -54,10 +54,14 @@ https://leetcode.cn/problems/number-of-islands/
 
 ## 解题思路
 
-简单的遍历，这里写DFS 算法
+经典 DFS 遍历网格题目。
+
+遍历每个格子，遇到 `'1'` 时岛屿计数 +1，同时用 DFS 将与其相连的所有陆地格子标记为 `'0'`（沉岛），避免重复计数。
+
+关键点：直接修改原始 grid 避免额外的 visited 数组。
 
 - 时间复杂度: $O(mn)$
-- 空间复杂度: $O(mn)$
+- 空间复杂度: $O(mn)$（递归栈最深 $mn$ 层）
 ## 代码
 ```python
 class Solution:

@@ -33,7 +33,7 @@
 ## 4 模板与子方法
 ### 4.1 图建模与存储选择
 #### 4.1.1 模板题目
-- 1661 - 可以到达所有点的最少点数目 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-number-of-vertices-to-reach-all-nodes/) ｜ [题解笔记](../solutions/1601-1700/1661-minimum-number-of-vertices-to-reach-all-nodes.md)
+- 1557 - 可以到达所有点的最少点数目 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-number-of-vertices-to-reach-all-nodes/) ｜ [题解笔记](../solutions/1501-1600/1557-minimum-number-of-vertices-to-reach-all-nodes.md)
 方法说明：
 做图题前先定“点是什么、边是什么、边是否带方向与权重”。模型一旦确定，再选存储方式；存储结构会直接决定后续遍历和更新代价。
 
@@ -121,7 +121,7 @@ def bfs(start, edges):
 ```
 
 #### 4.3.1 模板题目
-- 0339 - 除法求值 ｜ [LeetCode 链接](https://leetcode.cn/problems/evaluate-division/) ｜ [题解笔记](../solutions/0301-0400/0339-evaluate-division.md)
+- 0339 - 除法求值 ｜ [LeetCode 链接](https://leetcode.cn/problems/evaluate-division/) ｜ [题解笔记](../solutions/0301-0400/0399-evaluate-division.md)
 - 0102 - 二叉树的层序遍历 ｜ [LeetCode 链接](https://leetcode.cn/problems/binary-tree-level-order-traversal/) ｜ [题解笔记](../solutions/0101-0200/0102-binary-tree-level-order-traversal.md)
 - 0104 - 二叉树的最大深度 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximum-depth-of-binary-tree/) ｜ [题解笔记](../solutions/0101-0200/0104-maximum-depth-of-binary-tree.md)
 - 0112 - 路径总和 ｜ [LeetCode 链接](https://leetcode.cn/problems/path-sum/) ｜ [题解笔记](../solutions/0101-0200/0112-path-sum.md)
@@ -130,10 +130,10 @@ def bfs(start, edges):
 - 0404 - 左叶子之和 ｜ [LeetCode 链接](https://leetcode.cn/problems/sum-of-left-leaves/) ｜ [题解笔记](../solutions/0401-0500/0404-sum-of-left-leaves.md)
 - 0433 - 最小基因变化 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-genetic-mutation/) ｜ [题解笔记](../solutions/0401-0500/0433-minimum-genetic-mutation.md)
 - 0530 - 二叉搜索树的最小绝对差 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-absolute-difference-in-bst/) ｜ [题解笔记](../solutions/0501-0600/0530-minimum-absolute-difference-in-bst.md)
-- 0813 - 所有可能的路径 ｜ [LeetCode 链接](https://leetcode.cn/problems/all-paths-from-source-to-target/) ｜ [题解笔记](../solutions/0801-0900/0813-all-paths-from-source-to-target.md)
-- 1428 - 跳跃游戏 III ｜ [LeetCode 链接](https://leetcode.cn/problems/jump-game-iii/) ｜ [题解笔记](../solutions/1401-1500/1428-jump-game-iii.md)
-- 1436 - 获取你好友已观看的视频 ｜ [LeetCode 链接](https://leetcode.cn/problems/get-watched-videos-by-your-friends/) ｜ [题解笔记](../solutions/1401-1500/1436-get-watched-videos-by-your-friends.md)
-- 3517 - 新增道路查询后的最短距离 I ｜ [LeetCode 链接](https://leetcode.cn/problems/shortest-distance-after-road-addition-queries-i/) ｜ [题解笔记](../solutions/3501-3600/3517-shortest-distance-after-road-addition-queries-i.md)
+- 0813 - 所有可能的路径 ｜ [LeetCode 链接](https://leetcode.cn/problems/all-paths-from-source-to-target/) ｜ [题解笔记](../solutions/0701-0800/0797-all-paths-from-source-to-target.md)
+- 1306 - 跳跃游戏 III ｜ [LeetCode 链接](https://leetcode.cn/problems/jump-game-iii/) ｜ [题解笔记](../solutions/1301-1400/1306-jump-game-iii.md)
+- 1311 - 获取你好友已观看的视频 ｜ [LeetCode 链接](https://leetcode.cn/problems/get-watched-videos-by-your-friends/) ｜ [题解笔记](../solutions/1301-1400/1311-get-watched-videos-by-your-friends.md)
+- 3243 - 新增道路查询后的最短距离 I ｜ [LeetCode 链接](https://leetcode.cn/problems/shortest-distance-after-road-addition-queries-i/) ｜ [题解笔记](../solutions/3201-3300/3243-shortest-distance-after-road-addition-queries-i.md)
 
 ### 4.4 并查集
 方法说明：
@@ -176,8 +176,8 @@ class DSU:
 - 0684 - 冗余连接 ｜ [LeetCode 链接](https://leetcode.cn/problems/redundant-connection/) ｜ [题解笔记](../solutions/0601-0700/0684-redundant-connection.md)
 - 0547 - 省份数量 ｜ [LeetCode 链接](https://leetcode.cn/problems/number-of-provinces/) ｜ [题解笔记](../solutions/0501-0600/0547-number-of-provinces.md)
 - 0685 - 冗余连接 II ｜ [LeetCode 链接](https://leetcode.cn/problems/redundant-connection-ii/) ｜ [题解笔记](../solutions/0601-0700/0685-redundant-connection-ii.md)
-- 2121 - 寻找图中是否存在路径 ｜ [LeetCode 链接](https://leetcode.cn/problems/find-if-path-exists-in-graph/) ｜ [题解笔记](../solutions/2101-2200/2121-find-if-path-exists-in-graph.md)
-- 2403 - 统计无向图中无法互相到达点对数 ｜ [LeetCode 链接](https://leetcode.cn/problems/count-unreachable-pairs-of-nodes-in-an-undirected-graph/) ｜ [题解笔记](../solutions/2401-2500/2403-count-unreachable-pairs-of-nodes-in-an-undirected-graph.md)
+- 1971 - 寻找图中是否存在路径 ｜ [LeetCode 链接](https://leetcode.cn/problems/find-if-path-exists-in-graph/) ｜ [题解笔记](../solutions/1901-2000/1971-find-if-path-exists-in-graph.md)
+- 2316 - 统计无向图中无法互相到达点对数 ｜ [LeetCode 链接](https://leetcode.cn/problems/count-unreachable-pairs-of-nodes-in-an-undirected-graph/) ｜ [题解笔记](../solutions/2301-2400/2316-count-unreachable-pairs-of-nodes-in-an-undirected-graph.md)
 
 ### 4.5 拓扑排序
 方法说明：
@@ -211,7 +211,7 @@ def can_finish(num_courses, prerequisites):
 - 0310 - 最小高度树 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-height-trees/) ｜ [题解笔记](../solutions/0301-0400/0310-minimum-height-trees.md)
 - 2392 - 给定条件下构造矩阵 ｜ [LeetCode 链接](https://leetcode.cn/problems/build-a-matrix-with-conditions/) ｜ [题解笔记](../solutions/2301-2400/2392-build-a-matrix-with-conditions.md)
 - 0210 - 课程表 II ｜ [LeetCode 链接](https://leetcode.cn/problems/course-schedule-ii/) ｜ [题解笔记](../solutions/0201-0300/0210-course-schedule-ii.md)
-- 3561 - 移除可疑的方法 ｜ [LeetCode 链接](https://leetcode.cn/problems/remove-methods-from-project/) ｜ [题解笔记](../solutions/3501-3600/3561-remove-methods-from-project.md)
+- 3310 - 移除可疑的方法 ｜ [LeetCode 链接](https://leetcode.cn/problems/remove-methods-from-project/) ｜ [题解笔记](../solutions/3301-3400/3310-remove-methods-from-project.md)
 
 ### 4.6 最小生成树 MST（Kruskal/Prim）
 方法说明：
@@ -239,7 +239,7 @@ def kruskal(n, edges):
 ```
 
 #### 4.6.1 模板题目
-- 1706 - 连接所有点的最小费用 ｜ [LeetCode 链接](https://leetcode.cn/problems/min-cost-to-connect-all-points/) ｜ [题解笔记](../solutions/1701-1800/1706-min-cost-to-connect-all-points.md)
+- 1584 - 连接所有点的最小费用 ｜ [LeetCode 链接](https://leetcode.cn/problems/min-cost-to-connect-all-points/) ｜ [题解笔记](../solutions/1501-1600/1584-min-cost-to-connect-all-points.md)
 
 ## 5 易错点
 - 遍历未去重导致重复扩展或死循环。

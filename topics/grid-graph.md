@@ -35,7 +35,7 @@ def num_islands(grid):
 ```
 
 #### 4.1.1 模板题目
-- 0200 - 岛屿数量（DFS 版本） ｜ [LeetCode 链接](https://leetcode.cn/problems/number-of-islands/) ｜ [题解笔记](../solutions/0201-0300/0200-number-of-islands.md)
+- 0200 - 岛屿数量 ｜ [LeetCode 链接](https://leetcode.cn/problems/number-of-islands/) ｜ [题解笔记](../solutions/0101-0200/0200-number-of-islands.md)
 ### 4.2 网格 BFS 连通块
 方法说明：
 与 DFS 同类问题的队列写法，适合避免递归栈过深。

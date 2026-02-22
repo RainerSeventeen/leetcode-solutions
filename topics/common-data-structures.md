@@ -66,7 +66,7 @@ class MinStack:
 - 0150 - 逆波兰表达式求值 ｜ [LeetCode 链接](https://leetcode.cn/problems/evaluate-reverse-polish-notation/) ｜ [题解笔记](../solutions/0101-0200/0150-evaluate-reverse-polish-notation.md)
 - 0225 - 用队列实现栈 ｜ [LeetCode 链接](https://leetcode.cn/problems/implement-stack-using-queues/) ｜ [题解笔记](../solutions/0201-0300/0225-implement-stack-using-queues.md)
 - 0232 - 用栈实现队列 ｜ [LeetCode 链接](https://leetcode.cn/problems/implement-queue-using-stacks/) ｜ [题解笔记](../solutions/0201-0300/0232-implement-queue-using-stacks.md)
-- 1128 - 删除字符串中的所有相邻重复项 ｜ [LeetCode 链接](https://leetcode.cn/problems/remove-all-adjacent-duplicates-in-string/) ｜ [题解笔记](../solutions/1101-1200/1128-remove-all-adjacent-duplicates-in-string.md)
+- 1047 - 删除字符串中的所有相邻重复项 ｜ [LeetCode 链接](https://leetcode.cn/problems/remove-all-adjacent-duplicates-in-string/) ｜ [题解笔记](../solutions/1001-1100/1047-remove-all-adjacent-duplicates-in-string.md)
 ### 4.3 堆与 Top-K
 方法说明：
 适用于动态维护前 K 大、小根堆调度与多路归并。链表多路合并可交叉到链表专题。
@@ -127,7 +127,7 @@ def subarray_sum(nums, k):
 
 #### 4.5.1 模板题目
 - 0560 - 和为 K 的子数组 ｜ [LeetCode 链接](https://leetcode.cn/problems/subarray-sum-equals-k/) ｜ [题解笔记](../solutions/0501-0600/0560-subarray-sum-equals-k.md)
-- 0238 - 除自身以外数组的乘积 ｜ [LeetCode 链接](https://leetcode.cn/problems/product-of-array-except-self/) ｜ [题解笔记](../solutions/0201-0300/0238-product-of-array-except-self.md)
+- 0238 - 除了自身以外数组的乘积 ｜ [LeetCode 链接](https://leetcode.cn/problems/product-of-array-except-self/) ｜ [题解笔记](../solutions/0201-0300/0238-product-of-array-except-self.md)
 ### 4.6 结构设计（哈希 + 双链表）
 方法说明：
 设计题核心是保证每个操作复杂度满足要求，常见是 O(1) 的访问与淘汰。

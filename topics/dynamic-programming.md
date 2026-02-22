@@ -46,9 +46,9 @@ def max_subarray(nums):
 - 0213 - 打家劫舍 II ｜ [LeetCode 链接](https://leetcode.cn/problems/house-robber-ii/) ｜ [题解笔记](../solutions/0201-0300/0213-house-robber-ii.md)
 - 0343 - 整数拆分 ｜ [LeetCode 链接](https://leetcode.cn/problems/integer-break/) ｜ [题解笔记](../solutions/0301-0400/0343-integer-break.md)
 - 0435 - 无重叠区间 ｜ [LeetCode 链接](https://leetcode.cn/problems/non-overlapping-intervals/) ｜ [题解笔记](../solutions/0401-0500/0435-non-overlapping-intervals.md)
-- 0747 - 使用最小花费爬楼梯 ｜ [LeetCode 链接](https://leetcode.cn/problems/min-cost-climbing-stairs/) ｜ [题解笔记](../solutions/0701-0800/0747-min-cost-climbing-stairs.md)
-- 1013 - 斐波那契数 ｜ [LeetCode 链接](https://leetcode.cn/problems/fibonacci-number/) ｜ [题解笔记](../solutions/1001-1100/1013-fibonacci-number.md)
-- 4062 - 打家劫舍 V ｜ [LeetCode 链接](https://leetcode.cn/problems/house-robber-v/) ｜ [题解笔记](../solutions/4001-4100/4062-house-robber-v.md)
+- 0747 - 使用最小花费爬楼梯 ｜ [LeetCode 链接](https://leetcode.cn/problems/min-cost-climbing-stairs/) ｜ [题解笔记](../solutions/0701-0800/0746-min-cost-climbing-stairs.md)
+- 509 - 斐波那契数 ｜ [LeetCode 链接](https://leetcode.cn/problems/fibonacci-number/) ｜ [题解笔记](../solutions/0501-0600/0509-fibonacci-number.md)
+- 3840 - 打家劫舍 V ｜ [LeetCode 链接](https://leetcode.cn/problems/house-robber-v/) ｜ [题解笔记](../solutions/3801-3900/3840-house-robber-v.md)
 ### 4.2 0-1 背包 DP
 方法说明：
 定义 `dp[j]` 为容量为 `j` 时的最优值/可行性。每个物品只能使用一次，因此容量必须倒序遍历，避免同一轮次重复使用当前物品。
@@ -76,7 +76,7 @@ def knapsack_01(nums, target):
 - 0416 - 分割等和子集 ｜ [LeetCode 链接](https://leetcode.cn/problems/partition-equal-subset-sum/) ｜ [题解笔记](../solutions/0401-0500/0416-partition-equal-subset-sum.md)
 - 0494 - 目标和 ｜ [LeetCode 链接](https://leetcode.cn/problems/target-sum/) ｜ [题解笔记](../solutions/0401-0500/0494-target-sum.md)
 - 0474 - 一和零 ｜ [LeetCode 链接](https://leetcode.cn/problems/ones-and-zeroes/) ｜ [题解笔记](../solutions/0401-0500/0474-ones-and-zeroes.md)
-- 1130 - 最后一块石头的重量 II ｜ [LeetCode 链接](https://leetcode.cn/problems/last-stone-weight-ii/) ｜ [题解笔记](../solutions/1101-1200/1130-last-stone-weight-ii.md)
+- 1049 - 最后一块石头的重量 II ｜ [LeetCode 链接](https://leetcode.cn/problems/last-stone-weight-ii/) ｜ [题解笔记](../solutions/1001-1100/1049-last-stone-weight-ii.md)
 
 ### 4.3 完全背包 DP（最值/可行性）
 方法说明：
@@ -273,8 +273,8 @@ def lcs(a, b):
 - 0115 - 不同的子序列 ｜ [LeetCode 链接](https://leetcode.cn/problems/distinct-subsequences/) ｜ [题解笔记](../solutions/0101-0200/0115-distinct-subsequences.md)
 - 0392 - 判断子序列 ｜ [LeetCode 链接](https://leetcode.cn/problems/is-subsequence/) ｜ [题解笔记](../solutions/0301-0400/0392-is-subsequence.md)
 - 0583 - 两个字符串的删除操作 ｜ [LeetCode 链接](https://leetcode.cn/problems/delete-operation-for-two-strings/) ｜ [题解笔记](../solutions/0501-0600/0583-delete-operation-for-two-strings.md)
-- 1105 - 不相交的线 ｜ [LeetCode 链接](https://leetcode.cn/problems/uncrossed-lines/) ｜ [题解笔记](../solutions/1101-1200/1105-uncrossed-lines.md)
-- 1250 - 最长公共子序列 ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-common-subsequence/) ｜ [题解笔记](../solutions/1201-1300/1250-longest-common-subsequence.md)
+- 1035 - 不相交的线 ｜ [LeetCode 链接](https://leetcode.cn/problems/uncrossed-lines/) ｜ [题解笔记](../solutions/1001-1100/1035-uncrossed-lines.md)
+- 1143 - 最长公共子序列 ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-common-subsequence/) ｜ [题解笔记](../solutions/1101-1200/1143-longest-common-subsequence.md)
 
 ### 4.10 网格 DP 路径转移
 #### 4.10.1 模板题目
@@ -285,7 +285,7 @@ def lcs(a, b):
 按层推进状态并把“超额”向下一层相邻位置分发，常用于金字塔/三角结构中的流量或概率传递问题。
 
 #### 4.11.1 模板题目
-- 0815 - 香槟塔 ｜ [LeetCode 链接](https://leetcode.cn/problems/champagne-tower/) ｜ [题解笔记](../solutions/0801-0900/0815-champagne-tower.md)
+- 0815 - 香槟塔 ｜ [LeetCode 链接](https://leetcode.cn/problems/champagne-tower/) ｜ [题解笔记](../solutions/0701-0800/0799-champagne-tower.md)
 ## 5 易错点
 - 状态定义含糊，导致初始化和转移全错。
 - 背包遍历顺序错误。

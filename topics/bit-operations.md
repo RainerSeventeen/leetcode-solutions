@@ -53,8 +53,8 @@ def hamming_distance(x, y):
 - 0067 - 二进制求和 ｜ [LeetCode 链接](https://leetcode.cn/problems/add-binary/) ｜ [题解笔记](../solutions/0001-0100/0067-add-binary.md)
 - 0190 - 颠倒二进制位 ｜ [LeetCode 链接](https://leetcode.cn/problems/reverse-bits/) ｜ [题解笔记](../solutions/0101-0200/0190-reverse-bits.md)
 - 0693 - 交替位二进制数 ｜ [LeetCode 链接](https://leetcode.cn/problems/binary-number-with-alternating-bits/) ｜ [题解笔记](../solutions/0601-0700/0693-binary-number-with-alternating-bits.md)
-- 0767 - 二进制表示中质数个计算置位 ｜ [LeetCode 链接](https://leetcode.cn/problems/prime-number-of-set-bits-in-binary-representation/) ｜ [题解笔记](../solutions/0701-0800/0767-prime-number-of-set-bits-in-binary-representation.md)
-- 4194 - 统计单比特整数 ｜ [LeetCode 链接](https://leetcode.cn/problems/count-monobit-integers/) ｜ [题解笔记](../solutions/4101-4200/4194-count-monobit-integers.md)
+- 0767 - 二进制表示中质数个计算置位 ｜ [LeetCode 链接](https://leetcode.cn/problems/prime-number-of-set-bits-in-binary-representation/) ｜ [题解笔记](../solutions/0701-0800/0762-prime-number-of-set-bits-in-binary-representation.md)
+- 3827 - 统计单比特整数 ｜ [LeetCode 链接](https://leetcode.cn/problems/count-monobit-integers/) ｜ [题解笔记](../solutions/3801-3900/3827-count-monobit-integers.md)
 ### 4.3 位运算递推
 方法说明：
 通过 `i >> 1` 或 `i & (i - 1)` 构建从小到大的递推。该类也可交叉到动态规划专题。

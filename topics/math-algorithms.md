@@ -52,8 +52,8 @@ def monotone_increasing_digits(n):
 ```
 
 #### 4.2.1 模板题目
-- 2037 - 统计平方和三元组的数目 ｜ [LeetCode 链接](https://leetcode.cn/problems/count-square-sum-triples/) ｜ [题解笔记](../solutions/2001-2100/2037-count-square-sum-triples.md)
-- 3846 - 使数组和能被 K 整除的最少操作次数 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-operations-to-make-array-sum-divisible-by-k/) ｜ [题解笔记](../solutions/3801-3900/3846-minimum-operations-to-make-array-sum-divisible-by-k.md)
+- 1925 - 统计平方和三元组的数目 ｜ [LeetCode 链接](https://leetcode.cn/problems/count-square-sum-triples/) ｜ [题解笔记](../solutions/1901-2000/1925-count-square-sum-triples.md)
+- 3512 - 使数组和能被 K 整除的最少操作次数 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-operations-to-make-array-sum-divisible-by-k/) ｜ [题解笔记](../solutions/3501-3600/3512-minimum-operations-to-make-array-sum-divisible-by-k.md)
 ## 5 易错点
 - 原地旋转顺序写反会得到错误结果。
 - 数位回退后未统一填 9 导致非最优。

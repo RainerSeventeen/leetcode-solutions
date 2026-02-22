@@ -139,8 +139,8 @@ def find_anagrams(s, p):
 ```
 
 #### 4.5.1 模板题目
-- 4137 - 前缀连接组的数目 ｜ [LeetCode 链接](https://leetcode.cn/problems/number-of-prefix-connected-groups/) ｜ [题解笔记](../solutions/4101-4200/4137-number-of-prefix-connected-groups.md)
-- 4216 - 带权单词映射 ｜ [LeetCode 链接](https://leetcode.cn/problems/weighted-word-mapping/) ｜ [题解笔记](../solutions/4201-4300/4216-weighted-word-mapping.md)
+- 3839 - 前缀连接组的数目 ｜ [LeetCode 链接](https://leetcode.cn/problems/number-of-prefix-connected-groups/) ｜ [题解笔记](../solutions/3801-3900/3839-number-of-prefix-connected-groups.md)
+- 3838 - 带权单词映射 ｜ [LeetCode 链接](https://leetcode.cn/problems/weighted-word-mapping/) ｜ [题解笔记](../solutions/3801-3900/3838-weighted-word-mapping.md)
 ### 4.6 回溯生成字符串组合
 方法说明：
 字符串枚举类题常用 DFS 构造路径，适合组合生成与约束搜索。

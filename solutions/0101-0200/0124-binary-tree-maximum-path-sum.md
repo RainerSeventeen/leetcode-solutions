@@ -6,7 +6,7 @@ tags: [tree, depth-first-search, dynamic-programming, binary-tree]
 created: 2026-02-20
 ---
 
-# 124. 二叉树中最大路径和
+# 124. 二叉树中的最大路径和
 
 ## 题目链接
 https://leetcode.cn/problems/binary-tree-maximum-path-sum/
