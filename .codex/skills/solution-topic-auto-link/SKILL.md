@@ -22,7 +22,7 @@ Follow `.ai_docs/rules.md` strictly:
   - `- 0000 - 题目名 ｜ [LeetCode 链接](https://leetcode.cn/problems/xxx/) ｜ [题解笔记](../solutions/xxxx-xxxx/xxxx-slug.md)`
 - In `#### 模板题目` entries, `题目名` must use Chinese.
 - After topic edits, run:
-  - `python3 scripts/check_solutions.py`
+  - `python3 scripts/ci/check_solutions.py`
   - `python3 scripts/normalize_topics_title.py`
 
 ## Workflow
@@ -53,7 +53,7 @@ Follow `.ai_docs/rules.md` strictly:
 - If section is id-sorted, keep sorting; otherwise follow local list style.
 
 6. Validate and normalize:
-- Run `python3 scripts/check_solutions.py`.
+- Run `python3 scripts/ci/check_solutions.py`.
 - Run `python3 scripts/normalize_topics_title.py`.
 - Include normalization changes if produced.
 

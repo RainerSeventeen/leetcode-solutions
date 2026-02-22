@@ -81,12 +81,15 @@ created: 2026-02-20      # YYYY-MM-DD
 加载项目根目录的 `.env` 文件到 `os.environ`（副作用 import，其他脚本 `import env` 即可）。
 
 ### `scripts/fetch_problem.py`
-**按题号**拉取单道题，生成 Markdown 模板（空代码块，解题思路待填）。
+按题号或直接指定 slug 拉取单道题，生成 Markdown 模板（空代码块，解题思路待填）。
 ```bash
-python scripts/fetch_problem.py 1584
+python scripts/fetch_problem.py 1584                                     # 普通题：按题号
 python scripts/fetch_problem.py 1584 --overwrite
+python scripts/fetch_problem.py --slug count-sequences-with-given-sum   # 竞赛题或直接指定 slug
 ```
-流程：调 `https://leetcode.cn/api/problems/all/` 查 slug → 调 GraphQL 拿题目详情 → 写入 `solutions/<range>/<id>-<slug>.md`。
+两种模式：
+- **按题号**：先查 `https://leetcode.cn/api/problems/all/` 找 slug，再调 GraphQL 拿详情，以传入的题号命名文件
+- **按 slug**（`--slug`）：直接调 GraphQL，用返回的 `questionId` 命名文件；竞赛期间也可用
 
 ### `scripts/fetch_ac_submissions.py`
 **批量**从力扣 CN 拉取个人 AC 提交（含代码），写入 `artifacts/ac_with_code.jsonl`。
@@ -94,10 +97,10 @@ python scripts/fetch_problem.py 1584 --overwrite
 python scripts/fetch_ac_submissions.py
 python scripts/fetch_ac_submissions.py --delay 0.8 --days 365
 ```
-特性：同题只保留最新一次 AC；断点续传（`code=null` 的记录自动重拉）；限流退避（30→60→120→180→300s）。
+特性：同题只保留最新一次 AC；断点续传（`code=null` 的记录自动重拉）；限流退避（30→60→120→180→300s）；竞赛题与普通题统一处理。
 
-> ⚠️ JSONL 中 `frontendId` 字段是用户 AC 提交的流水号，**不是** LeetCode 题号。
-> 真实题号需通过 `question.questionId` GraphQL 字段获取。
+> ⚠️ JSONL 中 `frontendId` 是力扣前端题号，对普通题与 `questionId` 相同，竞赛题可能不一致。
+> `import_ac_to_solutions.py` 始终通过 GraphQL `questionId` 字段命名文件，不直接依赖 `frontendId`。
 
 ### `scripts/filter_ac_with_code.py`
 从 `ac_with_code.jsonl` 中删除已归档到 `solutions/` 的题目（原地覆写 JSONL）。
@@ -155,9 +158,10 @@ python scripts/normalize_topics_title.py --dry-run
 
 ### 手动归档单题
 ```bash
-python scripts/fetch_problem.py <题号>   # 生成模板
+python scripts/fetch_problem.py <题号>         # 普通题：生成模板
+python scripts/fetch_problem.py --slug <slug>  # 竞赛题或已知 slug 时
 # 手写解题思路 + 代码
-python scripts/ci/check_solutions.py    # 本地校验（仅 solutions）
+python scripts/ci/check_solutions.py           # 本地校验（仅 solutions）
 ```
 
 ### 从 AC 记录批量导入

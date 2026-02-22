@@ -32,7 +32,7 @@ description: "Use when user asks to run daily LeetCode summary/archive workflow:
      - `## 解题思路` with a concise, code-consistent explanation,
      - `时间复杂度：$O(xxx)$` and `空间复杂度：$O(xxx)$` with concrete expressions (no placeholders).
    - Keep style concise and consistent with existing solution files.
-   - After filling, run `.venv/bin/python scripts/check_solutions.py`.
+   - After filling, run `.venv/bin/python scripts/ci/check_solutions.py`.
    - If check fails, fix the imported files and rerun check until pass or a hard blocker is found.
    - If hard blocker remains, stop and report failing files + exact errors.
 
@@ -42,7 +42,7 @@ description: "Use when user asks to run daily LeetCode summary/archive workflow:
    - Pass all imported `solutions/...md` paths and ask it to:
      - insert topic links,
      - create subsection when needed,
-     - run `.venv/bin/python scripts/check_solutions.py` and `.venv/bin/python scripts/normalize_topics_title.py`,
+     - run `.venv/bin/python scripts/ci/check_solutions.py` and `.venv/bin/python scripts/normalize_topics_title.py`,
      - return changed files and inserted lines.
    - Wait for subagent completion.
    - If subagent fails, surface failure reason and partial progress.
