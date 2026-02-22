@@ -4,11 +4,13 @@
 
 用法:
   python scripts/fetch_ac_submissions.py
-  python scripts/fetch_ac_submissions.py --delay 0.8
+  python scripts/fetch_ac_submissions.py --resume
+  python scripts/fetch_ac_submissions.py --resume artifacts/my_backup.jsonl
   python scripts/fetch_ac_submissions.py --days 365
 
 去重规则: 同一道题只拉最新的一次 AC（提交列表从新到旧，首次见到该题立即拉，后续跳过）。
-断点续传: 已写入且 code 非 null 的题目下次直接跳过；code 为 null 的自动清除并重拉。
+断点续传: 默认覆写输出文件重新拉取；--resume 不带路径时用默认输出文件续传；
+          --resume <path> 指定文件路径后从该文件加载已完成题目并追加写入。
 限流退避: 遇到「超出访问限制」按 30→60→120→180→300 秒退避重试。
 
 输出: artifacts/ac_with_code.jsonl（JSONL 格式，每行一条记录）
@@ -35,6 +37,8 @@ GRAPHQL_URL = "https://leetcode.cn/graphql/"
 
 ARTIFACTS = pathlib.Path("artifacts")
 CODE_OUTPUT = ARTIFACTS / "ac_with_code.jsonl"
+
+REQUEST_DELAY = 0.6  # 每次请求间隔秒数
 
 SUBMISSION_LIST_QUERY = """
 query submissionList($offset: Int!, $limit: Int!, $lastKey: String, $status: SubmissionStatusEnum) {
@@ -117,7 +121,7 @@ def graphql(headers: dict, query: str, variables: dict) -> dict:
     return data["data"]
 
 
-def fetch_detail(headers: dict, sid: str, delay: float) -> dict | None:
+def fetch_detail(headers: dict, sid: str) -> dict | None:
     """拉取单条提交详情，遇限流自动退避重试。"""
     BACKOFF = [30, 60, 120, 180, 300]
     for attempt, wait in enumerate([0] + BACKOFF):
@@ -141,19 +145,19 @@ def fetch_detail(headers: dict, sid: str, delay: float) -> dict | None:
 # Resume helpers
 # ---------------------------------------------------------------------------
 
-def load_done_fids() -> set[str]:
+def load_done_fids(path: pathlib.Path) -> set[str]:
     """
     读取已有 JSONL，返回已成功拉取代码的 frontendId 集合。
     code 为 null 的条目视为失败，从文件中清除（下次重拉）。
     """
-    if not CODE_OUTPUT.exists():
+    if not path.exists():
         return set()
 
     done: set[str] = set()
     good_lines: list[str] = []
     null_count = 0
 
-    for line in CODE_OUTPUT.read_text(encoding="utf-8").splitlines():
+    for line in path.read_text(encoding="utf-8").splitlines():
         line = line.strip()
         if not line:
             continue
@@ -168,7 +172,7 @@ def load_done_fids() -> set[str]:
             good_lines.append(line)
 
     if null_count:
-        CODE_OUTPUT.write_text(
+        path.write_text(
             "\n".join(good_lines) + ("\n" if good_lines else ""),
             encoding="utf-8",
         )
@@ -196,19 +200,26 @@ def main() -> int:
     )
     parser.add_argument("--days", type=int, default=3650,
                         help="拉取最近 N 天内的提交（默认 3650，约 10 年）")
-    parser.add_argument("--delay", type=float, default=0.6,
-                        help="每次请求间隔秒数（默认 0.6）")
     parser.add_argument("--page-size", type=int, default=20,
                         help="翻页每页条数（默认 20）")
+    parser.add_argument("--resume", nargs="?", const=str(CODE_OUTPUT), metavar="PATH",
+                        help="断点续传：不带路径时用默认输出文件，带路径时用指定文件")
     args = parser.parse_args()
 
     require_auth()
     headers = build_headers()
     ARTIFACTS.mkdir(exist_ok=True)
 
-    done_fids = load_done_fids()
-    if done_fids:
-        print(f"断点续传：已有 {len(done_fids)} 道题，跳过。")
+    if args.resume:
+        output_path = pathlib.Path(args.resume)
+        done_fids = load_done_fids(output_path)
+        file_mode = "a"
+        if done_fids:
+            print(f"断点续传：已有 {len(done_fids)} 道题，跳过。")
+    else:
+        output_path = CODE_OUTPUT
+        done_fids = set()
+        file_mode = "w"
 
     cutoff_ts = int((dt.datetime.now() - dt.timedelta(days=args.days)).timestamp())
     offset = 0
@@ -217,7 +228,7 @@ def main() -> int:
     fetched = 0
     skipped = 0
 
-    with CODE_OUTPUT.open("a", encoding="utf-8") as f:
+    with output_path.open(file_mode, encoding="utf-8") as f:
         while True:
             sl = graphql(headers, SUBMISSION_LIST_QUERY, {
                 "offset": offset,
@@ -258,7 +269,7 @@ def main() -> int:
                 title = sub.get("title", "?")
                 print(f"  #{fid} {title} (id={sid})", end=" ", flush=True)
 
-                detail = fetch_detail(headers, sid, args.delay)
+                detail = fetch_detail(headers, sid)
                 entry = {**sub, "titleSlug": extract_slug(sub.get("url", ""))}
 
                 if detail:
@@ -277,7 +288,7 @@ def main() -> int:
 
                 f.write(json.dumps(entry, ensure_ascii=False) + "\n")
                 f.flush()
-                time.sleep(args.delay)
+                time.sleep(REQUEST_DELAY)
 
             oldest_ts = int(subs[-1]["timestamp"]) if subs else 0
             oldest_str = dt.datetime.fromtimestamp(oldest_ts).strftime("%Y-%m-%d") if oldest_ts else "?"
@@ -288,10 +299,10 @@ def main() -> int:
 
             offset += args.page_size
             page += 1
-            time.sleep(args.delay)
+            time.sleep(REQUEST_DELAY)
 
     print(f"\n完成。本次拉取 {fetched} 道，跳过 {skipped} 道。")
-    print(f"输出 → {CODE_OUTPUT}")
+    print(f"输出 → {output_path}")
     return 0
 
 
