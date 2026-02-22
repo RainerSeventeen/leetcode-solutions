@@ -17,6 +17,7 @@ Execute this workflow when processing solution files for topic mapping:
 Follow `.ai_docs/rules.md` strictly:
 - Do not create files under `solutions/`; they must come from `scripts/fetch_problem.py`.
 - Keep complexity format as `$O(x)$` if edited.
+- Each solution can be linked to exactly one topic section only. Never add the same problem to multiple sections/files in one run.
 - Topic bullet format must be exactly:
   - `- 0000 - 题目名 ｜ [LeetCode 链接](https://leetcode.cn/problems/xxx/) ｜ [题解笔记](../solutions/xxxx-xxxx/xxxx-slug.md)`
 - In `#### 模板题目` entries, `题目名` must use Chinese.
