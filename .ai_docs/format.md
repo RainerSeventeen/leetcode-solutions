@@ -31,7 +31,15 @@ created: 2026-02-20      # YYYY-MM-DD
 ## 代码       ← 代码块语言标签必须正确（如 ```python）
 ```
 
-> CI 额外校验：`id` 与文件名题号、H1 标题题号三者一致；全库 `id` 不得重复。
+> **CI 校验规则**（`scripts/ci/check_solutions.py`）：
+> - 文件路径/名格式合法
+> - Front matter 五个 key 均存在且非空
+> - `id` 与文件名题号、H1 标题题号三者一致；全库 `id` 不得重复
+> - `difficulty` 只能是 `Easy / Medium / Hard`
+> - `created` 是合法的 `YYYY-MM-DD`
+> - 包含全部五个必需 section
+> - `## 解题思路` 不含占位符 `O()`，时/空复杂度格式为 `$O(...)$`
+> - `## 相关专题` 至少含一条回链接，链接格式与显示名须符合规范
 
 ### ## 相关专题 格式
 
@@ -57,8 +65,6 @@ created: 2026-02-20      # YYYY-MM-DD
 | `greedy-and-thinking.md` | 贪心与思维 |
 | `linked-list-tree-backtracking.md` | 链表、树与回溯 |
 | `string-algorithms.md` | 字符串 |
-
-> 批量补全/修正回链接：`python scripts/backlink_solutions.py`
 
 ---
 

@@ -157,7 +157,8 @@ python scripts/import_ac_to_solutions.py
   - 拉起子 agent 执行 `solution-topic-auto-link`，把新题挂到 `topics/`
 #### 2) `solution-topic-auto-link`: 单题链接工作
   - 读取指定 `solutions/...md` 文件，按题目方法归类到合适的 `topics/*.md`
-  - 若现有小节不匹配，在对应专题下新建 `### 子方法 ...` 
+  - 若现有小节不匹配，在对应专题下新建 `### 子方法 ...`
+  - 在题解文件的 `## 相关专题` 中写入回链接，与 topics 双向绑定
   - 插入规范化条目，并执行校验与标题规范化
 
 #### 推荐使用顺序
