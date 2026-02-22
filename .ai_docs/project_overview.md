@@ -54,7 +54,7 @@ created: 2026-02-20      # YYYY-MM-DD
 ```markdown
 ## 题目链接
 ## 题目描述
-## 解题思路   ← 手写，需含时间/空间复杂度（格式：$O(n)$）
+## 解题思路   ← 需含时间/空间复杂度（格式：$O(n)$）
 ## 代码       ← 代码块，语言标签需正确（如 ```python）
 ```
 
@@ -174,18 +174,6 @@ python scripts/import_ac_to_solutions.py
 # 4. 补写解题思路后校验（solutions + topics）
 python scripts/ci/ci.py
 ```
-
----
-
-## 鉴权配置
-```bash
-cp .env.example .env
-# 填入从浏览器 DevTools → Application → Cookies → leetcode.cn 获取的值：
-# LC_SESSION=xxx
-# LC_CSRF=xxx
-```
-`fetch_problem.py` 不需要鉴权（公开题）；`fetch_ac_submissions.py` 和 `import_ac_to_solutions.py` 需要（访问个人提交）。
-
 ---
 
 ## CI
