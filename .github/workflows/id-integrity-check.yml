@@ -1,0 +1,35 @@
+name: id-integrity-check
+
+on:
+  schedule:
+    - cron: "0 4 * * 1"   # 每周一 UTC 02:00
+  workflow_dispatch:
+    inputs:
+      slug_only:
+        description: "只做本地校验，不请求 API（slug-only）"
+        type: boolean
+        default: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run ID integrity check
+        run: |
+          if [ "${{ inputs.slug_only }}" = "true" ]; then
+            python3 scripts/ci/check_id_integrity.py --slug-only
+          else
+            python3 scripts/ci/check_id_integrity.py
+          fi
+
