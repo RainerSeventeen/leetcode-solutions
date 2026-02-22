@@ -39,9 +39,6 @@ def edit_distance(a, b):
 ```
 
 #### 4.1.1 模板题目
-- 0072 - 编辑距离 ｜ [LeetCode 链接](https://leetcode.cn/problems/edit-distance/) ｜ [题解笔记](../solutions/0001-0100/0072-edit-distance.md)
-- 0010 - 正则表达式匹配 ｜ [LeetCode 链接](https://leetcode.cn/problems/regular-expression-matching/) ｜ [题解笔记](../solutions/0001-0100/0010-regular-expression-matching.md)
-- 0139 - 单词拆分 ｜ [LeetCode 链接](https://leetcode.cn/problems/word-break/) ｜ [题解笔记](../solutions/0101-0200/0139-word-break.md)
 ### 4.2 回文字符串
 方法说明：
 可用中心扩展或区间 DP 统计/求最长回文。回文切分类题可交叉回溯专题。
@@ -64,7 +61,6 @@ def count_substrings(s):
 #### 4.2.1 模板题目
 - 0005 - 最长回文子串 ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-palindromic-substring/) ｜ [题解笔记](../solutions/0001-0100/0005-longest-palindromic-substring.md)
 - 0647 - 回文子串 ｜ [LeetCode 链接](https://leetcode.cn/problems/palindromic-substrings/) ｜ [题解笔记](../solutions/0601-0700/0647-palindromic-substrings.md)
-- 0131 - 分割回文串 ｜ [LeetCode 链接](https://leetcode.cn/problems/palindrome-partitioning/) ｜ [题解笔记](../solutions/0101-0200/0131-palindrome-partitioning.md)
 ### 4.3 括号与栈/DP
 方法说明：
 括号合法性与最长有效区间可用栈或 DP。删除无效括号常转为回溯/BFS 搜索。
@@ -87,9 +83,6 @@ def longest_valid_parentheses(s):
 ```
 
 #### 4.3.1 模板题目
-- 0022 - 括号生成 ｜ [LeetCode 链接](https://leetcode.cn/problems/generate-parentheses/) ｜ [题解笔记](../solutions/0001-0100/0022-generate-parentheses.md)
-- 0032 - 最长有效括号 ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-valid-parentheses/) ｜ [题解笔记](../solutions/0001-0100/0032-longest-valid-parentheses.md)
-- 0301 - 删除无效的括号 ｜ [LeetCode 链接](https://leetcode.cn/problems/remove-invalid-parentheses/) ｜ [题解笔记](../solutions/0301-0400/0301-remove-invalid-parentheses.md)
 - 0761 - 特殊的二进制字符串 ｜ [LeetCode 链接](https://leetcode.cn/problems/special-binary-string/) ｜ [题解笔记](../solutions/0701-0800/0761-special-binary-string.md)
 ### 4.4 字符串栈与解码
 方法说明：
@@ -146,9 +139,6 @@ def find_anagrams(s, p):
 ```
 
 #### 4.5.1 模板题目
-- 0003 - 无重复字符的最长子串 ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-substring-without-repeating-characters/) ｜ [题解笔记](../solutions/0001-0100/0003-longest-substring-without-repeating-characters.md)
-- 0076 - 最小覆盖子串 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-window-substring/) ｜ [题解笔记](../solutions/0001-0100/0076-minimum-window-substring.md)
-- 0438 - 找到字符串中所有字母异位词 ｜ [LeetCode 链接](https://leetcode.cn/problems/find-all-anagrams-in-a-string/) ｜ [题解笔记](../solutions/0401-0500/0438-find-all-anagrams-in-a-string.md)
 - 4137 - 前缀连接组的数目 ｜ [LeetCode 链接](https://leetcode.cn/problems/number-of-prefix-connected-groups/) ｜ [题解笔记](../solutions/4101-4200/4137-number-of-prefix-connected-groups.md)
 - 4216 - 带权单词映射 ｜ [LeetCode 链接](https://leetcode.cn/problems/weighted-word-mapping/) ｜ [题解笔记](../solutions/4201-4300/4216-weighted-word-mapping.md)
 ### 4.6 回溯生成字符串组合
@@ -173,7 +163,6 @@ def letter_combinations(digits, mp):
 ```
 
 #### 4.6.1 模板题目
-- 0017 - 电话号码的字母组合 ｜ [LeetCode 链接](https://leetcode.cn/problems/letter-combinations-of-a-phone-number/) ｜ [题解笔记](../solutions/0001-0100/0017-letter-combinations-of-a-phone-number.md)
 ## 5 易错点
 - 字符串下标与 DP 下标错位。
 - 回文 DP 遍历方向错误。

@@ -108,7 +108,6 @@ def merge(intervals):
 
 #### 4.4.1 模板题目
 - 0056 - 合并区间 ｜ [LeetCode 链接](https://leetcode.cn/problems/merge-intervals/) ｜ [题解笔记](../solutions/0001-0100/0056-merge-intervals.md)
-- 0253 - 会议室 II ｜ [LeetCode 链接](https://leetcode.cn/problems/meeting-rooms-ii/) ｜ [题解笔记](../solutions/0201-0300/0253-meeting-rooms-ii.md)
 - 0452 - 用最少数量的箭引爆气球 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/) ｜ [题解笔记](../solutions/0401-0500/0452-minimum-number-of-arrows-to-burst-balloons.md)
 
 ### 4.5 频次下界与构造思维
@@ -182,7 +181,6 @@ def min_camera_cover(root):
 ```
 
 #### 4.7.1 模板题目
-- 0968 - 监控二叉树 ｜ [LeetCode 链接](https://leetcode.cn/problems/binary-tree-cameras/) ｜ [题解笔记](../solutions/0901-1000/0968-binary-tree-cameras.md)
 ## 5 易错点
 - 只给策略不证明正确性。
 - 排序键选错导致局部决策失效。

@@ -128,7 +128,6 @@ def subarray_sum(nums, k):
 #### 4.5.1 模板题目
 - 0560 - 和为 K 的子数组 ｜ [LeetCode 链接](https://leetcode.cn/problems/subarray-sum-equals-k/) ｜ [题解笔记](../solutions/0501-0600/0560-subarray-sum-equals-k.md)
 - 0238 - 除自身以外数组的乘积 ｜ [LeetCode 链接](https://leetcode.cn/problems/product-of-array-except-self/) ｜ [题解笔记](../solutions/0201-0300/0238-product-of-array-except-self.md)
-- 0437 - 路径总和 III ｜ [LeetCode 链接](https://leetcode.cn/problems/path-sum-iii/) ｜ [题解笔记](../solutions/0401-0500/0437-path-sum-iii.md)
 ### 4.6 结构设计（哈希 + 双链表）
 方法说明：
 设计题核心是保证每个操作复杂度满足要求，常见是 O(1) 的访问与淘汰。

@@ -79,7 +79,6 @@ def dfs(start, edges):
 ```
 
 #### 4.2.1 模板题目
-- 0200 - 岛屿数量 ｜ [LeetCode 链接](https://leetcode.cn/problems/number-of-islands/) ｜ [题解笔记](../solutions/0101-0200/0200-number-of-islands.md)
 - 0094 - 二叉树的中序遍历 ｜ [LeetCode 链接](https://leetcode.cn/problems/binary-tree-inorder-traversal/) ｜ [题解笔记](../solutions/0001-0100/0094-binary-tree-inorder-traversal.md)
 - 0144 - 二叉树的前序遍历 ｜ [LeetCode 链接](https://leetcode.cn/problems/binary-tree-preorder-traversal/) ｜ [题解笔记](../solutions/0101-0200/0144-binary-tree-preorder-traversal.md)
 - 0257 - 二叉树的所有路径 ｜ [LeetCode 链接](https://leetcode.cn/problems/binary-tree-paths/) ｜ [题解笔记](../solutions/0201-0300/0257-binary-tree-paths.md)
@@ -175,7 +174,6 @@ class DSU:
 
 #### 4.4.1 模板题目
 - 0684 - 冗余连接 ｜ [LeetCode 链接](https://leetcode.cn/problems/redundant-connection/) ｜ [题解笔记](../solutions/0601-0700/0684-redundant-connection.md)
-- 0128 - 最长连续序列 ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-consecutive-sequence/) ｜ [题解笔记](../solutions/0101-0200/0128-longest-consecutive-sequence.md)
 - 0547 - 省份数量 ｜ [LeetCode 链接](https://leetcode.cn/problems/number-of-provinces/) ｜ [题解笔记](../solutions/0501-0600/0547-number-of-provinces.md)
 - 0685 - 冗余连接 II ｜ [LeetCode 链接](https://leetcode.cn/problems/redundant-connection-ii/) ｜ [题解笔记](../solutions/0601-0700/0685-redundant-connection-ii.md)
 - 2121 - 寻找图中是否存在路径 ｜ [LeetCode 链接](https://leetcode.cn/problems/find-if-path-exists-in-graph/) ｜ [题解笔记](../solutions/2101-2200/2121-find-if-path-exists-in-graph.md)

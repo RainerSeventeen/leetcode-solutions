@@ -59,7 +59,6 @@ def bfs_mark(grid, si, sj):
 ```
 
 #### 4.2.1 模板题目
-- 0200 - 岛屿数量（BFS 版本） ｜ [LeetCode 链接](https://leetcode.cn/problems/number-of-islands/) ｜ [题解笔记](../solutions/0201-0300/0200-number-of-islands.md)
 ### 4.3 网格搜索与有序剪枝
 方法说明：
 当矩阵行列有序时，可从角点线性收缩；同题也可按行二分，属于二分专题交叉。
@@ -80,7 +79,6 @@ def search_matrix(matrix, target):
 ```
 
 #### 4.3.1 模板题目
-- 0240 - 搜索二维矩阵 II ｜ [LeetCode 链接](https://leetcode.cn/problems/search-a-2d-matrix-ii/) ｜ [题解笔记](../solutions/0201-0300/0240-search-a-2d-matrix-ii.md)
 ### 4.4 网格 DP 路径转移
 方法说明：
 当移动方向固定（如仅右/下）时，用 DP 比搜索更直接；题目主归属可在动态规划专题。
@@ -96,10 +94,6 @@ def unique_paths(m, n):
 ```
 
 #### 4.4.1 模板题目
-- 0062 - 不同路径 ｜ [LeetCode 链接](https://leetcode.cn/problems/unique-paths/) ｜ [题解笔记](../solutions/0001-0100/0062-unique-paths.md)
-- 0064 - 最小路径和 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-path-sum/) ｜ [题解笔记](../solutions/0001-0100/0064-minimum-path-sum.md)
-- 0221 - 最大正方形 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximal-square/) ｜ [题解笔记](../solutions/0201-0300/0221-maximal-square.md)
-- 0085 - 最大矩形 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximal-rectangle/) ｜ [题解笔记](../solutions/0001-0100/0085-maximal-rectangle.md)
 ### 4.5 网格回溯搜索
 方法说明：
 用于路径匹配与约束搜索，状态需要“访问标记 + 回撤”；可交叉到回溯专题。

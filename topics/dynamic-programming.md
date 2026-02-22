@@ -43,7 +43,6 @@ def max_subarray(nums):
 - 0152 - 乘积最大子数组 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximum-product-subarray/) ｜ [题解笔记](../solutions/0101-0200/0152-maximum-product-subarray.md)
 - 0300 - 最长递增子序列 ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-increasing-subsequence/) ｜ [题解笔记](../solutions/0201-0300/0300-longest-increasing-subsequence.md)
 - 0718 - 最长重复子数组 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximum-length-of-repeated-subarray/) ｜ [题解笔记](../solutions/0701-0800/0718-maximum-length-of-repeated-subarray.md)
-- 0338 - 比特位计数 ｜ [LeetCode 链接](https://leetcode.cn/problems/counting-bits/) ｜ [题解笔记](../solutions/0301-0400/0338-counting-bits.md)
 - 0213 - 打家劫舍 II ｜ [LeetCode 链接](https://leetcode.cn/problems/house-robber-ii/) ｜ [题解笔记](../solutions/0201-0300/0213-house-robber-ii.md)
 - 0343 - 整数拆分 ｜ [LeetCode 链接](https://leetcode.cn/problems/integer-break/) ｜ [题解笔记](../solutions/0301-0400/0343-integer-break.md)
 - 0435 - 无重叠区间 ｜ [LeetCode 链接](https://leetcode.cn/problems/non-overlapping-intervals/) ｜ [题解笔记](../solutions/0401-0500/0435-non-overlapping-intervals.md)
@@ -242,7 +241,6 @@ def min_path_sum(grid):
 - 0062 - 不同路径 ｜ [LeetCode 链接](https://leetcode.cn/problems/unique-paths/) ｜ [题解笔记](../solutions/0001-0100/0062-unique-paths.md)
 - 0064 - 最小路径和 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-path-sum/) ｜ [题解笔记](../solutions/0001-0100/0064-minimum-path-sum.md)
 - 0221 - 最大正方形 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximal-square/) ｜ [题解笔记](../solutions/0201-0300/0221-maximal-square.md)
-- 0085 - 最大矩形 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximal-rectangle/) ｜ [题解笔记](../solutions/0001-0100/0085-maximal-rectangle.md)
 ### 4.9 交叉字符串 DP 模板
 方法说明：
 以下题目主归属通常在字符串专题，此处作为 DP 视角交叉索引，模板是二维匹配转移。
@@ -269,9 +267,7 @@ def lcs(a, b):
 
 #### 4.9.1 模板题目
 - 0072 - 编辑距离 ｜ [LeetCode 链接](https://leetcode.cn/problems/edit-distance/) ｜ [题解笔记](../solutions/0001-0100/0072-edit-distance.md)
-- 0647 - 回文子串 ｜ [LeetCode 链接](https://leetcode.cn/problems/palindromic-substrings/) ｜ [题解笔记](../solutions/0601-0700/0647-palindromic-substrings.md)
 - 0139 - 单词拆分 ｜ [LeetCode 链接](https://leetcode.cn/problems/word-break/) ｜ [题解笔记](../solutions/0101-0200/0139-word-break.md)
-- 0005 - 最长回文子串 ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-palindromic-substring/) ｜ [题解笔记](../solutions/0001-0100/0005-longest-palindromic-substring.md)
 - 0010 - 正则表达式匹配 ｜ [LeetCode 链接](https://leetcode.cn/problems/regular-expression-matching/) ｜ [题解笔记](../solutions/0001-0100/0010-regular-expression-matching.md)
 - 0032 - 最长有效括号 ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-valid-parentheses/) ｜ [题解笔记](../solutions/0001-0100/0032-longest-valid-parentheses.md)
 - 0115 - 不同的子序列 ｜ [LeetCode 链接](https://leetcode.cn/problems/distinct-subsequences/) ｜ [题解笔记](../solutions/0101-0200/0115-distinct-subsequences.md)

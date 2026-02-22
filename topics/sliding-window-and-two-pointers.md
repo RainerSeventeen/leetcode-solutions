@@ -126,10 +126,6 @@ def has_cycle(head):
 ```
 
 #### 4.4.1 模板题目
-- 0141 - 环形链表 ｜ [LeetCode 链接](https://leetcode.cn/problems/linked-list-cycle/) ｜ [题解笔记](../solutions/0101-0200/0141-linked-list-cycle.md)
-- 0142 - 环形链表 II ｜ [LeetCode 链接](https://leetcode.cn/problems/linked-list-cycle-ii/) ｜ [题解笔记](../solutions/0101-0200/0142-linked-list-cycle-ii.md)
-- 0160 - 相交链表 ｜ [LeetCode 链接](https://leetcode.cn/problems/intersection-of-two-linked-lists/) ｜ [题解笔记](../solutions/0101-0200/0160-intersection-of-two-linked-lists.md)
-- 0287 - 寻找重复数 ｜ [LeetCode 链接](https://leetcode.cn/problems/find-the-duplicate-number/) ｜ [题解笔记](../solutions/0201-0300/0287-find-the-duplicate-number.md)
 ## 5 易错点
 - 窗口收缩时忘记回滚计数，导致漏解或死循环。
 - 对撞前未排序，或去重位置错误。
