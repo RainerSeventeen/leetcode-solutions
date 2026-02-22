@@ -9,7 +9,7 @@ from pathlib import Path
 
 
 MESSAGE_PATTERN = re.compile(
-    r"^docs: addd note for LeetCode \(([0-9]{4})(,[0-9]{4})*\), [0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    r"^docs: LeetCode \(([0-9]{4})(,[0-9]{4})*\), [0-9]{4}-[0-9]{2}-[0-9]{2}$"
 )
 SOLUTION_FILE_PATTERN = re.compile(r"^(\d{4})-[^.]+\.md$")
 
