@@ -51,6 +51,10 @@ created: 2026-02-20      # YYYY-MM-DD
 - [动态规划](../../topics/dynamic-programming.md)
 ```
 
+映射约束：
+- `solution -> topics` 可多条回链（一个 solution 可以对应多个 topics）。
+- `topics -> solution` 按专题侧单向维护，不因 solution 回链自动反向新增题目条目。
+
 | 文件 | 显示名 |
 |---|---|
 | `sliding-window-and-two-pointers.md` | 滑动窗口与双指针 |
