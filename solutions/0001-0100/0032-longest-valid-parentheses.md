@@ -12,7 +12,44 @@ created: 2026-02-20
 https://leetcode.cn/problems/longest-valid-parentheses/
 
 ## 题目描述
-暂无（需要从LeetCode获取）
+
+<p>给你一个只包含 <code>'('</code> 和 <code>')'</code> 的字符串，找出最长有效（格式正确且连续）括号 <span data-keyword="substring">子串</span> 的长度。</p>
+
+<p>左右括号匹配，即每个左括号都有对应的右括号将其闭合的字符串是格式正确的，比如&nbsp;<code>"(()())"</code>。</p>
+
+<div class="original__bRMd">
+<div>
+<p><strong>示例 1：</strong></p>
+
+<pre>
+<strong>输入：</strong>s = "(()"
+<strong>输出：</strong>2
+<strong>解释：</strong>最长有效括号子串是 "()"
+</pre>
+
+<p><strong>示例 2：</strong></p>
+
+<pre>
+<strong>输入：</strong>s = ")()())"
+<strong>输出：</strong>4
+<strong>解释：</strong>最长有效括号子串是 "()()"
+</pre>
+
+<p><strong>示例 3：</strong></p>
+
+<pre>
+<strong>输入：</strong>s = ""
+<strong>输出：</strong>0
+</pre>
+
+<p><strong>提示：</strong></p>
+
+<ul>
+	<li><code>0 &lt;= s.length &lt;= 3 * 10<sup>4</sup></code></li>
+	<li><code>s[i]</code> 为 <code>'('</code> 或 <code>')'</code></li>
+</ul>
+</div>
+</div>
 
 ## 解题思路
 这里用 DP（代码实现亦如此）。定义 `dp[i]` 为“以 `i` 结尾的最长有效括号长度”，只在 `s[i] == ')'` 时可能更新。

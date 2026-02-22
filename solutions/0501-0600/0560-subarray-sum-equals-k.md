@@ -12,7 +12,32 @@ created: 2026-02-20
 https://leetcode.cn/problems/subarray-sum-equals-k/
 
 ## 题目描述
-暂无（需要从LeetCode获取）
+
+<p>给你一个整数数组 <code>nums</code> 和一个整数&nbsp;<code>k</code> ，请你统计并返回 <em>该数组中和为&nbsp;<code>k</code><strong>&nbsp;</strong>的子数组的个数&nbsp;</em>。</p>
+
+<p>子数组是数组中元素的连续非空序列。</p>
+
+<p><strong>示例 1：</strong></p>
+
+<pre>
+<strong>输入：</strong>nums = [1,1,1], k = 2
+<strong>输出：</strong>2
+</pre>
+
+<p><strong>示例 2：</strong></p>
+
+<pre>
+<strong>输入：</strong>nums = [1,2,3], k = 3
+<strong>输出：</strong>2
+</pre>
+
+<p><strong>提示：</strong></p>
+
+<ul>
+	<li><code>1 &lt;= nums.length &lt;= 2 * 10<sup>4</sup></code></li>
+	<li><code>-1000 &lt;= nums[i] &lt;= 1000</code></li>
+	<li><code>-10<sup>7</sup> &lt;= k &lt;= 10<sup>7</sup></code></li>
+</ul>
 
 ## 解题思路
 连续子数组和 = 前缀和的差，是该题的标准切入点（数组里可能有负数，因此无法用滑动窗口保证单调）。

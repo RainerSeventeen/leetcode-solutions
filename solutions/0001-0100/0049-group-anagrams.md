@@ -12,7 +12,48 @@ created: 2026-02-20
 https://leetcode.cn/problems/group-anagrams/
 
 ## 题目描述
-暂无（需要从LeetCode获取）
+
+<p>给你一个字符串数组，请你将 <span data-keyword="anagram">字母异位词</span> 组合在一起。可以按任意顺序返回结果列表。</p>
+
+<p><strong>示例 1:</strong></p>
+
+<div class="example-block">
+<p><strong>输入:</strong> strs = ["eat", "tea", "tan", "ate", "nat", "bat"]</p>
+
+<p><strong>输出: </strong>[["bat"],["nat","tan"],["ate","eat","tea"]]</p>
+
+<p><strong>解释：</strong></p>
+
+<ul>
+	<li>在 strs 中没有字符串可以通过重新排列来形成 <code>"bat"</code>。</li>
+	<li>字符串 <code>"nat"</code> 和 <code>"tan"</code> 是字母异位词，因为它们可以重新排列以形成彼此。</li>
+	<li>字符串 <code>"ate"</code>&nbsp;，<code>"eat"</code>&nbsp;和 <code>"tea"</code> 是字母异位词，因为它们可以重新排列以形成彼此。</li>
+</ul>
+</div>
+
+<p><strong>示例 2:</strong></p>
+
+<div class="example-block">
+<p><strong>输入:</strong> strs = [""]</p>
+
+<p><strong>输出: </strong>[[""]]</p>
+</div>
+
+<p><strong>示例 3:</strong></p>
+
+<div class="example-block">
+<p><strong>输入:</strong> strs = ["a"]</p>
+
+<p><strong>输出: </strong>[["a"]]</p>
+</div>
+
+<p><strong>提示：</strong></p>
+
+<ul>
+	<li><code>1 &lt;= strs.length &lt;= 10<sup>4</sup></code></li>
+	<li><code>0 &lt;= strs[i].length &lt;= 100</code></li>
+	<li><code>strs[i]</code>&nbsp;仅包含小写字母</li>
+</ul>
 
 ## 解题思路
 异位词的本质是：**每个字符出现次数相同**。因此可以把每个字符串映射成一个“可比较的特征（key）”，再把 key 相同的字符串分到同一组。

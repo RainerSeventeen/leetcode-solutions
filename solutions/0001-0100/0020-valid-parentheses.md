@@ -12,7 +12,63 @@ created: 2026-02-20
 https://leetcode.cn/problems/valid-parentheses/
 
 ## 题目描述
-暂无（需要从LeetCode获取）
+
+<p>给定一个只包括 <code>'('</code>，<code>')'</code>，<code>'{'</code>，<code>'}'</code>，<code>'['</code>，<code>']'</code>&nbsp;的字符串 <code>s</code> ，判断字符串是否有效。</p>
+
+<p>有效字符串需满足：</p>
+
+<ol>
+	<li>左括号必须用相同类型的右括号闭合。</li>
+	<li>左括号必须以正确的顺序闭合。</li>
+	<li>每个右括号都有一个对应的相同类型的左括号。</li>
+</ol>
+
+<p><strong class="example">示例 1：</strong></p>
+
+<div class="example-block">
+<p><span class="example-io"><b>输入：</b>s = "()"</span></p>
+
+<p><span class="example-io"><b>输出：</b>true</span></p>
+</div>
+
+<p><strong class="example">示例 2：</strong></p>
+
+<div class="example-block">
+<p><span class="example-io"><b>输入：</b>s = "()[]{}"</span></p>
+
+<p><span class="example-io"><b>输出：</b>true</span></p>
+</div>
+
+<p><strong class="example">示例 3：</strong></p>
+
+<div class="example-block">
+<p><span class="example-io"><b>输入：</b>s = "(]"</span></p>
+
+<p><span class="example-io"><b>输出：</b>false</span></p>
+</div>
+
+<p><strong class="example">示例 4：</strong></p>
+
+<div class="example-block">
+<p><span class="example-io"><b>输入：</b>s = "([])"</span></p>
+
+<p><span class="example-io"><b>输出：</b>true</span></p>
+</div>
+
+<p><strong class="example">示例 5：</strong></p>
+
+<div class="example-block">
+<p><span class="example-io"><b>输入：</b>s = "([)]"</span></p>
+
+<p><span class="example-io"><b>输出：</b>false</span></p>
+</div>
+
+<p><strong>提示：</strong></p>
+
+<ul>
+	<li><code>1 &lt;= s.length &lt;= 10<sup>4</sup></code></li>
+	<li><code>s</code> 仅由括号 <code>'()[]{}'</code> 组成</li>
+</ul>
 
 ## 解题思路
 用栈维护“尚未匹配的左括号”。遍历字符串：

@@ -12,7 +12,28 @@ created: 2026-02-20
 https://leetcode.cn/problems/generate-parentheses/
 
 ## 题目描述
-暂无（需要从LeetCode获取）
+
+<p>数字 <code>n</code>&nbsp;代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 <strong>有效的 </strong>括号组合。</p>
+
+<p><strong>示例 1：</strong></p>
+
+<pre>
+<strong>输入：</strong>n = 3
+<strong>输出：</strong>["((()))","(()())","(())()","()(())","()()()"]
+</pre>
+
+<p><strong>示例 2：</strong></p>
+
+<pre>
+<strong>输入：</strong>n = 1
+<strong>输出：</strong>["()"]
+</pre>
+
+<p><strong>提示：</strong></p>
+
+<ul>
+	<li><code>1 &lt;= n &lt;= 8</code></li>
+</ul>
 
 ## 解题思路
 回溯生成所有合法括号串。用 `left/right` 表示还剩多少个 `'('`/`')'` 可以放入（或等价地表示已用数量），并维护路径 `path`。

@@ -12,7 +12,8 @@ created: 2026-02-20
 https://leetcode.cn/problems/evaluate-division/
 
 ## 题目描述
-暂无（需要从LeetCode获取）
+
+该题为 LeetCode 会员题（Premium），无法自动获取完整题目描述。
 
 ## 解题思路
 把每个等式 `a / b = val` 看成一条带权边；查询 `x / y` 本质是在同一个连通分量中求两点比值。用**带权并查集**可以在近似线性的时间内支持合并与查询。

@@ -12,7 +12,8 @@ created: 2026-02-20
 https://leetcode.cn/problems/meeting-rooms-ii/
 
 ## 题目描述
-暂无（需要从LeetCode获取）
+
+该题为 LeetCode 会员题（Premium），无法自动获取完整题目描述。
 
 ## 解题思路
 目标是求最少需要多少个会议室，使得所有会议都能安排且不冲突。

@@ -29,6 +29,7 @@ except ModuleNotFoundError:
 PROBLEMS_ALL_URL = "https://leetcode.cn/api/problems/all/"
 GRAPHQL_URL = "https://leetcode.cn/graphql/"
 REQUEST_TIMEOUT = 15
+PREMIUM_DESCRIPTION = "该题为 LeetCode 会员题（Premium），无法自动获取完整题目描述。"
 
 
 def normalize_tag(tag: str) -> str:
@@ -134,9 +135,12 @@ def to_markdown(question: dict[str, Any], problem_id: int, title_slug: str) -> s
     english_title = question.get("title") or ""
     body_title = question.get("translatedTitle") or english_title
     difficulty = question.get("difficulty") or ""
-    content = question.get("translatedContent") or question.get("content") or ""
-    content = strip_empty_paragraphs(content)
-    content = collapse_blank_lines(content)
+    if question.get("isPaidOnly"):
+        content = PREMIUM_DESCRIPTION
+    else:
+        content = question.get("translatedContent") or question.get("content") or ""
+        content = strip_empty_paragraphs(content)
+        content = collapse_blank_lines(content)
     topic_tags = []
     for tag in question.get("topicTags", []):
         tag_name = tag.get("name")
@@ -223,8 +227,6 @@ def main() -> int:
     try:
         title_slug = fetch_title_slug(args.problem_id, headers)
         question = fetch_problem_details(title_slug, headers)
-        if question.get("isPaidOnly"):
-            raise RuntimeError(f"Problem {args.problem_id} is premium-only on LeetCode CN")
         markdown = to_markdown(question, args.problem_id, title_slug)
         output_path = write_markdown_file(
             args.problem_id,
