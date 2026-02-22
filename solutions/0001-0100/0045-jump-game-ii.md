@@ -59,6 +59,9 @@ https://leetcode.cn/problems/jump-game-ii/
 
 每个位置只会被扫描一次。
 
+## 相关专题
+- [贪心与思维](../../topics/greedy-and-thinking.md)
+
 ## 代码
 ```cpp
 #include <vector>

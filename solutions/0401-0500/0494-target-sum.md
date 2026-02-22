@@ -68,6 +68,9 @@ https://leetcode.cn/problems/target-sum/
 - 时间复杂度: $O(n * P)$
 - 空间复杂度: $O(P)$
 
+## 相关专题
+- [动态规划](../../topics/dynamic-programming.md)
+
 ## 代码
 ```python
 class Solution:

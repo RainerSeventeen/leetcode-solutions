@@ -51,6 +51,9 @@ https://leetcode.cn/problems/product-of-array-except-self/
 - 空间复杂度: $O(1)$
 
 不计输出数组。
+## 相关专题
+- [常用数据结构](../../topics/common-data-structures.md)
+
 ## 代码
 ```python
 class Solution:

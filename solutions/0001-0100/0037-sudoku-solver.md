@@ -57,6 +57,9 @@ https://leetcode.cn/problems/sudoku-solver/
 - 时间复杂度: $O(9^m)$（$m$ 为空格数）
 - 空间复杂度: $O(m)$
 
+## 相关专题
+- [链表、树与回溯](../../topics/linked-list-tree-backtracking.md)
+
 ## 代码
 ```cpp
 class Solution {

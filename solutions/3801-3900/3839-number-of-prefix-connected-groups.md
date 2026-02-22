@@ -104,6 +104,9 @@ https://leetcode.cn/problems/number-of-prefix-connected-groups/
 - 时间复杂度: $O(n^2 \cdot k)$
 - 空间复杂度: $O(1)$
 
+## 相关专题
+- [字符串](../../topics/string-algorithms.md)
+
 ## 代码
 ```python
 class Solution:

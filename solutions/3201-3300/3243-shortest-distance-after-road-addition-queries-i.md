@@ -80,6 +80,9 @@ https://leetcode.cn/problems/shortest-distance-after-road-addition-queries-i/
 - 时间复杂度: $O(q(n+q))$
 - 空间复杂度: $O(n+q)$
 
+## 相关专题
+- [图论算法](../../topics/graph-algorithms.md)
+
 ## 代码
 ```python
 class Solution:

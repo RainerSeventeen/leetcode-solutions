@@ -67,6 +67,9 @@ struct Node {
 - 时间复杂度: $O(n)$
 - 空间复杂度: $O(n)$
 
+## 相关专题
+- [图论算法](../../topics/graph-algorithms.md)
+
 ## 代码
 ```cpp
 /*

@@ -52,6 +52,9 @@ https://leetcode.cn/problems/partition-labels/
 
 - 空间复杂度: $O(1)$
 
+## 相关专题
+- [贪心与思维](../../topics/greedy-and-thinking.md)
+
 ## 代码
 ```cpp
 #include <vector>

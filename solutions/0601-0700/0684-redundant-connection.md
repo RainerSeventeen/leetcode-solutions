@@ -60,6 +60,9 @@ https://leetcode.cn/problems/redundant-connection/
 
 其中 `n` 为边数，$\alpha$ 为反阿克曼函数，增长极慢，近似常数。
 
+## 相关专题
+- [图论算法](../../topics/graph-algorithms.md)
+
 ## 代码
 ```python
 from typing import List

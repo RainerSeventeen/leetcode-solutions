@@ -80,6 +80,9 @@ DFS 回溯在网格中找路径。
 
 其中 $L$ 为 `word` 长度；本解法用原地标记代替 `visited` 数组。
 
+## 相关专题
+- [网格图](../../topics/grid-graph.md)
+
 ## 代码
 ```python
 class Solution:

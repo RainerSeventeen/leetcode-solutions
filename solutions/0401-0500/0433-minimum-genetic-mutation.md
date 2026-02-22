@@ -66,6 +66,9 @@ https://leetcode.cn/problems/minimum-genetic-mutation/
 - 时间复杂度: $O(m \cdot L)$
 - 空间复杂度: $O(m)$
 
+## 相关专题
+- [图论算法](../../topics/graph-algorithms.md)
+
 ## 代码
 ```python
 class Solution:

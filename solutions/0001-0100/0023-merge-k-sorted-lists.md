@@ -68,6 +68,9 @@ Python 的 `heapq` 不能直接比较 `ListNode`，因此入堆时用 `(val, uid
 - 时间复杂度: $O(N \log k)$
 - 空间复杂度: $O(k)$
 
+## 相关专题
+- [常用数据结构](../../topics/common-data-structures.md)
+
 ## 代码
 ```python
 class Solution:

@@ -55,6 +55,9 @@ https://leetcode.cn/problems/search-insert-position/
 - 时间复杂度: $O(\log n)$
 - 空间复杂度: $O(1)$
 
+## 相关专题
+- [二分算法](../../topics/binary-search.md)
+
 ## 代码
 ```cpp
 class Solution {

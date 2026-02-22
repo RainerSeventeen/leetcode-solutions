@@ -62,6 +62,9 @@ https://leetcode.cn/problems/next-greater-element-i/
 
 - 空间复杂度: $O(|nums1| + |nums2|)$
 
+## 相关专题
+- [单调栈](../../topics/monotonic-stack.md)
+
 ## 代码
 ```cpp
 class Solution {

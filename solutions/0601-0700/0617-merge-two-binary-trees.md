@@ -57,6 +57,9 @@ https://leetcode.cn/problems/merge-two-binary-trees/
 - 时间复杂度: $O(n_1 + n_2)$
 - 空间复杂度: $O(h_1 + h_2)$
 
+## 相关专题
+- [链表、树与回溯](../../topics/linked-list-tree-backtracking.md)
+
 ## 代码
 ```python
 class Solution:

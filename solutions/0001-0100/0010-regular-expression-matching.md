@@ -76,6 +76,9 @@ https://leetcode.cn/problems/regular-expression-matching/
 - 时间复杂度: $O(mn)$
 - 空间复杂度: $O(mn)$
 
+## 相关专题
+- [动态规划](../../topics/dynamic-programming.md)
+
 ## 代码
 ```python
 class Solution:

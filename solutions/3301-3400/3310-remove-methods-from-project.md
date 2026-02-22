@@ -85,6 +85,9 @@ https://leetcode.cn/problems/remove-methods-from-project/
 - 时间复杂度: $O(n + m)$
 - 空间复杂度: $O(n + m)$
 
+## 相关专题
+- [图论算法](../../topics/graph-algorithms.md)
+
 ## 代码
 ```python
 class Solution:

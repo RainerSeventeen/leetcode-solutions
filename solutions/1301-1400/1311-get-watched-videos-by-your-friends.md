@@ -68,6 +68,9 @@ C -&gt; 2
 - 时间复杂度: $O(n + e + f + v\log v)$
 - 空间复杂度: $O(n + v)$
 
+## 相关专题
+- [图论算法](../../topics/graph-algorithms.md)
+
 ## 代码
 ```python
 class Solution:

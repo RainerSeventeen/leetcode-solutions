@@ -49,6 +49,9 @@ https://leetcode.cn/problems/search-in-a-binary-search-tree/
 - 时间复杂度: $O(h)$
 - 空间复杂度: $O(1)$
 
+## 相关专题
+- [链表、树与回溯](../../topics/linked-list-tree-backtracking.md)
+
 ## 代码
 ```cpp
 /**

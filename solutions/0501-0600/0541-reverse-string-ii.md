@@ -50,6 +50,9 @@ https://leetcode.cn/problems/reverse-string-ii/
 - 时间复杂度: $O(n)$
 - 空间复杂度: $O(1)$
 
+## 相关专题
+- [滑动窗口与双指针](../../topics/sliding-window-and-two-pointers.md)
+
 ## 代码
 ```cpp
 #include <utility>

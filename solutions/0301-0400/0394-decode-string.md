@@ -85,6 +85,9 @@ https://leetcode.cn/problems/decode-string/
 - 时间复杂度: $O(|s| + |ans|)$
 - 空间复杂度: $O(|ans|)$
 
+## 相关专题
+- [字符串](../../topics/string-algorithms.md)
+
 ## 代码
 ```python
 class Solution:

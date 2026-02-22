@@ -65,6 +65,9 @@ myLinkedList.get(1);              // 返回 3
 - 时间复杂度: $O(n)$
 - 空间复杂度: $O(n)$
 
+## 相关专题
+- [链表、树与回溯](../../topics/linked-list-tree-backtracking.md)
+
 ## 代码
 ```cpp
 class MyLinkedList {

@@ -52,6 +52,9 @@ https://leetcode.cn/problems/binary-tree-maximum-path-sum/
 
 其中 `n` 为节点数，`h` 为树高（递归栈深度）。
 
+## 相关专题
+- [链表、树与回溯](../../topics/linked-list-tree-backtracking.md)
+
 ## 代码
 ```python
 class Solution:

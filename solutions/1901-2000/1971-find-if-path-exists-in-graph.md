@@ -58,6 +58,9 @@ https://leetcode.cn/problems/find-if-path-exists-in-graph/
 - 时间复杂度: $O(m\alpha(n))$
 - 空间复杂度: $O(n)$
 
+## 相关专题
+- [图论算法](../../topics/graph-algorithms.md)
+
 ## 代码
 ```python
 from typing import List

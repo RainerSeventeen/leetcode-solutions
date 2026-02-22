@@ -87,6 +87,9 @@ https://leetcode.cn/problems/weighted-word-mapping/
 - 时间复杂度: $O(C)$
 - 空间复杂度: $O(C)$
 
+## 相关专题
+- [字符串](../../topics/string-algorithms.md)
+
 ## 代码
 ```python
 class Solution:

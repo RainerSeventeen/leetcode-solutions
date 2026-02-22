@@ -73,6 +73,9 @@ myQueue.empty(); // return false
 - 时间复杂度: $O(1)$（均摊）
 - 空间复杂度: $O(n)$
 
+## 相关专题
+- [常用数据结构](../../topics/common-data-structures.md)
+
 ## 代码
 ```cpp
 class MyQueue {

@@ -54,6 +54,9 @@ https://leetcode.cn/problems/minimum-number-of-vertices-to-reach-all-nodes/
 - 时间复杂度: $O(n + m)$
 - 空间复杂度: $O(n)$
 
+## 相关专题
+- [图论算法](../../topics/graph-algorithms.md)
+
 ## 代码
 ```python
 class Solution:

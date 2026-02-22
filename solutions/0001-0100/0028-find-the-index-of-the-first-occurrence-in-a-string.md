@@ -46,6 +46,9 @@ https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/
 - 时间复杂度: $O(n+m)$
 - 空间复杂度: $O(m)$
 
+## 相关专题
+- [滑动窗口与双指针](../../topics/sliding-window-and-two-pointers.md)
+
 ## 代码
 ```cpp
 #include <vector>

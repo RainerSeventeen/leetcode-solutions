@@ -58,6 +58,9 @@ https://leetcode.cn/problems/coin-change/
 
 其中 `n` 为硬币种类数。
 
+## 相关专题
+- [动态规划](../../topics/dynamic-programming.md)
+
 ## 代码
 ```python
 class Solution:

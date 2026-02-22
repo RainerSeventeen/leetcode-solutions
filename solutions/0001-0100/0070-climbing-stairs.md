@@ -54,6 +54,9 @@ https://leetcode.cn/problems/climbing-stairs/
 - 时间复杂度: $O(n)$
 - 空间复杂度: $O(1)$
 
+## 相关专题
+- [动态规划](../../topics/dynamic-programming.md)
+
 ## 代码
 ```python
 class Solution:

@@ -59,6 +59,9 @@ https://leetcode.cn/problems/last-stone-weight-ii/
 
 - 空间复杂度: $O(sum)$
 
+## 相关专题
+- [动态规划](../../topics/dynamic-programming.md)
+
 ## 代码
 ```cpp
 class Solution {

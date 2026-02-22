@@ -62,6 +62,9 @@ https://leetcode.cn/problems/queue-reconstruction-by-height/
 
 顺序插入会产生元素位移，因此整体为平方级时间。
 
+## 相关专题
+- [贪心与思维](../../topics/greedy-and-thinking.md)
+
 ## 代码
 ```cpp
 #include <vector>

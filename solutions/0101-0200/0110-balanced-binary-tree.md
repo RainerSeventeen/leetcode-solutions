@@ -52,6 +52,9 @@ https://leetcode.cn/problems/balanced-binary-tree/
 
 其中 `h` 为树高。
 
+## 相关专题
+- [链表、树与回溯](../../topics/linked-list-tree-backtracking.md)
+
 ## 代码
 ```cpp
 class Solution {

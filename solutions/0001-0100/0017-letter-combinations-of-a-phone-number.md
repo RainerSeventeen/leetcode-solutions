@@ -54,6 +54,9 @@ https://leetcode.cn/problems/letter-combinations-of-a-phone-number/
 - 时间复杂度: $O(4^n \cdot n)$
 - 空间复杂度: $O(n)$
 
+## 相关专题
+- [链表、树与回溯](../../topics/linked-list-tree-backtracking.md)
+
 ## 代码
 ```python
 class Solution:

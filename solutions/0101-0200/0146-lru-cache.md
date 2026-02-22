@@ -70,6 +70,9 @@ lRUCache.get(4);    // 返回 4
 - 空间复杂度: $O(capacity)$
 
 时间复杂度按单次 `get/put` 计算。
+## 相关专题
+- [常用数据结构](../../topics/common-data-structures.md)
+
 ## 代码
 ```python
 from collections import OrderedDict

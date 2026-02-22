@@ -51,6 +51,9 @@ https://leetcode.cn/problems/binary-number-with-alternating-bits/
 - 时间复杂度: $O(\log n)$
 - 空间复杂度: $O(1)$
 
+## 相关专题
+- [位运算](../../topics/bit-operations.md)
+
 ## 代码
 ```python
 class Solution:

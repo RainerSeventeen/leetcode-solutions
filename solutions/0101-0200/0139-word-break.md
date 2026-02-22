@@ -62,6 +62,9 @@ https://leetcode.cn/problems/word-break/
 
 其中 `n` 为字符串长度，`m` 为字典单词数，`L` 为单词平均长度（切片比较代价）。
 
+## 相关专题
+- [动态规划](../../topics/dynamic-programming.md)
+
 ## 代码
 ```python
 class Solution:

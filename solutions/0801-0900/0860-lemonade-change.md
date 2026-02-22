@@ -59,6 +59,9 @@ https://leetcode.cn/problems/lemonade-change/
 - 时间复杂度: $O(n)$
 - 空间复杂度: $O(1)$
 
+## 相关专题
+- [贪心与思维](../../topics/greedy-and-thinking.md)
+
 ## 代码
 ```cpp
 class Solution {

@@ -66,6 +66,9 @@ myStack.empty(); // 返回 False
 - 时间复杂度: $O(n)$
 - 空间复杂度: $O(n)$
 
+## 相关专题
+- [常用数据结构](../../topics/common-data-structures.md)
+
 ## 代码
 ```cpp
 #include <queue>

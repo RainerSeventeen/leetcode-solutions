@@ -76,6 +76,9 @@ https://leetcode.cn/problems/min-cost-to-connect-all-points/
 - 时间复杂度: $O(n^2)$
 - 空间复杂度: $O(n)$
 
+## 相关专题
+- [图论算法](../../topics/graph-algorithms.md)
+
 ## 代码
 ```python
 class Solution:

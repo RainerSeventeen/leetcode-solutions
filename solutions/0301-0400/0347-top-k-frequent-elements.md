@@ -69,6 +69,9 @@ https://leetcode.cn/problems/top-k-frequent-elements/
 - 时间复杂度: $O(n\\log k)$
 - 空间复杂度: $O(n)$
 
+## 相关专题
+- [常用数据结构](../../topics/common-data-structures.md)
+
 ## 代码
 ```python
 class Solution:

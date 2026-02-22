@@ -62,6 +62,9 @@ https://leetcode.cn/problems/number-of-islands/
 
 - 时间复杂度: $O(mn)$
 - 空间复杂度: $O(mn)$（递归栈最深 $mn$ 层）
+## 相关专题
+- [网格图](../../topics/grid-graph.md)
+
 ## 代码
 ```python
 class Solution:

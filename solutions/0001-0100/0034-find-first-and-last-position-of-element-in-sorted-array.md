@@ -61,6 +61,9 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 - 时间复杂度: $O(\log n)$
 - 空间复杂度: $O(1)$
 
+## 相关专题
+- [二分算法](../../topics/binary-search.md)
+
 ## 代码
 ```python
 class Solution:

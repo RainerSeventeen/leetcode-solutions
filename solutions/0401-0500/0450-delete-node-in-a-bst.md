@@ -71,6 +71,9 @@ https://leetcode.cn/problems/delete-node-in-a-bst/
 
 其中 `h` 为树高（递归栈深度）。
 
+## 相关专题
+- [链表、树与回溯](../../topics/linked-list-tree-backtracking.md)
+
 ## 代码
 ```cpp
 class Solution {

@@ -55,6 +55,9 @@ https://leetcode.cn/problems/course-schedule/
 
 - 时间复杂度: $O(V+E)$
 - 空间复杂度: $O(V+E)$
+## 相关专题
+- [图论算法](../../topics/graph-algorithms.md)
+
 ## 代码
 ```python
 class Solution:

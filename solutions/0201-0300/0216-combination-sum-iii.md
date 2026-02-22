@@ -65,6 +65,9 @@ https://leetcode.cn/problems/combination-sum-iii/
 - 时间复杂度: $O(C(9,k))$
 - 空间复杂度: $O(k)$
 
+## 相关专题
+- [链表、树与回溯](../../topics/linked-list-tree-backtracking.md)
+
 ## 代码
 ```cpp
 class Solution {

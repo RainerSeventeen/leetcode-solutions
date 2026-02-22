@@ -78,6 +78,9 @@ https://leetcode.cn/problems/maximal-rectangle/
 
 说明：每行更新高度 $O(n)$，并用单调栈均摊 $O(n)$ 求一次直方图最大矩形。
 
+## 相关专题
+- [单调栈](../../topics/monotonic-stack.md)
+
 ## 代码
 ```python
 class Solution:

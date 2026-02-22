@@ -51,6 +51,9 @@ https://leetcode.cn/problems/combinations/
 - 时间复杂度: $O(C(n,k)\cdot k)$
 - 空间复杂度: $O(k)$
 
+## 相关专题
+- [链表、树与回溯](../../topics/linked-list-tree-backtracking.md)
+
 ## 代码
 ```cpp
 class Solution {

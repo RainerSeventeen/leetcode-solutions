@@ -51,6 +51,9 @@ https://leetcode.cn/problems/swap-nodes-in-pairs/
 - 时间复杂度: $O(n)$
 - 空间复杂度: $O(1)$
 
+## 相关专题
+- [链表、树与回溯](../../topics/linked-list-tree-backtracking.md)
+
 ## 代码
 ```cpp
 /**

@@ -62,6 +62,9 @@ minStack.getMin();   --&gt; 返回 -2.
 - 空间复杂度: $O(n)$
 
 时间复杂度按单次操作（`push/pop/top/getMin`）计算。
+## 相关专题
+- [常用数据结构](../../topics/common-data-structures.md)
+
 ## 代码
 ```python
 class MinStack:

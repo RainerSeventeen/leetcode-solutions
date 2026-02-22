@@ -76,6 +76,9 @@ https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-tra
 
 说明：哈希表用于中序下标定位为 $O(n)$；递归栈最坏为 $O(h)$。
 
+## 相关专题
+- [链表、树与回溯](../../topics/linked-list-tree-backtracking.md)
+
 ## 代码
 ```python
 class Solution:

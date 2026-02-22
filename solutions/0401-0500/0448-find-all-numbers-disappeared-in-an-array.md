@@ -50,6 +50,9 @@ https://leetcode.cn/problems/find-all-numbers-disappeared-in-an-array/
 
 不计输出数组。
 
+## 相关专题
+- [常用数据结构](../../topics/common-data-structures.md)
+
 ## 代码
 ```python
 class Solution:

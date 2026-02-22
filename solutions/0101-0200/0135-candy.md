@@ -60,6 +60,9 @@ https://leetcode.cn/problems/candy/
 
 需要一个长度为 `n` 的数组记录每个孩子的糖果数。
 
+## 相关专题
+- [贪心与思维](../../topics/greedy-and-thinking.md)
+
 ## 代码
 ```cpp
 #include <vector>

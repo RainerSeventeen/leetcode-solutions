@@ -65,6 +65,9 @@ https://leetcode.cn/problems/subsets/
 
 说明：上述空间复杂度不计输出；输出本身需要 $O(n\cdot 2^n)$。
 
+## 相关专题
+- [链表、树与回溯](../../topics/linked-list-tree-backtracking.md)
+
 ## 代码
 ```python
 class Solution:

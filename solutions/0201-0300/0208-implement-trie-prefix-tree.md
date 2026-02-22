@@ -59,6 +59,9 @@ trie.search("app");     // 返回 True
 - 空间复杂度: $O(n)$
 
 其中 `L` 为单词/前缀长度，`n` 为所有已插入单词的总字符数。
+## 相关专题
+- [常用数据结构](../../topics/common-data-structures.md)
+
 ## 代码
 ```python
 class Trie:

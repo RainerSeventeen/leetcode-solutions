@@ -62,6 +62,9 @@ coins =  3*1*5    +   3*5*8   +  1*3*8  + 1*8*1 = 167</pre>
 - 时间复杂度: $O(n^3)$
 - 空间复杂度: $O(n^2)$
 
+## 相关专题
+- [动态规划](../../topics/dynamic-programming.md)
+
 ## 代码
 ```python
 class Solution:

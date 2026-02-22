@@ -55,6 +55,9 @@ https://leetcode.cn/problems/ransom-note/
 - 时间复杂度: $O(m+n)$
 - 空间复杂度: $O(1)$
 
+## 相关专题
+- [常用数据结构](../../topics/common-data-structures.md)
+
 ## 代码
 ```cpp
 class Solution {

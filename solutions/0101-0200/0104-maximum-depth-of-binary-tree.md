@@ -49,6 +49,9 @@ https://leetcode.cn/problems/maximum-depth-of-binary-tree/
 
 - 空间复杂度: $O(h)$
 
+## 相关专题
+- [图论算法](../../topics/graph-algorithms.md)
+
 ## 代码
 ```python
 class Solution:

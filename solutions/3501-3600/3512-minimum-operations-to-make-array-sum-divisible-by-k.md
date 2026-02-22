@@ -82,6 +82,9 @@ https://leetcode.cn/problems/minimum-operations-to-make-array-sum-divisible-by-k
 
 - 空间复杂度: $O(1)$
 
+## 相关专题
+- [数学算法](../../topics/math-algorithms.md)
+
 ## 代码
 ```cpp
 class Solution {

@@ -40,6 +40,9 @@ https://leetcode.cn/problems/meeting-rooms-ii/
 
 说明：排序与每次堆操作（入堆/出堆）都是 $\log n$ 级别，整体为 $O(n\log n)$。
 
+## 相关专题
+- [常用数据结构](../../topics/common-data-structures.md)
+
 ## 代码
 ```python
    # 会员题目没写过

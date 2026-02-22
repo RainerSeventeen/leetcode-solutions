@@ -76,6 +76,9 @@ https://leetcode.cn/problems/build-a-matrix-with-conditions/
 
 - 空间复杂度: $O(k + n + m)$
 
+## 相关专题
+- [图论算法](../../topics/graph-algorithms.md)
+
 ## 代码
 ```python
 class Solution:

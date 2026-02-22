@@ -51,6 +51,9 @@ DFS 遍历时维护从根到当前节点的前缀和 `currSum`。若存在某个
 - 时间复杂度: $O(n)$
 - 空间复杂度: $O(n)$
 
+## 相关专题
+- [链表、树与回溯](../../topics/linked-list-tree-backtracking.md)
+
 ## 代码
 ```python
 class Solution:

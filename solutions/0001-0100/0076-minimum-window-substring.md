@@ -82,6 +82,9 @@ https://leetcode.cn/problems/minimum-window-substring/
 
 其中 $\Sigma$ 为字符集大小；若固定为 ASCII/小写字母，可视为常数。
 
+## 相关专题
+- [滑动窗口与双指针](../../topics/sliding-window-and-two-pointers.md)
+
 ## 代码
 ```python
 class Solution:

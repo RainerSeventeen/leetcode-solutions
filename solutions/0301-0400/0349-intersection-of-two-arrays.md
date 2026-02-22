@@ -45,6 +45,9 @@ https://leetcode.cn/problems/intersection-of-two-arrays/
 - 时间复杂度: $O(m+n)$
 - 空间复杂度: $O(m+n)$
 
+## 相关专题
+- [二分算法](../../topics/binary-search.md)
+
 ## 代码
 ```cpp
 #include <unordered_set>

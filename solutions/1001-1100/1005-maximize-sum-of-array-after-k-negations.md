@@ -62,6 +62,9 @@ https://leetcode.cn/problems/maximize-sum-of-array-after-k-negations/
 - 时间复杂度: $O(n \log n)$
 - 空间复杂度: $O(\log n)$
 
+## 相关专题
+- [贪心与思维](../../topics/greedy-and-thinking.md)
+
 ## 代码
 ```cpp
 class Solution {

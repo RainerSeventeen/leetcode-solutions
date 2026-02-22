@@ -67,6 +67,9 @@ https://leetcode.cn/problems/special-binary-string/
 
 - 空间复杂度: $O(n)$
 
+## 相关专题
+- [字符串](../../topics/string-algorithms.md)
+
 ## 代码
 ```python
 class Solution:

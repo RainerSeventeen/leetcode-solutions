@@ -47,6 +47,9 @@ https://leetcode.cn/problems/kth-largest-element-in-an-array/
 
 - 时间复杂度: $O(n \log k)$
 - 空间复杂度: $O(k)$
+## 相关专题
+- [常用数据结构](../../topics/common-data-structures.md)
+
 ## 代码
 ```python
 class Solution:

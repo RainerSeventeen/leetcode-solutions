@@ -52,6 +52,9 @@ https://leetcode.cn/problems/largest-rectangle-in-histogram/
 
 - 空间复杂度: $O(n)$
 
+## 相关专题
+- [单调栈](../../topics/monotonic-stack.md)
+
 ## 代码
 ```cpp
 class Solution {

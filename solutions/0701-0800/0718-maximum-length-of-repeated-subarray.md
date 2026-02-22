@@ -50,6 +50,9 @@ https://leetcode.cn/problems/maximum-length-of-repeated-subarray/
 - 时间复杂度: $O(nm)$
 - 空间复杂度: $O(nm)$
 
+## 相关专题
+- [动态规划](../../topics/dynamic-programming.md)
+
 ## 代码
 ```python
 class Solution:

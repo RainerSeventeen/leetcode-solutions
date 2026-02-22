@@ -46,6 +46,9 @@ https://leetcode.cn/problems/count-square-sum-triples/
 
 - 空间复杂度: $O(1)$
 
+## 相关专题
+- [数学算法](../../topics/math-algorithms.md)
+
 ## 代码
 ```cpp
 class Solution {

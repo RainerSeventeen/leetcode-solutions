@@ -55,6 +55,9 @@ https://leetcode.cn/problems/monotone-increasing-digits/
 
 其中 `m` 为数字位数。
 
+## 相关专题
+- [贪心与思维](../../topics/greedy-and-thinking.md)
+
 ## 代码
 ```cpp
 #include <string>

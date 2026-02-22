@@ -55,6 +55,9 @@ https://leetcode.cn/problems/invert-binary-tree/
 - 空间复杂度: $O(h)$
 
 其中 `h` 为树高（递归栈深度）。
+## 相关专题
+- [链表、树与回溯](../../topics/linked-list-tree-backtracking.md)
+
 ## 代码
 ```python
 class Solution:

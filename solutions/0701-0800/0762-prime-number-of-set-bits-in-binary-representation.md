@@ -65,6 +65,9 @@ https://leetcode.cn/problems/prime-number-of-set-bits-in-binary-representation/
 
 - 空间复杂度: $O(1)$
 
+## 相关专题
+- [位运算](../../topics/bit-operations.md)
+
 ## 代码
 ```python
 class Solution:

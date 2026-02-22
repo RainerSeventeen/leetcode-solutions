@@ -50,6 +50,9 @@ https://leetcode.cn/problems/construct-binary-tree-from-inorder-and-postorder-tr
 
 递归栈与数组切片会引入额外开销。
 
+## 相关专题
+- [链表、树与回溯](../../topics/linked-list-tree-backtracking.md)
+
 ## 代码
 ```cpp
 class Solution {

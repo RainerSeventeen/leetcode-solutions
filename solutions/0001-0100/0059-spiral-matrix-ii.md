@@ -43,6 +43,9 @@ https://leetcode.cn/problems/spiral-matrix-ii/
 - 时间复杂度: $O(n^2)$
 - 空间复杂度: $O(1)$
 
+## 相关专题
+- [数学算法](../../topics/math-algorithms.md)
+
 ## 代码
 ```cpp
 class Solution {

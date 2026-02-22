@@ -64,6 +64,9 @@ https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/
 
 - 空间复杂度: $O(\log n)$
 
+## 相关专题
+- [贪心与思维](../../topics/greedy-and-thinking.md)
+
 ## 代码
 ```cpp
 #include <algorithm>

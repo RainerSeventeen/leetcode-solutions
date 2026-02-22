@@ -51,6 +51,9 @@ https://leetcode.cn/problems/rotate-image/
 - 时间复杂度: $O(n^2)$
 - 空间复杂度: $O(1)$
 
+## 相关专题
+- [网格图](../../topics/grid-graph.md)
+
 ## 代码
 ```cpp
 class Solution {

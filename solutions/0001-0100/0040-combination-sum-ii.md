@@ -60,6 +60,9 @@ https://leetcode.cn/problems/combination-sum-ii/
 
 不计答案存储。
 
+## 相关专题
+- [链表、树与回溯](../../topics/linked-list-tree-backtracking.md)
+
 ## 代码
 ```cpp
 class Solution {
