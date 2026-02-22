@@ -6,7 +6,7 @@ tags: [stack, greedy, array, two-pointers, sorting, monotonic-stack]
 created: 2026-02-20
 ---
 
-# 581. Shortest Unsorted Continuous Subarray
+# 581. 最短无序连续子数组
 
 ## 题目链接
 https://leetcode.cn/problems/shortest-unsorted-continuous-subarray/

@@ -6,7 +6,7 @@ tags: [array, sorting]
 created: 2026-02-20
 ---
 
-# 56. Merge Intervals
+# 56. 合并区间
 
 ## 题目链接
 https://leetcode.cn/problems/merge-intervals/

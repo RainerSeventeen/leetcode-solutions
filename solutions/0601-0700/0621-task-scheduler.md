@@ -6,7 +6,7 @@ tags: [greedy, array, hash-table, counting, sorting, heap-priority-queue]
 created: 2026-02-20
 ---
 
-# 621. Task Scheduler
+# 621. 任务调度器
 
 ## 题目链接
 https://leetcode.cn/problems/task-scheduler/

@@ -6,7 +6,7 @@ tags: [bit-manipulation, array, backtracking]
 created: 2026-02-20
 ---
 
-# 78. Subsets
+# 78. 子集
 
 ## 题目链接
 https://leetcode.cn/problems/subsets/

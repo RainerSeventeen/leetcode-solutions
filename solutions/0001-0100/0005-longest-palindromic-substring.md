@@ -6,7 +6,7 @@ tags: [two-pointers, string, dynamic-programming]
 created: 2026-02-20
 ---
 
-# 5. Longest Palindromic Substring
+# 5. 最长回文子串
 
 ## 题目链接
 https://leetcode.cn/problems/longest-palindromic-substring/

@@ -6,7 +6,7 @@ tags: [array, dynamic-programming, matrix]
 created: 2026-02-20
 ---
 
-# 64. Minimum Path Sum
+# 64. 最小路径和
 
 ## 题目链接
 https://leetcode.cn/problems/minimum-path-sum/

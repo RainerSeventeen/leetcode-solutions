@@ -6,7 +6,7 @@ tags: [array, two-pointers, sorting]
 created: 2026-02-20
 ---
 
-# 75. Sort Colors
+# 75. 颜色分类
 
 ## 题目链接
 https://leetcode.cn/problems/sort-colors/

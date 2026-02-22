@@ -6,7 +6,7 @@ tags: [tree, depth-first-search, breadth-first-search, binary-tree]
 created: 2026-02-20
 ---
 
-# 101. Symmetric Tree
+# 101. 对称二叉树
 
 ## 题目链接
 https://leetcode.cn/problems/symmetric-tree/

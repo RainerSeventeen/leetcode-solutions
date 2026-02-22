@@ -6,7 +6,7 @@ tags: [hash-table, string, sliding-window]
 created: 2026-02-20
 ---
 
-# 3. Longest Substring Without Repeating Characters
+# 3. 无重复字符的最长子串
 
 ## 题目链接
 https://leetcode.cn/problems/longest-substring-without-repeating-characters/

@@ -6,7 +6,7 @@ tags: [math, dynamic-programming, combinatorics]
 created: 2026-02-20
 ---
 
-# 62. Unique Paths
+# 62. 不同路径
 
 ## 题目链接
 https://leetcode.cn/problems/unique-paths/

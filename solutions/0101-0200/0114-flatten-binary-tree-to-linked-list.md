@@ -6,7 +6,7 @@ tags: [stack, tree, depth-first-search, linked-list, binary-tree]
 created: 2026-02-20
 ---
 
-# 114. Flatten Binary Tree to Linked List
+# 114. 二叉树展开为链表
 
 ## 题目链接
 https://leetcode.cn/problems/flatten-binary-tree-to-linked-list/

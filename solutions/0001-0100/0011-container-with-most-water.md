@@ -6,7 +6,7 @@ tags: [greedy, array, two-pointers]
 created: 2026-02-20
 ---
 
-# 11. Container With Most Water
+# 11. 盛最多水的容器
 
 ## 题目链接
 https://leetcode.cn/problems/container-with-most-water/

@@ -6,7 +6,7 @@ tags: [hash-table, string, sliding-window]
 created: 2026-02-20
 ---
 
-# 76. Minimum Window Substring
+# 76. 最小覆盖子串
 
 ## 题目链接
 https://leetcode.cn/problems/minimum-window-substring/

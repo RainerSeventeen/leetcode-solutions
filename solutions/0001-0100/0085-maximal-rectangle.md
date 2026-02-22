@@ -6,7 +6,7 @@ tags: [stack, array, dynamic-programming, matrix, monotonic-stack]
 created: 2026-02-20
 ---
 
-# 85. Maximal Rectangle
+# 85. 最大矩形
 
 ## 题目链接
 https://leetcode.cn/problems/maximal-rectangle/

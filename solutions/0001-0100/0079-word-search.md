@@ -6,7 +6,7 @@ tags: [depth-first-search, array, string, backtracking, matrix]
 created: 2026-02-20
 ---
 
-# 79. Word Search
+# 79. 单词搜索
 
 ## 题目链接
 https://leetcode.cn/problems/word-search/

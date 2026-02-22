@@ -6,7 +6,7 @@ tags: [math, binary-search]
 created: 2026-02-21
 ---
 
-# 69. x 的平方根 
+# 69. x 的平方根
 
 ## 题目链接
 https://leetcode.cn/problems/sqrtx/

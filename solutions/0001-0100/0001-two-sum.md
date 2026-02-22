@@ -6,7 +6,7 @@ tags: [array, hash-table]
 created: 2026-02-20
 ---
 
-# 1. Two Sum
+# 1. 两数之和
 
 ## 题目链接
 https://leetcode.cn/problems/two-sum/

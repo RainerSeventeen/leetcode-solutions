@@ -6,7 +6,7 @@ tags: [tree, depth-first-search, breadth-first-search, binary-tree]
 created: 2026-02-20
 ---
 
-# 617. Merge Two Binary Trees
+# 617. 合并二叉树
 
 ## 题目链接
 https://leetcode.cn/problems/merge-two-binary-trees/

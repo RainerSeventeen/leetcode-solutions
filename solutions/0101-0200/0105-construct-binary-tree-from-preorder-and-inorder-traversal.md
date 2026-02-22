@@ -6,7 +6,7 @@ tags: [tree, array, hash-table, divide-and-conquer, binary-tree]
 created: 2026-02-20
 ---
 
-# 105. Construct Binary Tree from Preorder and Inorder Traversal
+# 105. 从前序与中序遍历序列构造二叉树
 
 ## 题目链接
 https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/
