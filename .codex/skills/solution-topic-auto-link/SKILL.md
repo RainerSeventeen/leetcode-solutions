@@ -18,6 +18,11 @@ Follow `.ai_docs/rules.md` strictly:
 - Do not create files under `solutions/`; they must come from `scripts/fetch_problem.py`.
 - Keep complexity format as `$O(x)$` if edited.
 - Each solution can be linked to exactly one topic section only. Never add the same problem to multiple sections/files in one run.
+- When a topic bullet is added/updated, sync backlink in the same `solutions/...md`:
+  - Ensure `## 相关专题` exists.
+  - Ensure exactly one backlink to the selected topic file in this run (single ownership).
+  - Backlink format must be exactly `- [专题显示名](../../topics/xxx.md)`.
+  - `专题显示名` must match README topic name convention (remove Chinese parenthetical text).
 - Topic bullet format must be exactly:
   - `- 0000 - 题目名 ｜ [LeetCode 链接](https://leetcode.cn/problems/xxx/) ｜ [题解笔记](../solutions/xxxx-xxxx/xxxx-slug.md)`
 - In `#### 模板题目` entries, `题目名` must use Chinese.
@@ -48,13 +53,20 @@ Follow `.ai_docs/rules.md` strictly:
 - Use leetcode.cn URL with trailing slash.
 - Use correct relative note path.
 
-5. De-dup and ordering:
+5. Sync solution backlink:
+- In the processed solution file, update `## 相关专题` to include backlink to the selected topic.
+- Keep one topic backlink per solution in this workflow (consistent with single ownership).
+- Avoid duplicate backlink lines.
+- Follow `.ai_docs/format.md` display-name mapping (README topic name, remove Chinese parenthetical text).
+
+6. De-dup and ordering:
 - Avoid duplicate problem entries in same section/file.
 - If section is id-sorted, keep sorting; otherwise follow local list style.
 
-6. Validate and normalize:
+7. Validate and normalize:
 - Run `python3 scripts/ci/check_solutions.py`.
 - Run `python3 scripts/normalize_topics_title.py`.
+- If many solution backlinks are inconsistent, optionally run `python3 scripts/backlink_solutions.py` and include resulting changes.
 - Include normalization changes if produced.
 
 ## Final Output Template

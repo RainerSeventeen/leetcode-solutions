@@ -21,25 +21,44 @@ created: 2026-02-20      # YYYY-MM-DD
 ---
 ```
 
-### 必须包含的四个 Section
+### 必须包含的五个 Section
 
 ```markdown
 ## 题目链接
 ## 题目描述
 ## 解题思路   ← 须含时间/空间复杂度，格式：$O(n)$，不能留 $O()$ 占位符
+## 相关专题   ← 至少一条回链接，格式见下方
 ## 代码       ← 代码块语言标签必须正确（如 ```python）
 ```
 
-### CI 校验规则（`scripts/ci/check_solutions.py`）
+> CI 额外校验：`id` 与文件名题号、H1 标题题号三者一致；全库 `id` 不得重复。
 
-- 文件路径/名格式合法
-- Front matter 四个 key 均存在且非空
-- `id` 与文件名题号、H1 标题题号三者一致
-- `difficulty` 只能是 `Easy / Medium / Hard`
-- `created` 是合法的 `YYYY-MM-DD`
-- 包含全部四个必需 Section
-- 不含占位符 `O()`
-- 无重复 `id`
+### ## 相关专题 格式
+
+每条回链接独占一行，显示名为 README 专题章节名（**去掉中文括号内容**）：
+
+```markdown
+## 相关专题
+- [贪心与思维](../../topics/greedy-and-thinking.md)
+- [动态规划](../../topics/dynamic-programming.md)
+```
+
+| 文件 | 显示名 |
+|---|---|
+| `sliding-window-and-two-pointers.md` | 滑动窗口与双指针 |
+| `binary-search.md` | 二分算法 |
+| `monotonic-stack.md` | 单调栈 |
+| `grid-graph.md` | 网格图 |
+| `bit-operations.md` | 位运算 |
+| `graph-algorithms.md` | 图论算法 |
+| `dynamic-programming.md` | 动态规划 |
+| `common-data-structures.md` | 常用数据结构 |
+| `math-algorithms.md` | 数学算法 |
+| `greedy-and-thinking.md` | 贪心与思维 |
+| `linked-list-tree-backtracking.md` | 链表、树与回溯 |
+| `string-algorithms.md` | 字符串 |
+
+> 批量补全/修正回链接：`python scripts/backlink_solutions.py`
 
 ---
 
@@ -62,15 +81,13 @@ created: 2026-02-20      # YYYY-MM-DD
 ## 2 核心思想
 - 要点一
 - 要点二
-- ...
 
 ## 3 解题流程
 1. 步骤一
 2. 步骤二
-3. ...
 
 ## 4 模板与子方法
-### 4.1 子方法名
+### 4.1 子方法名（语义化名称，如"右侧第一个更大元素"）
 方法说明：
 ...
 
@@ -83,26 +100,7 @@ created: 2026-02-20      # YYYY-MM-DD
 - 0000 - 题目中文名 ｜ [LeetCode 链接](https://leetcode.cn/problems/xxx/) ｜ [题解笔记](../solutions/xxxx-xxxx/xxxx-slug.md)
 ```
 
-### 子方法（`###`）规则
-
-- 命名直接用语义化名称，如 `### 4.1 右侧第一个更大元素`，不写"子方法 A/B/C"
-- 每个子方法包含三部分：**方法说明**、**模板代码**（代码块）、**`#### x.x.x 模板题目`**（题目列表）
-- 不同子方法的题目不要混放，边界要清晰
-
-### 题目条目格式
-
-```
-- 0000 - 题目中文名 ｜ [LeetCode 链接](https://leetcode.cn/problems/xxx/) ｜ [题解笔记](../solutions/xxxx-xxxx/xxxx-slug.md)
-```
-
-约束：
-- `id` 固定 4 位数字（不足补零）
-- 题目名使用中文
-- `题解笔记` 路径必须指向实际存在的文件，不允许占位符
-
-### CI 校验规则（`scripts/ci/check_topics.py`）
-
-- 同一题号在全部 `topics/*.md` 中出现两次及以上视为失败，输出重复题号清单
+题目条目约束：`id` 固定 4 位数字（不足补零）；题目名用中文；`题解笔记` 路径须指向真实文件，不允许占位符；同一题号不得跨 topics 文件重复。
 
 ### 格式化
 

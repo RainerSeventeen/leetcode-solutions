@@ -8,10 +8,11 @@
   - Front matter id 与文件名及 H1 标题的一致性
   - difficulty 取值（Easy / Medium / Hard）
   - created 日期格式（YYYY-MM-DD）
-  - 必需章节（## 题目链接 / ## 题目描述 / ## 解题思路 / ## 代码）
+  - 必需章节（## 题目链接 / ## 题目描述 / ## 解题思路 / ## 相关专题 / ## 代码）
   - 复杂度占位符 O() 是否已填写
   - 时间复杂度 / 空间复杂度 格式（$O(...)$）
   - 重复 id 检测
+  - ## 相关专题 段落存在、含有回链接、回链接命名规范
 
 用法:
   python scripts/ci/check_solutions.py
@@ -38,6 +39,27 @@ REQUIRED_SECTIONS = (
 )
 ALLOWED_DIFFICULTY = {"Easy", "Medium", "Hard"}
 COMPLEXITY_VALUE_RE = re.compile(r"^\$O\([^$\n]+\)\$")
+
+# 回链接行格式：- [显示名](../../topics/xxx.md)
+BACKLINK_LINE_RE = re.compile(
+    r"^- \[([^\]]+)\]\(\.\./\.\./topics/([^)]+\.md)\)\s*$"
+)
+
+# topic 文件名 → 规范显示名（与 README 章节名去括号后一致）
+TOPIC_NAME_MAP: dict[str, str] = {
+    "sliding-window-and-two-pointers.md": "滑动窗口与双指针",
+    "binary-search.md":                   "二分算法",
+    "monotonic-stack.md":                 "单调栈",
+    "grid-graph.md":                      "网格图",
+    "bit-operations.md":                  "位运算",
+    "graph-algorithms.md":                "图论算法",
+    "dynamic-programming.md":             "动态规划",
+    "common-data-structures.md":          "常用数据结构",
+    "math-algorithms.md":                 "数学算法",
+    "greedy-and-thinking.md":             "贪心与思维",
+    "linked-list-tree-backtracking.md":   "链表、树与回溯",
+    "string-algorithms.md":               "字符串",
+}
 
 
 def parse_front_matter(text: str) -> dict[str, str]:
@@ -74,6 +96,57 @@ def check_complexity_line(content: str, label: str) -> str | None:
     if not COMPLEXITY_VALUE_RE.match(value):
         return f"invalid `{label}` format `{value}`, expected `$O(xxx)$`"
     return None
+
+
+def check_backlinks(content: str, rel: str) -> list[str]:
+    """
+    检查 ## 相关专题 段落：
+    1. 段落是否存在
+    2. 段落内是否有至少一条回链接
+    3. 每条回链接的显示名是否符合规范（与 README 中的短名一致）
+    """
+    errors: list[str] = []
+    lines = content.splitlines()
+
+    # 定位 ## 相关专题 段落
+    start: int | None = None
+    end: int = len(lines)
+    for i, line in enumerate(lines):
+        if line.rstrip() == "## 相关专题":
+            start = i
+        elif start is not None and re.match(r"^##\s", line) and i > start:
+            end = i
+            break
+
+    if start is None:
+        errors.append(f"{rel}: missing section `## 相关专题`")
+        return errors
+
+    # 收集段落内所有回链接行
+    backlinks: list[tuple[str, str]] = []  # [(display_name, topic_filename), ...]
+    for line in lines[start + 1 : end]:
+        m = BACKLINK_LINE_RE.match(line)
+        if m:
+            backlinks.append((m.group(1), m.group(2)))
+
+    if not backlinks:
+        errors.append(f"{rel}: `## 相关专题` has no backlinks")
+        return errors
+
+    # 检查每条回链接的命名是否规范
+    for display_name, topic_filename in backlinks:
+        expected = TOPIC_NAME_MAP.get(topic_filename)
+        if expected is None:
+            errors.append(
+                f"{rel}: unknown topic file `{topic_filename}` in `## 相关专题`"
+            )
+        elif display_name != expected:
+            errors.append(
+                f"{rel}: backlink name `{display_name}` should be `{expected}`"
+                f" (for `{topic_filename}`)"
+            )
+
+    return errors
 
 
 def check_file(path: Path) -> list[str]:
@@ -130,6 +203,8 @@ def check_file(path: Path) -> list[str]:
     space_complexity_error = check_complexity_line(content, "空间复杂度")
     if space_complexity_error:
         errors.append(f"{rel}: {space_complexity_error}")
+
+    errors.extend(check_backlinks(content, rel))
 
     return errors
 
