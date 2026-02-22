@@ -16,5 +16,5 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: Run solution checks
-        run: python3 scripts/check_solutions.py
+      - name: Run CI checks
+        run: python3 scripts/ci/ci.py

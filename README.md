@@ -10,7 +10,7 @@
 
 - **自动拉取**：从力扣 CN 批量获取个人 AC 提交记录（含代码），支持断点续传与限流退避
 - **自动导入**：将 AC 记录转换为标准 Markdown 题解模板，自动填充题目描述、标签、难度
-- **格式校验**：CI 自动校验所有题解文件的格式规范，确保知识库质量
+- **格式校验**：CI 自动校验 `solutions/*.md` 与 `topics/*.md` 规则，确保知识库质量
 - **专题归纳**：`topics/` 目录存放算法专题笔记，通过跨题链接构建知识体系
 
 ## 算法分类
@@ -58,7 +58,11 @@
 │   ├── fetch_ac_submissions.py
 │   ├── filter_ac_with_code.py
 │   ├── import_ac_to_solutions.py
-│   └── check_solutions.py
+│   ├── normalize_topics_title.py
+│   └── ci/
+│       ├── check_solutions.py
+│       ├── check_topics.py
+│       └── ci.py
 ├── artifacts/              # 脚本中间产物（自动生成，不手写）
 │   ├── ac_with_code.jsonl
 │   └── imported_paths.txt
@@ -111,7 +115,7 @@ cp .env.example .env
 python scripts/fetch_problem.py 1
 
 # 2. 手写解题思路 + 检查
-python scripts/check_solutions.py
+python scripts/ci/check_solutions.py
 
 # 3. (可选) 使用 skill 执行 link 以及扩充工作
 ```
@@ -136,7 +140,9 @@ python scripts/import_ac_to_solutions.py
 | `fetch_ac_submissions.py` | 批量拉取 AC 提交，写入 `artifacts/ac_with_code.jsonl` |
 | `filter_ac_with_code.py` | 从 JSONL 中删除已归档到 `solutions/` 的题目 |
 | `import_ac_to_solutions.py` | 将 JSONL 中未归档的题目批量导入 `solutions/` |
-| `check_solutions.py` |（同 CI） |
+| `scripts/ci/check_solutions.py` | 仅检查 `solutions/*.md` 规则 |
+| `scripts/ci/check_topics.py` | 仅检查 `topics/*.md` 规则（含重复题号） |
+| `scripts/ci/ci.py` | CI 总入口（串行执行 solutions + topics 检查） |
 
 ### skill 说明
 

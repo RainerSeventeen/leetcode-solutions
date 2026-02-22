@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-校验 solutions/ 下所有题解 Markdown 文件的格式合规性，以及 topics/*.md 的模板题目数量限制。
+校验 solutions/ 下所有题解 Markdown 文件的格式合规性。
 
 检查项:
   - 文件路径与命名规范（solutions/0001-0100/0001-xxx.md）
@@ -11,11 +11,10 @@
   - 必需章节（## 题目链接 / ## 题目描述 / ## 解题思路 / ## 代码）
   - 复杂度占位符 O() 是否已填写
   - 时间复杂度 / 空间复杂度 格式（$O(...)$）
-  - topics/*.md 中每个"模板题目"列表条数上限（≤ 20）
   - 重复 id 检测
 
 用法:
-  python scripts/check_solutions.py
+  python scripts/ci/check_solutions.py
 
 返回码:
   0  全部通过
@@ -24,13 +23,11 @@
 from __future__ import annotations
 
 import re
-import sys
 from datetime import date
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 SOLUTIONS_DIR = ROOT / "solutions"
-TOPICS_DIR = ROOT / "topics"
 FILE_RE = re.compile(r"solutions/\d{4}-\d{4}/(\d{4})-[a-z0-9-]+\.md$")
 FRONT_MATTER_RE = re.compile(r"^---\n(.*?)\n---\n", re.S)
 REQUIRED_SECTIONS = (
@@ -41,7 +38,6 @@ REQUIRED_SECTIONS = (
 )
 ALLOWED_DIFFICULTY = {"Easy", "Medium", "Hard"}
 COMPLEXITY_VALUE_RE = re.compile(r"^\$O\([^$\n]+\)\$")
-MAX_TEMPLATE_ITEMS = -1
 
 
 def parse_front_matter(text: str) -> dict[str, str]:
@@ -138,37 +134,6 @@ def check_file(path: Path) -> list[str]:
     return errors
 
 
-def check_topic_template_limits(path: Path) -> list[str]:
-    if MAX_TEMPLATE_ITEMS < 0:
-        return []
-    errors: list[str] = []
-    rel = path.relative_to(ROOT).as_posix()
-    lines = path.read_text(encoding="utf-8").splitlines()
-
-    i = 0
-    while i < len(lines):
-        line = lines[i].strip()
-        if line.startswith("#### ") and "模板题目" in line:
-            count = 0
-            j = i + 1
-            while j < len(lines):
-                stripped = lines[j].strip()
-                if stripped.startswith("#"):
-                    break
-                if stripped.startswith("- "):
-                    count += 1
-                j += 1
-            if count > MAX_TEMPLATE_ITEMS:
-                errors.append(
-                    f"{rel}:{i + 1}: `#### 模板题目` has {count} links, max allowed is {MAX_TEMPLATE_ITEMS}"
-                )
-            i = j
-            continue
-        i += 1
-
-    return errors
-
-
 def main() -> int:
     if not SOLUTIONS_DIR.exists():
         print("solutions directory does not exist")
@@ -191,15 +156,11 @@ def main() -> int:
             else:
                 seen_ids.add(file_id)
 
-    if TOPICS_DIR.exists():
-        for topic_path in sorted(TOPICS_DIR.glob("*.md")):
-            all_errors.extend(check_topic_template_limits(topic_path))
-
     if all_errors:
         print("\n".join(all_errors))
         return 1
 
-    print("All checks passed for solutions/*.md and topics/*.md")
+    print("All checks passed for solutions/*.md")
     return 0
 
 

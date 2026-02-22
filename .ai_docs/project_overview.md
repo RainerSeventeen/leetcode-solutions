@@ -18,11 +18,15 @@
 │   ├── graph-algorithms.md
 │   └── ...
 ├── scripts/            # Python 工具脚本
+│   ├── ci/
+│   │   ├── check_solutions.py  # solutions 规则检查
+│   │   ├── check_topics.py     # topics 规则检查（含重复题号）
+│   │   └── ci.py               # CI 总入口
 ├── artifacts/          # 中间产物（由脚本生成，不手写）
 │   ├── ac_with_code.jsonl    # 批量拉取的 AC 提交记录
 │   └── imported_paths.txt    # 上次 import_ac_to_solutions 写入的文件路径列表
 ├── .github/workflows/
-│   └── solutions-check.yml   # CI：push/PR 时自动校验 solutions/*.md
+│   └── solutions-check.yml   # CI：push/PR 时自动校验 solutions + topics 规则
 ├── .env                      # 本地鉴权（不提交），LC_SESSION / LC_CSRF
 └── AGENTS.md                 # 给 AI Agent 看的项目规范说明
 ```
@@ -54,7 +58,8 @@ created: 2026-02-20      # YYYY-MM-DD
 ## 代码       ← 代码块，语言标签需正确（如 ```python）
 ```
 
-**CI 校验规则**（`check_solutions.py`）：
+**CI 校验规则**：
+- `scripts/ci/check_solutions.py`
 - 文件路径/名格式合法
 - Front matter 四个 key 均存在且非空
 - `id` 与文件名中的题号一致，与 H1 标题中的题号一致
@@ -63,6 +68,10 @@ created: 2026-02-20      # YYYY-MM-DD
 - 包含全部四个必需 Section
 - 不能含占位符 `O()`（时间/空间复杂度必须填实际值）
 - 不能有重复 `id`
+- `scripts/ci/check_topics.py`
+- 检查 `topics/*.md` 中重复题号（同一题号出现两次及以上会失败，并输出重复题号清单）
+- `scripts/ci/ci.py`
+- 串行执行 `check_solutions.py` + `check_topics.py`，作为 workflow 入口
 
 ---
 
@@ -114,10 +123,22 @@ python scripts/import_ac_to_solutions.py --delay 0.8
 
 **lang → 代码块标签映射**：`python3→python`、`golang→go`、`cpp→cpp`、`mysql/mssql/oraclesql→sql` 等。
 
-### `scripts/check_solutions.py`
-校验全部 `solutions/**/*.md`，即 CI 跑的内容。
+### `scripts/ci/check_solutions.py`
+校验全部 `solutions/**/*.md`。
 ```bash
-python scripts/check_solutions.py
+python scripts/ci/check_solutions.py
+```
+
+### `scripts/ci/check_topics.py`
+校验全部 `topics/*.md`（含重复题号检查）。
+```bash
+python scripts/ci/check_topics.py
+```
+
+### `scripts/ci/ci.py`
+CI 总入口，串行执行 solutions + topics 校验。
+```bash
+python scripts/ci/ci.py
 ```
 
 ### `scripts/normalize_topics_title.py`
@@ -136,7 +157,7 @@ python scripts/normalize_topics_title.py --dry-run
 ```bash
 python scripts/fetch_problem.py <题号>   # 生成模板
 # 手写解题思路 + 代码
-python scripts/check_solutions.py       # 本地校验
+python scripts/ci/check_solutions.py    # 本地校验（仅 solutions）
 ```
 
 ### 从 AC 记录批量导入
@@ -150,8 +171,8 @@ python scripts/import_ac_to_solutions.py --dry-run
 # 3. 正式导入
 python scripts/import_ac_to_solutions.py
 
-# 4. 补写解题思路后校验
-python scripts/check_solutions.py
+# 4. 补写解题思路后校验（solutions + topics）
+python scripts/ci/ci.py
 ```
 
 ---
@@ -168,4 +189,4 @@ cp .env.example .env
 ---
 
 ## CI
-`.github/workflows/solutions-check.yml`：push 或 PR 时自动运行 `python scripts/check_solutions.py`，校验失败则 PR 无法合并。
+`.github/workflows/solutions-check.yml`：push 或 PR 时自动运行 `python scripts/ci/ci.py`，校验失败则 PR 无法合并。
