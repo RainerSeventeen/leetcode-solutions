@@ -41,6 +41,7 @@ QUESTION_QUERY = """
 query questionData($titleSlug: String!) {
   question(titleSlug: $titleSlug) {
     questionId
+    questionFrontendId
     title
     translatedTitle
     difficulty
@@ -154,7 +155,7 @@ def fetch_question(headers: dict, slug: str) -> dict | None:
 # ---------------------------------------------------------------------------
 
 def build_markdown(slug: str, entry: dict, question: dict) -> str:
-    problem_id = int(question.get("questionId") or 0)
+    problem_id = int(question.get("questionFrontendId") or question.get("questionId") or 0)
     en_title = question.get("title") or ""
     zh_title = question.get("translatedTitle") or en_title
     difficulty = question.get("difficulty") or ""
@@ -278,9 +279,9 @@ def main() -> int:
             time.sleep(args.delay)
             continue
 
-        problem_id = int(question.get("questionId") or 0)
+        problem_id = int(question.get("questionFrontendId") or question.get("questionId") or 0)
         if not problem_id:
-            print("✗ 无效的 questionId")
+            print("✗ 无效的 questionFrontendId/questionId")
             failed += 1
             time.sleep(args.delay)
             continue

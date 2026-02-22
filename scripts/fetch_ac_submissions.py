@@ -248,15 +248,6 @@ def main() -> int:
                     break
 
                 fid = str(sub.get("frontendId", ""))
-                try:
-                    fid_int = int(fid)
-                except (ValueError, TypeError):
-                    fid_int = 0
-
-                if fid_int > 5000:
-                    print(f"  跳过竞赛题 #{fid} {sub.get('title', '?')} (frontendId > 5000)", flush=True)
-                    skipped += 1
-                    continue
 
                 if fid in done_fids:
                     skipped += 1

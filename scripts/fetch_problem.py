@@ -5,12 +5,16 @@
 用法:
   python scripts/fetch_problem.py <problem_id>
   python scripts/fetch_problem.py <problem_id> --overwrite
+  python scripts/fetch_problem.py --slug <titleSlug>
 
 参数:
-  problem_id    力扣前端题目 ID（如 1584）
+  problem_id    力扣前端题目 ID（如 1584）；与 --slug 二选一
+  --slug        直接指定 titleSlug，跳过 problems/all 查询（适用于竞赛题）
   --overwrite   文件已存在时强制覆盖（默认报错退出）
 
-输出: solutions/<范围目录>/<problem_id>-<slug>.md
+输出: solutions/<范围目录>/<id>-<slug>.md
+  按题号模式：id 为传入的 problem_id
+  按 slug 模式：id 为 GraphQL 返回的 questionId
 """
 from __future__ import annotations
 
@@ -86,6 +90,7 @@ def fetch_problem_details(title_slug: str, headers: dict[str, str]) -> dict[str,
     query questionData($titleSlug: String!) {
       question(titleSlug: $titleSlug) {
         questionId
+        questionFrontendId
         title
         translatedTitle
         difficulty
@@ -131,7 +136,7 @@ def build_range_dir(problem_id: int) -> str:
 
 
 def to_markdown(question: dict[str, Any], problem_id: int, title_slug: str) -> str:
-    question_id = question.get("questionId") or str(problem_id)
+    question_id = question.get("questionFrontendId") or question.get("questionId") or str(problem_id)
     english_title = question.get("title") or ""
     body_title = question.get("translatedTitle") or english_title
     difficulty = question.get("difficulty") or ""
@@ -204,7 +209,19 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Fetch a LeetCode problem and generate a markdown template."
     )
-    parser.add_argument("problem_id", type=int, help="LeetCode frontend problem id, e.g. 1584")
+    parser.add_argument(
+        "problem_id",
+        type=int,
+        nargs="?",
+        default=None,
+        help="LeetCode frontend problem id, e.g. 1584（与 --slug 二选一）",
+    )
+    parser.add_argument(
+        "--slug",
+        type=str,
+        default=None,
+        help="直接指定 titleSlug，跳过 problems/all 查询（适用于竞赛题）",
+    )
     parser.add_argument(
         "--overwrite",
         action="store_true",
@@ -215,21 +232,37 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> int:
     args = parse_args()
-    if args.problem_id <= 0:
-        print("Error: problem_id must be a positive integer", file=sys.stderr)
-        return 1
     if requests is None:
         print("Error: missing dependency 'requests'. Install it with: pip install requests", file=sys.stderr)
+        return 1
+
+    if not args.slug and args.problem_id is None:
+        print("Error: 必须提供 problem_id 或 --slug", file=sys.stderr)
+        return 1
+    if args.problem_id is not None and args.problem_id <= 0:
+        print("Error: problem_id must be a positive integer", file=sys.stderr)
         return 1
 
     headers = build_headers()
 
     try:
-        title_slug = fetch_title_slug(args.problem_id, headers)
+        if args.slug:
+            title_slug = args.slug
+            problem_id_for_file = None
+        else:
+            title_slug = fetch_title_slug(args.problem_id, headers)
+            problem_id_for_file = args.problem_id
+
         question = fetch_problem_details(title_slug, headers)
-        markdown = to_markdown(question, args.problem_id, title_slug)
+
+        if problem_id_for_file is None:
+            problem_id_for_file = int(question.get("questionFrontendId") or question.get("questionId") or 0)
+            if not problem_id_for_file:
+                raise RuntimeError("GraphQL 未返回有效 questionFrontendId/questionId")
+
+        markdown = to_markdown(question, problem_id_for_file, title_slug)
         output_path = write_markdown_file(
-            args.problem_id,
+            problem_id_for_file,
             title_slug,
             markdown,
             overwrite=args.overwrite,

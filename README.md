@@ -111,8 +111,11 @@ cp .env.example .env
 ### 手动归档单题
 
 ```bash
-# 1. 按题号生成模板
-python scripts/fetch_problem.py 1
+# 1. 按题号生成模板（普通题）
+python scripts/fetch_problem.py 1584
+
+# 1. 竞赛题或已知 slug 时，直接指定 slug（跳过 problems/all 查找）
+python scripts/fetch_problem.py --slug count-sequences-with-given-sum
 
 # 2. 手写解题思路 + 检查
 python scripts/ci/check_solutions.py
@@ -136,7 +139,7 @@ python scripts/import_ac_to_solutions.py
 
 | 脚本 | 说明 |
 |------|------|
-| `fetch_problem.py <题号>` | 按题号拉取单题，生成 Markdown 模板 |
+| `fetch_problem.py <题号>` / `--slug` | 按题号或 slug 拉取单题，生成 Markdown 模板（竞赛题用 `--slug`） |
 | `fetch_ac_submissions.py` | 批量拉取 AC 提交，写入 `artifacts/ac_with_code.jsonl` |
 | `filter_ac_with_code.py` | 从 JSONL 中删除已归档到 `solutions/` 的题目 |
 | `import_ac_to_solutions.py` | 将 JSONL 中未归档的题目批量导入 `solutions/` |
