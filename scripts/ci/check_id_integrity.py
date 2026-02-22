@@ -3,9 +3,10 @@
 检查 solutions/**/*.md 中每道题的 ID 与 LeetCode API 返回值是否一致。
 
 对每个文件：
-  - 提取文件名 ID、front matter ID、titleSlug
-  - 查 GraphQL 获取 questionFrontendId
+  - 提取文件名 ID、front matter ID、titleSlug、H1 中文标题
+  - 查 GraphQL 获取 questionFrontendId、translatedTitle
   - 验证：文件名 ID == front matter ID == API 前端 ID，且目录 range 正确
+  - 验证：H1 中文标题 == API translatedTitle（仅 API 模式）
 
 输出:
   artifacts/id_integrity_report.jsonl  每行一条 JSON 记录
@@ -43,6 +44,7 @@ query questionData($titleSlug: String!) {
   question(titleSlug: $titleSlug) {
     questionId
     questionFrontendId
+    translatedTitle
   }
 }
 """
@@ -50,6 +52,7 @@ query questionData($titleSlug: String!) {
 FILE_RE = re.compile(r"^(\d{4})-(.+)$")
 FRONT_MATTER_RE = re.compile(r"^---\s*\n(.*?)\n---", re.DOTALL)
 ID_RE = re.compile(r"^id:\s*(.+)$", re.MULTILINE)
+H1_RE = re.compile(r"^#\s+\d+[.。]?\s+(.+)$", re.MULTILINE)
 
 
 # ---------------------------------------------------------------------------
@@ -70,8 +73,8 @@ def build_range_dir(problem_id: int) -> str:
     return f"{start:04d}-{end:04d}"
 
 
-def fetch_frontend_id(headers: dict, slug: str, delay: float) -> str | None:
-    """查 GraphQL 获取 questionFrontendId，失败返回 None。"""
+def fetch_question_data(headers: dict, slug: str, delay: float) -> tuple[str, str] | None:
+    """查 GraphQL 获取 (questionFrontendId, translatedTitle)，失败返回 None。"""
     BACKOFF = [5, 15, 30, 90, 180]
     for attempt, wait in enumerate([0] + BACKOFF):
         if wait:
@@ -93,7 +96,8 @@ def fetch_frontend_id(headers: dict, slug: str, delay: float) -> str | None:
                 return None
             # 优先用 frontendId，fallback questionId
             fid = question.get("questionFrontendId") or question.get("questionId")
-            return str(fid) if fid else None
+            translated_title = (question.get("translatedTitle") or "").strip()
+            return (str(fid), translated_title) if fid else None
         except Exception as exc:
             if attempt == len(BACKOFF):
                 print(f"  拉取失败: {exc}", file=sys.stderr)
@@ -101,10 +105,11 @@ def fetch_frontend_id(headers: dict, slug: str, delay: float) -> str | None:
     return None
 
 
-def parse_file(md_path: pathlib.Path) -> tuple[str, str, str] | None:
+def parse_file(md_path: pathlib.Path) -> tuple[str, str, str, str] | None:
     """
-    返回 (file_id, slug, fm_id) 或 None（解析失败）。
-    file_id: 文件名数字部分，去前导零后的字符串（如 "3838"）
+    返回 (file_id, slug, fm_id, h1_title) 或 None（解析失败）。
+    file_id:   文件名数字部分，去前导零后的字符串（如 "3838"）
+    h1_title:  H1 标题中的中文名（如 "两数之和"），未找到时为空字符串
     """
     stem = md_path.stem  # e.g. "4216-weighted-word-mapping"
     m = FILE_RE.match(stem)
@@ -116,11 +121,15 @@ def parse_file(md_path: pathlib.Path) -> tuple[str, str, str] | None:
     text = md_path.read_text(encoding="utf-8")
     fm_match = FRONT_MATTER_RE.match(text)
     if not fm_match:
-        return (file_id, slug, "")
+        return (file_id, slug, "", "")
     fm_block = fm_match.group(1)
     id_match = ID_RE.search(fm_block)
     fm_id = id_match.group(1).strip() if id_match else ""
-    return (file_id, slug, fm_id)
+
+    h1_match = H1_RE.search(text)
+    h1_title = h1_match.group(1).strip() if h1_match else ""
+
+    return (file_id, slug, fm_id, h1_title)
 
 
 # ---------------------------------------------------------------------------
@@ -156,7 +165,7 @@ def main() -> int:
             results.append({"file": rel, "status": "PARSE_ERROR", "issues": ["无法解析文件名或 front matter"]})
             continue
 
-        file_id, slug, fm_id = parsed
+        file_id, slug, fm_id, h1_title = parsed
         issues: list[str] = []
 
         # 本地校验
@@ -168,6 +177,7 @@ def main() -> int:
             "file_id": file_id,
             "fm_id": fm_id,
             "slug": slug,
+            "h1_title": h1_title,
         }
 
         if args.slug_only:
@@ -183,10 +193,9 @@ def main() -> int:
             continue
 
         # API 校验
-        api_id = fetch_frontend_id(headers, slug, args.delay)
-        record["api_id"] = api_id or "FETCH_FAILED"
-
-        if api_id is None:
+        api_data = fetch_question_data(headers, slug, args.delay)
+        if api_data is None:
+            record["api_id"] = "FETCH_FAILED"
             record["status"] = "API_ERROR"
             record["issues"] = issues + ["API 拉取失败"]
             print(f"  [{i:3d}/{total}] ✗  {rel}  →  API 拉取失败")
@@ -195,8 +204,15 @@ def main() -> int:
             time.sleep(args.delay)
             continue
 
+        api_id, api_translated_title = api_data
+        record["api_id"] = api_id
+        record["api_translated_title"] = api_translated_title
+
         if api_id != file_id:
             issues.append(f"API frontendId `{api_id}` ≠ 文件名 id `{file_id}`")
+
+        if api_translated_title and h1_title and h1_title != api_translated_title:
+            issues.append(f"H1 中文名 `{h1_title}` ≠ API translatedTitle `{api_translated_title}`")
 
         # 验证目录 range
         try:
