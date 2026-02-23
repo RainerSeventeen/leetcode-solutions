@@ -2,7 +2,7 @@ name: id-integrity-check
 
 on:
   schedule:
-    - cron: "0 4 * * 1"   # 每周一 UTC 02:00
+    - cron: "30 19 * * 1"   # 北京时间: 每周二凌晨 3:30
   workflow_dispatch:
     inputs:
       slug_only:
