@@ -181,6 +181,14 @@ def min_camera_cover(root):
 ```
 
 #### 4.7.1 模板题目
+
+### 4.8 规则模拟
+方法说明：
+这种题没有很好的办法, 直接模拟题目的运行顺序即可
+
+#### 4.8.1 模板题目
+- 3847 - 计算比赛分数差 ｜ [LeetCode 链接](https://leetcode.cn/problems/find-the-score-difference-in-a-game/) ｜ [题解笔记](../solutions/3801-3900/3847-find-the-score-difference-in-a-game.md)
+- 3849 - 重新排列后的最大按位异或值 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximum-bitwise-xor-after-rearrangement/) ｜ [题解笔记](../solutions/3801-3900/3849-maximum-bitwise-xor-after-rearrangement.md)
 ## 5 易错点
 - 只给策略不证明正确性。
 - 排序键选错导致局部决策失效。

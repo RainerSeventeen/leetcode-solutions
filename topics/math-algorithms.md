@@ -54,6 +54,13 @@ def monotone_increasing_digits(n):
 #### 4.2.1 模板题目
 - 1925 - 统计平方和三元组的数目 ｜ [LeetCode 链接](https://leetcode.cn/problems/count-square-sum-triples/) ｜ [题解笔记](../solutions/1901-2000/1925-count-square-sum-triples.md)
 - 3512 - 使数组和能被 K 整除的最少操作次数 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-operations-to-make-array-sum-divisible-by-k/) ｜ [题解笔记](../solutions/3501-3600/3512-minimum-operations-to-make-array-sum-divisible-by-k.md)
+
+### 4.3 数位频次不变量
+方法说明：
+先对原数做数位统计并计算不变量，再把候选值映射到同一统计维度进行一致性校验。
+
+#### 4.3.1 模板题目
+- 3848 - 阶数数字排列 ｜ [LeetCode 链接](https://leetcode.cn/problems/check-digitorial-permutation/) ｜ [题解笔记](../solutions/3801-3900/3848-check-digitorial-permutation.md)
 ## 5 易错点
 - 原地旋转顺序写反会得到错误结果。
 - 数位回退后未统一填 9 导致非最优。

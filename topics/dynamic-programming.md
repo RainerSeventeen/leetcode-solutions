@@ -286,6 +286,13 @@ def lcs(a, b):
 
 #### 4.11.1 模板题目
 - 0815 - 香槟塔 ｜ [LeetCode 链接](https://leetcode.cn/problems/champagne-tower/) ｜ [题解笔记](../solutions/0701-0800/0799-champagne-tower.md)
+
+### 4.12 状态压缩计数 DP
+方法说明：
+把多维状态压缩成可哈希表示，通过逐元素做计数转移，适合“每步有固定分支”的方案数问题。
+
+#### 4.12.1 模板题目
+- 3850 - 统计结果等于 K 的序列数目 ｜ [LeetCode 链接](https://leetcode.cn/problems/count-sequences-to-k/) ｜ [题解笔记](../solutions/3801-3900/3850-count-sequences-to-k.md)
 ## 5 易错点
 - 状态定义含糊，导致初始化和转移全错。
 - 背包遍历顺序错误。
