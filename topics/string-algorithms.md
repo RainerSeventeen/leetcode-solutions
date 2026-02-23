@@ -163,6 +163,28 @@ def letter_combinations(digits, mp):
 ```
 
 #### 4.6.1 模板题目
+### 4.7 定长窗口滚动编码
+方法说明：
+适用于定长子串覆盖判断。把窗口字符序列编码成整数（如二进制串映射到 `[0, 2^k)`），随右端推进做“移位 + 掩码 + 入位”，再配合布尔数组或集合判重计数，避免反复切片。
+
+模板代码：
+```python
+def all_binary_codes_exist(s, k):
+    if k > len(s):
+        return False
+    seen = [False] * (1 << k)
+    mask = (1 << k) - 1
+    x = cnt = 0
+    for i, ch in enumerate(s):
+        x = ((x << 1) & mask) | int(ch)
+        if i >= k - 1 and not seen[x]:
+            seen[x] = True
+            cnt += 1
+    return cnt == (1 << k)
+```
+
+#### 4.7.1 模板题目
+- 1461 - 检查一个字符串是否包含所有长度为 K 的二进制子串 ｜ [LeetCode 链接](https://leetcode.cn/problems/check-if-a-string-contains-all-binary-codes-of-size-k/) ｜ [题解笔记](../solutions/1401-1500/1461-check-if-a-string-contains-all-binary-codes-of-size-k.md)
 ## 5 易错点
 - 字符串下标与 DP 下标错位。
 - 回文 DP 遍历方向错误。
