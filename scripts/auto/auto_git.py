@@ -6,8 +6,32 @@ import logging
 import re
 import subprocess
 import sys
-from datetime import date
+from datetime import date, datetime, timedelta
 from pathlib import Path
+
+
+_LOG_TS_PATTERN = re.compile(r"^\[(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\]")
+
+
+def prune_log(log_file: Path, days: int = 7) -> None:
+    """删除日志文件中超过 days 天的条目。"""
+    if not log_file.exists():
+        return
+    cutoff = datetime.now() - timedelta(days=days)
+    kept: list[str] = []
+    with log_file.open() as f:
+        for line in f:
+            m = _LOG_TS_PATTERN.match(line)
+            if m:
+                try:
+                    ts = datetime.strptime(m.group(1), "%Y-%m-%d %H:%M:%S")
+                    if ts >= cutoff:
+                        kept.append(line)
+                    continue
+                except ValueError:
+                    pass
+            kept.append(line)
+    log_file.write_text("".join(kept))
 
 
 MESSAGE_PATTERN = re.compile(
@@ -120,6 +144,7 @@ def main() -> int:
         Path(args.log_file) if args.log_file else repo_root / "scripts/auto/log/leetcode.log"
     )
     log_file.parent.mkdir(parents=True, exist_ok=True)
+    prune_log(log_file)
 
     logging.basicConfig(
         level=logging.DEBUG,
