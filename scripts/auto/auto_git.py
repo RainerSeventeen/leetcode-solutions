@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import logging
+import os
 import re
 import subprocess
 import sys
@@ -140,6 +141,7 @@ def main() -> int:
     args = parser.parse_args()
 
     repo_root = Path(__file__).resolve().parent.parent.parent
+    os.chdir(repo_root)
     log_file = (
         Path(args.log_file) if args.log_file else repo_root / "scripts/auto/log/leetcode.log"
     )
