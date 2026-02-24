@@ -96,6 +96,7 @@ def max_depth(root):
 - 0617 - 合并二叉树 ｜ [LeetCode 链接](https://leetcode.cn/problems/merge-two-binary-trees/) ｜ [题解笔记](../solutions/0601-0700/0617-merge-two-binary-trees.md)
 - 0222 - 完全二叉树的节点个数 ｜ [LeetCode 链接](https://leetcode.cn/problems/count-complete-tree-nodes/) ｜ [题解笔记](../solutions/0201-0300/0222-count-complete-tree-nodes.md)
 - 0654 - 最大二叉树 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximum-binary-tree/) ｜ [题解笔记](../solutions/0601-0700/0654-maximum-binary-tree.md)
+- 1022 - 从根到叶的二进制数之和 ｜ [LeetCode 链接](https://leetcode.cn/problems/sum-of-root-to-leaf-binary-numbers/) ｜ [题解笔记](../solutions/1001-1100/1022-sum-of-root-to-leaf-binary-numbers.md)
 ### 4.4 BST 定位与中序性质
 方法说明：
 利用 BST 左小右大的结构性质做验证、插入、删除、修剪与有序累加。

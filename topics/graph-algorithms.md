@@ -209,6 +209,7 @@ def can_finish(num_courses, prerequisites):
 #### 4.5.1 模板题目
 - 0207 - 课程表 ｜ [LeetCode 链接](https://leetcode.cn/problems/course-schedule/) ｜ [题解笔记](../solutions/0201-0300/0207-course-schedule.md)
 - 0310 - 最小高度树 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-height-trees/) ｜ [题解笔记](../solutions/0301-0400/0310-minimum-height-trees.md)
+- 0851 - 喧闹和富有 ｜ [LeetCode 链接](https://leetcode.cn/problems/loud-and-rich/) ｜ [题解笔记](../solutions/0801-0900/0851-loud-and-rich.md)
 - 2392 - 给定条件下构造矩阵 ｜ [LeetCode 链接](https://leetcode.cn/problems/build-a-matrix-with-conditions/) ｜ [题解笔记](../solutions/2301-2400/2392-build-a-matrix-with-conditions.md)
 - 0210 - 课程表 II ｜ [LeetCode 链接](https://leetcode.cn/problems/course-schedule-ii/) ｜ [题解笔记](../solutions/0201-0300/0210-course-schedule-ii.md)
 - 3310 - 移除可疑的方法 ｜ [LeetCode 链接](https://leetcode.cn/problems/remove-methods-from-project/) ｜ [题解笔记](../solutions/3301-3400/3310-remove-methods-from-project.md)
@@ -240,6 +241,13 @@ def kruskal(n, edges):
 
 #### 4.6.1 模板题目
 - 1584 - 连接所有点的最小费用 ｜ [LeetCode 链接](https://leetcode.cn/problems/min-cost-to-connect-all-points/) ｜ [题解笔记](../solutions/1501-1600/1584-min-cost-to-connect-all-points.md)
+
+### 4.7 基环树
+方法说明：
+每个节点最多一条出边的图可视为“若干入树指向若干环”。常见做法是沿出边线性推进并记录访问状态与步数，遇到 `-1` 或已访问节点时停止。
+
+#### 4.7.1 模板题目
+- 2359 - 找到离给定两个节点最近的节点 ｜ [LeetCode 链接](https://leetcode.cn/problems/find-closest-node-to-given-two-nodes/) ｜ [题解笔记](../solutions/2301-2400/2359-find-closest-node-to-given-two-nodes.md)
 
 ## 5 易错点
 - 遍历未去重导致重复扩展或死循环。
