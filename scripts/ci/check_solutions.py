@@ -10,7 +10,7 @@
   - created 日期格式（YYYY-MM-DD）
   - 必需章节（## 题目链接 / ## 题目描述 / ## 解题思路 / ## 相关专题 / ## 代码）
   - 复杂度占位符 O() 是否已填写
-  - 时间复杂度 / 空间复杂度 格式（$O(...)$）
+  - 时间复杂度 / 空间复杂度 格式（$O(...)$），可附变量释义
   - 重复 id 检测
   - ## 相关专题 段落存在、含有回链接、回链接命名规范
 
@@ -38,7 +38,7 @@ REQUIRED_SECTIONS = (
     "## 代码",
 )
 ALLOWED_DIFFICULTY = {"Easy", "Medium", "Hard"}
-COMPLEXITY_VALUE_RE = re.compile(r"^\$O\([^$\n]+\)\$")
+COMPLEXITY_LINE_RE = re.compile(r"^\$O\([^$\n]+\)\$(?:\s*.*)?$")
 
 # 回链接行格式：- [显示名](../../topics/xxx.md)
 BACKLINK_LINE_RE = re.compile(
@@ -93,8 +93,8 @@ def check_complexity_line(content: str, label: str) -> str | None:
     if not match:
         return f"missing `{label}` line, expected `- {label}: $O(xxx)$`"
     value = match.group(1).strip()
-    if not COMPLEXITY_VALUE_RE.match(value):
-        return f"invalid `{label}` format `{value}`, expected `$O(xxx)$`"
+    if not COMPLEXITY_LINE_RE.match(value):
+        return f"invalid `{label}` format `{value}`, expected `$O(xxx)$` with optional trailing text"
     return None
 
 

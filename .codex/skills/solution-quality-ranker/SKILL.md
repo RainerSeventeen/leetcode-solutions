@@ -37,8 +37,9 @@ description: Use when the user provides one or more imported `solutions/...md` f
    - Use the top-ranked block as best solution.
    - Fill `## 解题思路` with a concise, code-consistent explanation in Chinese.
    - Fill concrete complexity lines:
-     - `时间复杂度：$O(xxx)$`
-     - `空间复杂度：$O(xxx)$`
+     - `- 时间复杂度: $O(xxx)$`
+     - `- 空间复杂度: $O(xxx)$`
+   - If possible, briefly explain variable meanings when they appear in complexity (e.g., `m` edges, `n` nodes).
 
 4. Optimality checks
    - Determine whether the best submission reaches problem-level optimality (usually asymptotic optimality for known mainstream approaches).
@@ -53,4 +54,3 @@ Report per processed file:
 - Whether latest submission is not best.
 - Whether all AC submissions are non-optimal.
 - Complexity filled (`time`, `space`).
-

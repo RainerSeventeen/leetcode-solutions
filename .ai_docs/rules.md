@@ -5,7 +5,7 @@
 ## `solutions/*.md` 规则
 1. `solutions` 下的文件不允许自行创建，必须调用 `scripts/fetch_problem.py` 脚本创建。
 2. `## 解题思路` 需要简要介绍代码用到的方法。
-3. 复杂度内容必须使用 `$O(x)$` 这种格式。
+3. 复杂度内容必须使用 `$O(x)$` 这种格式；可在同一行追加说明文本（如 `m 代表边数, n 代表节点数`），建议对出现的变量补充含义。
 4. `solutions` 与 `topics` 的关系约束：
    - `solution -> topics` 允许多对多（一个 solution 可以在 `## 相关专题` 中链接多个 topic）。
    - `topics -> solution` 作为专题侧单向映射维护，不要求因 solution 的回链自动反向补录到 topics。
