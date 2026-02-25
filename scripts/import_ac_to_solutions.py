@@ -2,9 +2,12 @@
 """
 将 artifacts/ac_with_code.jsonl 中的题目批量导入到 solutions/ 目录。
 
-对每条记录：
-  - 若对应题目已在 solutions/ 中存在 → 跳过
-  - 否则 → 从力扣 API 拉取题目详情，创建 Markdown 文件并填入 AC 代码
+导入策略：
+  - 先按 titleSlug 聚合同题记录（支持同题多次 AC 提交）
+  - 若该题已在 solutions/ 中存在 → 整题跳过
+  - 否则 → 从力扣 API 拉取题目详情，创建 Markdown 文件
+  - ## 代码 段落按提交时间从新到旧写入多段纯代码块
+  - 本脚本只负责导入，不做“同方法去重”（由后续 agent 处理）
 
 用法:
   python scripts/import_ac_to_solutions.py
@@ -76,7 +79,6 @@ LANG_MAP: dict[str, str] = {
     "oraclesql": "sql",
 }
 
-
 # ---------------------------------------------------------------------------
 # 复用 fetch_problem.py 的工具函数
 # ---------------------------------------------------------------------------
@@ -121,6 +123,10 @@ def build_range_dir(problem_id: int) -> str:
     return f"{start:04d}-{end:04d}"
 
 
+def to_lang_tag(lang_key: str) -> str:
+    return LANG_MAP.get(lang_key, lang_key)
+
+
 # ---------------------------------------------------------------------------
 # API
 # ---------------------------------------------------------------------------
@@ -154,7 +160,7 @@ def fetch_question(headers: dict, slug: str) -> dict | None:
 # Markdown 生成
 # ---------------------------------------------------------------------------
 
-def build_markdown(slug: str, entry: dict, question: dict) -> str:
+def build_markdown(slug: str, entries: list[dict], question: dict) -> str:
     problem_id = int(question.get("questionFrontendId") or question.get("questionId") or 0)
     en_title = question.get("title") or ""
     zh_title = question.get("translatedTitle") or en_title
@@ -172,9 +178,15 @@ def build_markdown(slug: str, entry: dict, question: dict) -> str:
     content = strip_empty_paragraphs(content)
     content = collapse_blank_lines(content)
 
-    lang_key = entry.get("lang", "")
-    lang_tag = LANG_MAP.get(lang_key, lang_key)
-    code = (entry.get("code") or "").rstrip()
+    code_blocks: list[str] = []
+    for entry in entries:
+        lang_key = str(entry.get("lang", ""))
+        lang_tag = to_lang_tag(lang_key)
+        code = (entry.get("code") or "").rstrip()
+        block = f"```{lang_tag}\n{code}\n```"
+        code_blocks.append(block)
+
+    code_section = "\n\n".join(code_blocks)
 
     today = dt.date.today().isoformat()
 
@@ -201,9 +213,7 @@ https://leetcode.cn/problems/{slug}/
 - 空间复杂度: $O()$
 
 ## 代码
-```{lang_tag}
-{code}
-```
+{code_section}
 """
 
 
@@ -242,28 +252,39 @@ def main() -> int:
     lines = [l.strip() for l in INPUT_FILE.read_text(encoding="utf-8").splitlines() if l.strip()]
     print(f"[信息] ac_with_code.jsonl 共 {len(lines)} 条\n")
 
-    created = skipped = failed = 0
-    created_paths: list[str] = []
-
-    PATHS_FILE = ROOT / "artifacts" / "imported_paths.txt"
-
+    grouped: dict[str, list[dict]] = {}
+    parse_failed = 0
+    missing_slug = 0
     for i, line in enumerate(lines, 1):
         try:
             entry = json.loads(line)
         except json.JSONDecodeError as e:
             print(f"[警告] 第 {i} 行 JSON 解析失败: {e}，跳过")
+            parse_failed += 1
             continue
 
         slug = entry.get("titleSlug", "")
         if not slug:
             print(f"[警告] 第 {i} 行缺少 titleSlug，跳过")
+            missing_slug += 1
             continue
 
+        grouped.setdefault(slug, []).append(entry)
+
+    created = skipped = failed = 0
+    created_paths: list[str] = []
+
+    PATHS_FILE = ROOT / "artifacts" / "imported_paths.txt"
+
+    total_candidates = len(grouped)
+    print(f"[信息] 归并后待处理题目 {total_candidates} 道\n")
+
+    for i, (slug, entries) in enumerate(grouped.items(), 1):
         if slug in existing_slugs:
             skipped += 1
             continue
 
-        title = entry.get("title", slug)
+        title = str(entries[0].get("title", slug))
         print(f"  [{i:3d}] {slug}  ({title})", end=" ", flush=True)
 
         if args.dry_run:
@@ -286,7 +307,14 @@ def main() -> int:
             time.sleep(args.delay)
             continue
 
-        markdown = build_markdown(slug, entry, question)
+        usable_entries = [e for e in entries if str(e.get("code") or "").strip()]
+        if not usable_entries:
+            print("✗ 没有可用代码")
+            failed += 1
+            time.sleep(args.delay)
+            continue
+
+        markdown = build_markdown(slug, usable_entries, question)
 
         range_dir = build_range_dir(problem_id)
         out_dir = SOLUTIONS_DIR / range_dir
@@ -298,7 +326,7 @@ def main() -> int:
         created += 1
         rel = str(out_path.relative_to(ROOT))
         created_paths.append(rel)
-        print(f"✓  → {rel}")
+        print(f"✓  → {rel}  (导入 {len(usable_entries)} 段代码)")
 
         time.sleep(args.delay)
 
@@ -306,7 +334,10 @@ def main() -> int:
         PATHS_FILE.write_text("\n".join(created_paths) + "\n", encoding="utf-8")
         print(f"\n[路径列表] → {PATHS_FILE.relative_to(ROOT)}")
 
-    print(f"\n[完成] 新建 {created} / 跳过 {skipped} / 失败 {failed}")
+    print(
+        f"\n[完成] 新建 {created} / 跳过 {skipped} / 失败 {failed} / "
+        f"解析失败 {parse_failed} / 缺少slug {missing_slug}"
+    )
     return 0
 
 

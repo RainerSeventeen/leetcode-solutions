@@ -7,8 +7,10 @@
   python scripts/fetch_ac_submissions.py --resume
   python scripts/fetch_ac_submissions.py --resume artifacts/my_backup.jsonl
   python scripts/fetch_ac_submissions.py --days 365
+  python scripts/fetch_ac_submissions.py --days 1 --keep-per-problem 0
 
-去重规则: 同一道题只拉最新的一次 AC（提交列表从新到旧，首次见到该题立即拉，后续跳过）。
+去重规则: 按每题保留条数去重（提交列表从新到旧，默认每题保留 1 条）。
+          可用 --keep-per-problem 调整；设为 0 表示不过滤、保留窗口内全部 AC。
 断点续传: 默认覆写输出文件重新拉取；--resume 不带路径时用默认输出文件续传；
           --resume <path> 指定文件路径后从该文件加载已完成题目并追加写入。
 限流退避: 遇到「超出访问限制」按 30→60→120→180→300 秒退避重试。
@@ -145,15 +147,15 @@ def fetch_detail(headers: dict, sid: str) -> dict | None:
 # Resume helpers
 # ---------------------------------------------------------------------------
 
-def load_done_fids(path: pathlib.Path) -> set[str]:
+def load_done_counts(path: pathlib.Path) -> dict[str, int]:
     """
-    读取已有 JSONL，返回已成功拉取代码的 frontendId 集合。
+    读取已有 JSONL，返回已成功拉取代码的 frontendId 计数。
     code 为 null 的条目视为失败，从文件中清除（下次重拉）。
     """
     if not path.exists():
-        return set()
+        return {}
 
-    done: set[str] = set()
+    done: dict[str, int] = {}
     good_lines: list[str] = []
     null_count = 0
 
@@ -164,7 +166,9 @@ def load_done_fids(path: pathlib.Path) -> set[str]:
         try:
             entry = json.loads(line)
             if entry.get("code") is not None:
-                done.add(str(entry["frontendId"]))
+                fid = str(entry.get("frontendId", ""))
+                if fid:
+                    done[fid] = done.get(fid, 0) + 1
                 good_lines.append(line)
             else:
                 null_count += 1  # 丢弃，等待重拉
@@ -204,7 +208,16 @@ def main() -> int:
                         help="翻页每页条数（默认 20）")
     parser.add_argument("--resume", nargs="?", const=str(CODE_OUTPUT), metavar="PATH",
                         help="断点续传：不带路径时用默认输出文件，带路径时用指定文件")
+    parser.add_argument(
+        "--keep-per-problem",
+        type=int,
+        default=1,
+        help="每题最多保留多少条 AC（默认 1；0 表示不过滤）",
+    )
     args = parser.parse_args()
+    if args.keep_per_problem < 0:
+        print("Error: --keep-per-problem 不能为负数。", file=sys.stderr)
+        return 2
 
     require_auth()
     headers = build_headers()
@@ -212,13 +225,15 @@ def main() -> int:
 
     if args.resume:
         output_path = pathlib.Path(args.resume)
-        done_fids = load_done_fids(output_path)
+        done_counts = load_done_counts(output_path)
         file_mode = "a"
-        if done_fids:
-            print(f"断点续传：已有 {len(done_fids)} 道题，跳过。")
+        if done_counts:
+            done_problems = len(done_counts)
+            done_records = sum(done_counts.values())
+            print(f"断点续传：已有 {done_problems} 道题 / {done_records} 条代码记录，跳过。")
     else:
         output_path = CODE_OUTPUT
-        done_fids = set()
+        done_counts = {}
         file_mode = "w"
 
     cutoff_ts = int((dt.datetime.now() - dt.timedelta(days=args.days)).timestamp())
@@ -249,12 +264,9 @@ def main() -> int:
 
                 fid = str(sub.get("frontendId", ""))
 
-                if fid in done_fids:
+                if args.keep_per_problem > 0 and done_counts.get(fid, 0) >= args.keep_per_problem:
                     skipped += 1
                     continue
-
-                # 立即标记：同题的更旧提交在后续页中直接跳过，无需请求
-                done_fids.add(fid)
 
                 sid = sub["id"]
                 title = sub.get("title", "?")
@@ -271,6 +283,7 @@ def main() -> int:
                     if not entry.get("title"):
                         entry["title"] = q.get("translatedTitle", "")
                     fetched += 1
+                    done_counts[fid] = done_counts.get(fid, 0) + 1
                     lang = sub.get("langVerboseName") or sub.get("lang", "?")
                     print(f"✓  ({lang}, {len(entry['code'])} chars)")
                 else:
