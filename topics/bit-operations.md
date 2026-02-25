@@ -59,6 +59,7 @@ def hamming_distance(x, y):
 - 0693 - 交替位二进制数 ｜ [LeetCode 链接](https://leetcode.cn/problems/binary-number-with-alternating-bits/) ｜ [题解笔记](../solutions/0601-0700/0693-binary-number-with-alternating-bits.md)
 - 0767 - 二进制表示中质数个计算置位 ｜ [LeetCode 链接](https://leetcode.cn/problems/prime-number-of-set-bits-in-binary-representation/) ｜ [题解笔记](../solutions/0701-0800/0762-prime-number-of-set-bits-in-binary-representation.md)
 - 0868 - 二进制间距 ｜ [LeetCode 链接](https://leetcode.cn/problems/binary-gap/) ｜ [题解笔记](../solutions/0801-0900/0868-binary-gap.md)
+- 1356 - 根据数字二进制下 1 的数目排序 ｜ [LeetCode 链接](https://leetcode.cn/problems/sort-integers-by-the-number-of-1-bits/) ｜ [题解笔记](../solutions/1301-1400/1356-sort-integers-by-the-number-of-1-bits.md)
 - 3827 - 统计单比特整数 ｜ [LeetCode 链接](https://leetcode.cn/problems/count-monobit-integers/) ｜ [题解笔记](../solutions/3801-3900/3827-count-monobit-integers.md)
 ### 4.3 位运算递推
 方法说明：

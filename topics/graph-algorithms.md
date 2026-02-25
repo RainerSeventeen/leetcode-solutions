@@ -37,6 +37,7 @@
 ### 4.1 图建模与存储选择
 #### 4.1.1 模板题目
 - 1557 - 可以到达所有点的最少点数目 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-number-of-vertices-to-reach-all-nodes/) ｜ [题解笔记](../solutions/1501-1600/1557-minimum-number-of-vertices-to-reach-all-nodes.md)
+
 方法说明：
 
 做图题前先定“点是什么、边是什么、边是否带方向与权重”。模型一旦确定，再选存储方式；存储结构会直接决定后续遍历和更新代价。
@@ -46,6 +47,8 @@
 - 边集：实现简单，适合只关心边本身的场景（如 Kruskal）。
 - 邻接矩阵：`graph[u][v]` 查询直接，代价是空间固定且高。
 - 邻接表：工程与刷题最常用；能自然遍历 `u` 的所有邻边。
+
+一般来说，除了完全图，其他的都是用邻接表就行了
 
 ### 4.2 深度优先搜索 DFS
 方法说明：
@@ -276,6 +279,7 @@ def kruskal(n, edges):
 
 #### 4.7.1 模板题目
 - 2359 - 找到离给定两个节点最近的节点 ｜ [LeetCode 链接](https://leetcode.cn/problems/find-closest-node-to-given-two-nodes/) ｜ [题解笔记](../solutions/2301-2400/2359-find-closest-node-to-given-two-nodes.md)
+- 2360 - 图中的最长环 ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-cycle-in-a-graph/) ｜ [题解笔记](../solutions/2301-2400/2360-longest-cycle-in-a-graph.md)
 
 ### 4.8 单源最短路（Dijkstra）
 方法说明：
@@ -289,10 +293,66 @@ Dijktra 算法用于求从某个点出发，有向有权图最短路径，算法
 模板代码：
 
 ```python
+def dijkstra(graph, start): # 邻接矩阵 + 数组暴力
+    n = len(graph)
+    INF = float('inf')
+    dist = [INF] * n        # 记录最短距离
+    visited = [False] * n  # 是否已经确定
+    dist[start] = 0
+    
+    for _ in range(n):
+        # 找当前未访问的最小距离节点，从 start 开始更新相连路径
+        u = -1
+        for i in range(n):
+            if not visited[i] and (u == -1 or dist[i] < dist[u]): 
+                u = i # 一个初始条件的设置小技巧, u == -1 短路
+        
+        if u == -1:
+            break # 如果没有可选节点，结束
 
+		# 用 u 更新其他节点
+        visited[u] = True
+        for v in range(n):
+            if not visited[v] and graph[u][v] != INF:
+                dist[v] = min(dist[v], dist[u] + graph[u][v])
+
+    return dist    
 ```
 
+这是优化后的版本：
+
+1. 使用堆，优化了查找下一个最短距离节点
+2. 使用邻接表，优化扫描无效边的步骤，跳过了实际不存在的边
+
+```python
+import heapq # 最小堆
+def dijkstra(n, adj, start): # n 节点数, adj 出度邻接表, start 起始点
+    INF = float("inf")
+    dist = [INF] * n
+    dist[start] = 0
+
+    pq = [(0, start)]  # (最短距离, 节点)
+
+    while pq:
+        d, u = heapq.heappop(pq)
+        if d > dist[u]: 	# 旧的记录，直接跳过
+            continue
+
+        for v, w in adj[u]:
+            nd = d + w
+            if nd < dist[v]:
+                dist[v] = nd
+                # 注意这里没有删除旧的（代价太大），而是直接 push 一个更小的进去
+                heapq.heappush(pq, (nd, v))	
+
+    return dist
+```
+
+#### 4.8.1 模板题目
+- 0743 - 网络延迟时间 ｜ [LeetCode 链接](https://leetcode.cn/problems/network-delay-time/) ｜ [题解笔记](../solutions/0701-0800/0743-network-delay-time.md)
+
 ## 5 易错点
+
 - 遍历未去重导致重复扩展或死循环。
 - DFS 递归没有清晰终止条件，导致漏解或爆栈。
 - BFS 在出队时才标记访问，导致重复入队。
