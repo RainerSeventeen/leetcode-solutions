@@ -17,9 +17,11 @@
 ## 4 模板与子方法
 ### 4.1 网格 DFS 连通块
 方法说明：
+
 用于岛屿数量、封闭区域等连通块问题。与图算法专题可交叉，但这里强调二维坐标递归。
 
 模板代码：
+
 ```python
 def num_islands(grid):
     m, n = len(grid), len(grid[0])
@@ -38,9 +40,11 @@ def num_islands(grid):
 - 0200 - 岛屿数量 ｜ [LeetCode 链接](https://leetcode.cn/problems/number-of-islands/) ｜ [题解笔记](../solutions/0101-0200/0200-number-of-islands.md)
 ### 4.2 网格 BFS 连通块
 方法说明：
+
 与 DFS 同类问题的队列写法，适合避免递归栈过深。
 
 模板代码：
+
 ```python
 from collections import deque
 
@@ -61,9 +65,11 @@ def bfs_mark(grid, si, sj):
 #### 4.2.1 模板题目
 ### 4.3 网格搜索与有序剪枝
 方法说明：
+
 当矩阵行列有序时，可从角点线性收缩；同题也可按行二分，属于二分专题交叉。
 
 模板代码：
+
 ```python
 def search_matrix(matrix, target):
     m, n = len(matrix), len(matrix[0])
@@ -81,9 +87,11 @@ def search_matrix(matrix, target):
 #### 4.3.1 模板题目
 ### 4.4 网格 DP 路径转移
 方法说明：
+
 当移动方向固定（如仅右/下）时，用 DP 比搜索更直接；题目主归属可在动态规划专题。
 
 模板代码：
+
 ```python
 def unique_paths(m, n):
     dp = [[1] * n for _ in range(m)]
@@ -96,9 +104,11 @@ def unique_paths(m, n):
 #### 4.4.1 模板题目
 ### 4.5 网格回溯搜索
 方法说明：
+
 用于路径匹配与约束搜索，状态需要“访问标记 + 回撤”；可交叉到回溯专题。
 
 模板代码：
+
 ```python
 def exist(board, word):
     m, n = len(board), len(board[0])

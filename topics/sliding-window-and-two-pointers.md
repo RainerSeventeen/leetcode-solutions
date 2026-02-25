@@ -17,9 +17,11 @@
 ## 4 模板与子方法
 ### 4.1 可变滑动窗口（覆盖/计数）
 方法说明：
+
 适用于“最短覆盖”“固定条件下最长/最短子串”。若题目核心对象是字符串，可与字符串专题交叉，但模板仍是窗口计数。
 
 模板代码：
+
 ```python
 from collections import Counter
 
@@ -50,9 +52,11 @@ def min_window(s: str, t: str) -> str:
 - 0940 - 水果成篮 ｜ [LeetCode 链接](https://leetcode.cn/problems/fruit-into-baskets/) ｜ [题解笔记](../solutions/0901-1000/0904-fruit-into-baskets.md)
 ### 4.2 双指针对撞（有序数组）
 方法说明：
+
 适用于两端收缩与去重扫描。通常先排序再对撞，三数之和等题可在外层枚举后套对撞模板。
 
 模板代码：
+
 ```python
 def two_pointer(nums):
     nums.sort()
@@ -86,9 +90,11 @@ def two_pointer(nums):
 - 977 - 有序数组的平方 ｜ [LeetCode 链接](https://leetcode.cn/problems/squares-of-a-sorted-array/) ｜ [题解笔记](../solutions/0901-1000/0977-squares-of-a-sorted-array.md)
 ### 4.3 单调队列窗口最值
 方法说明：
+
 适用于滑动窗口内最大值/最小值维护。与单调栈相似但作用在动态窗口，核心是队头始终有效、队列单调。
 
 模板代码：
+
 ```python
 from collections import deque
 
@@ -111,9 +117,11 @@ def max_sliding_window(nums, k):
 - 0239 - 滑动窗口最大值 ｜ [LeetCode 链接](https://leetcode.cn/problems/sliding-window-maximum/) ｜ [题解笔记](../solutions/0201-0300/0239-sliding-window-maximum.md)
 ### 4.4 快慢指针与环检测
 方法说明：
+
 适用于链表环、入口定位、相交等问题；题目主归属常在链表专题，这里保留交叉模板。`0287` 也可做答案二分（交叉到二分专题）。
 
 模板代码：
+
 ```python
 def has_cycle(head):
     slow = fast = head

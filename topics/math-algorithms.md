@@ -17,9 +17,11 @@
 ## 4 模板与子方法
 ### 4.1 矩阵原地变换
 方法说明：
+
 适用于旋转、转置、镜像等原地矩阵操作。网格题视角可交叉到网格专题。
 
 模板代码：
+
 ```python
 def rotate_matrix_90(a):
     n = len(a)
@@ -35,9 +37,11 @@ def rotate_matrix_90(a):
 - 0059 - 螺旋矩阵 II ｜ [LeetCode 链接](https://leetcode.cn/problems/spiral-matrix-ii/) ｜ [题解笔记](../solutions/0001-0100/0059-spiral-matrix-ii.md)
 ### 4.2 数位贪心构造
 方法说明：
+
 按位扫描并在冲突处回退高位，再把低位置 9。该题也可归入贪心专题。
 
 模板代码：
+
 ```python
 def monotone_increasing_digits(n):
     s = list(str(n))
@@ -57,6 +61,7 @@ def monotone_increasing_digits(n):
 
 ### 4.3 数位频次不变量
 方法说明：
+
 先对原数做数位统计并计算不变量，再把候选值映射到同一统计维度进行一致性校验。
 
 #### 4.3.1 模板题目

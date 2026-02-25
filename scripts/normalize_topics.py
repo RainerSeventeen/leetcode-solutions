@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """
-为 topics/*.md 的 H2-H6 标题添加或移除层级数字前缀。
+为 topics/*.md 做统一格式化：
+- H2-H6 标题添加或移除层级数字前缀
+- 非代码块中，若某行以 `:` 或 `：` 结尾，且下一行非空，则自动补一个真正空行
 
 数字前缀格式示例：## 1 概述 / ### 1.1 子节 / #### 1.1.1 小节
 代码块内的标题行不受影响。
@@ -97,11 +99,38 @@ def add_numbers(lines: list[str]) -> list[str]:
     return result
 
 
+def ensure_blank_line_after_colon(lines: list[str]) -> list[str]:
+    """在非代码块中，若某行以冒号结尾，则确保其后至少有一个空行。"""
+    result: list[str] = []
+    in_fence = False
+
+    for i, line in enumerate(lines):
+        raw = line.rstrip("\n")
+        if raw.startswith("```"):
+            in_fence = not in_fence
+
+        result.append(line)
+
+        if in_fence:
+            continue
+        if not raw.strip():
+            continue
+        if not raw.rstrip().endswith((":", "：")):
+            continue
+        if i + 1 >= len(lines):
+            continue
+        if lines[i + 1].strip():
+            result.append("\n")
+
+    return result
+
+
 def process_text(text: str, *, strip_only: bool) -> str:
     lines = _iter_lines(text)
     lines = strip_numbers(lines)
     if not strip_only:
         lines = add_numbers(lines)
+    lines = ensure_blank_line_after_colon(lines)
     return "".join(lines)
 
 

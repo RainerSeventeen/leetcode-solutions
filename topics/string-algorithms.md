@@ -18,9 +18,11 @@
 ## 4 模板与子方法
 ### 4.1 编辑距离与二维匹配 DP
 方法说明：
+
 适用于插删改代价最小化与字符匹配问题。与动态规划专题交叉但核心对象是字符串。
 
 模板代码：
+
 ```python
 def edit_distance(a, b):
     m, n = len(a), len(b)
@@ -41,9 +43,11 @@ def edit_distance(a, b):
 #### 4.1.1 模板题目
 ### 4.2 回文字符串
 方法说明：
+
 可用中心扩展或区间 DP 统计/求最长回文。回文切分类题可交叉回溯专题。
 
 模板代码：
+
 ```python
 def count_substrings(s):
     n = len(s)
@@ -63,9 +67,11 @@ def count_substrings(s):
 - 0647 - 回文子串 ｜ [LeetCode 链接](https://leetcode.cn/problems/palindromic-substrings/) ｜ [题解笔记](../solutions/0601-0700/0647-palindromic-substrings.md)
 ### 4.3 括号与栈/DP
 方法说明：
+
 括号合法性与最长有效区间可用栈或 DP。删除无效括号常转为回溯/BFS 搜索。
 
 模板代码：
+
 ```python
 def longest_valid_parentheses(s):
     st = [-1]
@@ -86,9 +92,11 @@ def longest_valid_parentheses(s):
 - 0761 - 特殊的二进制字符串 ｜ [LeetCode 链接](https://leetcode.cn/problems/special-binary-string/) ｜ [题解笔记](../solutions/0701-0800/0761-special-binary-string.md)
 ### 4.4 字符串栈与解码
 方法说明：
+
 分层结构可用双栈或递归下降解析，遇到 `]` 回收一层。
 
 模板代码：
+
 ```python
 def decode_string(s):
     num_st, str_st = [], []
@@ -112,9 +120,11 @@ def decode_string(s):
 - 0394 - 字符串解码 ｜ [LeetCode 链接](https://leetcode.cn/problems/decode-string/) ｜ [题解笔记](../solutions/0301-0400/0394-decode-string.md)
 ### 4.5 滑动窗口字符串匹配
 方法说明：
+
 以字符频次为约束维护窗口，主方法在双指针专题，这里作为字符串视角交叉模板。
 
 模板代码：
+
 ```python
 from collections import Counter
 
@@ -143,9 +153,11 @@ def find_anagrams(s, p):
 - 3838 - 带权单词映射 ｜ [LeetCode 链接](https://leetcode.cn/problems/weighted-word-mapping/) ｜ [题解笔记](../solutions/3801-3900/3838-weighted-word-mapping.md)
 ### 4.6 回溯生成字符串组合
 方法说明：
+
 字符串枚举类题常用 DFS 构造路径，适合组合生成与约束搜索。
 
 模板代码：
+
 ```python
 def letter_combinations(digits, mp):
     if not digits:
@@ -165,9 +177,11 @@ def letter_combinations(digits, mp):
 #### 4.6.1 模板题目
 ### 4.7 定长窗口滚动编码
 方法说明：
+
 适用于定长子串覆盖判断。把窗口字符序列编码成整数（如二进制串映射到 `[0, 2^k)`），随右端推进做“移位 + 掩码 + 入位”，再配合布尔数组或集合判重计数，避免反复切片。
 
 模板代码：
+
 ```python
 def all_binary_codes_exist(s, k):
     if k > len(s):

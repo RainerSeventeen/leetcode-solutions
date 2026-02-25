@@ -71,7 +71,9 @@ python scripts/fix_id_mismatches.py              # 执行修复
 ```
 
 ## `scripts/normalize_topics.py`
-为 `topics/*.md` 的 H2-H6 标题添加/移除层级数字前缀（如 `## 1.2 xxx`）。
+为 `topics/*.md` 做统一格式化：
+- H2-H6 标题添加/移除层级数字前缀（如 `## 1.2 xxx`）
+- 非代码块中，若某行以 `:` 或 `：` 结尾，且下一行非空，则自动补一个真正空行
 ```bash
 python scripts/normalize_topics.py
 python scripts/normalize_topics.py --strip

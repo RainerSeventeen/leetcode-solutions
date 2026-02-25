@@ -17,9 +17,11 @@
 ## 4 模板与子方法
 ### 4.1 边界二分（lower_bound / upper_bound）
 方法说明：
+
 适用于“第一个大于等于”“最后一个小于等于”等边界查询。
 
 模板代码：
+
 ```python
 def lower_bound(nums, target):
     l, r = 0, len(nums)
@@ -42,9 +44,11 @@ def lower_bound(nums, target):
 - 0792 - 二分查找 ｜ [LeetCode 链接](https://leetcode.cn/problems/binary-search/) ｜ [题解笔记](../solutions/0701-0800/0704-binary-search.md)
 ### 4.2 旋转数组二分
 方法说明：
+
 适用于局部有序的旋转数组，先判断哪半边有序，再判目标是否落在有序半边。
 
 模板代码：
+
 ```python
 def search_rotated(nums, target):
     l, r = 0, len(nums) - 1
@@ -69,9 +73,11 @@ def search_rotated(nums, target):
 - 0033 - 搜索旋转排序数组 ｜ [LeetCode 链接](https://leetcode.cn/problems/search-in-rotated-sorted-array/) ｜ [题解笔记](../solutions/0001-0100/0033-search-in-rotated-sorted-array.md)
 ### 4.3 分割二分
 方法说明：
+
 适用于在两个有序结构上找分割点。实现要点是让左半部分长度固定并检查边界关系。
 
 模板代码：
+
 ```python
 def find_median_sorted_arrays(a, b):
     if len(a) > len(b):
@@ -99,9 +105,11 @@ def find_median_sorted_arrays(a, b):
 - 0004 - 寻找两个正序数组的中位数 ｜ [LeetCode 链接](https://leetcode.cn/problems/median-of-two-sorted-arrays/) ｜ [题解笔记](../solutions/0001-0100/0004-median-of-two-sorted-arrays.md)
 ### 4.4 答案二分（可行性判定）
 方法说明：
+
 把“求最小/最大满足值”转成判定函数。`0287` 在本专题是交叉做法，主模板也可用快慢指针。
 
 模板代码：
+
 ```python
 def binary_search_answer(lo, hi, ok):
     while lo < hi:

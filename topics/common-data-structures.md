@@ -18,9 +18,11 @@
 ## 4 模板与子方法
 ### 4.1 哈希映射与集合
 方法说明：
+
 适用于查找补数、分组、去重与连续性判断。与图并查集思路可交叉，但实现更轻量。
 
 模板代码：
+
 ```python
 def two_sum(nums, target):
     pos = {}
@@ -42,9 +44,11 @@ def two_sum(nums, target):
 - 0674 - 最长连续递增序列 ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-continuous-increasing-subsequence/) ｜ [题解笔记](../solutions/0601-0700/0674-longest-continuous-increasing-subsequence.md)
 ### 4.2 栈结构
 方法说明：
+
 适用于括号匹配、最小值维护等“后进先出”约束。
 
 模板代码：
+
 ```python
 class MinStack:
     def __init__(self):
@@ -69,9 +73,11 @@ class MinStack:
 - 1047 - 删除字符串中的所有相邻重复项 ｜ [LeetCode 链接](https://leetcode.cn/problems/remove-all-adjacent-duplicates-in-string/) ｜ [题解笔记](../solutions/1001-1100/1047-remove-all-adjacent-duplicates-in-string.md)
 ### 4.3 堆与 Top-K
 方法说明：
+
 适用于动态维护前 K 大、小根堆调度与多路归并。链表多路合并可交叉到链表专题。
 
 模板代码：
+
 ```python
 import heapq
 
@@ -93,9 +99,11 @@ def top_k(nums, k):
 - 0253 - 会议室 II ｜ [LeetCode 链接](https://leetcode.cn/problems/meeting-rooms-ii/) ｜ [题解笔记](../solutions/0201-0300/0253-meeting-rooms-ii.md)
 ### 4.4 Trie 与前缀树
 方法说明：
+
 适用于前缀查询、单词插入与字典匹配。
 
 模板代码：
+
 ```python
 class TrieNode:
     def __init__(self):
@@ -107,9 +115,11 @@ class TrieNode:
 - 0208 - 实现 Trie (前缀树) ｜ [LeetCode 链接](https://leetcode.cn/problems/implement-trie-prefix-tree/) ｜ [题解笔记](../solutions/0201-0300/0208-implement-trie-prefix-tree.md)
 ### 4.5 前缀和与哈希计数
 方法说明：
+
 将区间和问题转成前缀差，配合哈希统计历史前缀出现次数。树路径前缀和可交叉到树专题。
 
 模板代码：
+
 ```python
 from collections import defaultdict
 
@@ -130,9 +140,11 @@ def subarray_sum(nums, k):
 - 0238 - 除了自身以外数组的乘积 ｜ [LeetCode 链接](https://leetcode.cn/problems/product-of-array-except-self/) ｜ [题解笔记](../solutions/0201-0300/0238-product-of-array-except-self.md)
 ### 4.6 结构设计（哈希 + 双链表）
 方法说明：
+
 设计题核心是保证每个操作复杂度满足要求，常见是 O(1) 的访问与淘汰。
 
 模板代码：
+
 ```python
 class LRUCache:
     def __init__(self, capacity):

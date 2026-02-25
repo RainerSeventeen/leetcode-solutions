@@ -17,9 +17,11 @@
 ## 4 模板与子方法
 ### 4.1 异或抵消
 方法说明：
+
 当除一个元素外其他都成对出现时，异或可线性求解。
 
 模板代码：
+
 ```python
 def single_number(nums):
     x = 0
@@ -32,9 +34,11 @@ def single_number(nums):
 - 0136 - 只出现一次的数字 ｜ [LeetCode 链接](https://leetcode.cn/problems/single-number/) ｜ [题解笔记](../solutions/0101-0200/0136-single-number.md)
 ### 4.2 按位统计
 方法说明：
+
 统计两个数在二进制位上不同的数量，可用异或后统计 1 的个数。
 
 模板代码：
+
 ```python
 def bit_count(x):
     cnt = 0
@@ -58,9 +62,11 @@ def hamming_distance(x, y):
 - 3827 - 统计单比特整数 ｜ [LeetCode 链接](https://leetcode.cn/problems/count-monobit-integers/) ｜ [题解笔记](../solutions/3801-3900/3827-count-monobit-integers.md)
 ### 4.3 位运算递推
 方法说明：
+
 通过 `i >> 1` 或 `i & (i - 1)` 构建从小到大的递推。该类也可交叉到动态规划专题。
 
 模板代码：
+
 ```python
 def count_bits(n):
     dp = [0] * (n + 1)
