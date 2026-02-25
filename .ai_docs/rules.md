@@ -47,4 +47,4 @@
 
 ## 检验与自动化
 1. 必须通过 `scripts/check_solutions.py` 校验。
-2. 撰写完成后需要通过 `scripts/normalize_topics_title.py` 执行格式化。
+2. 撰写完成后需要通过 `scripts/normalize_topics.py` 执行格式化。

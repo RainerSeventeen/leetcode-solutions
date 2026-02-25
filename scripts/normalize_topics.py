@@ -6,9 +6,9 @@
 代码块内的标题行不受影响。
 
 用法:
-  python scripts/normalize_topics_title.py            # 添加/更新数字前缀（默认）
-  python scripts/normalize_topics_title.py --strip    # 仅移除数字前缀，不重新添加
-  python scripts/normalize_topics_title.py --dry-run  # 预览 unified diff，不写入文件
+  python scripts/normalize_topics.py            # 添加/更新数字前缀（默认）
+  python scripts/normalize_topics.py --strip    # 仅移除数字前缀，不重新添加
+  python scripts/normalize_topics.py --dry-run  # 预览 unified diff，不写入文件
 
 参数:
   --strip     仅移除数字前缀，不重新添加

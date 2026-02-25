@@ -58,7 +58,7 @@
 │   ├── fetch_ac_submissions.py
 │   ├── filter_ac_with_code.py
 │   ├── import_ac_to_solutions.py
-│   ├── normalize_topics_title.py
+│   ├── normalize_topics.py
 │   └── ci/
 │       ├── check_solutions.py
 │       ├── check_topics.py

@@ -39,7 +39,7 @@ description: "Use when user asks to run daily LeetCode summary/archive workflow:
    - Pass all imported `solutions/...md` paths and ask it to:
      - insert topic links,
      - create subsection when needed,
-     - run `.venv/bin/python scripts/normalize_topics_title.py`,
+     - run `.venv/bin/python scripts/normalize_topics.py`,
      - return changed files and inserted lines.
    - Wait for subagent completion.
    - If subagent fails, surface failure reason and partial progress.

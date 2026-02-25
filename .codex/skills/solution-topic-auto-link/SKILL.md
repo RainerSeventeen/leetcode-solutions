@@ -45,7 +45,7 @@ description: Use when the user gives one or more `solutions/...md` files and ask
 
 6. **Validate and normalize**
    - Run `python3 scripts/ci/check_solutions.py`.
-   - Run `python3 scripts/normalize_topics_title.py`.
+   - Run `python3 scripts/normalize_topics.py`.
 
 ## Final Output
 

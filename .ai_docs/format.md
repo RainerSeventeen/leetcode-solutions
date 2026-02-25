@@ -116,5 +116,5 @@ created: 2026-02-20      # YYYY-MM-DD
 
 撰写或修改完成后执行：
 ```bash
-python scripts/normalize_topics_title.py
+python scripts/normalize_topics.py
 ```

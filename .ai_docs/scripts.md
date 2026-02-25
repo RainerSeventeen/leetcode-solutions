@@ -70,12 +70,12 @@ python scripts/fix_id_mismatches.py --dry-run   # 预览变更
 python scripts/fix_id_mismatches.py              # 执行修复
 ```
 
-## `scripts/normalize_topics_title.py`
+## `scripts/normalize_topics.py`
 为 `topics/*.md` 的 H2-H6 标题添加/移除层级数字前缀（如 `## 1.2 xxx`）。
 ```bash
-python scripts/normalize_topics_title.py
-python scripts/normalize_topics_title.py --strip
-python scripts/normalize_topics_title.py --dry-run
+python scripts/normalize_topics.py
+python scripts/normalize_topics.py --strip
+python scripts/normalize_topics.py --dry-run
 ```
 
 ## CI 脚本
