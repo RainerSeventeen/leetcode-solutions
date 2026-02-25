@@ -5,6 +5,11 @@ description: Use when the user gives one or more `solutions/...md` files and ask
 
 # Solution Topic Auto Link
 
+## Environment
+
+- Use `.venv/bin/python` for Python scripts.
+- If `.venv/bin/python` is missing, stop and report that virtual environment is required.
+
 ## Hard Rules
 
 - Do not create files under `solutions/`; they must come from `scripts/fetch_problem.py`.
@@ -43,9 +48,9 @@ description: Use when the user gives one or more `solutions/...md` files and ask
    - Backlink format: `- [专题显示名](../../topics/xxx.md)`
    - `专题显示名` follows README topic name convention (remove Chinese parenthetical text).
 
-6. **Validate and normalize**
-   - Run `python3 scripts/ci/check_solutions.py`.
-   - Run `python3 scripts/normalize_topics.py`.
+6. **Normalize (when caller requests)**
+   - If caller explicitly requests normalization, run `.venv/bin/python scripts/normalize_topics.py`.
+   - Do not run full repository CI by default; final validation should be handled by the orchestrating workflow.
 
 ## Final Output
 
@@ -53,4 +58,5 @@ Report:
 - Processed solution path(s).
 - Topic file(s) and section(s) used/created.
 - Exact inserted topic line(s).
-- Validation results.
+- Backlink changes: solution files where `## 相关专题` was added or updated, with the exact lines inserted.
+- Normalization result (if executed).

@@ -21,8 +21,9 @@ python scripts/fetch_problem.py --slug count-sequences-with-given-sum   # 竞赛
 ```bash
 python scripts/fetch_ac_submissions.py
 python scripts/fetch_ac_submissions.py --delay 0.8 --days 365
+python scripts/fetch_ac_submissions.py --days 1 --keep-per-problem 0
 ```
-特性：同题只保留最新一次 AC；断点续传（`code=null` 的记录自动重拉）；限流退避（30→60→120→180→300s）；竞赛题与普通题统一处理。
+特性：支持按题保留条数（默认 `--keep-per-problem 1`，即同题只保留最新一次 AC；`0` 表示保留窗口内全部 AC）；断点续传（`code=null` 的记录自动重拉）；限流退避（30→60→120→180→300s）；竞赛题与普通题统一处理。
 
 > ⚠️ LeetCode 对竞赛题有两个 ID：`questionFrontendId`（用户可见题号，如 3838）和 `questionId`（内部数据库 ID，如 4216）。
 > 所有脚本均通过 GraphQL `questionFrontendId` 字段命名文件（fallback `questionId`），确保文件名与网站显示一致。
@@ -43,11 +44,12 @@ python scripts/import_ac_to_solutions.py --delay 0.8
 ```
 流程：
 1. 扫描 `solutions/**/*.md`，提取已有 slug 集合
-2. 遍历 JSONL，跳过已有 slug（含同 slug 重复行）
+2. 读取并按 slug 归并 JSONL 记录（同题多提交合并为同一题）
 3. 对未有的题目调 GraphQL 拿 `questionFrontendId`（用户可见题号）、标题、难度、标签、题目描述
-4. 生成完整 Markdown（含 AC 代码，语言标签从 `lang` 字段映射）
-5. 写入 `solutions/<range>/<id>-<slug>.md`
-6. 将本次新建的文件路径列表写入 `artifacts/imported_paths.txt`
+4. 生成完整 Markdown（`## 代码` 下保留多段 AC 代码，默认按提交时间从新到旧）
+5. 导入阶段不做“同方法去重”，仅原样导入（是否合并由后续 agent 决定）
+6. 写入 `solutions/<range>/<id>-<slug>.md`
+7. 将本次新建的文件路径列表写入 `artifacts/imported_paths.txt`
 
 **lang → 代码块标签映射**：`python3→python`、`golang→go`、`cpp→cpp`、`mysql/mssql/oraclesql→sql` 等。
 

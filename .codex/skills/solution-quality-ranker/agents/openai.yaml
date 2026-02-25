@@ -1,0 +1,4 @@
+interface:
+  display_name: "solution-quality-ranker"
+  short_description: "按优劣重排代码块并补齐最优解说明/复杂度"
+  default_prompt: "处理给定 solutions 文件：同方法去重，按最优到最差重排代码块，基于最优解补齐思路与复杂度，并汇报 latest-not-best 与 all AC non-optimal。"
