@@ -202,6 +202,7 @@ def min_camera_cover(root):
 这种题没有很好的办法, 直接模拟题目的运行顺序即可
 
 #### 4.8.1 模板题目
+- 1404 - 将二进制表示减到 1 的步骤数 ｜ [LeetCode 链接](https://leetcode.cn/problems/number-of-steps-to-reduce-a-number-in-binary-representation-to-one/) ｜ [题解笔记](../solutions/1401-1500/1404-number-of-steps-to-reduce-a-number-in-binary-representation-to-one.md)
 - 3847 - 计算比赛分数差 ｜ [LeetCode 链接](https://leetcode.cn/problems/find-the-score-difference-in-a-game/) ｜ [题解笔记](../solutions/3801-3900/3847-find-the-score-difference-in-a-game.md)
 - 3849 - 重新排列后的最大按位异或值 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximum-bitwise-xor-after-rearrangement/) ｜ [题解笔记](../solutions/3801-3900/3849-maximum-bitwise-xor-after-rearrangement.md)
 ## 5 易错点

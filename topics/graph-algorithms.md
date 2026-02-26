@@ -327,21 +327,25 @@ def dijkstra(graph, start): # 邻接矩阵 + 数组暴力
 ```python
 import heapq # 最小堆
 def dijkstra(n, adj, start): # n 节点数, adj 出度邻接表, start 起始点
+	# 1. 初始化: 除了起点，距离全部设置无穷
     INF = float("inf")
     dist = [INF] * n
     dist[start] = 0
-
+	# 2. 初始化堆: 放进起点
     pq = [(0, start)]  # (最短距离, 节点)
 
     while pq:
+	    # 3. 进入循环拿取一个最近的下一个节点
         d, u = heapq.heappop(pq)
-        if d > dist[u]: 	# 旧的记录，直接跳过
+        # 4. 旧记录堆去重，注意没有等号
+        if d != dist[u]: 	# 旧的记录，直接跳过
             continue
-
+		
+		# 5. 遍历取出节点的所有可达路径，执行更新
         for v, w in adj[u]:
             nd = d + w
             if nd < dist[v]:
-                dist[v] = nd
+                dist[v] = nd # 更新最短路径
                 # 注意这里没有删除旧的（代价太大），而是直接 push 一个更小的进去
                 heapq.heappush(pq, (nd, v))	
 
@@ -350,6 +354,8 @@ def dijkstra(n, adj, start): # n 节点数, adj 出度邻接表, start 起始点
 
 #### 4.8.1 模板题目
 - 0743 - 网络延迟时间 ｜ [LeetCode 链接](https://leetcode.cn/problems/network-delay-time/) ｜ [题解笔记](../solutions/0701-0800/0743-network-delay-time.md)
+- 3112 - 访问消失节点的最少时间 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-time-to-visit-disappearing-nodes/) ｜ [题解笔记](../solutions/3101-3200/3112-minimum-time-to-visit-disappearing-nodes.md)
+- 3341 - 到达最后一个房间的最少时间 I ｜ [LeetCode 链接](https://leetcode.cn/problems/find-minimum-time-to-reach-last-room-i/) ｜ [题解笔记](../solutions/3301-3400/3341-find-minimum-time-to-reach-last-room-i.md)
 
 ## 5 易错点
 
