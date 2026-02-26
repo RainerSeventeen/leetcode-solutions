@@ -31,10 +31,11 @@ ROOT = Path(__file__).resolve().parents[2]
 SOLUTIONS_DIR = ROOT / "solutions"
 FILE_RE = re.compile(r"solutions/\d{4}-\d{4}/(\d{4})-[a-z0-9-]+\.md$")
 FRONT_MATTER_RE = re.compile(r"^---\n(.*?)\n---\n", re.S)
-REQUIRED_SECTIONS = (
+SECTION_ORDER = (
     "## 题目链接",
     "## 题目描述",
     "## 解题思路",
+    "## 相关专题",
     "## 代码",
 )
 ALLOWED_DIFFICULTY = {"Easy", "Medium", "Hard"}
@@ -119,7 +120,6 @@ def check_backlinks(content: str, rel: str) -> list[str]:
             break
 
     if start is None:
-        errors.append(f"{rel}: missing section `## 相关专题`")
         return errors
 
     # 收集段落内所有回链接行
@@ -145,6 +145,39 @@ def check_backlinks(content: str, rel: str) -> list[str]:
                 f"{rel}: backlink name `{display_name}` should be `{expected}`"
                 f" (for `{topic_filename}`)"
             )
+
+    return errors
+
+
+def find_section_line_indices(content: str, sections: tuple[str, ...]) -> dict[str, int]:
+    indices: dict[str, int] = {}
+    for lineno, line in enumerate(content.splitlines(), start=1):
+        if line in sections and line not in indices:
+            indices[line] = lineno
+    return indices
+
+
+def check_sections_present_and_order(content: str, rel: str) -> list[str]:
+    errors: list[str] = []
+    section_indices = find_section_line_indices(content, SECTION_ORDER)
+
+    for section in SECTION_ORDER:
+        if section not in section_indices:
+            errors.append(f"{rel}: missing section `{section}`")
+
+    if errors:
+        return errors
+
+    last_line = -1
+    for section in SECTION_ORDER:
+        current_line = section_indices[section]
+        if current_line < last_line:
+            errors.append(
+                f"{rel}: section order must be "
+                "`## 题目链接 -> ## 题目描述 -> ## 解题思路 -> ## 相关专题 -> ## 代码`"
+            )
+            break
+        last_line = current_line
 
     return errors
 
@@ -189,9 +222,7 @@ def check_file(path: Path) -> list[str]:
                 f"{rel}: invalid created date `{front_matter['created']}`, expected YYYY-MM-DD"
             )
 
-    for section in REQUIRED_SECTIONS:
-        if section not in content:
-            errors.append(f"{rel}: missing section `{section}`")
+    errors.extend(check_sections_present_and_order(content, rel))
 
     if "O()" in content:
         errors.append(f"{rel}: placeholder `O()` still exists")
