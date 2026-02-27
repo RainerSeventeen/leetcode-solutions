@@ -149,7 +149,9 @@ def bfs(start, edges):
 - 0813 - 所有可能的路径 ｜ [LeetCode 链接](https://leetcode.cn/problems/all-paths-from-source-to-target/) ｜ [题解笔记](../solutions/0701-0800/0797-all-paths-from-source-to-target.md)
 - 1306 - 跳跃游戏 III ｜ [LeetCode 链接](https://leetcode.cn/problems/jump-game-iii/) ｜ [题解笔记](../solutions/1301-1400/1306-jump-game-iii.md)
 - 1311 - 获取你好友已观看的视频 ｜ [LeetCode 链接](https://leetcode.cn/problems/get-watched-videos-by-your-friends/) ｜ [题解笔记](../solutions/1301-1400/1311-get-watched-videos-by-your-friends.md)
+- 2612 - 最少翻转操作数 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-reverse-operations/) ｜ [题解笔记](../solutions/2601-2700/2612-minimum-reverse-operations.md)
 - 3243 - 新增道路查询后的最短距离 I ｜ [LeetCode 链接](https://leetcode.cn/problems/shortest-distance-after-road-addition-queries-i/) ｜ [题解笔记](../solutions/3201-3300/3243-shortest-distance-after-road-addition-queries-i.md)
+- 3666 - 使二进制字符串全为 1 的最少操作次数 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-operations-to-equalize-binary-string/) ｜ [题解笔记](../solutions/3601-3700/3666-minimum-operations-to-equalize-binary-string.md)
 
 ### 4.4 并查集
 方法说明：

@@ -138,6 +138,7 @@ def subarray_sum(nums, k):
 #### 4.5.1 模板题目
 - 0560 - 和为 K 的子数组 ｜ [LeetCode 链接](https://leetcode.cn/problems/subarray-sum-equals-k/) ｜ [题解笔记](../solutions/0501-0600/0560-subarray-sum-equals-k.md)
 - 0238 - 除了自身以外数组的乘积 ｜ [LeetCode 链接](https://leetcode.cn/problems/product-of-array-except-self/) ｜ [题解笔记](../solutions/0201-0300/0238-product-of-array-except-self.md)
+- 3714 - 最长的平衡子串 II ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-balanced-substring-ii/) ｜ [题解笔记](../solutions/3701-3800/3714-longest-balanced-substring-ii.md)
 ### 4.6 结构设计（哈希 + 双链表）
 方法说明：
 

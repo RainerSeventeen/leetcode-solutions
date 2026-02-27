@@ -66,6 +66,14 @@ def monotone_increasing_digits(n):
 
 #### 4.3.1 模板题目
 - 3848 - 阶数数字排列 ｜ [LeetCode 链接](https://leetcode.cn/problems/check-digitorial-permutation/) ｜ [题解笔记](../solutions/3801-3900/3848-check-digitorial-permutation.md)
+
+### 4.4 数位回文判断
+方法说明：
+
+通过反转整数后半段与前半段比较，可在不转字符串的前提下完成回文判断。
+
+#### 4.4.1 模板题目
+- 0009 - 回文数 ｜ [LeetCode 链接](https://leetcode.cn/problems/palindrome-number/) ｜ [题解笔记](../solutions/0001-0100/0009-palindrome-number.md)
 ## 5 易错点
 - 原地旋转顺序写反会得到错误结果。
 - 数位回退后未统一填 9 导致非最优。
