@@ -356,6 +356,7 @@ def dijkstra(n, adj, start): # n 节点数, adj 出度邻接表, start 起始点
 
 #### 4.8.1 模板题目
 - 0743 - 网络延迟时间 ｜ [LeetCode 链接](https://leetcode.cn/problems/network-delay-time/) ｜ [题解笔记](../solutions/0701-0800/0743-network-delay-time.md)
+- 2642 - 设计可以求最短路径的图类 ｜ [LeetCode 链接](https://leetcode.cn/problems/design-graph-with-shortest-path-calculator/) ｜ [题解笔记](../solutions/2601-2700/2642-design-graph-with-shortest-path-calculator.md)
 - 3112 - 访问消失节点的最少时间 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-time-to-visit-disappearing-nodes/) ｜ [题解笔记](../solutions/3101-3200/3112-minimum-time-to-visit-disappearing-nodes.md)
 - 3341 - 到达最后一个房间的最少时间 I ｜ [LeetCode 链接](https://leetcode.cn/problems/find-minimum-time-to-reach-last-room-i/) ｜ [题解笔记](../solutions/3301-3400/3341-find-minimum-time-to-reach-last-room-i.md)
 

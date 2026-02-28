@@ -78,6 +78,7 @@ def count_bits(n):
 
 #### 4.3.1 模板题目
 - 0338 - 比特位计数 ｜ [LeetCode 链接](https://leetcode.cn/problems/counting-bits/) ｜ [题解笔记](../solutions/0301-0400/0338-counting-bits.md)
+- 1680 - 连接连续二进制数字 ｜ [LeetCode 链接](https://leetcode.cn/problems/concatenation-of-consecutive-binary-numbers/) ｜ [题解笔记](../solutions/1601-1700/1680-concatenation-of-consecutive-binary-numbers.md)
 ## 5 易错点
 - 把 `x & (x - 1)` 误解为“取最低位 1”。
 - Python 负数按位行为与固定宽度整型不同。
