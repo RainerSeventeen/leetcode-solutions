@@ -42,6 +42,7 @@ def two_sum(nums, target):
 - 0242 - 有效的字母异位词 ｜ [LeetCode 链接](https://leetcode.cn/problems/valid-anagram/) ｜ [题解笔记](../solutions/0201-0300/0242-valid-anagram.md)
 - 0383 - 赎金信 ｜ [LeetCode 链接](https://leetcode.cn/problems/ransom-note/) ｜ [题解笔记](../solutions/0301-0400/0383-ransom-note.md)
 - 0674 - 最长连续递增序列 ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-continuous-increasing-subsequence/) ｜ [题解笔记](../solutions/0601-0700/0674-longest-continuous-increasing-subsequence.md)
+- 3852 - 不同频率的最小数对 ｜ [LeetCode 链接](https://leetcode.cn/problems/smallest-pair-with-different-frequencies/) ｜ [题解笔记](../solutions/3801-3900/3852-smallest-pair-with-different-frequencies.md)
 ### 4.2 栈结构
 方法说明：
 

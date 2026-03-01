@@ -138,6 +138,7 @@ def majority_element(nums):
 #### 4.5.1 模板题目
 - 0621 - 任务调度器 ｜ [LeetCode 链接](https://leetcode.cn/problems/task-scheduler/) ｜ [题解笔记](../solutions/0601-0700/0621-task-scheduler.md)
 - 0169 - 多数元素 ｜ [LeetCode 链接](https://leetcode.cn/problems/majority-element/) ｜ [题解笔记](../solutions/0101-0200/0169-majority-element.md)
+- 1689 - 十-二进制数的最少数目 ｜ [LeetCode 链接](https://leetcode.cn/problems/partitioning-into-minimum-number-of-deci-binary-numbers/) ｜ [题解笔记](../solutions/1601-1700/1689-partitioning-into-minimum-number-of-deci-binary-numbers.md)
 
 ### 4.6 数位与排列构造贪心
 方法说明：
@@ -205,6 +206,7 @@ def min_camera_cover(root):
 - 1404 - 将二进制表示减到 1 的步骤数 ｜ [LeetCode 链接](https://leetcode.cn/problems/number-of-steps-to-reduce-a-number-in-binary-representation-to-one/) ｜ [题解笔记](../solutions/1401-1500/1404-number-of-steps-to-reduce-a-number-in-binary-representation-to-one.md)
 - 3847 - 计算比赛分数差 ｜ [LeetCode 链接](https://leetcode.cn/problems/find-the-score-difference-in-a-game/) ｜ [题解笔记](../solutions/3801-3900/3847-find-the-score-difference-in-a-game.md)
 - 3849 - 重新排列后的最大按位异或值 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximum-bitwise-xor-after-rearrangement/) ｜ [题解笔记](../solutions/3801-3900/3849-maximum-bitwise-xor-after-rearrangement.md)
+- 3853 - 合并靠近字符 ｜ [LeetCode 链接](https://leetcode.cn/problems/merge-close-characters/) ｜ [题解笔记](../solutions/3801-3900/3853-merge-close-characters.md)
 ## 5 易错点
 - 只给策略不证明正确性。
 - 排序键选错导致局部决策失效。
