@@ -74,6 +74,7 @@ def candy(ratings):
 - 0768 - 划分字母区间 ｜ [LeetCode 链接](https://leetcode.cn/problems/partition-labels/) ｜ [题解笔记](../solutions/0701-0800/0763-partition-labels.md)
 - 0890 - 柠檬水找零 ｜ [LeetCode 链接](https://leetcode.cn/problems/lemonade-change/) ｜ [题解笔记](../solutions/0801-0900/0860-lemonade-change.md)
 - 1005 - K 次取反后最大化的数组和 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximize-sum-of-array-after-k-negations/) ｜ [题解笔记](../solutions/1001-1100/1005-maximize-sum-of-array-after-k-negations.md)
+- 1536 - 排布二进制网格的最少交换次数 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-swaps-to-arrange-a-binary-grid/) ｜ [题解笔记](../solutions/1501-1600/1536-minimum-swaps-to-arrange-a-binary-grid.md)
 ### 4.3 多维排序与重建
 方法说明：
 

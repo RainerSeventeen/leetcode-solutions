@@ -74,6 +74,14 @@ def monotone_increasing_digits(n):
 
 #### 4.4.1 模板题目
 - 0009 - 回文数 ｜ [LeetCode 链接](https://leetcode.cn/problems/palindrome-number/) ｜ [题解笔记](../solutions/0001-0100/0009-palindrome-number.md)
+
+### 4.5 模运算与等比求和
+方法说明：
+
+先按“每一位独立贡献”拆解总和，再把位权和写成等比数列，用快速幂与乘法逆元在模意义下计算。
+
+#### 4.5.1 模板题目
+- 3855 - 给定范围内 K 位数字之和 ｜ [LeetCode 链接](https://leetcode.cn/problems/sum-of-k-digit-numbers-in-a-range/) ｜ [题解笔记](../solutions/3801-3900/3855-sum-of-k-digit-numbers-in-a-range.md)
 ## 5 易错点
 - 原地旋转顺序写反会得到错误结果。
 - 数位回退后未统一填 9 导致非最优。

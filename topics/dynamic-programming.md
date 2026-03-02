@@ -52,6 +52,7 @@ def max_subarray(nums):
 - 0747 - 使用最小花费爬楼梯 ｜ [LeetCode 链接](https://leetcode.cn/problems/min-cost-climbing-stairs/) ｜ [题解笔记](../solutions/0701-0800/0746-min-cost-climbing-stairs.md)
 - 509 - 斐波那契数 ｜ [LeetCode 链接](https://leetcode.cn/problems/fibonacci-number/) ｜ [题解笔记](../solutions/0501-0600/0509-fibonacci-number.md)
 - 2266 - 统计打字方案数 ｜ [LeetCode 链接](https://leetcode.cn/problems/count-number-of-texts/) ｜ [题解笔记](../solutions/2201-2300/2266-count-number-of-texts.md)
+- 3186 - 施咒的最大总伤害 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximum-total-damage-with-spell-casting/) ｜ [题解笔记](../solutions/3101-3200/3186-maximum-total-damage-with-spell-casting.md)
 - 3840 - 打家劫舍 V ｜ [LeetCode 链接](https://leetcode.cn/problems/house-robber-v/) ｜ [题解笔记](../solutions/3801-3900/3840-house-robber-v.md)
 ### 4.2 0-1 背包 DP
 方法说明：
