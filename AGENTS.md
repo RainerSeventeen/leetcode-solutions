@@ -4,10 +4,6 @@
 
 详见：`.ai_docs/structure.md`
 
-## Build, Test, and Development Commands
-
-详见：`.ai_docs/scripts.md`（各脚本用法）和 `.ai_docs/workflows.md`（典型工作流）
-
 ## Coding Style & Naming Conventions
 
 详见：`.ai_docs/rules.md`

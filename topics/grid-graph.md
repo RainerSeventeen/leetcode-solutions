@@ -1,137 +1,193 @@
 # 网格图（DFS/BFS/综合应用）
 
-## 1 概览
-网格题可视为隐式图搜索，常见目标是连通块计数、可达性判断、最短步数与网格状态转移。
+## 概览
+网格图问题把二维坐标视作图节点，常见目标是连通块统计、可达性判断与最短路计算。
 
-## 2 核心思想
-- 网格 DFS/BFS：把坐标当节点，方向移动当边。
-- 层序 BFS：用于无权最短路步数。
-- 网格 DP：当转移方向固定时可由搜索转为递推。
+## 核心思想
+- 用方向数组统一相邻扩展，降低边界与分支错误。
+- 连通性优先考虑 DFS/BFS；无权最短路优先 BFS；边权为 0/1 时优先 0-1 BFS。
+- 当代价为一般非负权重时使用 Dijkstra；综合题常需多种方法组合。
 
-## 3 解题流程
-1. 判断是连通性、最短路还是固定方向转移。
-2. 统一边界检查与访问标记策略。
-3. 选 DFS、BFS 或 DP 并写出状态更新。
-4. 处理空网格、单行单列、起终点重合等边界。
+## 解题流程
+1. 明确任务类型：连通块、最短路、状态搜索或混合建模。
+2. 定义状态与转移：坐标、方向、额外状态（钥匙、朝向、障碍消耗等）。
+3. 选择算法并写模板：DFS/BFS/0-1 BFS/Dijkstra。
+4. 校验边界场景：空网格、单行单列、起终点重合、不可达。
 
-## 4 模板与子方法
-### 4.1 网格 DFS 连通块
-方法说明：
-
-用于岛屿数量、封闭区域等连通块问题。与图算法专题可交叉，但这里强调二维坐标递归。
-
-模板代码：
+## 模板与子方法
+### 网格图 DFS
+#### 连通块 DFS
+模板：
 
 ```python
-def num_islands(grid):
-    m, n = len(grid), len(grid[0])
+from typing import List
 
-    def dfs(i, j):
-        if i < 0 or i >= m or j < 0 or j >= n or grid[i][j] != '1':
-            return
-        grid[i][j] = '0'
-        dfs(i + 1, j)
-        dfs(i - 1, j)
-        dfs(i, j + 1)
-        dfs(i, j - 1)
+
+def dfs_grid(grid: List[List[str]]) -> List[int]:
+    m, n = len(grid), len(grid[0])
+    vis = [[False] * n for _ in range(m)]
+
+    def dfs(i: int, j: int) -> int:
+        vis[i][j] = True
+        size = 1
+        for x, y in ((i, j - 1), (i, j + 1), (i - 1, j), (i + 1, j)):
+            if 0 <= x < m and 0 <= y < n and grid[x][y] == '1' and not vis[x][y]:
+                size += dfs(x, y)
+        return size
+
+    comp_size: List[int] = []
+    for i in range(m):
+        for j in range(n):
+            if grid[i][j] == '1' and not vis[i][j]:
+                comp_size.append(dfs(i, j))
+    return comp_size
 ```
 
-#### 4.1.1 模板题目
+模板题目：
+
 - 0200 - 岛屿数量 ｜ [LeetCode 链接](https://leetcode.cn/problems/number-of-islands/) ｜ [题解笔记](../solutions/0101-0200/0200-number-of-islands.md)
-### 4.2 网格 BFS 连通块
-方法说明：
 
-与 DFS 同类问题的队列写法，适合避免递归栈过深。
-
-模板代码：
+### 网格图 BFS
+#### 无权最短路 BFS
+模板：
 
 ```python
 from collections import deque
+from typing import List
 
 
-def bfs_mark(grid, si, sj):
+def bfs_grid(grid: List[List[str]], sx: int, sy: int) -> List[List[int]]:
     m, n = len(grid), len(grid[0])
-    q = deque([(si, sj)])
-    grid[si][sj] = '0'
+    dist = [[-1] * n for _ in range(m)]
+    dist[sx][sy] = 0
+    q = deque([(sx, sy)])
+
     while q:
         i, j = q.popleft()
-        for di, dj in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-            ni, nj = i + di, j + dj
-            if 0 <= ni < m and 0 <= nj < n and grid[ni][nj] == '1':
-                grid[ni][nj] = '0'
-                q.append((ni, nj))
+        for x, y in ((i, j - 1), (i, j + 1), (i - 1, j), (i + 1, j)):
+            if 0 <= x < m and 0 <= y < n and grid[x][y] == '.' and dist[x][y] < 0:
+                dist[x][y] = dist[i][j] + 1
+                q.append((x, y))
+
+    return dist
 ```
 
-#### 4.2.1 模板题目
-### 4.3 网格搜索与有序剪枝
-方法说明：
+模板题目：
 
-当矩阵行列有序时，可从角点线性收缩；同题也可按行二分，属于二分专题交叉。
+待补充...
 
-模板代码：
+### 网格图 0-1 BFS
+#### 边权为 0 或 1 的最短路
+模板：
 
 ```python
-def search_matrix(matrix, target):
-    m, n = len(matrix), len(matrix[0])
-    i, j = 0, n - 1
-    while i < m and j >= 0:
-        if matrix[i][j] == target:
-            return True
-        if matrix[i][j] > target:
-            j -= 1
-        else:
-            i += 1
-    return False
+from collections import deque
+from typing import List
+
+
+def zero_one_bfs(grid: List[List[int]]) -> int:
+    m, n = len(grid), len(grid[0])
+    inf = 10**18
+    dist = [[inf] * n for _ in range(m)]
+    dist[0][0] = 0
+    dq = deque([(0, 0)])
+
+    while dq:
+        i, j = dq.popleft()
+        for x, y in ((i, j - 1), (i, j + 1), (i - 1, j), (i + 1, j)):
+            if not (0 <= x < m and 0 <= y < n):
+                continue
+            w = grid[x][y]  # 题意中的 0/1 边权
+            nd = dist[i][j] + w
+            if nd < dist[x][y]:
+                dist[x][y] = nd
+                if w == 0:
+                    dq.appendleft((x, y))
+                else:
+                    dq.append((x, y))
+
+    return dist[m - 1][n - 1]
 ```
 
-#### 4.3.1 模板题目
-### 4.4 网格 DP 路径转移
-方法说明：
+模板题目：
 
-当移动方向固定（如仅右/下）时，用 DP 比搜索更直接；题目主归属可在动态规划专题。
+待补充...
 
-模板代码：
+### 网格图 Dijkstra
+#### 非负权最短路
+模板：
 
 ```python
-def unique_paths(m, n):
-    dp = [[1] * n for _ in range(m)]
-    for i in range(1, m):
-        for j in range(1, n):
-            dp[i][j] = dp[i - 1][j] + dp[i][j - 1]
-    return dp[-1][-1]
+import heapq
+from typing import List
+
+
+def dijkstra_grid(cost: List[List[int]]) -> int:
+    m, n = len(cost), len(cost[0])
+    inf = 10**18
+    dist = [[inf] * n for _ in range(m)]
+    dist[0][0] = cost[0][0]
+    pq = [(cost[0][0], 0, 0)]
+
+    while pq:
+        d, i, j = heapq.heappop(pq)
+        if d != dist[i][j]:
+            continue
+        if (i, j) == (m - 1, n - 1):
+            return d
+        for x, y in ((i, j - 1), (i, j + 1), (i - 1, j), (i + 1, j)):
+            if not (0 <= x < m and 0 <= y < n):
+                continue
+            nd = d + cost[x][y]
+            if nd < dist[x][y]:
+                dist[x][y] = nd
+                heapq.heappush(pq, (nd, x, y))
+
+    return dist[m - 1][n - 1]
 ```
 
-#### 4.4.1 模板题目
-### 4.5 网格回溯搜索
-方法说明：
+模板题目：
 
-用于路径匹配与约束搜索，状态需要“访问标记 + 回撤”；可交叉到回溯专题。
+待补充...
 
-模板代码：
+### 综合应用
+#### 多状态网格搜索
+模板：
 
 ```python
-def exist(board, word):
-    m, n = len(board), len(board[0])
+from collections import deque
+from typing import List, Set, Tuple
 
-    def dfs(i, j, k):
-        if k == len(word):
-            return True
-        if i < 0 or i >= m or j < 0 or j >= n or board[i][j] != word[k]:
-            return False
-        ch = board[i][j]
-        board[i][j] = '#'
-        ok = dfs(i + 1, j, k + 1) or dfs(i - 1, j, k + 1) or dfs(i, j + 1, k + 1) or dfs(i, j - 1, k + 1)
-        board[i][j] = ch
-        return ok
+
+def multi_state_bfs(grid: List[List[str]]) -> int:
+    m, n = len(grid), len(grid[0])
+    start = (0, 0, 0)  # (x, y, state)
+    q = deque([(0, 0, 0, 0)])
+    vis: Set[Tuple[int, int, int]] = {start}
+
+    while q:
+        i, j, st, step = q.popleft()
+        # 按题意判断目标态
+        for x, y in ((i, j - 1), (i, j + 1), (i - 1, j), (i + 1, j)):
+            if not (0 <= x < m and 0 <= y < n):
+                continue
+            nst = st  # 按题意更新状态（钥匙、机关、朝向等）
+            key = (x, y, nst)
+            if key not in vis:
+                vis.add(key)
+                q.append((x, y, nst, step + 1))
+
+    return -1
 ```
 
-#### 4.5.1 模板题目
-- 0079 - 单词搜索 ｜ [LeetCode 链接](https://leetcode.cn/problems/word-search/) ｜ [题解笔记](../solutions/0001-0100/0079-word-search.md)
-- 0048 - 旋转图像 ｜ [LeetCode 链接](https://leetcode.cn/problems/rotate-image/) ｜ [题解笔记](../solutions/0001-0100/0048-rotate-image.md)
-## 5 易错点
-- 访问标记时机错误导致重复入队/重复递归。
-- 越界判断遗漏引发下标错误。
-- 搜索题混入 DP 思路时状态定义不一致。
+模板题目：
 
-## 6 总结
-网格题先抽象为图，再根据目标在 DFS、BFS、DP、回溯间选择；统一坐标边界与访问策略能避免多数 bug。
+待补充...
+
+## 易错点
+- 访问标记时机错误会导致重复入队或重复递归。
+- 方向扩展与边界判断不统一，容易出现漏搜和越界。
+- 多状态搜索若未把状态纳入 visited，会产生错误剪枝。
+
+## 总结
+网格图题目本质是图搜索与最短路建模，优先统一状态与边界，再按权重和目标选择 DFS/BFS/0-1 BFS/Dijkstra 或组合方法。

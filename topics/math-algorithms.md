@@ -1,90 +1,424 @@
 # 数学算法（数论/组合/概率期望/博弈/计算几何/随机算法）
 
-## 1 概览
-数学算法题强调不变量、变换规则与数位构造，通常不依赖复杂结构。
+## 概览
+数学算法专题聚焦数论、组合计数、概率期望、博弈、计算几何与随机化方法，核心在于建模与证明。
 
-## 2 核心思想
-- 矩阵变换依赖操作顺序与对称性。
-- 数位构造依赖从高位到低位维护约束。
-- 证明常用不变量、反证或构造法。
+## 核心思想
+- 先识别数学结构：同余、因子、组合模型、几何关系或随机过程。
+- 用不变量、构造法、反证法或计数拆分建立正确性。
+- 将公式化思路落地为可复用模板，并严格处理边界与取模。
 
-## 3 解题流程
-1. 确认数学对象：矩阵、数位、公式或不变量。
-2. 给出变换规则并证明合法性。
-3. 优先写可手算验证的小模板。
-4. 检查边界：前导零、回退、原地修改。
+## 解题流程
+1. 抽象问题中的数学对象与约束。
+2. 选择对应工具并给出关键结论或证明。
+3. 编写模板并用小样例验证正确性与边界。
+4. 回查复杂度、溢出风险、取模与特殊值处理。
 
-## 4 模板与子方法
-### 4.1 矩阵原地变换
-方法说明：
+## 模板与子方法
+### 数论
 
-适用于旋转、转置、镜像等原地矩阵操作。网格题视角可交叉到网格专题。
-
-模板代码：
+#### 判断质数
+模板：
 
 ```python
-def rotate_matrix_90(a):
-    n = len(a)
-    for i in range(n):
-        for j in range(i + 1, n):
-            a[i][j], a[j][i] = a[j][i], a[i][j]
-    for row in a:
-        row.reverse()
+# 时间复杂度 O(sqrt(n))
+def is_prime(n: int) -> bool:
+    for i in range(2, isqrt(n) + 1):
+        if n % i == 0:
+            return False
+    return n >= 2  # 1 不是质数
 ```
 
-#### 4.1.1 模板题目
-- 0054 - 螺旋矩阵 ｜ [LeetCode 链接](https://leetcode.cn/problems/spiral-matrix/) ｜ [题解笔记](../solutions/0001-0100/0054-spiral-matrix.md)
-- 0059 - 螺旋矩阵 II ｜ [LeetCode 链接](https://leetcode.cn/problems/spiral-matrix-ii/) ｜ [题解笔记](../solutions/0001-0100/0059-spiral-matrix-ii.md)
-### 4.2 数位贪心构造
-方法说明：
+模板题目：
 
-按位扫描并在冲突处回退高位，再把低位置 9。该题也可归入贪心专题。
 
-模板代码：
+#### 预处理质数（筛质数）
+模板：
 
 ```python
-def monotone_increasing_digits(n):
-    s = list(str(n))
-    mark = len(s)
-    for i in range(len(s) - 1, 0, -1):
-        if s[i - 1] > s[i]:
-            s[i - 1] = str(int(s[i - 1]) - 1)
-            mark = i
-    for i in range(mark, len(s)):
-        s[i] = '9'
-    return int(''.join(s))
+# 时间复杂度 O(MX * log log MX)
+MX = 1_000_001
+is_prime = [False] * 2 + [True] * (MX - 2)  # 0 和 1 不是质数
+primes = []
+for i in range(2, MX):
+    if is_prime[i]:
+        primes.append(i)
+        for j in range(i * i, MX, i):
+            is_prime[j] = False  # j 是质数 i 的倍数
 ```
 
-#### 4.2.1 模板题目
+模板题目：
+
+
+#### 质因数分解
+模板：
+
+```python
+MX = 1_000_001
+prime_factors = [[] for _ in range(MX)]
+for i in range(2, MX):
+    if not prime_factors[i]:  # i 是质数
+        for j in range(i, MX, i):  # i 的倍数 j 有质因子 i
+            prime_factors[j].append(i)
+```
+
+模板题目：
+
+
+#### 阶乘分解
+模板：
+
+```python
+# 待补充
+```
+
+模板题目：
+
+
+#### 因子
+模板：
+
+```python
+# 预处理每个数的因子
+MX = 1_000_001  # **根据题目调整**
+divisors = [[] for _ in range(MX)]
+for i in range(1, MX):
+    for j in range(i, MX, i):  # 枚举 i 的倍数 j
+        divisors[j].append(i)  # i 是 j 的因子
+```
+
+模板题目：
+
+
+#### 最大公约数（GCD）
+模板：
+
+```python
+# 待补充
+```
+
+模板题目：
+
+
+#### 最小公倍数（LCM）
+模板：
+
+```python
+# 待补充
+```
+
+模板题目：
+
+
+#### 互质
+模板：
+
+```python
+# 待补充
+```
+
+模板题目：
+
+
+#### 同余
+模板：
+
+```python
+# 待补充
+```
+
+模板题目：
+
+
+#### 数论分块
+模板：
+
+```python
+# 待补充
+```
+
+模板题目：
+
 - 1925 - 统计平方和三元组的数目 ｜ [LeetCode 链接](https://leetcode.cn/problems/count-square-sum-triples/) ｜ [题解笔记](../solutions/1901-2000/1925-count-square-sum-triples.md)
-- 3512 - 使数组和能被 K 整除的最少操作次数 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-operations-to-make-array-sum-divisible-by-k/) ｜ [题解笔记](../solutions/3501-3600/3512-minimum-operations-to-make-array-sum-divisible-by-k.md)
 
-### 4.3 数位频次不变量
-方法说明：
+#### 其他
+模板：
 
-先对原数做数位统计并计算不变量，再把候选值映射到同一统计维度进行一致性校验。
+```python
+# 待补充
+```
 
-#### 4.3.1 模板题目
-- 3848 - 阶数数字排列 ｜ [LeetCode 链接](https://leetcode.cn/problems/check-digitorial-permutation/) ｜ [题解笔记](../solutions/3801-3900/3848-check-digitorial-permutation.md)
+模板题目：
 
-### 4.4 数位回文判断
-方法说明：
 
-通过反转整数后半段与前半段比较，可在不转字符串的前提下完成回文判断。
+### 组合数学
 
-#### 4.4.1 模板题目
+#### 乘法原理
+模板：
+
+```python
+# 待补充
+```
+
+模板题目：
+
+
+#### 组合计数
+模板：
+
+```python
+# 待补充
+```
+
+模板题目：
+
+
+#### 放球问题
+模板：
+
+```python
+# 待补充
+```
+
+模板题目：
+
+
+#### 容斥原理
+模板：
+
+```python
+# 待补充
+```
+
+模板题目：
+
+
+#### 生成函数（母函数）
+模板：
+
+```python
+# 待补充
+```
+
+模板题目：
+
+
+### 概率期望
+
+待补充...
+
+### 博弈论
+
+待补充...
+
+### 计算几何
+
+#### 点、线
+模板：
+
+```python
+# 待补充
+```
+
+模板题目：
+
+
+#### 圆
+模板：
+
+```python
+# 待补充
+```
+
+模板题目：
+
+
+#### 矩形、多边形
+模板：
+
+```python
+# 待补充
+```
+
+模板题目：
+
+
+#### 凸包
+模板：
+
+```python
+class Vec:
+    __slots__ = 'x', 'y'
+
+    def __init__(self, x: int, y: int):
+        self.x = x
+        self.y = y
+
+    def __sub__(self, b: "Vec") -> "Vec":
+        return Vec(self.x - b.x, self.y - b.y)
+
+    def det(self, b: "Vec") -> int:
+        return self.x * b.y - self.y * b.x
+
+
+# Andrew 算法，计算 points 的凸包（逆时针顺序）
+# 时间复杂度 O(n log n)，其中 n = len(points)
+def convexHull(points: List[Vec]) -> List[Vec]:
+    if len(points) <= 1:
+        return points
+
+    points.sort(key=lambda p: (p.x, p.y))
+
+    q = []
+
+    # 计算下凸包（从左到右）
+    for p in points:
+        # 新来的点 p，能否让旧的点变成在凸包内的点？ ->  需要判断向量左右关系  ->  det
+        while len(q) > 1 and (q[-1] - q[-2]).det(p - q[-1]) <= 0:
+            q.pop()
+        q.append(p)
+
+    # 计算上凸包（从右到左）
+    # 注意下凸包的最后一个点，已经是上凸包的（右边）第一个点了，所以从 n-2 开始遍历
+    lower_size = len(q)
+    for i in range(len(points) - 2, -1, -1):
+        p = points[i]
+        while len(q) > lower_size and (q[-1] - q[-2]).det(p - q[-1]) <= 0:
+            q.pop()
+        q.append(p)
+
+    # 此时首尾是同一个点 points[0]，需要去掉
+    q.pop()
+
+    return q
+```
+
+模板题目：
+
+
+### 随机算法
+
+#### 随机数
+模板：
+
+```python
+# 待补充
+```
+
+模板题目：
+
+
+#### 随机化技巧
+模板：
+
+```python
+# 待补充
+```
+
+模板题目：
+
+
+### 杂项
+
+#### 回文数
+模板：
+
+```python
+def gen_palindrome() -> Iterator[int]:
+    base = 1
+    while True:
+        # 生成奇数长度回文数，例如 base = 10，生成的范围是 101 ~ 999
+        for i in range(base, base * 10):
+            s = str(i)
+            x = int(s + s[::-1][1:])
+            yield x
+
+        # 生成偶数长度回文数，例如 base = 10，生成的范围是 1001 ~ 9999
+        for i in range(base, base * 10):
+            s = str(i)
+            x = int(s + s[::-1])
+            yield x
+
+        base *= 10
+
+
+for x in gen_palindrome():
+    if x > 10 ** 9:  # 根据题目调整
+        break
+    # 处理 x 的逻辑写下面
+    print(x)
+```
+
+模板题目：
+
 - 0009 - 回文数 ｜ [LeetCode 链接](https://leetcode.cn/problems/palindrome-number/) ｜ [题解笔记](../solutions/0001-0100/0009-palindrome-number.md)
 
-### 4.5 模运算与等比求和
-方法说明：
+#### 整数拆分
+模板：
 
-先按“每一位独立贡献”拆解总和，再把位权和写成等比数列，用快速幂与乘法逆元在模意义下计算。
+```python
+# 待补充
+```
 
-#### 4.5.1 模板题目
-- 3855 - 给定范围内 K 位数字之和 ｜ [LeetCode 链接](https://leetcode.cn/problems/sum-of-k-digit-numbers-in-a-range/) ｜ [题解笔记](../solutions/3801-3900/3855-sum-of-k-digit-numbers-in-a-range.md)
-## 5 易错点
-- 原地旋转顺序写反会得到错误结果。
-- 数位回退后未统一填 9 导致非最优。
+模板题目：
 
-## 6 总结
-数学题重点在变换不变量和构造正确性，模板虽然短，但证明必须先行。
+
+#### 曼哈顿距离与切比雪夫距离
+模板：
+
+```python
+# 待补充
+```
+
+模板题目：
+
+
+#### 多项式
+模板：
+
+```python
+# 待补充
+```
+
+模板题目：
+
+
+#### 快速沃尔什变换（FWT）
+模板：
+
+```python
+# 待补充
+```
+
+模板题目：
+
+
+#### 线性基
+模板：
+
+```python
+# 待补充
+```
+
+模板题目：
+
+
+#### 摩尔投票法
+模板：
+
+```python
+# 待补充
+```
+
+模板题目：
+
+- 0169 - 多数元素 ｜ [LeetCode 链接](https://leetcode.cn/problems/majority-element/) ｜ [题解笔记](../solutions/0101-0200/0169-majority-element.md)
+
+#### 其他
+模板：
+
+```python
+# 待补充
+```
+
+模板题目：

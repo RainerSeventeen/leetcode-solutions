@@ -1,55 +1,120 @@
 # 字符串（KMP/Z函数/Manacher/字符串哈希/AC自动机/后缀数组/子序列自动机）
 
-## 1 概览
-字符串算法涵盖匹配、回文、括号、解码与字符串动态规划，常与窗口、栈、DP、回溯交叉。
+## 概览
+本专题聚焦字符串匹配、回文处理、哈希比较、自动机与后缀结构等高频方法，用于子串/子序列判断、计数与构造问题。
 
-## 2 核心思想
-- 匹配类依赖状态转移和边界处理。
-- 回文类常用中心扩展或区间 DP。
-- 括号类可用栈或 DP 维护有效区间。
-- 扫描类常结合滑动窗口与计数器。
+## 核心思想
+- 匹配问题优先考虑线性状态转移（KMP、Z 函数、AC 自动机）。
+- 回文问题优先考虑中心扩展或 Manacher 的半径数组。
+- 多子串比较与去重可使用滚动哈希、后缀数组/后缀自动机。
+- 子序列问题可转化为“下一个出现位置”自动机查询。
 
-## 3 解题流程
-1. 确认目标：匹配、计数、最值或构造。
-2. 选择模型：DP、栈、窗口、回溯。
-3. 统一下标语义与初始化。
-4. 用短串样例验证转移与边界。
+## 解题流程
+1. 先判断问题属于子串、子序列、回文或字典序比较。
+2. 根据目标复杂度选择线性或近线性字符串工具。
+3. 明确下标语义与边界后再实现模板。
+4. 用最短反例验证失败跳转与窗口更新。
 
-## 4 模板与子方法
-### 4.1 编辑距离与二维匹配 DP
-方法说明：
-
-适用于插删改代价最小化与字符匹配问题。与动态规划专题交叉但核心对象是字符串。
-
-模板代码：
+## 模板与子方法
+### KMP（前缀的后缀）
+#### 前缀函数匹配
+模板：
 
 ```python
-def edit_distance(a, b):
-    m, n = len(a), len(b)
-    dp = [[0] * (n + 1) for _ in range(m + 1)]
-    for i in range(m + 1):
-        dp[i][0] = i
-    for j in range(n + 1):
-        dp[0][j] = j
-    for i in range(1, m + 1):
-        for j in range(1, n + 1):
-            if a[i - 1] == b[j - 1]:
-                dp[i][j] = dp[i - 1][j - 1]
-            else:
-                dp[i][j] = 1 + min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1])
-    return dp[m][n]
+def kmp(text: str, pattern: str) -> list[int]:
+    m = len(pattern)
+    pi = [0] * m
+    j = 0
+    for i in range(1, m):
+        while j and pattern[j] != pattern[i]:
+            j = pi[j - 1]
+        if pattern[j] == pattern[i]:
+            j += 1
+        pi[i] = j
+
+    ans = []
+    j = 0
+    for i, ch in enumerate(text):
+        while j and pattern[j] != ch:
+            j = pi[j - 1]
+        if pattern[j] == ch:
+            j += 1
+        if j == m:
+            ans.append(i - m + 1)
+            j = pi[j - 1]
+    return ans
 ```
 
-#### 4.1.1 模板题目
-### 4.2 回文字符串
-方法说明：
+模板题目：
 
-可用中心扩展或区间 DP 统计/求最长回文。回文切分类题可交叉回溯专题。
+- 0028 - 找出字符串中第一个匹配项的下标 ｜ [LeetCode 链接](https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/) ｜ [题解笔记](../solutions/0001-0100/0028-find-the-index-of-the-first-occurrence-in-a-string.md)
 
-模板代码：
+### Z 函数（后缀的前缀）
+#### Z 数组匹配
+模板：
 
 ```python
-def count_substrings(s):
+def calc_z(s: str) -> list[int]:
+    n = len(s)
+    z = [0] * n
+    l = r = 0
+    for i in range(1, n):
+        if i <= r:
+            z[i] = min(z[i - l], r - i + 1)
+        while i + z[i] < n and s[z[i]] == s[i + z[i]]:
+            l, r = i, i + z[i]
+            z[i] += 1
+    z[0] = n
+    return z
+```
+
+模板题目：
+
+待补充...
+
+#### LCP 数组应用
+模板：
+
+```python
+def lcp_by_z(s: str) -> list[int]:
+    # 待补充：按具体题意构造并复用 Z 数组
+    return calc_z(s)
+```
+
+模板题目：
+
+待补充...
+
+### Manacher 算法（回文串）
+#### Manacher 模板
+模板：
+
+```python
+def manacher(s: str) -> list[int]:
+    t = "#" + "#".join(s) + "#"
+    n = len(t)
+    p = [0] * n
+    c = r = 0
+    for i in range(n):
+        if i < r:
+            p[i] = min(r - i, p[2 * c - i])
+        while 0 <= i - p[i] - 1 and i + p[i] + 1 < n and t[i - p[i] - 1] == t[i + p[i] + 1]:
+            p[i] += 1
+        if i + p[i] > r:
+            c, r = i, i + p[i]
+    return p
+```
+
+模板题目：
+
+- 0005 - 最长回文子串 ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-palindromic-substring/) ｜ [题解笔记](../solutions/0001-0100/0005-longest-palindromic-substring.md)
+- 0647 - 回文子串 ｜ [LeetCode 链接](https://leetcode.cn/problems/palindromic-substrings/) ｜ [题解笔记](../solutions/0601-0700/0647-palindromic-substrings.md)
+
+#### 中心扩展法
+模板：
+
+```python
+def count_substrings(s: str) -> int:
     n = len(s)
     ans = 0
     for c in range(2 * n - 1):
@@ -62,147 +127,148 @@ def count_substrings(s):
     return ans
 ```
 
-#### 4.2.1 模板题目
-- 0005 - 最长回文子串 ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-palindromic-substring/) ｜ [题解笔记](../solutions/0001-0100/0005-longest-palindromic-substring.md)
-- 0647 - 回文子串 ｜ [LeetCode 链接](https://leetcode.cn/problems/palindromic-substrings/) ｜ [题解笔记](../solutions/0601-0700/0647-palindromic-substrings.md)
-### 4.3 括号与栈/DP
-方法说明：
+模板题目：
 
-括号合法性与最长有效区间可用栈或 DP。删除无效括号常转为回溯/BFS 搜索。
+待补充...
 
-模板代码：
+### 字符串哈希
+#### 多项式哈希
+模板：
 
 ```python
-def longest_valid_parentheses(s):
-    st = [-1]
-    ans = 0
-    for i, ch in enumerate(s):
-        if ch == '(':
-            st.append(i)
+def build_hash(s: str, base: int = 911382323, mod: int = 1_000_000_007):
+    n = len(s)
+    p = [1] * (n + 1)
+    h = [0] * (n + 1)
+    for i, ch in enumerate(s, 1):
+        p[i] = p[i - 1] * base % mod
+        h[i] = (h[i - 1] * base + ord(ch)) % mod
+    return p, h
+```
+
+模板题目：
+
+待补充...
+
+### 最小表示法
+#### 最小循环同构串
+模板：
+
+```python
+def smallest_representation(s: str) -> str:
+    t = s + s
+    n = len(s)
+    i, j = 0, 1
+    while i < n and j < n:
+        k = 0
+        while k < n and t[i + k] == t[j + k]:
+            k += 1
+        if k == n:
+            break
+        if t[i + k] <= t[j + k]:
+            j = j + k + 1
         else:
-            st.pop()
-            if not st:
-                st.append(i)
-            else:
-                ans = max(ans, i - st[-1])
-    return ans
+            i = max(i + k + 1, j)
+            j = i + 1
+    return t[min(i, j):min(i, j) + n]
 ```
 
-#### 4.3.1 模板题目
-- 0761 - 特殊的二进制字符串 ｜ [LeetCode 链接](https://leetcode.cn/problems/special-binary-string/) ｜ [题解笔记](../solutions/0701-0800/0761-special-binary-string.md)
-### 4.4 字符串栈与解码
-方法说明：
+模板题目：
 
-分层结构可用双栈或递归下降解析，遇到 `]` 回收一层。
+待补充...
 
-模板代码：
+### 字典树
+#### Trie 基础
+模板：
 
 ```python
-def decode_string(s):
-    num_st, str_st = [], []
-    cur_num, cur = 0, ""
-    for ch in s:
-        if ch.isdigit():
-            cur_num = cur_num * 10 + int(ch)
-        elif ch == '[':
-            num_st.append(cur_num)
-            str_st.append(cur)
-            cur_num, cur = 0, ""
-        elif ch == ']':
-            k = num_st.pop()
-            cur = str_st.pop() + cur * k
-        else:
-            cur += ch
-    return cur
+class Trie:
+    def __init__(self):
+        self.son = {}
+        self.end = False
 ```
 
-#### 4.4.1 模板题目
-- 0394 - 字符串解码 ｜ [LeetCode 链接](https://leetcode.cn/problems/decode-string/) ｜ [题解笔记](../solutions/0301-0400/0394-decode-string.md)
-### 4.5 滑动窗口字符串匹配
-方法说明：
+模板题目：
 
-以字符频次为约束维护窗口，主方法在双指针专题，这里作为字符串视角交叉模板。
+待补充...
 
-模板代码：
+### AC 自动机
+#### Trie + 失配指针
+模板：
 
 ```python
-from collections import Counter
+from collections import deque
 
 
-def find_anagrams(s, p):
-    need = Counter(p)
-    miss = len(p)
-    l = 0
-    ans = []
-    for r, ch in enumerate(s):
-        if need[ch] > 0:
-            miss -= 1
-        need[ch] -= 1
-        if r - l + 1 > len(p):
-            need[s[l]] += 1
-            if need[s[l]] > 0:
-                miss += 1
-            l += 1
-        if miss == 0:
-            ans.append(l)
-    return ans
+def build_fail(trie):
+    q = deque()
+    for node in trie[0]["next"].values():
+        trie[node]["fail"] = 0
+        q.append(node)
+    while q:
+        u = q.popleft()
+        for ch, v in trie[u]["next"].items():
+            f = trie[u]["fail"]
+            while f and ch not in trie[f]["next"]:
+                f = trie[f]["fail"]
+            trie[v]["fail"] = trie[f]["next"].get(ch, 0)
+            q.append(v)
 ```
 
-#### 4.5.1 模板题目
-- 3839 - 前缀连接组的数目 ｜ [LeetCode 链接](https://leetcode.cn/problems/number-of-prefix-connected-groups/) ｜ [题解笔记](../solutions/3801-3900/3839-number-of-prefix-connected-groups.md)
-- 3838 - 带权单词映射 ｜ [LeetCode 链接](https://leetcode.cn/problems/weighted-word-mapping/) ｜ [题解笔记](../solutions/3801-3900/3838-weighted-word-mapping.md)
-### 4.6 回溯生成字符串组合
-方法说明：
+模板题目：
 
-字符串枚举类题常用 DFS 构造路径，适合组合生成与约束搜索。
+待补充...
 
-模板代码：
+### 后缀数组/后缀自动机
+#### 后缀结构基础
+模板：
 
 ```python
-def letter_combinations(digits, mp):
-    if not digits:
-        return []
-    ans, path = [], []
-
-    def dfs(i):
-        if i == len(digits):
-            ans.append(''.join(path))
-            return
-        for ch in mp[digits[i]]:
-            path.append(ch)
-            dfs(i + 1)
-            path.pop()
+def suffix_array(s: str) -> list[int]:
+    # 待补充：按倍增或 SA-IS 实现
+    return sorted(range(len(s)), key=lambda i: s[i:])
 ```
 
-#### 4.6.1 模板题目
-### 4.7 定长窗口滚动编码
-方法说明：
+模板题目：
 
-适用于定长子串覆盖判断。把窗口字符序列编码成整数（如二进制串映射到 `[0, 2^k)`），随右端推进做“移位 + 掩码 + 入位”，再配合布尔数组或集合判重计数，避免反复切片。
+待补充...
 
-模板代码：
+### 子序列自动机
+#### next 数组跳转
+模板：
 
 ```python
-def all_binary_codes_exist(s, k):
-    if k > len(s):
-        return False
-    seen = [False] * (1 << k)
-    mask = (1 << k) - 1
-    x = cnt = 0
-    for i, ch in enumerate(s):
-        x = ((x << 1) & mask) | int(ch)
-        if i >= k - 1 and not seen[x]:
-            seen[x] = True
-            cnt += 1
-    return cnt == (1 << k)
+def build_next(s: str):
+    n = len(s)
+    nxt = [[n] * 26 for _ in range(n + 1)]
+    for i in range(n - 1, -1, -1):
+        nxt[i] = nxt[i + 1][:]
+        nxt[i][ord(s[i]) - 97] = i
+    return nxt
 ```
 
-#### 4.7.1 模板题目
-- 1461 - 检查一个字符串是否包含所有长度为 K 的二进制子串 ｜ [LeetCode 链接](https://leetcode.cn/problems/check-if-a-string-contains-all-binary-codes-of-size-k/) ｜ [题解笔记](../solutions/1401-1500/1461-check-if-a-string-contains-all-binary-codes-of-size-k.md)
-## 5 易错点
-- 字符串下标与 DP 下标错位。
-- 回文 DP 遍历方向错误。
-- 窗口计数更新先后顺序颠倒。
+模板题目：
 
-## 6 总结
-字符串题先选模型再统一下标语义，DP、栈、窗口、回溯四类模板能覆盖大多数场景。
+待补充...
+
+### 其他
+#### 综合应用
+模板：
+
+```python
+def solve():
+    # 待补充：按题目组合字符串工具
+    pass
+```
+
+模板题目：
+
+待补充...
+
+## 易错点
+- KMP 与 Z 函数实现中最容易错在边界回退与下标偏移。
+- Manacher 需要统一变换串与原串的下标映射。
+- 哈希比较子串时要注意负值取模与碰撞风险。
+
+## 总结
+字符串题目的关键是先选对模型，再写对边界。以线性模板为主，按题意组合即可覆盖多数场景。
