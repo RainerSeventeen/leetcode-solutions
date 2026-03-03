@@ -82,6 +82,21 @@ python scripts/normalize_topics.py --strip
 python scripts/normalize_topics.py --dry-run
 ```
 
+## `scripts/build_0x3f_index.py`
+从 `0x3f_problems_list/*.md` 生成静态索引文件 `0x3f_problems_list/index.json`，供 CI 查询使用。
+```bash
+python scripts/build_0x3f_index.py
+```
+
+## `scripts/query_0x3f_index.py`
+按题号查询 `0x3f_problems_list/index.json` 中的归档位置；若不存在会输出 `not found`。
+该脚本用于 `solution-topic-auto-link` 归档时的“0x3f 优先”决策（先查再归档）。
+```bash
+python scripts/query_0x3f_index.py 70
+python scripts/query_0x3f_index.py 0070
+python scripts/query_0x3f_index.py 9999
+```
+
 ## CI 脚本
 
 ### `scripts/ci/check_solutions.py`
@@ -91,7 +106,16 @@ python scripts/ci/check_solutions.py
 ```
 
 ### `scripts/ci/check_topics.py`
-校验全部 `topics/*.md`（含重复题号检查）。
+校验全部 `topics/*.md`（含重复题号检查、条目格式/路径检查、与 0x3f 分类对齐检查）。
+
+依赖：`0x3f_problems_list/index.json`。
+
+若索引不存在或 0x3f 基准有更新，先执行：
+```bash
+python scripts/build_0x3f_index.py
+```
+
+再执行校验：
 ```bash
 python scripts/ci/check_topics.py
 ```
