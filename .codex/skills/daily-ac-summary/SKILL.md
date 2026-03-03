@@ -29,25 +29,23 @@ description: "Use when user asks to run the daily LeetCode AC archive workflow."
 3. Start subagent A for solution quality ranking + rewrite:
    - Spawn one subagent dedicated to imported `solutions/...md` files and explicitly require skill `solution-quality-ranker`.
    - Pass all imported solution paths as input.
-   - Require structured return per file:
-     - whether blocks were reordered,
-     - kept variants / filtered same-method count,
-     - whether latest submission is not best,
-     - whether all AC are non-optimal,
-     - complexity fill result.
+   - Do not restate the skill workflow in prompt; let subagent follow its own skill and return results.
    - Wait for subagent completion.
    - If subagent fails, surface failure reason and partial progress.
 
-4. Start subagent B for topic linking:
+4. Build 0x3f static index before topic linking:
+   - Run: `.venv/bin/python scripts/build_0x3f_index.py`
+   - If build fails, stop and report stderr.
+
+5. Start subagent B for topic linking:
    - Spawn one subagent and explicitly require skill `solution-topic-auto-link`.
    - Pass all imported `solutions/...md` paths as input.
-   - Require return of touched topic files/sections and inserted topic lines/backlink changes.
-   - Explicitly request normalization in subagent prompt: run `.venv/bin/python scripts/normalize_topics.py`.
+   - Do not restate the skill workflow in prompt; let subagent follow its own skill and return results.
    - Topic subagent runs after subagent A completes (avoid concurrent writes on the same solution files).
    - Wait for subagent completion.
    - If subagent fails, surface failure reason and partial progress.
 
-5. Final validation:
+6. Final validation:
    - Run `.venv/bin/python scripts/ci/ci.py`.
    - If format errors are reported, fix affected files and rerun once.
    - If errors remain, stop and report failing files with exact errors.
@@ -69,6 +67,9 @@ Include:
   - latest-not-best report,
   - problem-level optimality report (`all AC non-optimal` list).
 - Subagent B result:
+  - per-problem 0x3f query result (`matched`/`not found`),
   - topic files/sections touched,
+  - newly created section/subsection list (if any),
   - inserted topic lines / backlink changes.
+- 0x3f index build result (`scripts/build_0x3f_index.py`).
 - Validation command results.
