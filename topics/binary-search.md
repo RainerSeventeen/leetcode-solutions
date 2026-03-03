@@ -1,133 +1,199 @@
-# 二分算法（二分答案/最小化最大值/最大化最小值/第K小）
+# 二分算法（二分答案/最小化最大值/最大化最小值/第 K 小）
 
-## 1 概览
-二分查找用于有序数据或满足单调性的判定函数，目标是把线性试探降到对数复杂度。
+## 概览
+二分算法通过维护单调区间，把线性试探降为对数复杂度，常用于有序数组定位边界、答案空间可行性判定，以及若干结构化变形问题。
 
-## 2 核心思想
-- 区间二分：在有序区间内定位边界或目标。
-- 答案二分：在解空间上二分可行性。
-- 结构二分：如旋转数组、分割二分等特殊有序结构。
+## 核心思想
+- 区间二分：在索引区间里持续缩小搜索范围，定位第一个/最后一个满足条件的位置。
+- 答案二分：把“求最优值”转成 `check(mid)` 的单调判定问题。
+- 二分前提：必须先明确单调性，再确定区间语义与循环不变量。
 
-## 3 解题流程
-1. 明确二分对象：索引区间还是答案区间。
-2. 选定区间语义 `[l, r)` 或 `[l, r]`，全程保持一致。
-3. 写单调谓词并证明“真区间/假区间”单调。
-4. 用极小数据验证边界收敛与返回值。
+## 解题流程
+1. 明确二分对象是“数组下标”还是“答案值域”。
+2. 确定区间语义（开区间或闭区间），并在循环内保持一致。
+3. 设计 `check` 并证明其单调性。
+4. 用边界样例验证收敛与返回值是否对应题意。
 
-## 4 模板与子方法
-### 4.1 边界二分（lower_bound / upper_bound）
-方法说明：
-
-适用于“第一个大于等于”“最后一个小于等于”等边界查询。
-
-模板代码：
+## 模板与子方法
+### 二分查找
+#### 基础
+模板：
 
 ```python
 def lower_bound(nums, target):
-    l, r = 0, len(nums)
-    while l < r:
-        m = (l + r) // 2
-        if nums[m] < target:
-            l = m + 1
+    left, right = 0, len(nums)
+    while left < right:
+        mid = (left + right) // 2
+        if nums[mid] < target:
+            left = mid + 1
         else:
-            r = m
-    return l
+            right = mid
+    return left
 ```
 
-#### 4.1.1 模板题目
+模板题目：
 - 0034 - 在排序数组中查找元素的第一个和最后一个位置 ｜ [LeetCode 链接](https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/) ｜ [题解笔记](../solutions/0001-0100/0034-find-first-and-last-position-of-element-in-sorted-array.md)
 - 0035 - 搜索插入位置 ｜ [LeetCode 链接](https://leetcode.cn/problems/search-insert-position/) ｜ [题解笔记](../solutions/0001-0100/0035-search-insert-position.md)
-- 0069 - x 的平方根 ｜ [LeetCode 链接](https://leetcode.cn/problems/sqrtx/) ｜ [题解笔记](../solutions/0001-0100/0069-sqrtx.md)
-- 0209 - 长度最小的子数组 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-size-subarray-sum/) ｜ [题解笔记](../solutions/0201-0300/0209-minimum-size-subarray-sum.md)
-- 0349 - 两个数组的交集 ｜ [LeetCode 链接](https://leetcode.cn/problems/intersection-of-two-arrays/) ｜ [题解笔记](../solutions/0301-0400/0349-intersection-of-two-arrays.md)
-- 0367 - 有效的完全平方数 ｜ [LeetCode 链接](https://leetcode.cn/problems/valid-perfect-square/) ｜ [题解笔记](../solutions/0301-0400/0367-valid-perfect-square.md)
-- 0792 - 二分查找 ｜ [LeetCode 链接](https://leetcode.cn/problems/binary-search/) ｜ [题解笔记](../solutions/0701-0800/0704-binary-search.md)
-### 4.2 旋转数组二分
-方法说明：
+- 0704 - 二分查找 ｜ [LeetCode 链接](https://leetcode.cn/problems/binary-search/) ｜ [题解笔记](../solutions/0701-0800/0704-binary-search.md)
 
-适用于局部有序的旋转数组，先判断哪半边有序，再判目标是否落在有序半边。
-
-模板代码：
+#### 进阶
+模板：
 
 ```python
-def search_rotated(nums, target):
-    l, r = 0, len(nums) - 1
-    while l <= r:
-        m = (l + r) // 2
-        if nums[m] == target:
-            return m
-        if nums[l] <= nums[m]:
-            if nums[l] <= target < nums[m]:
-                r = m - 1
-            else:
-                l = m + 1
+# 常见做法：先排序，再在有序结构上做 lower_bound / upper_bound。
+def binary_search_after_sort(nums, target):
+    nums = sorted(nums)
+    i = lower_bound(nums, target)
+    return i if i < len(nums) and nums[i] == target else -1
+```
+
+模板题目：
+待补充...
+
+### 二分答案
+#### 求最小
+模板：
+
+```python
+def binary_search_min(left, right, check):
+    # 循环不变量：check(left) == False, check(right) == True
+    while left + 1 < right:
+        mid = (left + right) // 2
+        if check(mid):
+            right = mid
         else:
-            if nums[m] < target <= nums[r]:
-                l = m + 1
-            else:
-                r = m - 1
+            left = mid
+    return right
+```
+
+模板题目：
+待补充...
+
+#### 求最大
+模板：
+
+```python
+def binary_search_max(left, right, check):
+    # 循环不变量：check(left) == True, check(right) == False
+    while left + 1 < right:
+        mid = (left + right) // 2
+        if check(mid):
+            left = mid
+        else:
+            right = mid
+    return left
+```
+
+模板题目：
+待补充...
+
+#### 二分间接值
+模板：
+
+```python
+# 通过把目标函数转写为单调判定，再做二分。
+def binary_search_indirect(left, right, check):
+    while left + 1 < right:
+        mid = (left + right) // 2
+        if check(mid):
+            right = mid
+        else:
+            left = mid
+    return right
+```
+
+模板题目：
+待补充...
+
+#### 最小化最大值
+模板：
+
+```python
+def minimize_maximum(left, right, check):
+    while left + 1 < right:
+        mid = (left + right) // 2
+        if check(mid):
+            right = mid
+        else:
+            left = mid
+    return right
+```
+
+模板题目：
+待补充...
+
+#### 最大化最小值
+模板：
+
+```python
+def maximize_minimum(left, right, check):
+    while left + 1 < right:
+        mid = (left + right) // 2
+        if check(mid):
+            left = mid
+        else:
+            right = mid
+    return left
+```
+
+模板题目：
+待补充...
+
+#### 第 K 小/大
+模板：
+
+```python
+# 典型写法：二分值域，统计 <= mid 的元素个数。
+def kth_by_binary_search(left, right, count_leq, k):
+    while left + 1 < right:
+        mid = (left + right) // 2
+        if count_leq(mid) >= k:
+            right = mid
+        else:
+            left = mid
+    return right
+```
+
+模板题目：
+待补充...
+
+### 三分法
+待补充...
+
+### 其他
+#### 常见二分变形
+模板：
+
+```python
+# 旋转数组、峰值、矩阵等问题，核心仍是维护可判定区间。
+def binary_search_variant(left, right, decide):
+    while left <= right:
+        mid = (left + right) // 2
+        step = decide(mid)
+        if step == 0:
+            return mid
+        if step < 0:
+            right = mid - 1
+        else:
+            left = mid + 1
     return -1
 ```
 
-#### 4.2.1 模板题目
-- 0033 - 搜索旋转排序数组 ｜ [LeetCode 链接](https://leetcode.cn/problems/search-in-rotated-sorted-array/) ｜ [题解笔记](../solutions/0001-0100/0033-search-in-rotated-sorted-array.md)
-### 4.3 分割二分
-方法说明：
-
-适用于在两个有序结构上找分割点。实现要点是让左半部分长度固定并检查边界关系。
-
-模板代码：
-
-```python
-def find_median_sorted_arrays(a, b):
-    if len(a) > len(b):
-        a, b = b, a
-    m, n = len(a), len(b)
-    l, r = 0, m
-    while l <= r:
-        i = (l + r) // 2
-        j = (m + n + 1) // 2 - i
-        al = float('-inf') if i == 0 else a[i - 1]
-        ar = float('inf') if i == m else a[i]
-        bl = float('-inf') if j == 0 else b[j - 1]
-        br = float('inf') if j == n else b[j]
-        if al <= br and bl <= ar:
-            if (m + n) % 2:
-                return max(al, bl)
-            return (max(al, bl) + min(ar, br)) / 2
-        if al > br:
-            r = i - 1
-        else:
-            l = i + 1
-```
-
-#### 4.3.1 模板题目
+模板题目：
 - 0004 - 寻找两个正序数组的中位数 ｜ [LeetCode 链接](https://leetcode.cn/problems/median-of-two-sorted-arrays/) ｜ [题解笔记](../solutions/0001-0100/0004-median-of-two-sorted-arrays.md)
-### 4.4 答案二分（可行性判定）
-方法说明：
+- 0033 - 搜索旋转排序数组 ｜ [LeetCode 链接](https://leetcode.cn/problems/search-in-rotated-sorted-array/) ｜ [题解笔记](../solutions/0001-0100/0033-search-in-rotated-sorted-array.md)
+- 0069 - x 的平方根 ｜ [LeetCode 链接](https://leetcode.cn/problems/sqrtx/) ｜ [题解笔记](../solutions/0001-0100/0069-sqrtx.md)
 
-把“求最小/最大满足值”转成判定函数。`0287` 在本专题是交叉做法，主模板也可用快慢指针。
+### 关联题单
+待补充...
 
-模板代码：
+### 算法题单
+待补充...
 
-```python
-def binary_search_answer(lo, hi, ok):
-    while lo < hi:
-        mid = (lo + hi) // 2
-        if ok(mid):
-            hi = mid
-        else:
-            lo = mid + 1
-    return lo
-```
+## 易错点
+- 区间语义混用会导致死循环或漏解。
+- 二分答案未证明单调性时，`check` 可能不可用。
+- 返回值与“第一个满足/最后一个满足”方向不一致时，结果会偏一位。
 
-#### 4.4.1 模板题目
-- 0287 - 寻找重复数 ｜ [LeetCode 链接](https://leetcode.cn/problems/find-the-duplicate-number/) ｜ [题解笔记](../solutions/0201-0300/0287-find-the-duplicate-number.md)
-- 0240 - 搜索二维矩阵 II ｜ [LeetCode 链接](https://leetcode.cn/problems/search-a-2d-matrix-ii/) ｜ [题解笔记](../solutions/0201-0300/0240-search-a-2d-matrix-ii.md)
-## 5 易错点
-- 区间语义混用导致死循环或越界。
-- 返回值错位（返回 `l` 还是 `l-1`）与题意不一致。
-- 答案二分未证明单调性。
-
-## 6 总结
-二分的本质是维护单调区间并不断缩小搜索空间，先确定区间语义与单调谓词，再编码。
+## 总结
+二分题的关键不是模板记忆，而是先建立单调性与循环不变量，再选择与题意一致的返回边界。

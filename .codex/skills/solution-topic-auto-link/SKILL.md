@@ -17,6 +17,7 @@ description: Use when the user gives one or more `solutions/...md` files and ask
 - A solution is mapped to **one** topic section by default. Map to **two** only when the problem genuinely requires two distinct algorithmic ideas as co-primary techniques (e.g., binary search + DP); never more than two.
 - Do not create new `topics/*.md` files unless the user explicitly asks.
 - Topic titles are normalized by script; do not manually enforce numbering style.
+- During archival, if you create any new section/subsection (e.g., new `###` or `####` block), you must explicitly report it in the final output.
 
 ## Workflow
 
@@ -24,11 +25,15 @@ description: Use when the user gives one or more `solutions/...md` files and ask
    - Extract `id`, `title`, and slug URL from `## 题目链接`.
    - Confirm relative note path for the topic bullet.
 
-2. **Determine best topic placement**
-   - Search existing topic files (`binary-search.md`, `dynamic-programming.md`, `graph-algorithms.md`, `sliding-window-and-two-pointers.md`, etc.).
-   - Inside a topic file, prefer `## 模板与子方法` → most suitable `### 子方法 ...` block.
-   - Match by method keywords (双指针, 二分, 动态规划, 图论, 回溯, 贪心, 前缀和, 单调栈/队列, 滑动窗口, 并查集, 最短路, 拓扑排序, 树形 DP, …).
-   - If the problem co-equally involves two techniques, select two sections (one per topic file at most).
+2. **Determine best topic placement (0x3f-first)**
+   - First query static 0x3f index by problem id:
+     - `python scripts/query_0x3f_index.py <id>`
+   - If query has result(s), archive strictly according to the returned topic file + chain location (directly follow query result; do not re-judge with heuristics first).
+   - If query returns `not found`, fall back to heuristic placement:
+     - Search existing topic files (`binary-search.md`, `dynamic-programming.md`, `graph-algorithms.md`, `sliding-window-and-two-pointers.md`, etc.).
+     - Inside a topic file, prefer `## 模板与子方法` → most suitable `### 子方法 ...` block.
+     - Match by method keywords (双指针, 二分, 动态规划, 图论, 回溯, 贪心, 前缀和, 单调栈/队列, 滑动窗口, 并查集, 最短路, 拓扑排序, 树形 DP, …).
+     - If the problem co-equally involves two techniques, select two sections (one per topic file at most).
 
 3. **Create subsection when needed**
    - If no suitable `### 子方法` block exists, create a concise new one under `## 模板与子方法`.
@@ -56,7 +61,9 @@ description: Use when the user gives one or more `solutions/...md` files and ask
 
 Report:
 - Processed solution path(s).
+- 0x3f query result per problem id (`matched` with locations / `not found`).
 - Topic file(s) and section(s) used/created.
+- Any newly created section/subsection must be explicitly listed.
 - Exact inserted topic line(s).
 - Backlink changes: solution files where `## 相关专题` was added or updated, with the exact lines inserted.
 - Normalization result (if executed).
