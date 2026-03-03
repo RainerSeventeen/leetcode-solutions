@@ -33,11 +33,7 @@ description: "Use when user asks to run the daily LeetCode AC archive workflow."
    - Wait for subagent completion.
    - If subagent fails, surface failure reason and partial progress.
 
-4. Build 0x3f static index before topic linking:
-   - Run: `.venv/bin/python scripts/build_0x3f_index.py`
-   - If build fails, stop and report stderr.
-
-5. Start subagent B for topic linking:
+4. Start subagent B for topic linking:
    - Spawn one subagent and explicitly require skill `solution-topic-auto-link`.
    - Pass all imported `solutions/...md` paths as input.
    - Do not restate the skill workflow in prompt; let subagent follow its own skill and return results.
@@ -45,7 +41,7 @@ description: "Use when user asks to run the daily LeetCode AC archive workflow."
    - Wait for subagent completion.
    - If subagent fails, surface failure reason and partial progress.
 
-6. Final validation:
+5. Final validation:
    - Run `.venv/bin/python scripts/ci/ci.py`.
    - If format errors are reported, fix affected files and rerun once.
    - If errors remain, stop and report failing files with exact errors.
@@ -71,5 +67,4 @@ Include:
   - topic files/sections touched,
   - newly created section/subsection list (if any),
   - inserted topic lines / backlink changes.
-- 0x3f index build result (`scripts/build_0x3f_index.py`).
 - Validation command results.

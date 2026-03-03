@@ -13,8 +13,6 @@
 
 前置依赖:
   - `0x3f_problems_list/index.json` 必须存在
-  - 如索引不存在或需更新，请先执行：
-      python scripts/build_0x3f_index.py
 
 用法:
   python scripts/ci/check_topics.py
@@ -62,7 +60,7 @@ def load_index(index_path: Path | None = None) -> dict[str, Any]:
     path = index_path or ZERO3F_INDEX_PATH
     if not path.exists():
         rel = path.relative_to(ROOT).as_posix()
-        raise ValueError(f"missing {rel}, run `python scripts/build_0x3f_index.py` first")
+        raise ValueError(f"missing {rel}")
     try:
         raw = json.loads(path.read_text(encoding="utf-8"))
     except json.JSONDecodeError as exc:

@@ -109,10 +109,6 @@ created: 2026-02-20      # YYYY-MM-DD
 
 `check_topics` 依赖静态索引文件 `0x3f_problems_list/index.json`。如索引不存在或 0x3f 基准更新，先执行：
 
-```bash
-python scripts/build_0x3f_index.py
-```
-
 ### 格式化
 
 撰写或修改完成后执行：
