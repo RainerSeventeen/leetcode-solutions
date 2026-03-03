@@ -36,6 +36,7 @@ def hamming_distance(x: int, y: int) -> int:
 模板题目：
 - 0461 - 汉明距离 ｜ [LeetCode 链接](https://leetcode.cn/problems/hamming-distance/) ｜ [题解笔记](../solutions/0401-0500/0461-hamming-distance.md)
 - 0067 - 二进制求和 ｜ [LeetCode 链接](https://leetcode.cn/problems/add-binary/) ｜ [题解笔记](../solutions/0001-0100/0067-add-binary.md)
+- 0338 - 比特位计数 ｜ [LeetCode 链接](https://leetcode.cn/problems/counting-bits/) ｜ [题解笔记](../solutions/0301-0400/0338-counting-bits.md)
 - 0693 - 交替位二进制数 ｜ [LeetCode 链接](https://leetcode.cn/problems/binary-number-with-alternating-bits/) ｜ [题解笔记](../solutions/0601-0700/0693-binary-number-with-alternating-bits.md)
 - 0762 - 二进制表示中质数个计算置位 ｜ [LeetCode 链接](https://leetcode.cn/problems/prime-number-of-set-bits-in-binary-representation/) ｜ [题解笔记](../solutions/0701-0800/0762-prime-number-of-set-bits-in-binary-representation.md)
 - 0868 - 二进制间距 ｜ [LeetCode 链接](https://leetcode.cn/problems/binary-gap/) ｜ [题解笔记](../solutions/0801-0900/0868-binary-gap.md)
@@ -73,7 +74,7 @@ def single_number(nums):
 ```
 
 模板题目：
-- 0136 - 只出现一次的数字 ｜ [LeetCode 链接](https://leetcode.cn/problems/single-number/) ｜ [题解笔记](../solutions/0101-0200/0136-single-number.md)
+待补充...
 
 ### 与或（AND/OR）的性质
 #### AND/OR 基础性质
@@ -161,7 +162,7 @@ def count_bits(n):
 ```
 
 模板题目：
-- 0338 - 比特位计数 ｜ [LeetCode 链接](https://leetcode.cn/problems/counting-bits/) ｜ [题解笔记](../solutions/0301-0400/0338-counting-bits.md)
+待补充...
 
 #### 十进制拆位
 模板：
@@ -237,6 +238,7 @@ def concatenated_binary(n: int) -> int:
 
 模板题目：
 - 1680 - 连接连续二进制数字 ｜ [LeetCode 链接](https://leetcode.cn/problems/concatenation-of-consecutive-binary-numbers/) ｜ [题解笔记](../solutions/1601-1700/1680-concatenation-of-consecutive-binary-numbers.md)
+- 0136 - 只出现一次的数字 ｜ [LeetCode 链接](https://leetcode.cn/problems/single-number/) ｜ [题解笔记](../solutions/0101-0200/0136-single-number.md)
 
 ### 关联题单
 #### 外部题单索引

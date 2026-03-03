@@ -48,7 +48,6 @@ def count_complete_knapsack(nums, target):
 - 0070 - 爬楼梯 ｜ [LeetCode 链接](https://leetcode.cn/problems/climbing-stairs/) ｜ [题解笔记](../solutions/0001-0100/0070-climbing-stairs.md)
 - 0746 - 使用最小花费爬楼梯 ｜ [LeetCode 链接](https://leetcode.cn/problems/min-cost-climbing-stairs/) ｜ [题解笔记](../solutions/0701-0800/0746-min-cost-climbing-stairs.md)
 - 0377 - 组合总和 Ⅳ ｜ [LeetCode 链接](https://leetcode.cn/problems/combination-sum-iv/) ｜ [题解笔记](../solutions/0301-0400/0377-combination-sum-iv.md)
-- 0509 - 斐波那契数 ｜ [LeetCode 链接](https://leetcode.cn/problems/fibonacci-number/) ｜ [题解笔记](../solutions/0501-0600/0509-fibonacci-number.md)
 - 2266 - 统计打字方案数 ｜ [LeetCode 链接](https://leetcode.cn/problems/count-number-of-texts/) ｜ [题解笔记](../solutions/2201-2300/2266-count-number-of-texts.md)
 
 #### 4.1.2 打家劫舍
@@ -123,7 +122,6 @@ def min_path_sum(grid):
 - 0062 - 不同路径 ｜ [LeetCode 链接](https://leetcode.cn/problems/unique-paths/) ｜ [题解笔记](../solutions/0001-0100/0062-unique-paths.md)
 - 0063 - 不同路径 II ｜ [LeetCode 链接](https://leetcode.cn/problems/unique-paths-ii/) ｜ [题解笔记](../solutions/0001-0100/0063-unique-paths-ii.md)
 - 0064 - 最小路径和 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-path-sum/) ｜ [题解笔记](../solutions/0001-0100/0064-minimum-path-sum.md)
-- 0221 - 最大正方形 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximal-square/) ｜ [题解笔记](../solutions/0201-0300/0221-maximal-square.md)
 
 #### 4.2.2 进阶
 待补充...
@@ -301,8 +299,6 @@ def can_partition(nums):
 #### 4.5.2 最优划分
 待补充...
 
-- 0032 - 最长有效括号 ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-valid-parentheses/) ｜ [题解笔记](../solutions/0001-0100/0032-longest-valid-parentheses.md)
-
 #### 4.5.3 约束划分个数
 待补充...
 
@@ -350,6 +346,7 @@ def max_profit_cooldown(prices):
 #### 4.7.1 一维 DP
 待补充...
 
+- 0032 - 最长有效括号 ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-valid-parentheses/) ｜ [题解笔记](../solutions/0001-0100/0032-longest-valid-parentheses.md)
 - 0343 - 整数拆分 ｜ [LeetCode 链接](https://leetcode.cn/problems/integer-break/) ｜ [题解笔记](../solutions/0301-0400/0343-integer-break.md)
 
 #### 4.7.2 不相交区间
@@ -366,6 +363,7 @@ def max_profit_cooldown(prices):
 #### 4.7.5 子矩形 DP
 待补充...
 
+- 0221 - 最大正方形 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximal-square/) ｜ [题解笔记](../solutions/0201-0300/0221-maximal-square.md)
 #### 4.7.6 多维 DP
 待补充...
 
@@ -424,6 +422,7 @@ def interval_dp(n):
 
 模板题目：
 
+- 0096 - 不同的二叉搜索树 ｜ [LeetCode 链接](https://leetcode.cn/problems/unique-binary-search-trees/) ｜ [题解笔记](../solutions/0001-0100/0096-unique-binary-search-trees.md)
 - 0312 - 戳气球 ｜ [LeetCode 链接](https://leetcode.cn/problems/burst-balloons/) ｜ [题解笔记](../solutions/0301-0400/0312-burst-balloons.md)
 
 ### 4.9 状态压缩 DP（状压 DP）
@@ -483,6 +482,7 @@ def interval_dp(n):
 #### 4.11.6 矩阵快速幂优化 DP
 待补充...
 
+- 0509 - 斐波那契数 ｜ [LeetCode 链接](https://leetcode.cn/problems/fibonacci-number/) ｜ [题解笔记](../solutions/0501-0600/0509-fibonacci-number.md)
 #### 4.11.7 斜率优化 DP
 待补充...
 
@@ -547,7 +547,7 @@ def count_bst(n):
 
 模板题目：
 
-- 0096 - 不同的二叉搜索树 ｜ [LeetCode 链接](https://leetcode.cn/problems/unique-binary-search-trees/) ｜ [题解笔记](../solutions/0001-0100/0096-unique-binary-search-trees.md)
+待补充...
 
 ### 4.13 图 DP
 待补充...

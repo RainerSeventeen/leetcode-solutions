@@ -227,7 +227,6 @@ def is_balanced(root):
 模板题目：
 - 0101 - 对称二叉树 ｜ [LeetCode 链接](https://leetcode.cn/problems/symmetric-tree/) ｜ [题解笔记](../solutions/0101-0200/0101-symmetric-tree.md)
 - 0110 - 平衡二叉树 ｜ [LeetCode 链接](https://leetcode.cn/problems/balanced-binary-tree/) ｜ [题解笔记](../solutions/0101-0200/0110-balanced-binary-tree.md)
-- 0124 - 二叉树中的最大路径和 ｜ [LeetCode 链接](https://leetcode.cn/problems/binary-tree-maximum-path-sum/) ｜ [题解笔记](../solutions/0101-0200/0124-binary-tree-maximum-path-sum.md)
 - 0226 - 翻转二叉树 ｜ [LeetCode 链接](https://leetcode.cn/problems/invert-binary-tree/) ｜ [题解笔记](../solutions/0201-0300/0226-invert-binary-tree.md)
 - 0617 - 合并二叉树 ｜ [LeetCode 链接](https://leetcode.cn/problems/merge-two-binary-trees/) ｜ [题解笔记](../solutions/0601-0700/0617-merge-two-binary-trees.md)
 
@@ -272,6 +271,7 @@ def diameter_of_binary_tree(root):
 ```
 
 模板题目：
+- 0124 - 二叉树中的最大路径和 ｜ [LeetCode 链接](https://leetcode.cn/problems/binary-tree-maximum-path-sum/) ｜ [题解笔记](../solutions/0101-0200/0124-binary-tree-maximum-path-sum.md)
 - 0543 - 二叉树的直径 ｜ [LeetCode 链接](https://leetcode.cn/problems/diameter-of-binary-tree/) ｜ [题解笔记](../solutions/0501-0600/0543-diameter-of-binary-tree.md)
 
 #### 回溯
@@ -338,11 +338,7 @@ def is_valid_bst(root):
 
 模板题目：
 - 0098 - 验证二叉搜索树 ｜ [LeetCode 链接](https://leetcode.cn/problems/validate-binary-search-tree/) ｜ [题解笔记](../solutions/0001-0100/0098-validate-binary-search-tree.md)
-- 0108 - 将有序数组转换为二叉搜索树 ｜ [LeetCode 链接](https://leetcode.cn/problems/convert-sorted-array-to-binary-search-tree/) ｜ [题解笔记](../solutions/0101-0200/0108-convert-sorted-array-to-binary-search-tree.md)
-- 0450 - 删除二叉搜索树中的节点 ｜ [LeetCode 链接](https://leetcode.cn/problems/delete-node-in-a-bst/) ｜ [题解笔记](../solutions/0401-0500/0450-delete-node-in-a-bst.md)
-- 0669 - 修剪二叉搜索树 ｜ [LeetCode 链接](https://leetcode.cn/problems/trim-a-binary-search-tree/) ｜ [题解笔记](../solutions/0601-0700/0669-trim-a-binary-search-tree.md)
 - 0700 - 二叉搜索树中的搜索 ｜ [LeetCode 链接](https://leetcode.cn/problems/search-in-a-binary-search-tree/) ｜ [题解笔记](../solutions/0601-0700/0700-search-in-a-binary-search-tree.md)
-- 0701 - 二叉搜索树中的插入操作 ｜ [LeetCode 链接](https://leetcode.cn/problems/insert-into-a-binary-search-tree/) ｜ [题解笔记](../solutions/0701-0800/0701-insert-into-a-binary-search-tree.md)
 
 #### 创建二叉树
 模板：
@@ -366,8 +362,10 @@ def build_tree(preorder, inorder):
 ```
 
 模板题目：
+- 0108 - 将有序数组转换为二叉搜索树 ｜ [LeetCode 链接](https://leetcode.cn/problems/convert-sorted-array-to-binary-search-tree/) ｜ [题解笔记](../solutions/0101-0200/0108-convert-sorted-array-to-binary-search-tree.md)
 - 0105 - 从前序与中序遍历序列构造二叉树 ｜ [LeetCode 链接](https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/) ｜ [题解笔记](../solutions/0101-0200/0105-construct-binary-tree-from-preorder-and-inorder-traversal.md)
 - 0106 - 从中序与后序遍历序列构造二叉树 ｜ [LeetCode 链接](https://leetcode.cn/problems/construct-binary-tree-from-inorder-and-postorder-traversal/) ｜ [题解笔记](../solutions/0101-0200/0106-construct-binary-tree-from-inorder-and-postorder-traversal.md)
+- 0654 - 最大二叉树 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximum-binary-tree/) ｜ [题解笔记](../solutions/0601-0700/0654-maximum-binary-tree.md)
 
 #### 插入/删除节点
 模板：
@@ -377,7 +375,9 @@ def build_tree(preorder, inorder):
 ```
 
 模板题目：
-待补充...
+- 0450 - 删除二叉搜索树中的节点 ｜ [LeetCode 链接](https://leetcode.cn/problems/delete-node-in-a-bst/) ｜ [题解笔记](../solutions/0401-0500/0450-delete-node-in-a-bst.md)
+- 0669 - 修剪二叉搜索树 ｜ [LeetCode 链接](https://leetcode.cn/problems/trim-a-binary-search-tree/) ｜ [题解笔记](../solutions/0601-0700/0669-trim-a-binary-search-tree.md)
+- 0701 - 二叉搜索树中的插入操作 ｜ [LeetCode 链接](https://leetcode.cn/problems/insert-into-a-binary-search-tree/) ｜ [题解笔记](../solutions/0701-0800/0701-insert-into-a-binary-search-tree.md)
 
 #### 树形 DP
 模板：
@@ -446,7 +446,6 @@ def level_order(root):
 模板题目：
 - 0222 - 完全二叉树的节点个数 ｜ [LeetCode 链接](https://leetcode.cn/problems/count-complete-tree-nodes/) ｜ [题解笔记](../solutions/0201-0300/0222-count-complete-tree-nodes.md)
 - 0297 - 二叉树的序列化与反序列化 ｜ [LeetCode 链接](https://leetcode.cn/problems/serialize-and-deserialize-binary-tree/) ｜ [题解笔记](../solutions/0201-0300/0297-serialize-and-deserialize-binary-tree.md)
-- 0654 - 最大二叉树 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximum-binary-tree/) ｜ [题解笔记](../solutions/0601-0700/0654-maximum-binary-tree.md)
 
 ### 一般树
 #### 遍历
@@ -602,7 +601,6 @@ def backtrack(nums):
 
 模板题目：
 - 0017 - 电话号码的字母组合 ｜ [LeetCode 链接](https://leetcode.cn/problems/letter-combinations-of-a-phone-number/) ｜ [题解笔记](../solutions/0001-0100/0017-letter-combinations-of-a-phone-number.md)
-- 0022 - 括号生成 ｜ [LeetCode 链接](https://leetcode.cn/problems/generate-parentheses/) ｜ [题解笔记](../solutions/0001-0100/0022-generate-parentheses.md)
 
 #### 子集型回溯
 模板：
@@ -626,6 +624,7 @@ def subsets(nums):
 
 模板题目：
 - 0078 - 子集 ｜ [LeetCode 链接](https://leetcode.cn/problems/subsets/) ｜ [题解笔记](../solutions/0001-0100/0078-subsets.md)
+- 0039 - 组合总和 ｜ [LeetCode 链接](https://leetcode.cn/problems/combination-sum/) ｜ [题解笔记](../solutions/0001-0100/0039-combination-sum.md)
 
 #### 划分型回溯
 模板：
@@ -687,10 +686,10 @@ def combination_backtrack(cands, target):
 ```
 
 模板题目：
-- 0039 - 组合总和 ｜ [LeetCode 链接](https://leetcode.cn/problems/combination-sum/) ｜ [题解笔记](../solutions/0001-0100/0039-combination-sum.md)
-- 0040 - 组合总和 II ｜ [LeetCode 链接](https://leetcode.cn/problems/combination-sum-ii/) ｜ [题解笔记](../solutions/0001-0100/0040-combination-sum-ii.md)
+- 0022 - 括号生成 ｜ [LeetCode 链接](https://leetcode.cn/problems/generate-parentheses/) ｜ [题解笔记](../solutions/0001-0100/0022-generate-parentheses.md)
 - 0077 - 组合 ｜ [LeetCode 链接](https://leetcode.cn/problems/combinations/) ｜ [题解笔记](../solutions/0001-0100/0077-combinations.md)
 - 0216 - 组合总和 III ｜ [LeetCode 链接](https://leetcode.cn/problems/combination-sum-iii/) ｜ [题解笔记](../solutions/0201-0300/0216-combination-sum-iii.md)
+- 0301 - 删除无效的括号 ｜ [LeetCode 链接](https://leetcode.cn/problems/remove-invalid-parentheses/) ｜ [题解笔记](../solutions/0301-0400/0301-remove-invalid-parentheses.md)
 
 #### 排列型回溯
 模板：
@@ -719,7 +718,8 @@ def permute(nums):
 
 模板题目：
 - 0046 - 全排列 ｜ [LeetCode 链接](https://leetcode.cn/problems/permutations/) ｜ [题解笔记](../solutions/0001-0100/0046-permutations.md)
-- 0047 - 全排列 II ｜ [LeetCode 链接](https://leetcode.cn/problems/permutations-ii/) ｜ [题解笔记](../solutions/0001-0100/0047-permutations-ii.md)
+- 0037 - 解数独 ｜ [LeetCode 链接](https://leetcode.cn/problems/sudoku-solver/) ｜ [题解笔记](../solutions/0001-0100/0037-sudoku-solver.md)
+- 0051 - N 皇后 ｜ [LeetCode 链接](https://leetcode.cn/problems/n-queens/) ｜ [题解笔记](../solutions/0001-0100/0051-n-queens.md)
 
 #### 有重复元素的回溯
 模板：
@@ -747,6 +747,8 @@ def find_subsequences(nums):
 ```
 
 模板题目：
+- 0040 - 组合总和 II ｜ [LeetCode 链接](https://leetcode.cn/problems/combination-sum-ii/) ｜ [题解笔记](../solutions/0001-0100/0040-combination-sum-ii.md)
+- 0047 - 全排列 II ｜ [LeetCode 链接](https://leetcode.cn/problems/permutations-ii/) ｜ [题解笔记](../solutions/0001-0100/0047-permutations-ii.md)
 - 0491 - 非递减子序列 ｜ [LeetCode 链接](https://leetcode.cn/problems/non-decreasing-subsequences/) ｜ [题解笔记](../solutions/0401-0500/0491-non-decreasing-subsequences.md)
 
 #### 搜索
@@ -757,9 +759,7 @@ def find_subsequences(nums):
 ```
 
 模板题目：
-- 0037 - 解数独 ｜ [LeetCode 链接](https://leetcode.cn/problems/sudoku-solver/) ｜ [题解笔记](../solutions/0001-0100/0037-sudoku-solver.md)
-- 0051 - N 皇后 ｜ [LeetCode 链接](https://leetcode.cn/problems/n-queens/) ｜ [题解笔记](../solutions/0001-0100/0051-n-queens.md)
-- 0301 - 删除无效的括号 ｜ [LeetCode 链接](https://leetcode.cn/problems/remove-invalid-parentheses/) ｜ [题解笔记](../solutions/0301-0400/0301-remove-invalid-parentheses.md)
+待补充...
 
 #### 折半枚举
 模板：
