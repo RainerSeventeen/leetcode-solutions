@@ -90,6 +90,7 @@ def max_subarray(nums):
 
 - 0053 - 最大子数组和 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximum-subarray/) ｜ [题解笔记](../solutions/0001-0100/0053-maximum-subarray.md)
 - 0152 - 乘积最大子数组 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximum-product-subarray/) ｜ [题解笔记](../solutions/0101-0200/0152-maximum-product-subarray.md)
+- 1191 - K 次串联后最大子数组之和 ｜ [LeetCode 链接](https://leetcode.cn/problems/k-concatenation-maximum-sum/) ｜ [题解笔记](../solutions/1101-1200/1191-k-concatenation-maximum-sum.md)
 
 #### 4.1.4 思考题
 待补充...

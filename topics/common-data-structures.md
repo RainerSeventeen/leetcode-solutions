@@ -128,6 +128,24 @@ def subarray_sum(nums, k):
 模板题目：
 待补充...
 
+#### 二维计数（行列统计）
+模板：
+
+```python
+def num_special(mat):
+    rows = [sum(r) for r in mat]
+    cols = [sum(c) for c in zip(*mat)]
+    ans = 0
+    for i, row in enumerate(mat):
+        for j, x in enumerate(row):
+            if x == 1 and rows[i] == 1 and cols[j] == 1:
+                ans += 1
+    return ans
+```
+
+模板题目：
+- 1582 - 二进制矩阵中的特殊位置 ｜ [LeetCode 链接](https://leetcode.cn/problems/special-positions-in-a-binary-matrix/) ｜ [题解笔记](../solutions/1501-1600/1582-special-positions-in-a-binary-matrix.md)
+
 ### 差分
 #### 一维差分
 模板：
