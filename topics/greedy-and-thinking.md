@@ -98,12 +98,28 @@
 模板：
 
 ```python
-# 待补充
+from typing import Iterable, Callable
+
+
+def min_changes_to_alternate(states: Iterable[int], start: int = 0) -> int:
+    """
+    二元状态交替最少修改次数模板。
+    - states: 每个元素应为 0/1（可由字符/数字映射得到）
+    - start: 期望第 0 位状态（0 或 1）
+    """
+    diff = 0
+    for i, x in enumerate(states):
+        expected = start ^ (i & 1)
+        if x != expected:
+            diff += 1
+    return diff
 ```
 
 模板题目：
 
 - 0621 - 任务调度器 ｜ [LeetCode 链接](https://leetcode.cn/problems/task-scheduler/) ｜ [题解笔记](../solutions/0601-0700/0621-task-scheduler.md)
+- 1758 - 生成交替二进制字符串的最少操作数 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-changes-to-make-alternating-binary-string/) ｜ [题解笔记](../solutions/1701-1800/1758-minimum-changes-to-make-alternating-binary-string.md)
+- 3854 - 使数组奇偶交替的最少操作 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-operations-to-make-array-parity-alternating/) ｜ [题解笔记](../solutions/3801-3900/3854-minimum-operations-to-make-array-parity-alternating.md)
 
 #### 反悔贪心
 模板：
