@@ -360,7 +360,7 @@ def grouped_scan(nums):
 
 模板题目：
 
-待补充...
+- 1784 - 检查二进制字符串字段 ｜ [LeetCode 链接](https://leetcode.cn/problems/check-if-binary-string-has-at-most-one-segment-of-ones/) ｜ [题解笔记](../solutions/1701-1800/1784-check-if-binary-string-has-at-most-one-segment-of-ones.md)
 
 ## 5 易错点
 - 窗口收缩时忘记回滚计数，导致漏解或死循环。
