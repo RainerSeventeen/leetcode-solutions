@@ -55,6 +55,7 @@ def max_sliding_window(nums, k):
 模板题目：
 
 - 0438 - 找到字符串中所有字母异位词 ｜ [LeetCode 链接](https://leetcode.cn/problems/find-all-anagrams-in-a-string/) ｜ [题解笔记](../solutions/0401-0500/0438-find-all-anagrams-in-a-string.md)
+- 1888 - 使二进制字符串字符交替的最少反转次数 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-number-of-flips-to-make-the-binary-string-alternating/) ｜ [题解笔记](../solutions/1801-1900/1888-minimum-number-of-flips-to-make-the-binary-string-alternating.md)
 
 #### 4.1.3 其他（选做）
 模板：
