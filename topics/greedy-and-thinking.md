@@ -394,9 +394,19 @@ def min_changes_to_alternate(states: Iterable[int], start: int = 0) -> int:
 模板题目：
 
 - 0860 - 柠檬水找零 ｜ [LeetCode 链接](https://leetcode.cn/problems/lemonade-change/) ｜ [题解笔记](../solutions/0801-0900/0860-lemonade-change.md)
+- 3863 - 将一个字符串排序的最小操作次数 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-operations-to-sort-a-string/) ｜ [题解笔记](../solutions/3801-3900/3863-minimum-operations-to-sort-a-string.md)
 
 ### 构造题
-待补充...
+#### 对角线构造
+模板：
+
+```python
+# 待补充
+```
+
+模板题目：
+
+- 1980 - 找出不同的二进制字符串 ｜ [LeetCode 链接](https://leetcode.cn/problems/find-unique-binary-string/) ｜ [题解笔记](../solutions/1901-2000/1980-find-unique-binary-string.md)
 
 ### 交互题
 待补充...
