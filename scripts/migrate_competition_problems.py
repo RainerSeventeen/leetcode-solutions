@@ -20,10 +20,14 @@ import pathlib
 import re
 import sys
 import time
-from urllib.error import HTTPError, URLError
-from urllib.request import Request, urlopen
 
 from path_rules import build_solution_subdir, format_problem_id
+
+try:
+    import requests
+except ModuleNotFoundError:
+    print("Error: pip install requests", file=sys.stderr)
+    sys.exit(1)
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 COMP_DIR = ROOT / "solutions" / "competition_problems"
@@ -58,22 +62,21 @@ def fetch_question(headers: dict[str, str], slug: str) -> dict | None:
     backoff = [3, 8, 15, 30]
     for attempt, wait in enumerate([0] + backoff):
         if wait:
+            print(f"  [重试] {slug}: 等待 {wait}s 后重试 ({attempt}/{len(backoff)})")
             time.sleep(wait)
         try:
-            req = Request(
+            resp = requests.post(
                 GRAPHQL_URL,
-                data=json.dumps(
-                    {"query": QUESTION_QUERY, "variables": {"titleSlug": slug}}
-                ).encode("utf-8"),
                 headers=headers,
-                method="POST",
+                json={"query": QUESTION_QUERY, "variables": {"titleSlug": slug}},
+                timeout=15,
             )
-            with urlopen(req, timeout=15) as resp:
-                payload = json.loads(resp.read().decode("utf-8"))
+            resp.raise_for_status()
+            payload = resp.json()
             if payload.get("errors"):
                 raise RuntimeError(json.dumps(payload["errors"], ensure_ascii=False))
             return payload.get("data", {}).get("question")
-        except (RuntimeError, HTTPError, URLError, TimeoutError, ValueError, json.JSONDecodeError):
+        except (RuntimeError, requests.RequestException, ValueError, json.JSONDecodeError):
             if attempt == len(backoff):
                 return None
     return None
@@ -119,7 +122,11 @@ def main() -> int:
         slug = m.group(2)
         print(f"[检查] {rel}", flush=True)
 
-        question = fetch_question(headers, slug)
+        try:
+            question = fetch_question(headers, slug)
+        except RuntimeError as exc:
+            print(f"  ✗ 致命错误: {exc}")
+            return 1
         if not question:
             print(f"  ✗ API 查询失败: {slug}")
             failed += 1

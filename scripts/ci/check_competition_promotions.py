@@ -17,8 +17,12 @@ import json
 import re
 import sys
 from pathlib import Path
-from urllib.error import HTTPError, URLError
-from urllib.request import Request, urlopen
+
+try:
+    import requests
+except ModuleNotFoundError:
+    print("Error: pip install requests", file=sys.stderr)
+    sys.exit(1)
 
 ROOT = Path(__file__).resolve().parents[2]
 SOLUTIONS_DIR = ROOT / "solutions"
@@ -44,25 +48,21 @@ query questionData($titleSlug: String!) {
 
 
 def _graphql_query(slug: str) -> dict:
-    payload = json.dumps(
-        {
-            "query": QUESTION_QUERY,
-            "variables": {"titleSlug": slug},
-        }
-    ).encode("utf-8")
-    req = Request(
+    resp = requests.post(
         GRAPHQL_URL,
-        data=payload,
         headers={
             "User-Agent": "Mozilla/5.0 (compatible; leetcode-ci-check/1.0)",
             "Referer": "https://leetcode.cn/",
             "Content-Type": "application/json",
         },
-        method="POST",
+        json={
+            "query": QUESTION_QUERY,
+            "variables": {"titleSlug": slug},
+        },
+        timeout=20,
     )
-    with urlopen(req, timeout=20) as resp:
-        raw = resp.read().decode("utf-8")
-    data = json.loads(raw)
+    resp.raise_for_status()
+    data = resp.json()
     if data.get("errors"):
         raise RuntimeError(f"GraphQL errors: {data['errors']}")
     question = data.get("data", {}).get("question")
@@ -96,7 +96,7 @@ def main() -> int:
             if frontend_raw is None:
                 raise RuntimeError("missing questionFrontendId/questionId")
             frontend_id = int(frontend_raw)
-        except (ValueError, RuntimeError, HTTPError, URLError, TimeoutError, json.JSONDecodeError) as exc:
+        except (ValueError, RuntimeError, requests.RequestException, json.JSONDecodeError) as exc:
             errors.append(f"{rel}: API check failed for slug `{slug}`: {exc}")
             continue
 
