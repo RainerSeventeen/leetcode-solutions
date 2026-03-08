@@ -24,6 +24,8 @@ import re
 import sys
 import time
 
+from path_rules import build_solution_subdir, format_problem_id
+
 try:
     import env  # noqa: F401 — side-effect: loads .env into os.environ
 except ImportError:
@@ -117,10 +119,8 @@ def build_headers() -> dict[str, str]:
     return headers
 
 
-def build_range_dir(problem_id: int) -> str:
-    start = ((problem_id - 1) // 100) * 100 + 1
-    end = start + 99
-    return f"{start:04d}-{end:04d}"
+def build_solution_dir(problem_id: int) -> pathlib.Path:
+    return SOLUTIONS_DIR / build_solution_subdir(problem_id)
 
 
 def to_lang_tag(lang_key: str) -> str:
@@ -316,10 +316,9 @@ def main() -> int:
 
         markdown = build_markdown(slug, usable_entries, question)
 
-        range_dir = build_range_dir(problem_id)
-        out_dir = SOLUTIONS_DIR / range_dir
+        out_dir = build_solution_dir(problem_id)
         out_dir.mkdir(parents=True, exist_ok=True)
-        out_path = out_dir / f"{problem_id:04d}-{slug}.md"
+        out_path = out_dir / f"{format_problem_id(problem_id)}-{slug}.md"
 
         out_path.write_text(markdown, encoding="utf-8")
         existing_slugs.add(slug)

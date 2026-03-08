@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-CI 总入口：串行执行 solutions 与 topics 校验。
+CI 总入口：串行执行 solutions、topics、competition promotions 校验。
 
 用法:
   python scripts/ci/ci.py
@@ -20,6 +20,7 @@ def _prepare_import_path() -> None:
 def main() -> int:
     _prepare_import_path()
 
+    import check_competition_promotions
     import check_solutions
     import check_topics
 
@@ -33,6 +34,12 @@ def main() -> int:
     print("[ci] running topics checks...")
     topics_rc = check_topics.main()
     if topics_rc != 0:
+        exit_code = 1
+
+    print("[ci] running competition promotion checks...")
+    competition_rc = check_competition_promotions.main()
+    if competition_rc != 0:
+        print("[ci] competition promotion check failed")
         exit_code = 1
 
     if exit_code == 0:

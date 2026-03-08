@@ -35,9 +35,10 @@ def prune_log(log_file: Path, days: int = 7) -> None:
     log_file.write_text("".join(kept))
 
 
-MESSAGE_PATTERN = re.compile(
+MESSAGE_WITH_IDS_PATTERN = re.compile(
     r"^docs: LeetCode \(([0-9]{4})(,[0-9]{4})*\), [0-9]{4}-[0-9]{2}-[0-9]{2}$"
 )
+MESSAGE_NO_IDS_PATTERN = re.compile(r"^docs: LeetCode, [0-9]{4}-[0-9]{2}-[0-9]{2}$")
 SOLUTION_FILE_PATTERN = re.compile(r"^(\d{4})-[^.]+\.md$")
 
 
@@ -116,18 +117,19 @@ def collect(log: logging.Logger) -> tuple[str, list[str]] | None:
         log.info("no eligible files (new/modified solutions/* or modified topics/*); skip")
         return None
 
-    problem_ids = extract_solution_ids(solution_files)
-    if not problem_ids:
-        log.warning(
-            "eligible files found but no solution with 4-digit id; skip: %s",
-            ", ".join(files_to_stage),
-        )
-        return None
-
     commit_date = date.today().isoformat()
-    ids_joined = ",".join(sorted(problem_ids))
-    message = f"docs: LeetCode ({ids_joined}), {commit_date}"
-    if not MESSAGE_PATTERN.fullmatch(message):
+    problem_ids = extract_solution_ids(solution_files)
+    if problem_ids:
+        ids_joined = ",".join(sorted(problem_ids))
+        message = f"docs: LeetCode ({ids_joined}), {commit_date}"
+    else:
+        # 仅有竞赛题或仅 topics 变更时，仍提交，但 message 不标注题号。
+        message = f"docs: LeetCode, {commit_date}"
+
+    if not (
+        MESSAGE_WITH_IDS_PATTERN.fullmatch(message)
+        or MESSAGE_NO_IDS_PATTERN.fullmatch(message)
+    ):
         log.error("commit message failed validation: %s", message)
         sys.exit(1)
 

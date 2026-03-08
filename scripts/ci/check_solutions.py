@@ -3,16 +3,21 @@
 校验 solutions/ 下所有题解 Markdown 文件的格式合规性。
 
 检查项:
-  - 文件路径与命名规范（solutions/0001-0100/0001-xxx.md）
+  - 文件路径与命名规范：
+    - 普通题：solutions/0001-0100/0001-xxx.md
+    - 竞赛题：solutions/competition_problems/10001-xxx.md
   - Front matter 必填字段（id / title / difficulty / tags / created）
   - Front matter id 与文件名及 H1 标题的一致性
   - difficulty 取值（Easy / Medium / Hard）
   - created 日期格式（YYYY-MM-DD）
-  - 必需章节（## 题目链接 / ## 题目描述 / ## 解题思路 / ## 相关专题 / ## 代码）
+  - 必需章节：
+    - 普通题：## 题目链接 / ## 题目描述 / ## 解题思路 / ## 相关专题 / ## 代码
+    - 竞赛题：## 题目链接 / ## 题目描述 / ## 解题思路 / ## 代码
   - 复杂度占位符 O() 是否已填写
   - 时间复杂度 / 空间复杂度 格式（$O(...)$），可附变量释义
   - 重复 id 检测
-  - ## 相关专题 段落存在、含有回链接、回链接命名规范
+  - 普通题 `## 相关专题` 段落存在、含有回链接、回链接命名规范
+  - 竞赛题跳过回链接强制检查
 
 用法:
   python scripts/ci/check_solutions.py
@@ -29,13 +34,20 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 SOLUTIONS_DIR = ROOT / "solutions"
-FILE_RE = re.compile(r"solutions/\d{4}-\d{4}/(\d{4})-[a-z0-9-]+\.md$")
+NORMAL_FILE_RE = re.compile(r"solutions/(\d{4})-(\d{4})/(\d{4})-[a-z0-9-]+\.md$")
+COMPETITION_FILE_RE = re.compile(r"solutions/competition_problems/(\d+)-[a-z0-9-]+\.md$")
 FRONT_MATTER_RE = re.compile(r"^---\n(.*?)\n---\n", re.S)
-SECTION_ORDER = (
+SECTION_ORDER_NORMAL = (
     "## 题目链接",
     "## 题目描述",
     "## 解题思路",
     "## 相关专题",
+    "## 代码",
+)
+SECTION_ORDER_COMPETITION = (
+    "## 题目链接",
+    "## 题目描述",
+    "## 解题思路",
     "## 代码",
 )
 ALLOWED_DIFFICULTY = {"Easy", "Medium", "Hard"}
@@ -157,11 +169,16 @@ def find_section_line_indices(content: str, sections: tuple[str, ...]) -> dict[s
     return indices
 
 
-def check_sections_present_and_order(content: str, rel: str) -> list[str]:
+def check_sections_present_and_order(
+    content: str,
+    rel: str,
+    section_order: tuple[str, ...],
+    expected_order_text: str,
+) -> list[str]:
     errors: list[str] = []
-    section_indices = find_section_line_indices(content, SECTION_ORDER)
+    section_indices = find_section_line_indices(content, section_order)
 
-    for section in SECTION_ORDER:
+    for section in section_order:
         if section not in section_indices:
             errors.append(f"{rel}: missing section `{section}`")
 
@@ -169,13 +186,10 @@ def check_sections_present_and_order(content: str, rel: str) -> list[str]:
         return errors
 
     last_line = -1
-    for section in SECTION_ORDER:
+    for section in section_order:
         current_line = section_indices[section]
         if current_line < last_line:
-            errors.append(
-                f"{rel}: section order must be "
-                "`## 题目链接 -> ## 题目描述 -> ## 解题思路 -> ## 相关专题 -> ## 代码`"
-            )
+            errors.append(f"{rel}: section order must be `{expected_order_text}`")
             break
         last_line = current_line
 
@@ -187,11 +201,35 @@ def check_file(path: Path) -> list[str]:
     rel = path.relative_to(ROOT).as_posix()
     content = path.read_text(encoding="utf-8")
 
-    file_match = FILE_RE.fullmatch(rel)
-    if not file_match:
-        return [f"{rel}: invalid path/name format, expected solutions/0001-0100/0001-xxx.md"]
+    file_id: str | None = None
+    is_competition = False
 
-    file_id = str(int(file_match.group(1)))
+    normal_match = NORMAL_FILE_RE.fullmatch(rel)
+    if normal_match:
+        range_start = int(normal_match.group(1))
+        range_end = int(normal_match.group(2))
+        file_id = str(int(normal_match.group(3)))
+        pid = int(file_id)
+        expected_start = ((pid - 1) // 100) * 100 + 1
+        expected_end = expected_start + 99
+        if (range_start, range_end) != (expected_start, expected_end):
+            errors.append(
+                f"{rel}: directory range `{range_start:04d}-{range_end:04d}` does not match id `{pid}`"
+            )
+    else:
+        competition_match = COMPETITION_FILE_RE.fullmatch(rel)
+        if not competition_match:
+            return [
+                f"{rel}: invalid path/name format, expected "
+                "solutions/0001-0100/0001-xxx.md or solutions/competition_problems/<id>-xxx.md"
+            ]
+        file_id = str(int(competition_match.group(1)))
+        is_competition = True
+        if int(file_id) <= 10000:
+            errors.append(
+                f"{rel}: competition_problems only allows id > 10000, got `{file_id}`"
+            )
+
     front_matter = parse_front_matter(content)
 
     for key in ("id", "title", "difficulty", "tags", "created"):
@@ -222,7 +260,24 @@ def check_file(path: Path) -> list[str]:
                 f"{rel}: invalid created date `{front_matter['created']}`, expected YYYY-MM-DD"
             )
 
-    errors.extend(check_sections_present_and_order(content, rel))
+    if is_competition:
+        errors.extend(
+            check_sections_present_and_order(
+                content,
+                rel,
+                SECTION_ORDER_COMPETITION,
+                "## 题目链接 -> ## 题目描述 -> ## 解题思路 -> ## 代码",
+            )
+        )
+    else:
+        errors.extend(
+            check_sections_present_and_order(
+                content,
+                rel,
+                SECTION_ORDER_NORMAL,
+                "## 题目链接 -> ## 题目描述 -> ## 解题思路 -> ## 相关专题 -> ## 代码",
+            )
+        )
 
     if "O()" in content:
         errors.append(f"{rel}: placeholder `O()` still exists")
@@ -235,7 +290,8 @@ def check_file(path: Path) -> list[str]:
     if space_complexity_error:
         errors.append(f"{rel}: {space_complexity_error}")
 
-    errors.extend(check_backlinks(content, rel))
+    if not is_competition:
+        errors.extend(check_backlinks(content, rel))
 
     return errors
 

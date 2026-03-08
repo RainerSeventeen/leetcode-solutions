@@ -12,9 +12,9 @@
   --slug        直接指定 titleSlug，跳过 problems/all 查询（适用于竞赛题）
   --overwrite   文件已存在时强制覆盖（默认报错退出）
 
-输出: solutions/<范围目录>/<id>-<slug>.md
+输出: solutions/<范围目录或competition_problems>/<id>-<slug>.md
   按题号模式：id 为传入的 problem_id
-  按 slug 模式：id 为 GraphQL 返回的 questionId
+  按 slug 模式：id 为 GraphQL 返回的 questionFrontendId（fallback questionId）
 """
 from __future__ import annotations
 
@@ -24,6 +24,8 @@ import pathlib
 import re
 import sys
 from typing import Any
+
+from path_rules import build_solution_subdir, format_problem_id
 
 try:
     import requests
@@ -129,10 +131,8 @@ def fetch_problem_details(title_slug: str, headers: dict[str, str]) -> dict[str,
     return question
 
 
-def build_range_dir(problem_id: int) -> str:
-    start = ((problem_id - 1) // 100) * 100 + 1
-    end = start + 99
-    return f"{start:04d}-{end:04d}"
+def build_solution_dir(problem_id: int) -> pathlib.Path:
+    return pathlib.Path("solutions") / build_solution_subdir(problem_id)
 
 
 def to_markdown(question: dict[str, Any], problem_id: int, title_slug: str) -> str:
@@ -194,11 +194,10 @@ def write_markdown_file(
     markdown: str,
     overwrite: bool,
 ) -> pathlib.Path:
-    range_dir = build_range_dir(problem_id)
-    output_dir = pathlib.Path("solutions") / range_dir
+    output_dir = build_solution_dir(problem_id)
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    output_path = output_dir / f"{problem_id:04d}-{title_slug}.md"
+    output_path = output_dir / f"{format_problem_id(problem_id)}-{title_slug}.md"
     if output_path.exists() and not overwrite:
         raise RuntimeError(
             f"File already exists: {output_path}. Use --overwrite to replace it."

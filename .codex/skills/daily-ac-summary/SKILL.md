@@ -43,7 +43,13 @@ description: "Use when user asks to run the daily LeetCode AC archive workflow."
 
 5. Final validation:
    - Run `.venv/bin/python scripts/ci/ci.py`.
-   - If format errors are reported, fix affected files and rerun once.
+   - If failed due to competition promotion check:
+     - Run `.venv/bin/python scripts/migrate_competition_problems.py`.
+     - Read `artifacts/migrated_competition_paths.txt`.
+     - If the file contains migrated paths, spawn one subagent with skill `solution-topic-auto-link` for those paths only (to build topic + backlink).
+     - Rerun `.venv/bin/python scripts/ci/ci.py`.
+     - If still failing, stop and report both pre-fallback and post-fallback errors.
+   - If failed for other reasons, fix affected files and rerun once.
    - If errors remain, stop and report failing files with exact errors.
 
 ## Guardrails
@@ -68,3 +74,8 @@ Include:
   - newly created section/subsection list (if any),
   - inserted topic lines / backlink changes.
 - Validation command results.
+- Fallback details (when triggered):
+  - initial CI failure excerpt,
+  - migration result (`migrated/skipped/conflicts`),
+  - migrated path list consumed for topic linking,
+  - rerun CI result.

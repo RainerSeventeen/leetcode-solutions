@@ -13,6 +13,7 @@ description: Use when the user gives one or more `solutions/...md` files and ask
 ## Hard Rules
 
 - Do not create files under `solutions/`; they must come from `scripts/fetch_problem.py`.
+- If a solution path is under `solutions/competition_problems/`, skip it entirely (no topic entry, no backlink).
 - Keep complexity format as `$O(x)$` if edited.
 - A solution is mapped to **one** topic section by default. Map to **two** only when the problem genuinely requires two distinct algorithmic ideas as co-primary techniques (e.g., binary search + DP); never more than two.
 - Do not create new `topics/*.md` files unless the user explicitly asks.
@@ -21,11 +22,15 @@ description: Use when the user gives one or more `solutions/...md` files and ask
 
 ## Workflow
 
-1. **Parse solution metadata**
+1. **Filter competition paths first**
+   - For any input path under `solutions/competition_problems/`, mark as `skipped-competition`.
+   - Do not query 0x3f, do not write `topics/*.md`, and do not edit `## 相关专题` for these files.
+
+2. **Parse solution metadata**
    - Extract `id`, `title`, and slug URL from `## 题目链接`.
    - Confirm relative note path for the topic bullet.
 
-2. **Determine best topic placement (0x3f-first)**
+3. **Determine best topic placement (0x3f-first)**
    - First query static 0x3f index by problem id:
      - `python scripts/query_0x3f_index.py <id>`
    - If query has result(s), archive strictly according to the returned topic file + chain location (directly follow query result; do not re-judge with heuristics first).
@@ -35,10 +40,10 @@ description: Use when the user gives one or more `solutions/...md` files and ask
      - Match by method keywords (双指针, 二分, 动态规划, 图论, 回溯, 贪心, 前缀和, 单调栈/队列, 滑动窗口, 并查集, 最短路, 拓扑排序, 树形 DP, …).
      - If the problem co-equally involves two techniques, select two sections (one per topic file at most).
 
-3. **Create subsection when needed**
+4. **Create subsection when needed**
    - If no suitable `### 子方法` block exists, create a concise new one under `## 模板与子方法`.
 
-4. **Insert topic bullet** (exact format required)
+5. **Insert topic bullet** (exact format required)
    ```
    - 0000 - 题目名 ｜ [LeetCode 链接](https://leetcode.cn/problems/xxx/) ｜ [题解笔记](../solutions/xxxx-xxxx/xxxx-slug.md)
    ```
@@ -46,14 +51,14 @@ description: Use when the user gives one or more `solutions/...md` files and ask
    - In `#### 模板题目` entries, `题目名` must use Chinese.
    - Avoid duplicate entries; preserve id-sorted order where present.
 
-5. **Sync solution backlink**
+6. **Sync solution backlink**
    - Ensure `## 相关专题` section exists in the solution file.
    - Add one backlink per mapped topic (one or two, matching step 2).
    - Avoid duplicate backlink lines.
    - Backlink format: `- [专题显示名](../../topics/xxx.md)`
    - `专题显示名` follows README topic name convention (remove Chinese parenthetical text).
 
-6. **Normalize (when caller requests)**
+7. **Normalize (when caller requests)**
    - If caller explicitly requests normalization, run `.venv/bin/python scripts/normalize_topics.py`.
    - Do not run full repository CI by default; final validation should be handled by the orchestrating workflow.
 
@@ -61,6 +66,7 @@ description: Use when the user gives one or more `solutions/...md` files and ask
 
 Report:
 - Processed solution path(s).
+- Skipped competition paths (with reason `competition problems do not archive to topics`).
 - 0x3f query result per problem id (`matched` with locations / `not found`).
 - Topic file(s) and section(s) used/created.
 - Any newly created section/subsection must be explicitly listed.
