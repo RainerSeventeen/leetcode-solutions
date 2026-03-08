@@ -45,6 +45,8 @@
 7. 若归档过程中新增了分区/子分区（如新增 `###`/`####` 小节），必须在变更汇报中显式说明。
 
 ## 检验与自动化
-1. 必须通过 `scripts/check_solutions.py` 校验。
+1. `solutions` / `topics` 常规变更必须通过 `scripts/ci/ci.py` 校验。
 2. `topics` 相关变更需要通过 `scripts/ci/check_topics.py`。
-3. 撰写完成后建议执行 `scripts/normalize_topics.py` 做标题与空行规范化。
+3. 若改动涉及 `solutions/competition_problems/`，还需关注 `scripts/ci/check_competition_promotions.py` 是否提示迁移。
+4. 需要核对题号与中文标题时，可执行 `scripts/ci/check_id_integrity.py`。
+5. 撰写完成后建议执行 `scripts/normalize_topics.py` 做标题与空行规范化。

@@ -56,18 +56,24 @@
 ├── scripts/                # Python 工具脚本
 │   ├── fetch_problem.py
 │   ├── fetch_ac_submissions.py
-│   ├── filter_ac_with_code.py
 │   ├── import_ac_to_solutions.py
+│   ├── migrate_competition_problems.py
 │   ├── normalize_topics.py
+│   ├── query_0x3f_index.py
 │   └── ci/
 │       ├── check_solutions.py
 │       ├── check_topics.py
+│       ├── check_competition_promotions.py
+│       ├── check_id_integrity.py
 │       └── ci.py
 ├── artifacts/              # 脚本中间产物（自动生成，不手写）
 │   ├── ac_with_code.jsonl
-│   └── imported_paths.txt
+│   ├── imported_paths.txt
+│   ├── migrated_competition_paths.txt
+│   └── id_integrity_report.jsonl
 └── .github/workflows/
-    └── solutions-check.yml
+    ├── solutions-check.yml
+    └── id-integrity-check.yml
 ```
 
 ## 快速开始
@@ -135,21 +141,38 @@ python scripts/import_ac_to_solutions.py
 # 3. (可选) 使用 skill 执行 link 以及扩充工作
 ```
 
+### 迁移已转正的竞赛题
+
+```bash
+# 检查 solutions/competition_problems 下是否已有题目转正
+python scripts/ci/check_competition_promotions.py
+
+# 预览迁移结果
+python scripts/migrate_competition_problems.py --dry-run
+
+# 执行迁移
+python scripts/migrate_competition_problems.py
+```
+
 ### 脚本说明
 
 | 脚本 | 说明 |
 |------|------|
 | `fetch_problem.py <题号>` / `--slug` | 按题号或 slug 拉取单题，生成 Markdown 模板（竞赛题用 `--slug`） |
 | `fetch_ac_submissions.py` | 批量拉取 AC 提交，写入 `artifacts/ac_with_code.jsonl` |
-| `filter_ac_with_code.py` | 从 JSONL 中删除已归档到 `solutions/` 的题目 |
 | `import_ac_to_solutions.py` | 将 JSONL 中未归档的题目批量导入 `solutions/` |
+| `migrate_competition_problems.py` | 迁移 `solutions/competition_problems/` 中已分配正式题号的题目 |
+| `query_0x3f_index.py` | 按题号查询 `0x3f_problems_list/index.json` 中的推荐归档位置 |
+| `scripts/ci/check_competition_promotions.py` | 检查竞赛题是否已转正但尚未迁移 |
 | `scripts/ci/check_solutions.py` | 仅检查 `solutions/*.md` 规则 |
 | `scripts/ci/check_topics.py` | 仅检查 `topics/*.md` 规则（含重复题号） |
-| `scripts/ci/ci.py` | CI 总入口（串行执行 solutions + topics 检查） |
+| `scripts/ci/check_id_integrity.py` | 校验 `solutions/**/*.md` 的题号、中文标题与 API 返回是否一致 |
+| `scripts/ci/ci.py` | CI 总入口（串行执行 solutions + topics + competition promotion 检查） |
+| `scripts/auto/auto_git.py` | 自动收集 `solutions/` / `topics/` 改动并生成提交信息 |
 
 ### skill 说明
 
-仓库内置的自动化 skill 位于 `.codex/skills/`，当前有以下两个：
+仓库内置的自动化 skill 位于 `.codex/skills/`，当前有以下三个：
 
 #### 1) `daily-ac-summary`: 适用于全流程自动化
   - 拉取最近 1 天 AC 提交, 并自动导入到 `solutions/` 模板中,
@@ -160,6 +183,11 @@ python scripts/import_ac_to_solutions.py
   - 若现有小节不匹配，在对应专题下新建 `### 子方法 ...`
   - 在题解文件的 `## 相关专题` 中写入回链接，与 topics 双向绑定
   - 插入规范化条目，并执行校验与标题规范化
+
+#### 3) `solution-quality-ranker`: 同题多解整理
+  - 对同一题的多个 AC 代码块按质量排序，去掉重复方法
+  - 重排 `## 代码` 中代码块顺序，并补全更优解对应的思路与复杂度
+  - 标注当前题解是否仍存在明显非最优实现
 
 #### 推荐使用顺序
 

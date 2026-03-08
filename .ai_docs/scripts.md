@@ -28,14 +28,6 @@ python scripts/fetch_ac_submissions.py --days 1 --keep-per-problem 0
 > ⚠️ LeetCode 对竞赛题有两个 ID：`questionFrontendId`（用户可见题号，如 3838）和 `questionId`（内部数据库 ID，如 4216）。
 > 所有脚本均通过 GraphQL `questionFrontendId` 字段命名文件（fallback `questionId`），确保文件名与网站显示一致。
 
-## `scripts/filter_ac_with_code.py`
-从 `ac_with_code.jsonl` 中删除已归档到 `solutions/` 的题目（原地覆写 JSONL）。
-```bash
-python scripts/filter_ac_with_code.py --dry-run
-python scripts/filter_ac_with_code.py
-```
-匹配逻辑：以 `{frontendId:04d}-{titleSlug}` 与 `solutions/**/*.md` 的文件名（stem）对比。
-
 ## `scripts/import_ac_to_solutions.py`
 将 `ac_with_code.jsonl` 中**尚未归档**的题目批量导入 `solutions/`。
 ```bash
@@ -53,24 +45,27 @@ python scripts/import_ac_to_solutions.py --delay 0.8
 
 **lang → 代码块标签映射**：`python3→python`、`golang→go`、`cpp→cpp`、`mysql/mssql/oraclesql→sql` 等。
 
-## `scripts/check_id_integrity.py`
+## `scripts/migrate_competition_problems.py`
+迁移 `solutions/competition_problems/` 下已被分配正式题号的题目。
+```bash
+python scripts/migrate_competition_problems.py --dry-run
+python scripts/migrate_competition_problems.py
+```
+流程：
+1. 扫描 `solutions/competition_problems/*.md`
+2. 按文件名 slug 查询 GraphQL
+3. 若 `questionFrontendId < 10000`，认为该题已转正
+4. 将文件迁移到 `solutions/<range>/<id>-<latest-slug>.md`
+5. 同步更新 front matter `id` 与 H1 题号
+6. 将本次迁移结果写入 `artifacts/migrated_competition_paths.txt`
+
+## `scripts/ci/check_id_integrity.py`
 扫描所有 `solutions/**/*.md`，查 GraphQL 获取 `questionFrontendId` 并与文件名 ID 比对，检测 ID 错位或目录错位问题。
 ```bash
-python scripts/check_id_integrity.py              # 完整 API 检查（~0.5s/题）
-python scripts/check_id_integrity.py --slug-only  # 只做本地文件名/front matter 对比，不调 API
+python scripts/ci/check_id_integrity.py              # 完整 API 检查（~0.5s/题）
+python scripts/ci/check_id_integrity.py --slug-only  # 只做本地文件名/front matter 对比，不调 API
 ```
 输出：`artifacts/id_integrity_report.jsonl`，每行含 `file`、`file_id`、`api_id`、`status`（OK / MISMATCH）等字段。
-
-## `scripts/fix_id_mismatches.py`
-读取 `artifacts/id_integrity_report.jsonl`，批量修复所有 MISMATCH 条目：
-- 更新 front matter `id` 和 H1 标题中的题号
-- 将文件移动到正确路径（目录 + 文件名）
-- 同步更新 `topics/*.md` 中的题号和路径引用
-- 清理空目录
-```bash
-python scripts/fix_id_mismatches.py --dry-run   # 预览变更
-python scripts/fix_id_mismatches.py              # 执行修复
-```
 
 ## `scripts/normalize_topics.py`
 为 `topics/*.md` 做统一格式化：
@@ -109,8 +104,26 @@ python scripts/ci/check_solutions.py
 python scripts/ci/check_topics.py
 ```
 
+### `scripts/ci/check_competition_promotions.py`
+校验 `solutions/competition_problems/*.md` 是否已有题目被分配正式题号但尚未迁移。
+```bash
+python scripts/ci/check_competition_promotions.py
+```
+
 ### `scripts/ci/ci.py`
-CI 总入口，串行执行 solutions + topics 校验。
+CI 总入口，串行执行 solutions + topics + competition promotions 校验。
 ```bash
 python scripts/ci/ci.py
+```
+
+## `scripts/auto/auto_git.py`
+从 git working tree 中收集可提交文件，并按 `docs: LeetCode (...)` 规则自动提交。
+```bash
+python scripts/auto/auto_git.py
+python scripts/auto/auto_git.py --push
+```
+
+对应 shell 包装脚本：
+```bash
+scripts/auto/auto_git.sh
 ```
