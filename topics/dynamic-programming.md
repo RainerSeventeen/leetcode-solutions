@@ -298,7 +298,8 @@ def can_partition(nums):
 - 0139 - 单词拆分 ｜ [LeetCode 链接](https://leetcode.cn/problems/word-break/) ｜ [题解笔记](../solutions/0101-0200/0139-word-break.md)
 
 #### 4.5.2 最优划分
-待补充...
+模板题目：
+- 3864 - 划分二进制字符串的最小费用 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-cost-to-partition-a-binary-string/) ｜ [题解笔记](../solutions/3801-3900/3864-minimum-cost-to-partition-a-binary-string.md)
 
 #### 4.5.3 约束划分个数
 待补充...
@@ -467,6 +468,9 @@ def interval_dp(n):
 ### 4.11 优化 DP
 #### 4.11.1 前缀和优化 DP
 待补充...
+
+- 3129 - 找出所有稳定的二进制数组 I ｜ [LeetCode 链接](https://leetcode.cn/problems/find-all-possible-stable-binary-arrays-i/) ｜ [题解笔记](../solutions/3101-3200/3129-find-all-possible-stable-binary-arrays-i.md)
+- 3130 - 找出所有稳定的二进制数组 II ｜ [LeetCode 链接](https://leetcode.cn/problems/find-all-possible-stable-binary-arrays-ii/) ｜ [题解笔记](../solutions/3101-3200/3130-find-all-possible-stable-binary-arrays-ii.md)
 
 #### 4.11.2 单调栈优化 DP
 待补充...

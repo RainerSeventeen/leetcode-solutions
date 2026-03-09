@@ -43,7 +43,7 @@ def two_sum(nums, target):
 ```
 
 模板题目：
-待补充...
+- 3861 - 容量最小的箱子 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-capacity-box/) ｜ [题解笔记](../solutions/3801-3900/3861-minimum-capacity-box.md)
 
 #### 遍历对角线
 模板：
@@ -64,7 +64,7 @@ def two_sum(nums, target):
 ```
 
 模板题目：
-待补充...
+- 3862 - 找出最小平衡下标 ｜ [LeetCode 链接](https://leetcode.cn/problems/find-the-smallest-balanced-index/) ｜ [题解笔记](../solutions/3801-3900/3862-find-the-smallest-balanced-index.md)
 
 #### 前缀和与哈希表
 模板：将区间和问题转成前缀差，配合哈希统计历史前缀出现次数。树路径前缀和可交叉到树专题。
