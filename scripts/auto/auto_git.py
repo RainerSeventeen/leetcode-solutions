@@ -106,15 +106,17 @@ def collect(log: logging.Logger) -> tuple[str, list[str]] | None:
     for code, path in status_files:
         is_new = code == "??" or "A" in code
         is_modified = "M" in code
-        if path.startswith("solutions/") and (is_new or is_modified):
+        is_deleted = "D" in code
+        if path.startswith("solutions/") and (is_new or is_modified or is_deleted):
             files_to_stage.append(path)
-            solution_files.append(path)
+            if not is_deleted:
+                solution_files.append(path)
             continue
-        if path.startswith("topics/") and is_modified:
+        if path.startswith("topics/") and (is_modified or is_deleted):
             files_to_stage.append(path)
 
     if not files_to_stage:
-        log.info("no eligible files (new/modified solutions/* or modified topics/*); skip")
+        log.info("no eligible files (new/modified/deleted solutions/* or modified/deleted topics/*); skip")
         return None
 
     commit_date = date.today().isoformat()
