@@ -137,7 +137,7 @@ def maximize_minimum(left, right, check):
 ```
 
 模板题目：
-待补充...
+- 3600 - 升级后最大生成树稳定性 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximize-spanning-tree-stability-with-upgrades/) ｜ [题解笔记](../solutions/3501-3600/3600-maximize-spanning-tree-stability-with-upgrades.md)
 
 #### 第 K 小/大
 模板：
