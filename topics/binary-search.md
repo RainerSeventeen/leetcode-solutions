@@ -67,7 +67,7 @@ def binary_search_min(left, right, check):
 ```
 
 模板题目：
-待补充...
+- 3296 - 移山所需的最少秒数 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-number-of-seconds-to-make-mountain-height-zero/) ｜ [题解笔记](../solutions/3201-3300/3296-minimum-number-of-seconds-to-make-mountain-height-zero.md)
 
 #### 求最大
 模板：
