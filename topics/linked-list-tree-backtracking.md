@@ -759,7 +759,7 @@ def find_subsequences(nums):
 ```
 
 模板题目：
-待补充...
+- 1415 - 长度为 n 的开心字符串中字典序第 k 小的字符串 ｜ [LeetCode 链接](https://leetcode.cn/problems/the-k-th-lexicographical-string-of-all-happy-strings-of-length-n/) ｜ [题解笔记](../solutions/1401-1500/1415-the-k-th-lexicographical-string-of-all-happy-strings-of-length-n.md)
 
 #### 折半枚举
 模板：
