@@ -519,7 +519,7 @@ class TrieNode:
 ```
 
 模板题目：
-待补充...
+- 1622 - 奇妙序列 ｜ [LeetCode 链接](https://leetcode.cn/problems/fancy-sequence/) ｜ [题解笔记](../solutions/1601-1700/1622-fancy-sequence.md)
 
 #### 动态开点线段树
 模板：
