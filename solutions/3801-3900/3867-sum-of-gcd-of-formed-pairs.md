@@ -1,13 +1,12 @@
 ---
-id: 101005
+id: 3867
 title: Sum of GCD of Formed Pairs
 difficulty: Medium
 tags: []
 created: 2026-03-15
 ---
 
-# 101005. 数对的最大公约数之和
-
+# 3867. 数对的最大公约数之和
 ## 题目链接
 https://leetcode.cn/problems/sum-of-gcd-of-formed-pairs/
 
@@ -149,6 +148,9 @@ https://leetcode.cn/problems/sum-of-gcd-of-formed-pairs/
 - 排序主导时间开销，扫描生成 gcd 数组和配对都在 `O(n)` 以内。
 - 时间复杂度: $O(n \log n)$
 - 空间复杂度: $O(n)$
+
+## 相关专题
+- [数学算法](../../topics/math-algorithms.md)
 
 ## 代码
 ```python

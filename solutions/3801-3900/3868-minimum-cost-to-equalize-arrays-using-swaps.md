@@ -1,13 +1,12 @@
 ---
-id: 101015
+id: 3868
 title: Minimum Cost to Equalize Arrays Using Swaps
 difficulty: Medium
 tags: []
 created: 2026-03-15
 ---
 
-# 101015. 通过交换使数组相等的最小花费
-
+# 3868. 通过交换使数组相等的最小花费
 ## 题目链接
 https://leetcode.cn/problems/minimum-cost-to-equalize-arrays-using-swaps/
 
@@ -99,6 +98,9 @@ https://leetcode.cn/problems/minimum-cost-to-equalize-arrays-using-swaps/
 - `check` 双向对两个 Counter 遍历，确保 `ans` 最终累计的是所有需要跨数组交换的次数，最后除以 4 得到最小成本（每次合法交换减少三个差值分量）。
 - 时间复杂度: $O(n)$（n 是数组长度）
 - 空间复杂度: $O(n)$
+
+## 相关专题
+- [常用数据结构](../../topics/common-data-structures.md)
 
 ## 代码
 ```python

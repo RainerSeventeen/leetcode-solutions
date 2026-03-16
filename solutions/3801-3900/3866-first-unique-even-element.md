@@ -1,13 +1,12 @@
 ---
-id: 101014
+id: 3866
 title: First Unique Even Element
 difficulty: Easy
 tags: []
 created: 2026-03-15
 ---
 
-# 101014. 找到第一个唯一偶数
-
+# 3866. 找到第一个唯一偶数
 ## 题目链接
 https://leetcode.cn/problems/first-unique-even-element/
 
@@ -56,6 +55,9 @@ https://leetcode.cn/problems/first-unique-even-element/
 - 只需一次频次统计和一遍遍历即可满足题意。
 - 时间复杂度: $O(n)$
 - 空间复杂度: $O(n)$
+
+## 相关专题
+- [常用数据结构](../../topics/common-data-structures.md)
 
 ## 代码
 ```python

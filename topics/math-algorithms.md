@@ -98,6 +98,7 @@ for i in range(1, MX):
 ```
 
 模板题目：
+- 3867 - 数对的最大公约数之和 ｜ [LeetCode 链接](https://leetcode.cn/problems/sum-of-gcd-of-formed-pairs/) ｜ [题解笔记](../solutions/3801-3900/3867-sum-of-gcd-of-formed-pairs.md)
 
 
 #### 最小公倍数（LCM）

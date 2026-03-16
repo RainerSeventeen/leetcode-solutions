@@ -45,6 +45,22 @@ def two_sum(nums, target):
 模板题目：
 - 3861 - 容量最小的箱子 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-capacity-box/) ｜ [题解笔记](../solutions/3801-3900/3861-minimum-capacity-box.md)
 
+#### 频率 + 顺序
+模板：
+```
+from collections import Counter
+
+def first_unique_even(nums):
+    freq = Counter(nums)
+    for x in nums:
+        if x % 2 == 0 and freq[x] == 1:
+            return x
+    return -1
+```
+
+模板题目：
+- 3866 - 找到第一个唯一偶数 ｜ [LeetCode 链接](https://leetcode.cn/problems/first-unique-even-element/) ｜ [题解笔记](../solutions/3801-3900/3866-first-unique-even-element.md)
+
 #### 遍历对角线
 模板：
 
@@ -116,7 +132,7 @@ def subarray_sum(nums, k):
 ```
 
 模板题目：
-待补充...
+- 1878 - 矩阵中最大的三个菱形和 ｜ [LeetCode 链接](https://leetcode.cn/problems/get-biggest-three-rhombus-sums-in-a-grid/) ｜ [题解笔记](../solutions/1801-1900/1878-get-biggest-three-rhombus-sums-in-a-grid.md)
 
 #### 二维前缀和
 模板：
@@ -166,6 +182,22 @@ def num_special(mat):
 
 模板题目：
 待补充...
+
+#### 频率差 + 交换
+模板：
+```
+from collections import Counter
+
+def min_cost(nums1, nums2):
+    diff = Counter(nums1) - Counter(nums2)
+    diff.update(Counter(nums2) - Counter(nums1))
+    if any(v % 2 for v in diff.values()):
+        return -1
+    return sum(diff.values()) // 4
+```
+
+模板题目：
+- 3868 - 通过交换使数组相等的最小花费 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-cost-to-equalize-arrays-using-swaps/) ｜ [题解笔记](../solutions/3801-3900/3868-minimum-cost-to-equalize-arrays-using-swaps.md)
 
 ### 栈
 #### 基础
