@@ -81,7 +81,7 @@
 
 模板题目：
 
-待补充...
+- 1727 - 重新排列后的最大子矩阵 ｜ [LeetCode 链接](https://leetcode.cn/problems/largest-submatrix-with-rearrangements/) ｜ [题解笔记](../solutions/1701-1800/1727-largest-submatrix-with-rearrangements.md)
 
 #### 交换论证法
 模板：
