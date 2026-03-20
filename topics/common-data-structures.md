@@ -71,6 +71,16 @@ def first_unique_even(nums):
 模板题目：
 待补充...
 
+#### 枚举子矩阵
+模板：适用于矩阵规模不大、需要直接枚举每个固定大小子矩阵并在局部内排序/统计的题目。
+
+```python
+# 待补充
+```
+
+模板题目：
+- 3567 - 子矩阵的最小绝对差 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-absolute-difference-in-sliding-submatrix/) ｜ [题解笔记](../solutions/3501-3600/3567-minimum-absolute-difference-in-sliding-submatrix.md)
+
 ### 前缀和
 #### 基础
 模板：
