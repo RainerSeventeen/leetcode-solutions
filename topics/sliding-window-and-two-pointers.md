@@ -178,6 +178,7 @@ def reverse_string(s):
 - 0344 - 反转字符串 ｜ [LeetCode 链接](https://leetcode.cn/problems/reverse-string/) ｜ [题解笔记](../solutions/0301-0400/0344-reverse-string.md)
 - 0541 - 反转字符串 II ｜ [LeetCode 链接](https://leetcode.cn/problems/reverse-string-ii/) ｜ [题解笔记](../solutions/0501-0600/0541-reverse-string-ii.md)
 - 0151 - 反转字符串中的单词 ｜ [LeetCode 链接](https://leetcode.cn/problems/reverse-words-in-a-string/) ｜ [题解笔记](../solutions/0101-0200/0151-reverse-words-in-a-string.md)
+- 3643 - 垂直翻转子矩阵 ｜ [LeetCode 链接](https://leetcode.cn/problems/flip-square-submatrix-vertically/) ｜ [题解笔记](../solutions/3601-3700/3643-flip-square-submatrix-vertically.md)
 
 #### 4.3.2 相向双指针
 模板：
