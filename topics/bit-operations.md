@@ -75,7 +75,7 @@ def single_number(nums):
 ```
 
 模板题目：
-待补充...
+- 3877 - 达到目标异或值的最少删除次数 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-removals-to-achieve-target-xor/) ｜ [题解笔记](../solutions/3801-3900/3877-minimum-removals-to-achieve-target-xor.md)
 
 ### 与或（AND/OR）的性质
 #### AND/OR 基础性质

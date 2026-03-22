@@ -408,6 +408,21 @@ def min_changes_to_alternate(states: Iterable[int], start: int = 0) -> int:
 
 - 1980 - 找出不同的二进制字符串 ｜ [LeetCode 链接](https://leetcode.cn/problems/find-unique-binary-string/) ｜ [题解笔记](../solutions/1901-2000/1980-find-unique-binary-string.md)
 
+#### 奇偶构造
+模板：
+
+```python
+def can_make_uniform_parity(nums1):
+    mn = min(nums1)
+    if mn & 1:
+        return True
+    return all((x & 1) == 0 for x in nums1)
+```
+
+模板题目：
+
+- 3876 - 构造奇偶一致的数组 II ｜ [LeetCode 链接](https://leetcode.cn/problems/construct-uniform-parity-array-ii/) ｜ [题解笔记](../solutions/3801-3900/3876-construct-uniform-parity-array-ii.md)
+
 ### 交互题
 待补充...
 

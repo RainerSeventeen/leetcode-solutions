@@ -81,6 +81,32 @@ def first_unique_even(nums):
 模板题目：
 - 3567 - 子矩阵的最小绝对差 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-absolute-difference-in-sliding-submatrix/) ｜ [题解笔记](../solutions/3501-3600/3567-minimum-absolute-difference-in-sliding-submatrix.md)
 
+#### 矩阵模拟与旋转
+模板：适用于按固定规则旋转、翻转、逐格比较的矩阵题，核心是把变换过程拆成可复用的小步骤。
+
+```python
+def rotate_clockwise_inplace(mat):
+    n = len(mat)
+    for i in range(n):
+        for j in range(i + 1, n):
+            mat[i][j], mat[j][i] = mat[j][i], mat[i][j]
+    for row in mat:
+        row.reverse()
+
+
+def can_match_by_rotation(mat, target):
+    if mat == target:
+        return True
+    for _ in range(3):
+        rotate_clockwise_inplace(mat)
+        if mat == target:
+            return True
+    return False
+```
+
+模板题目：
+- 1886 - 判断矩阵经轮转后是否一致 ｜ [LeetCode 链接](https://leetcode.cn/problems/determine-whether-matrix-can-be-obtained-by-rotation/) ｜ [题解笔记](../solutions/1801-1900/1886-determine-whether-matrix-can-be-obtained-by-rotation.md)
+
 ### 前缀和
 #### 基础
 模板：
