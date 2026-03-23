@@ -125,7 +125,19 @@ def min_path_sum(grid):
 - 0064 - 最小路径和 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-path-sum/) ｜ [题解笔记](../solutions/0001-0100/0064-minimum-path-sum.md)
 
 #### 4.2.2 进阶
-待补充...
+方法说明：
+
+在网格乘积类问题中，路径经过负数时最优性会翻转，因此每个格子要同时维护最小乘积和最大乘积。
+
+讲解要点：
+
+- 当前格子的候选值来自上方和左方的最小/最大乘积，共四种组合，分别取最小值和最大值作为新状态。
+- 由于路径积可能为负，不能只保留单一最优值；最小值在乘以负数后可能变成新的最大值。
+- 空间压缩时要按行覆盖，但更新每个位置前必须保留旧的上方状态，否则会污染当前轮次的转移。
+
+模板题目：
+
+- 1594 - 矩阵的最大非负积 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximum-non-negative-product-in-a-matrix/) ｜ [题解笔记](../solutions/1501-1600/1594-maximum-non-negative-product-in-a-matrix.md)
 
 ### 4.3 背包
 #### 4.3.1 0-1 背包

@@ -421,6 +421,7 @@ def can_make_uniform_parity(nums1):
 
 模板题目：
 
+- 3875 - 构造奇偶一致的数组 I ｜ [LeetCode 链接](https://leetcode.cn/problems/construct-uniform-parity-array-i/) ｜ [题解笔记](../solutions/3801-3900/3875-construct-uniform-parity-array-i.md)
 - 3876 - 构造奇偶一致的数组 II ｜ [LeetCode 链接](https://leetcode.cn/problems/construct-uniform-parity-array-ii/) ｜ [题解笔记](../solutions/3801-3900/3876-construct-uniform-parity-array-ii.md)
 
 ### 交互题

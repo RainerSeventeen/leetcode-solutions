@@ -1,13 +1,12 @@
 ---
-id: 101018
+id: 3875
 title: Construct Uniform Parity Array I
 difficulty: Easy
 tags: []
 created: 2026-03-22
 ---
 
-# 101018. 构造奇偶一致的数组 I
-
+# 3875. 构造奇偶一致的数组 I
 ## 题目链接
 https://leetcode.cn/problems/construct-uniform-parity-array-i/
 
@@ -71,6 +70,9 @@ https://leetcode.cn/problems/construct-uniform-parity-array-i/
 这题没有 `>= 1` 的限制，减法结果只要奇偶性合适即可。若数组里有奇数，就把目标定成奇数，所有偶数都能减去某个奇数变成奇数；若数组里没有奇数，那数组本身就是全偶。于是答案恒为 `true`。
 - 时间复杂度: $O(1)$
 - 空间复杂度: $O(1)$
+
+## 相关专题
+- [贪心与思维](../../topics/greedy-and-thinking.md)
 
 ## 代码
 ```python
