@@ -579,7 +579,9 @@ def count_bst(n):
 待补充...
 
 ### 4.17 专题：前后缀分解
-待补充...
+模板题目：
+
+- 2906 - 构造乘积矩阵 ｜ [LeetCode 链接](https://leetcode.cn/problems/construct-product-matrix/) ｜ [题解笔记](../solutions/2901-3000/2906-construct-product-matrix.md)
 
 ### 4.18 专题：把 X 变成 Y
 待补充...
