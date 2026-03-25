@@ -302,6 +302,7 @@ def merge_like(a, b):
 
 模板题目：
 
+- 0088 - 合并两个有序数组 ｜ [LeetCode 链接](https://leetcode.cn/problems/merge-sorted-array/) ｜ [题解笔记](../solutions/0001-0100/0088-merge-sorted-array.md)
 - 0844 - 比较含退格的字符串 ｜ [LeetCode 链接](https://leetcode.cn/problems/backspace-string-compare/) ｜ [题解笔记](../solutions/0801-0900/0844-backspace-string-compare.md)
 
 #### 4.4.2 判断子序列

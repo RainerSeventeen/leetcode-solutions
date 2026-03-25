@@ -181,6 +181,31 @@ def subarray_sum(nums, k):
 - 3070 - 元素和小于等于 k 的子矩阵的数目 ｜ [LeetCode 链接](https://leetcode.cn/problems/count-submatrices-with-top-left-element-and-sum-less-than-k/) ｜ [题解笔记](../solutions/3001-3100/3070-count-submatrices-with-top-left-element-and-sum-less-than-k.md)
 - 3212 - 统计 X 和 Y 频数相等的子矩阵数量 ｜ [LeetCode 链接](https://leetcode.cn/problems/count-submatrices-with-equal-frequency-of-x-and-y/) ｜ [题解笔记](../solutions/3201-3300/3212-count-submatrices-with-equal-frequency-of-x-and-y.md)
 
+#### 行列前缀和切分
+模板：适用于矩阵先按行、再按列累计判断可行性的题目。先求总和，再枚举水平或垂直分割线，检查两侧前缀和是否相等。
+
+```python
+def can_partition_grid(grid):
+    total = sum(map(sum, grid))
+
+    pre = 0
+    for row in grid:
+        pre += sum(row)
+        if pre * 2 == total:
+            return True
+
+    pre = 0
+    for col in zip(*grid):
+        pre += sum(col)
+        if pre * 2 == total:
+            return True
+
+    return False
+```
+
+模板题目：
+- 3546 - 等和矩阵分割 I ｜ [LeetCode 链接](https://leetcode.cn/problems/equal-sum-grid-partition-i/) ｜ [题解笔记](../solutions/3501-3600/3546-equal-sum-grid-partition-i.md)
+
 #### 二维计数（行列统计）
 模板：
 
