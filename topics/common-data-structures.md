@@ -33,6 +33,7 @@ def two_sum(nums, target):
 模板题目：
 - 0001 - 两数之和 ｜ [LeetCode 链接](https://leetcode.cn/problems/two-sum/) ｜ [题解笔记](../solutions/0001-0100/0001-two-sum.md)
 - 0454 - 四数相加 II ｜ [LeetCode 链接](https://leetcode.cn/problems/4sum-ii/) ｜ [题解笔记](../solutions/0401-0500/0454-4sum-ii.md)
+- 3548 - 等和矩阵分割 II ｜ [LeetCode 链接](https://leetcode.cn/problems/equal-sum-grid-partition-ii/) ｜ [题解笔记](../solutions/3501-3600/3548-equal-sum-grid-partition-ii.md)
 - 3713 - 最长的平衡子串 I ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-balanced-substring-i/) ｜ [题解笔记](../solutions/3701-3800/3713-longest-balanced-substring-i.md)
 
 #### 枚举中间
@@ -106,6 +107,7 @@ def can_match_by_rotation(mat, target):
 
 模板题目：
 - 1886 - 判断矩阵经轮转后是否一致 ｜ [LeetCode 链接](https://leetcode.cn/problems/determine-whether-matrix-can-be-obtained-by-rotation/) ｜ [题解笔记](../solutions/1801-1900/1886-determine-whether-matrix-can-be-obtained-by-rotation.md)
+- 2946 - 循环移位后的矩阵相似检查 ｜ [LeetCode 链接](https://leetcode.cn/problems/matrix-similarity-after-cyclic-shifts/) ｜ [题解笔记](../solutions/2901-3000/2946-matrix-similarity-after-cyclic-shifts.md)
 
 ### 前缀和
 #### 基础
