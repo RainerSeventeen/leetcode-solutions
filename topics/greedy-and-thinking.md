@@ -351,6 +351,18 @@ def min_changes_to_alternate(states: Iterable[int], start: int = 0) -> int:
 
 - 0049 - 字母异位词分组 ｜ [LeetCode 链接](https://leetcode.cn/problems/group-anagrams/) ｜ [题解笔记](../solutions/0001-0100/0049-group-anagrams.md)
 
+#### 奇偶位不变量
+模板：
+
+```python
+def can_match_by_parity_swap(s1: str, s2: str) -> bool:
+    return sorted(s1[::2]) == sorted(s2[::2]) and sorted(s1[1::2]) == sorted(s2[1::2])
+```
+
+模板题目：
+
+- 2839 - 判断通过操作能否让字符串相等 I ｜ [LeetCode 链接](https://leetcode.cn/problems/check-if-strings-can-be-made-equal-with-operations-i/) ｜ [题解笔记](../solutions/2801-2900/2839-check-if-strings-can-be-made-equal-with-operations-i.md)
+
 #### 逆向思维
 模板：
 
@@ -407,6 +419,17 @@ def min_changes_to_alternate(states: Iterable[int], start: int = 0) -> int:
 模板题目：
 
 - 1980 - 找出不同的二进制字符串 ｜ [LeetCode 链接](https://leetcode.cn/problems/find-unique-binary-string/) ｜ [题解笔记](../solutions/1901-2000/1980-find-unique-binary-string.md)
+
+#### LCP 矩阵构造
+模板：
+
+```python
+# 先按字典序贪心赋值，再用递推/校验验证矩阵一致性
+```
+
+模板题目：
+
+- 2573 - 找出对应 LCP 矩阵的字符串 ｜ [LeetCode 链接](https://leetcode.cn/problems/find-the-string-with-lcp/) ｜ [题解笔记](../solutions/2501-2600/2573-find-the-string-with-lcp.md)
 
 #### 奇偶构造
 模板：
