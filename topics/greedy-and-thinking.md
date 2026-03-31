@@ -362,6 +362,7 @@ def can_match_by_parity_swap(s1: str, s2: str) -> bool:
 模板题目：
 
 - 2839 - 判断通过操作能否让字符串相等 I ｜ [LeetCode 链接](https://leetcode.cn/problems/check-if-strings-can-be-made-equal-with-operations-i/) ｜ [题解笔记](../solutions/2801-2900/2839-check-if-strings-can-be-made-equal-with-operations-i.md)
+- 2840 - 判断通过操作能否让字符串相等 II ｜ [LeetCode 链接](https://leetcode.cn/problems/check-if-strings-can-be-made-equal-with-operations-ii/) ｜ [题解笔记](../solutions/2801-2900/2840-check-if-strings-can-be-made-equal-with-operations-ii.md)
 
 #### 逆向思维
 模板：

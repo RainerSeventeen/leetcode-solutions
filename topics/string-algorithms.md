@@ -85,6 +85,17 @@ def lcp_by_z(s: str) -> list[int]:
 
 待补充...
 
+#### 字符串构造
+模板：
+
+```python
+# 待补充
+```
+
+模板题目：
+
+- 3474 - 字典序最小的生成字符串 ｜ [LeetCode 链接](https://leetcode.cn/problems/lexicographically-smallest-generated-string/) ｜ [题解笔记](../solutions/3401-3500/3474-lexicographically-smallest-generated-string.md)
+
 ### Manacher 算法（回文串）
 #### Manacher 模板
 模板：
