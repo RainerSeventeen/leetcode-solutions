@@ -304,6 +304,7 @@ class MinStack:
 
 模板题目：
 - 1047 - 删除字符串中的所有相邻重复项 ｜ [LeetCode 链接](https://leetcode.cn/problems/remove-all-adjacent-duplicates-in-string/) ｜ [题解笔记](../solutions/1001-1100/1047-remove-all-adjacent-duplicates-in-string.md)
+- 2751 - 机器人碰撞 ｜ [LeetCode 链接](https://leetcode.cn/problems/robot-collisions/) ｜ [题解笔记](../solutions/2701-2800/2751-robot-collisions.md)
 
 #### 合法括号字符串（RBS）
 模板：

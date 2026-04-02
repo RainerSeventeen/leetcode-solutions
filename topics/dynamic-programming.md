@@ -123,6 +123,7 @@ def min_path_sum(grid):
 - 0062 - 不同路径 ｜ [LeetCode 链接](https://leetcode.cn/problems/unique-paths/) ｜ [题解笔记](../solutions/0001-0100/0062-unique-paths.md)
 - 0063 - 不同路径 II ｜ [LeetCode 链接](https://leetcode.cn/problems/unique-paths-ii/) ｜ [题解笔记](../solutions/0001-0100/0063-unique-paths-ii.md)
 - 0064 - 最小路径和 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-path-sum/) ｜ [题解笔记](../solutions/0001-0100/0064-minimum-path-sum.md)
+- 3418 - 机器人可以获得的最大金币数 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximum-amount-of-money-robot-can-earn/) ｜ [题解笔记](../solutions/3401-3500/3418-maximum-amount-of-money-robot-can-earn.md)
 
 #### 4.2.2 进阶
 方法说明：
