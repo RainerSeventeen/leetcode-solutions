@@ -396,6 +396,7 @@ def can_match_by_parity_swap(s1: str, s2: str) -> bool:
 模板题目：
 
 - 0135 - 分发糖果 ｜ [LeetCode 链接](https://leetcode.cn/problems/candy/) ｜ [题解笔记](../solutions/0101-0200/0135-candy.md)
+- 2087 - 网格图中机器人回家的最小代价 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-cost-homecoming-of-a-robot-in-a-grid/) ｜ [题解笔记](../solutions/2001-2100/2087-minimum-cost-homecoming-of-a-robot-in-a-grid.md)
 
 #### 分类讨论
 模板：
