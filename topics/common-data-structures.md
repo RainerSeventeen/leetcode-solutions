@@ -109,6 +109,28 @@ def can_match_by_rotation(mat, target):
 - 1886 - 判断矩阵经轮转后是否一致 ｜ [LeetCode 链接](https://leetcode.cn/problems/determine-whether-matrix-can-be-obtained-by-rotation/) ｜ [题解笔记](../solutions/1801-1900/1886-determine-whether-matrix-can-be-obtained-by-rotation.md)
 - 2946 - 循环移位后的矩阵相似检查 ｜ [LeetCode 链接](https://leetcode.cn/problems/matrix-similarity-after-cyclic-shifts/) ｜ [题解笔记](../solutions/2901-3000/2946-matrix-similarity-after-cyclic-shifts.md)
 
+### 简单模拟
+#### 单次遍历状态维护
+模板：适用于按题意逐步更新少量状态的题目，核心是把每次操作对状态的影响拆开记录。
+
+```python
+def solve(ops):
+    x = y = 0
+    for op in ops:
+        if op == "U":
+            y += 1
+        elif op == "D":
+            y -= 1
+        elif op == "L":
+            x -= 1
+        elif op == "R":
+            x += 1
+    return x == 0 and y == 0
+```
+
+模板题目：
+- 0657 - 机器人能否返回原点 ｜ [LeetCode 链接](https://leetcode.cn/problems/robot-return-to-origin/) ｜ [题解笔记](../solutions/0601-0700/0657-robot-return-to-origin.md)
+
 ### 前缀和
 #### 基础
 模板：
