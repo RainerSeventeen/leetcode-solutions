@@ -131,6 +131,33 @@ def solve(ops):
 模板题目：
 - 0657 - 机器人能否返回原点 ｜ [LeetCode 链接](https://leetcode.cn/problems/robot-return-to-origin/) ｜ [题解笔记](../solutions/0601-0700/0657-robot-return-to-origin.md)
 
+#### 哈希集合判障碍的逐步模拟
+模板：适用于机器人/行走路径一类题目，把障碍点先放进哈希集合，再按命令逐步模拟移动过程；每一步都能用 `O(1)` 平均时间判断是否撞到障碍。
+
+```python
+def simulate(commands, obstacles):
+    obs = {tuple(p) for p in obstacles}
+    x = y = 0
+    dx, dy = 0, 1
+    best = 0
+    for cmd in commands:
+        if cmd == -1:
+            dx, dy = dy, -dx
+        elif cmd == -2:
+            dx, dy = -dy, dx
+        else:
+            for _ in range(cmd):
+                nx, ny = x + dx, y + dy
+                if (nx, ny) in obs:
+                    break
+                x, y = nx, ny
+                best = max(best, x * x + y * y)
+    return best
+```
+
+模板题目：
+- 0874 - 模拟行走机器人 ｜ [LeetCode 链接](https://leetcode.cn/problems/walking-robot-simulation/) ｜ [题解笔记](../solutions/0801-0900/0874-walking-robot-simulation.md)
+
 ### 前缀和
 #### 基础
 模板：
