@@ -60,6 +60,8 @@ def first_unique_even(nums):
 ```
 
 模板题目：
+- 3740 - 三个相等元素之间的最小距离 I ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-distance-between-three-equal-elements-i/) ｜ [题解笔记](../solutions/3701-3800/3740-minimum-distance-between-three-equal-elements-i.md)
+- 3741 - 三个相等元素之间的最小距离 II ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-distance-between-three-equal-elements-ii/) ｜ [题解笔记](../solutions/3701-3800/3741-minimum-distance-between-three-equal-elements-ii.md)
 - 3866 - 找到第一个唯一偶数 ｜ [LeetCode 链接](https://leetcode.cn/problems/first-unique-even-element/) ｜ [题解笔记](../solutions/3801-3900/3866-first-unique-even-element.md)
 
 #### 遍历对角线
@@ -130,6 +132,7 @@ def solve(ops):
 
 模板题目：
 - 0657 - 机器人能否返回原点 ｜ [LeetCode 链接](https://leetcode.cn/problems/robot-return-to-origin/) ｜ [题解笔记](../solutions/0601-0700/0657-robot-return-to-origin.md)
+- 3653 - 区间乘法查询后的异或 I ｜ [LeetCode 链接](https://leetcode.cn/problems/xor-after-range-multiplication-queries-i/) ｜ [题解笔记](../solutions/3601-3700/3653-xor-after-range-multiplication-queries-i.md)
 
 #### 哈希集合判障碍的逐步模拟
 模板：适用于机器人/行走路径一类题目，把障碍点先放进哈希集合，再按命令逐步模拟移动过程；每一步都能用 `O(1)` 平均时间判断是否撞到障碍。
@@ -709,7 +712,7 @@ class TrieNode:
 ```
 
 模板题目：
-待补充...
+- 3655 - 区间乘法查询后的异或 II ｜ [LeetCode 链接](https://leetcode.cn/problems/xor-after-range-multiplication-queries-ii/) ｜ [题解笔记](../solutions/3601-3700/3655-xor-after-range-multiplication-queries-ii.md)
 
 #### 莫队算法
 模板：
