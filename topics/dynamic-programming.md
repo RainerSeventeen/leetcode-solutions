@@ -380,7 +380,7 @@ def max_profit_cooldown(prices):
 
 - 0221 - 最大正方形 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximal-square/) ｜ [题解笔记](../solutions/0201-0300/0221-maximal-square.md)
 #### 4.7.6 多维 DP
-待补充...
+- 1320 - 二指输入的的最小距离 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-distance-to-type-a-word-using-two-fingers/) ｜ [题解笔记](../solutions/1301-1400/1320-minimum-distance-to-type-a-word-using-two-fingers.md)
 
 #### 4.7.7 计数 DP
 方法说明：

@@ -231,7 +231,7 @@ def forward_two_pointers(nums):
 
 模板题目：
 
-待补充...
+- 1848 - 到目标元素的最小距离 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-distance-to-the-target-element/) ｜ [题解笔记](../solutions/1801-1900/1848-minimum-distance-to-the-target-element.md)
 
 #### 4.3.5 原地修改
 模板：
@@ -252,6 +252,8 @@ def remove_element(nums, val):
 - 0026 - 删除有序数组中的重复项 ｜ [LeetCode 链接](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/) ｜ [题解笔记](../solutions/0001-0100/0026-remove-duplicates-from-sorted-array.md)
 - 0283 - 移动零 ｜ [LeetCode 链接](https://leetcode.cn/problems/move-zeroes/) ｜ [题解笔记](../solutions/0201-0300/0283-move-zeroes.md)
 - 0075 - 颜色分类 ｜ [LeetCode 链接](https://leetcode.cn/problems/sort-colors/) ｜ [题解笔记](../solutions/0001-0100/0075-sort-colors.md)
+- 0080 - 删除有序数组中的重复项 II ｜ [LeetCode 链接](https://leetcode.cn/problems/remove-duplicates-from-sorted-array-ii/) ｜ [题解笔记](../solutions/0001-0100/0080-remove-duplicates-from-sorted-array-ii.md)
+- 0189 - 轮转数组 ｜ [LeetCode 链接](https://leetcode.cn/problems/rotate-array/) ｜ [题解笔记](../solutions/0101-0200/0189-rotate-array.md)
 
 #### 4.3.6 矩阵上的双指针
 模板：
