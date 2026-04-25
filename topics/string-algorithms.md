@@ -16,6 +16,18 @@
 4. 用最短反例验证失败跳转与窗口更新。
 
 ## 模板与子方法
+### 字符串比较
+#### Hamming 距离
+模板：
+
+```python
+# 待补充
+```
+
+模板题目：
+
+- 2452 - 距离字典两次编辑以内的单词 ｜ [LeetCode 链接](https://leetcode.cn/problems/words-within-two-edits-of-dictionary/) ｜ [题解笔记](../solutions/2401-2500/2452-words-within-two-edits-of-dictionary.md)
+
 ### KMP（前缀的后缀）
 #### 前缀函数匹配
 模板：

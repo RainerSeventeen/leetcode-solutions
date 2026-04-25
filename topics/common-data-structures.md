@@ -35,6 +35,7 @@ def two_sum(nums, target):
 - 0454 - 四数相加 II ｜ [LeetCode 链接](https://leetcode.cn/problems/4sum-ii/) ｜ [题解笔记](../solutions/0401-0500/0454-4sum-ii.md)
 - 3548 - 等和矩阵分割 II ｜ [LeetCode 链接](https://leetcode.cn/problems/equal-sum-grid-partition-ii/) ｜ [题解笔记](../solutions/3501-3600/3548-equal-sum-grid-partition-ii.md)
 - 3713 - 最长的平衡子串 I ｜ [LeetCode 链接](https://leetcode.cn/problems/longest-balanced-substring-i/) ｜ [题解笔记](../solutions/3701-3800/3713-longest-balanced-substring-i.md)
+- 3761 - 镜像对之间最小绝对距离 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-absolute-distance-between-mirror-pairs/) ｜ [题解笔记](../solutions/3701-3800/3761-minimum-absolute-distance-between-mirror-pairs.md)
 
 #### 枚举中间
 模板：
@@ -202,7 +203,7 @@ def subarray_sum(nums, k):
 ```
 
 模板题目：
-待补充...
+- 2615 - 等值距离和 ｜ [LeetCode 链接](https://leetcode.cn/problems/sum-of-distances/) ｜ [题解笔记](../solutions/2601-2700/2615-sum-of-distances.md)
 
 #### 状态压缩前缀和
 模板：
@@ -587,7 +588,7 @@ class TrieNode:
 ```
 
 模板题目：
-待补充...
+- 1722 - 执行交换操作后的最小汉明距离 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimize-hamming-distance-after-swap-operations/) ｜ [题解笔记](../solutions/1701-1800/1722-minimize-hamming-distance-after-swap-operations.md)
 
 #### GCD 并查集
 模板：

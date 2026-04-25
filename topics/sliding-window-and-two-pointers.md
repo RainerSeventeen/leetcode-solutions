@@ -232,6 +232,7 @@ def forward_two_pointers(nums):
 模板题目：
 
 - 1848 - 到目标元素的最小距离 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-distance-to-the-target-element/) ｜ [题解笔记](../solutions/1801-1900/1848-minimum-distance-to-the-target-element.md)
+- 2515 - 到目标字符串的最短距离 ｜ [LeetCode 链接](https://leetcode.cn/problems/shortest-distance-to-target-string-in-a-circular-array/) ｜ [题解笔记](../solutions/2501-2600/2515-shortest-distance-to-target-string-in-a-circular-array.md)
 
 #### 4.3.5 原地修改
 模板：

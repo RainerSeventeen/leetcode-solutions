@@ -48,7 +48,7 @@ def binary_search_after_sort(nums, target):
 ```
 
 模板题目：
-待补充...
+- 3488 - 距离最小相等元素查询 ｜ [LeetCode 链接](https://leetcode.cn/problems/closest-equal-element-queries/) ｜ [题解笔记](../solutions/3401-3500/3488-closest-equal-element-queries.md)
 
 ### 二分答案
 #### 求最小
@@ -137,6 +137,7 @@ def maximize_minimum(left, right, check):
 ```
 
 模板题目：
+- 3464 - 正方形上的点之间的最大距离 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximize-the-distance-between-points-on-a-square/) ｜ [题解笔记](../solutions/3401-3500/3464-maximize-the-distance-between-points-on-a-square.md)
 - 3600 - 升级后最大生成树稳定性 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximize-spanning-tree-stability-with-upgrades/) ｜ [题解笔记](../solutions/3501-3600/3600-maximize-spanning-tree-stability-with-upgrades.md)
 
 #### 第 K 小/大

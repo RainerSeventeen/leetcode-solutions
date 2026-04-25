@@ -355,6 +355,17 @@ for x in gen_palindrome():
 
 - 0009 - 回文数 ｜ [LeetCode 链接](https://leetcode.cn/problems/palindrome-number/) ｜ [题解笔记](../solutions/0001-0100/0009-palindrome-number.md)
 
+#### 整数反转
+模板：
+
+```python
+# 待补充
+```
+
+模板题目：
+
+- 3783 - 整数的镜像距离 ｜ [LeetCode 链接](https://leetcode.cn/problems/mirror-distance-of-an-integer/) ｜ [题解笔记](../solutions/3701-3800/3783-mirror-distance-of-an-integer.md)
+
 #### 整数拆分
 模板：
 

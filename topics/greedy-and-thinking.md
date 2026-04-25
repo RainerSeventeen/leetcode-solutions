@@ -28,6 +28,17 @@
 
 - 1005 - K 次取反后最大化的数组和 ｜ [LeetCode 链接](https://leetcode.cn/problems/maximize-sum-of-array-after-k-negations/) ｜ [题解笔记](../solutions/1001-1100/1005-maximize-sum-of-array-after-k-negations.md)
 
+#### 排序扫描
+模板：
+
+```python
+# 待补充
+```
+
+模板题目：
+
+- 0274 - H 指数 ｜ [LeetCode 链接](https://leetcode.cn/problems/h-index/) ｜ [题解笔记](../solutions/0201-0300/0274-h-index.md)
+
 #### 单序列配对
 模板：
 
@@ -37,7 +48,7 @@
 
 模板题目：
 
-待补充...
+- 2833 - 距离原点最远的点 ｜ [LeetCode 链接](https://leetcode.cn/problems/furthest-point-from-origin/) ｜ [题解笔记](../solutions/2801-2900/2833-furthest-point-from-origin.md)
 
 #### 双序列配对
 模板：
@@ -408,6 +419,7 @@ def can_match_by_parity_swap(s1: str, s2: str) -> bool:
 模板题目：
 
 - 0860 - 柠檬水找零 ｜ [LeetCode 链接](https://leetcode.cn/problems/lemonade-change/) ｜ [题解笔记](../solutions/0801-0900/0860-lemonade-change.md)
+- 2078 - 两栋颜色不同且距离最远的房子 ｜ [LeetCode 链接](https://leetcode.cn/problems/two-furthest-houses-with-different-colors/) ｜ [题解笔记](../solutions/2001-2100/2078-two-furthest-houses-with-different-colors.md)
 - 3863 - 将一个字符串排序的最小操作次数 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-operations-to-sort-a-string/) ｜ [题解笔记](../solutions/3801-3900/3863-minimum-operations-to-sort-a-string.md)
 
 ### 构造题

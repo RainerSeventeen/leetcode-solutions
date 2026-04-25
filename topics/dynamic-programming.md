@@ -312,6 +312,7 @@ def can_partition(nums):
 
 #### 4.5.2 最优划分
 模板题目：
+- 2463 - 最小移动总距离 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-total-distance-traveled/) ｜ [题解笔记](../solutions/2401-2500/2463-minimum-total-distance-traveled.md)
 - 3864 - 划分二进制字符串的最小费用 ｜ [LeetCode 链接](https://leetcode.cn/problems/minimum-cost-to-partition-a-binary-string/) ｜ [题解笔记](../solutions/3801-3900/3864-minimum-cost-to-partition-a-binary-string.md)
 
 #### 4.5.3 约束划分个数
